@@ -1,0 +1,8 @@
+**/.project
+**/*.iml
+**/.idea
+**/target
+**/.history
+**/.allure
+**/allure-results
+**/allure-report
