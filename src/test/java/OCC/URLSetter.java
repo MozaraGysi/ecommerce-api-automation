@@ -1,11 +1,11 @@
-package SuperApp;
+package OCC;
 
 public class URLSetter {
-    public String SetterURL()
+    public static String SetterURL()
     {
         String url;
         String env = "HML";
-        String Brand = "Arezzo";
+        String Brand = "MKTP";
         if(env == "PRD" && Brand == "Arezzo")
         {
             url = "www.arezzo.com.br";
@@ -30,12 +30,12 @@ public class URLSetter {
         {
             url = "www.vans.com.br";
         }
-        else if(env == "HML" && Brand == "Arezzo")
+        else if(env == "HML" && Brand == "MKTP")
         {
-            url = "www.preprod.arezzo.com.br";
+            url = "https://preprod.zzmall.com.br/arezzocoocc";
         }
         else
-            url = "preprod.arezzo.com.br";
+            url = "https://preprod.zzmall.com.br/arezzocoocc";
         return url;
     }
 }
