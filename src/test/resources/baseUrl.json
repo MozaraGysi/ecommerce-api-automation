@@ -13,6 +13,20 @@
       "url": "https://alexandrebirman.local:9002/arezzocoocc"
     }
   },
+  "Alme": {
+    "prd": {
+      "url": "https://backoffice.somosalme.com.br/arezzocoocc"
+    },
+    "tst": {
+      "url": "https://integ06.somosalme.com.br/arezzocoocc"
+    },
+    "hml": {
+      "url": "https://preprod.somosalme.com.br/arezzocoocc"
+    },
+    "lcl": {
+      "url": "https://somosalme.local:9002/arezzocoocc"
+    }
+  },
   "Anacapri": {
     "prd": {
       "url": "https://backoffice.anacapri.com.br/arezzocoocc"
@@ -67,20 +81,6 @@
     },
     "lcl": {
       "url": "https://outstore.local:9002/arezzocoocc"
-    }
-  },
-  "Owme": {
-    "prd": {
-      "url": "https://backoffice.somosalme.com.br/arezzocoocc"
-    },
-    "tst": {
-      "url": "https://integ06.somosalme.com.br/arezzocoocc"
-    },
-    "hml": {
-      "url": "https://preprod.somosalme.com.br/arezzocoocc"
-    },
-    "lcl": {
-      "url": "https://somosalme.local:9002/arezzocoocc"
     }
   },
   "Schutz": {
