@@ -1,7 +1,6 @@
 package OCC.Tests;
 
 import OCC.Pages.AuthorizationPage;
-import OCC.Utils;
 import org.junit.Test;
 
 public class Authorization {
@@ -17,4 +16,13 @@ public class Authorization {
     {
         AuthorizationPage.AnonymousAuth();
     }
+
+    @Test
+    public void RegisterCustomerAppleID()
+    {
+        AuthorizationPage.RegisterCustomerAppleID();
+    }
+
+    @Test
+    public void RegisterCustomerfacebook(){ AuthorizationPage.RegisterCustomerFacebook(); }
 }

@@ -1,0 +1,128 @@
+{
+  "AlexandreBirman": {
+    "prd": {
+      "url": "https://backoffice.alexandrebirman.com.br/arezzocoocc"
+    },
+    "tst": {
+      "url": "https://integ06.alexandrebirman.com.br/arezzocoocc"
+    },
+    "hml": {
+      "url": "https://preprod.alexandrebirman.com.br/arezzocoocc"
+    },
+    "lcl": {
+      "url": "https://alexandrebirman.local:9002/arezzocoocc"
+    }
+  },
+  "Anacapri": {
+    "prd": {
+      "url": "https://backoffice.anacapri.com.br/arezzocoocc"
+    },
+    "tst": {
+      "url": "https://integ06.anacapri.com.br/arezzocoocc"
+    },
+    "hml": {
+      "url": "https://preprod.anacapri.com.br/arezzocoocc"
+    },
+    "lcl": {
+      "url": "https://anacapri.local:9002/arezzocoocc"
+    }
+  },
+  "Arezzo": {
+    "prd": {
+      "url": "https://backoffice.arezzo.com.br/arezzocoocc"
+    },
+    "tst": {
+      "url": "https://integ06.arezzo.com.br/arezzocoocc"
+    },
+    "hml": {
+      "url": "https://preprod.arezzo.com.br/arezzocoocc"
+    },
+    "lcl": {
+      "url": "https://arezzo.local:9002/arezzocoocc"
+    }
+  },
+  "Fiever": {
+    "prd": {
+      "url": "https://backoffice.fiever.com.br/arezzocoocc"
+    },
+    "tst": {
+      "url": "https://integ06.fiever.com.br/arezzocoocc"
+    },
+    "hml": {
+      "url": "https://preprod.fiever.com.br/arezzocoocc"
+    },
+    "lcl": {
+      "url": "https://fiever.local:9002/arezzocoocc"
+    }
+  },
+  "Outstore": {
+    "prd": {
+      "url": "https://backoffice.outstore.com.br/arezzocoocc"
+    },
+    "tst": {
+      "url": "https://integ06.outstore.com.br/arezzocoocc"
+    },
+    "hml": {
+      "url": "https://preprod.outstore.com.br/arezzocoocc"
+    },
+    "lcl": {
+      "url": "https://outstore.local:9002/arezzocoocc"
+    }
+  },
+  "Owme": {
+    "prd": {
+      "url": "https://backoffice.somosalme.com.br/arezzocoocc"
+    },
+    "tst": {
+      "url": "https://integ06.somosalme.com.br/arezzocoocc"
+    },
+    "hml": {
+      "url": "https://preprod.somosalme.com.br/arezzocoocc"
+    },
+    "lcl": {
+      "url": "https://somosalme.local:9002/arezzocoocc"
+    }
+  },
+  "Schutz": {
+    "prd": {
+      "url": "https://backoffice.schutz.com.br/arezzocoocc"
+    },
+    "tst": {
+      "url": "https://integ06.schutz.com.br/arezzocoocc"
+    },
+    "hml": {
+      "url": "https://preprod.schutz.com.br/arezzocoocc"
+    },
+    "lcl": {
+      "url": "https://schutz.local:9002/arezzocoocc"
+    }
+  },
+  "Vans": {
+    "prd": {
+      "url": "https://backoffice.vans.com.br/arezzocoocc"
+    },
+    "tst": {
+      "url": "https://integ06.vans.com.br/arezzocoocc"
+    },
+    "hml": {
+      "url": "https://preprod.vans.com.br/arezzocoocc"
+    },
+    "lcl": {
+      "url": "https://vans.local:9002/arezzocoocc"
+    }
+  },
+  "Zzmall": {
+    "prd": {
+      "url": "https://backoffice.zzmall.com.br/arezzocoocc"
+    },
+    "tst": {
+      "url": "https://integ04.zzmall.com.br/arezzocoocc"
+    },
+    "hml": {
+      "url": "https://preprod.zzmall.com.br/arezzocoocc"
+    },
+    "lcl": {
+      "url": "https://zzmall.local:9002/arezzocoocc"
+    }
+  }
+}

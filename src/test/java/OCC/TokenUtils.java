@@ -1,6 +1,6 @@
-package V3;
+package OCC;
 
-import V3.APIHandle.ValidateAuthorization;
+import OCC.Utils.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
@@ -8,26 +8,25 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 
 
+public class TokenUtils {
 
-public class Utils {
-
-    public static String GetCustomerToken() {
-        RestAssured.baseURI = URLSetter.SetterURL();
+    public String GetCustomerToken() {
+        RestAssured.baseURI = Utils.getBrand();
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/x-www-form-urlencoded");
-        request.formParam("client_id", "arezzoco_ws");
+        request.formParam("client_id", "mobile_android");
+        request.formParam("scope", "basic");
         request.formParam("client_secret", "arezzoco2014");
         request.formParam("grant_type", "password");
-        request.formParam("username","testeabcd4@tst.com.br");
-        request.formParam("password","Zero@@123");
-        request.formParam("site_uid", "arezzo");
+        request.formParam("username","ter_hsaueressig@arezzo.com.br");
+        request.formParam("password","Arezzo123");
+        request.formParam("site_uid", Utils.getSite_UID());
 
-        Response response = request.post("oauth/v3/token");
+        Response response = request.post("oauth/token");
         Assert.assertEquals(200, response.getStatusCode());
         String token = response.jsonPath().get("access_token");
         ResponseBody body = response.getBody();
-        ValidateAuthorization.CustomerAuthorizationValidation(body.prettyPrint());
 
         return token;
     }
