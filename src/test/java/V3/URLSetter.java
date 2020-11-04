@@ -1,7 +1,5 @@
 package V3;
 
-import io.restassured.RestAssured;
-
 public class URLSetter {
 
     public static String SetterURL()

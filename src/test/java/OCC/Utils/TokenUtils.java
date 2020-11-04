@@ -1,4 +1,4 @@
-package OCC;
+package OCC.Utils;
 
 import OCC.Utils.*;
 import io.restassured.RestAssured;
@@ -11,7 +11,7 @@ import org.junit.Assert;
 public class TokenUtils {
 
     public String GetCustomerToken() {
-        RestAssured.baseURI = Utils.getBrand();
+        RestAssured.baseURI = Utils.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/x-www-form-urlencoded");

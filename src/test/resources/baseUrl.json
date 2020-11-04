@@ -1,128 +1,128 @@
 {
   "AlexandreBirman": {
     "prd": {
-      "url": "https://backoffice.alexandrebirman.com.br/arezzocoocc"
+      "url": "https://backoffice.alexandrebirman.com.br/"
     },
     "tst": {
-      "url": "https://integ06.alexandrebirman.com.br/arezzocoocc"
+      "url": "https://integ06.alexandrebirman.com.br/"
     },
     "hml": {
-      "url": "https://preprod.alexandrebirman.com.br/arezzocoocc"
+      "url": "https://preprod.alexandrebirman.com.br/"
     },
     "lcl": {
-      "url": "https://alexandrebirman.local:9002/arezzocoocc"
+      "url": "https://alexandrebirman.local:9002/"
     }
   },
   "Alme": {
     "prd": {
-      "url": "https://backoffice.somosalme.com.br/arezzocoocc"
+      "url": "https://backoffice.somosalme.com.br/"
     },
     "tst": {
-      "url": "https://integ06.somosalme.com.br/arezzocoocc"
+      "url": "https://integ06.somosalme.com.br/"
     },
     "hml": {
-      "url": "https://preprod.somosalme.com.br/arezzocoocc"
+      "url": "https://preprod.somosalme.com.br/"
     },
     "lcl": {
-      "url": "https://somosalme.local:9002/arezzocoocc"
+      "url": "https://somosalme.local:9002/"
     }
   },
   "Anacapri": {
     "prd": {
-      "url": "https://backoffice.anacapri.com.br/arezzocoocc"
+      "url": "https://backoffice.anacapri.com.br/"
     },
     "tst": {
-      "url": "https://integ06.anacapri.com.br/arezzocoocc"
+      "url": "https://integ06.anacapri.com.br/"
     },
     "hml": {
-      "url": "https://preprod.anacapri.com.br/arezzocoocc"
+      "url": "https://preprod.anacapri.com.br/"
     },
     "lcl": {
-      "url": "https://anacapri.local:9002/arezzocoocc"
+      "url": "https://anacapri.local:9002/"
     }
   },
   "Arezzo": {
     "prd": {
-      "url": "https://backoffice.arezzo.com.br/arezzocoocc"
+      "url": "https://backoffice.arezzo.com.br/"
     },
     "tst": {
-      "url": "https://integ06.arezzo.com.br/arezzocoocc"
+      "url": "https://integ06.arezzo.com.br/"
     },
     "hml": {
-      "url": "https://preprod.arezzo.com.br/arezzocoocc"
+      "url": "https://preprod.arezzo.com.br/"
     },
     "lcl": {
-      "url": "https://arezzo.local:9002/arezzocoocc"
+      "url": "https://arezzo.local:9002/"
     }
   },
   "Fiever": {
     "prd": {
-      "url": "https://backoffice.fiever.com.br/arezzocoocc"
+      "url": "https://backoffice.fiever.com.br/"
     },
     "tst": {
-      "url": "https://integ06.fiever.com.br/arezzocoocc"
+      "url": "https://integ06.fiever.com.br/"
     },
     "hml": {
-      "url": "https://preprod.fiever.com.br/arezzocoocc"
+      "url": "https://preprod.fiever.com.br/"
     },
     "lcl": {
-      "url": "https://fiever.local:9002/arezzocoocc"
+      "url": "https://fiever.local:9002/"
     }
   },
   "Outstore": {
     "prd": {
-      "url": "https://backoffice.outstore.com.br/arezzocoocc"
+      "url": "https://backoffice.outstore.com.br/"
     },
     "tst": {
-      "url": "https://integ06.outstore.com.br/arezzocoocc"
+      "url": "https://integ06.outstore.com.br/"
     },
     "hml": {
-      "url": "https://preprod.outstore.com.br/arezzocoocc"
+      "url": "https://preprod.outstore.com.br/"
     },
     "lcl": {
-      "url": "https://outstore.local:9002/arezzocoocc"
+      "url": "https://outstore.local:9002/"
     }
   },
   "Schutz": {
     "prd": {
-      "url": "https://backoffice.schutz.com.br/arezzocoocc"
+      "url": "https://backoffice.schutz.com.br/"
     },
     "tst": {
-      "url": "https://integ06.schutz.com.br/arezzocoocc"
+      "url": "https://integ06.schutz.com.br/"
     },
     "hml": {
-      "url": "https://preprod.schutz.com.br/arezzocoocc"
+      "url": "https://preprod.schutz.com.br/"
     },
     "lcl": {
-      "url": "https://schutz.local:9002/arezzocoocc"
+      "url": "https://schutz.local:9002/"
     }
   },
   "Vans": {
     "prd": {
-      "url": "https://backoffice.vans.com.br/arezzocoocc"
+      "url": "https://backoffice.vans.com.br/"
     },
     "tst": {
-      "url": "https://integ06.vans.com.br/arezzocoocc"
+      "url": "https://integ06.vans.com.br/"
     },
     "hml": {
-      "url": "https://preprod.vans.com.br/arezzocoocc"
+      "url": "https://preprod.vans.com.br/"
     },
     "lcl": {
-      "url": "https://vans.local:9002/arezzocoocc"
+      "url": "https://vans.local:9002/"
     }
   },
   "Zzmall": {
     "prd": {
-      "url": "https://backoffice.zzmall.com.br/arezzocoocc"
+      "url": "https://backoffice.zzmall.com.br/"
     },
     "tst": {
-      "url": "https://integ04.zzmall.com.br/arezzocoocc"
+      "url": "https://integ04.zzmall.com.br/"
     },
     "hml": {
-      "url": "https://preprod.zzmall.com.br/arezzocoocc"
+      "url": "https://preprod.zzmall.com.br/"
     },
     "lcl": {
-      "url": "https://zzmall.local:9002/arezzocoocc"
+      "url": "https://zzmall.local:9002/"
     }
   }
 }

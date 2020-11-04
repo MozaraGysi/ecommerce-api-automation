@@ -10,6 +10,7 @@ import org.junit.Assert;
 
 public class AuthorizationPage {
 
+
     public static void CustomerToken()
     {
         RestAssured.baseURI = Utils.getBaseUrl();
@@ -24,7 +25,7 @@ public class AuthorizationPage {
         request.formParam("password","Arezzo123");
         request.formParam("site_uid", "marketplacezz");
 
-        Response response = request.post("oauth/token");
+        Response response = request.post("/arezzocoocc/oauth/token");
         Assert.assertEquals(200, response.getStatusCode());
         ResponseBody body = response.getBody();
         AuthorizationValidation.CustomerAuthValidation(body.prettyPrint());
@@ -40,7 +41,7 @@ public class AuthorizationPage {
         request.formParam("scope", "basic");
         request.formParam("client_secret", "arezzoco2014");
         request.formParam("grant_type", "client_credentials");
-        Response response = request.post("oauth/token");
+        Response response = request.post("/arezzocoocc/oauth/token");
         Assert.assertEquals(200, response.getStatusCode());
         ResponseBody body = response.getBody();
         AuthorizationValidation.AnonymousAuthValdiation(body.prettyPrint());
@@ -61,7 +62,7 @@ public class AuthorizationPage {
         request.formParam("lastName", "Wille");
         request.formParam("site_uid", Utils.getSite_UID());
 
-        Response response = request.post("oauth/token");
+        Response response = request.post("/arezzocoocc/oauth/token");
         Assert.assertEquals(200, response.getStatusCode());
         ResponseBody body = response.getBody();
         AuthorizationValidation.RegisterCustomerAppleIDValidation(body.prettyPrint());
@@ -80,7 +81,7 @@ public class AuthorizationPage {
         request.formParam("facebook_token", "EAANWNiebQQABAGH1O4tp3CjR8ckjSsmcQSKzWyUhwZCca2W1d47hsY4ZBmad4DDMgHjjOE8znFT9nCaSHi2Gw3qb44KBQ1fUl9mv7suhzZBo916Ylp7U3aBe30sjz0IgVHOwc9ZApHfdWN1oHYCK5uNiTEZCnLSZCBUY13oo9gSzpMZAVKpZC3qOzQMqxGkmMeAPHWBqUT43LfNNZAbX7HtcZC");
         request.formParam("site_uid", Utils.getSite_UID());
 
-        Response response = request.post("oauth/token");
+        Response response = request.post("/arezzocoocc/oauth/token");
         Assert.assertEquals(200, response.getStatusCode());
         ResponseBody body = response.getBody();
         AuthorizationValidation.RegisterCustomerFacebookValidation(body.prettyPrint());
