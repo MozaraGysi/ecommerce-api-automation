@@ -1,7 +1,7 @@
 package OCC.Tests;
 
 import OCC.Pages.AuthorizationPage;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class Authorization {
     

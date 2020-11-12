@@ -1,13 +1,13 @@
 package V3.APIHandle;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 public class ValidateAuthorization {
     public static void CustomerAuthorizationValidation(String json)
     {
-        Assert.assertTrue(json.contains("access_token"));
-        Assert.assertTrue(json.contains("token_type"));
-        Assert.assertTrue(json.contains("refresh_token"));
-        Assert.assertTrue(json.contains("expires_in"));
+        Assertions.assertTrue(json.contains("access_token"));
+        Assertions.assertTrue(json.contains("token_type"));
+        Assertions.assertTrue(json.contains("refresh_token"));
+        Assertions.assertTrue(json.contains("expires_in"));
     }
 }

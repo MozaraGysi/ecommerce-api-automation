@@ -2,11 +2,13 @@ package OtherServices.Tests;
 
 import OtherServices.Utils.*;
 import OtherServices.Pages.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 public class PrateleiraInfinita {
-    
+
     @Test
+    @Tag("ZZNet")
     public void PrateleiraInfinitaNewCustomer()
     {
         String clientToken = TokenUtils.ClientToken();
@@ -16,6 +18,7 @@ public class PrateleiraInfinita {
         ZZNetAPI.RegisterCart(CSFRToken);
     }
     @Test
+    @Tag("ZZNet")
     public void PrateleiraInfinitaNewEmployee()
     {
         String clientToken = TokenUtils.ClientToken();

@@ -6,7 +6,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 public class AuthorizationPage {
 
@@ -26,7 +26,7 @@ public class AuthorizationPage {
         request.formParam("site_uid", "marketplacezz");
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        Assert.assertEquals(200, response.getStatusCode());
+        Assertions.assertEquals(200, response.getStatusCode());
         ResponseBody body = response.getBody();
         AuthorizationValidation.CustomerAuthValidation(body.prettyPrint());
     }
@@ -42,7 +42,7 @@ public class AuthorizationPage {
         request.formParam("client_secret", "arezzoco2014");
         request.formParam("grant_type", "client_credentials");
         Response response = request.post("/arezzocoocc/oauth/token");
-        Assert.assertEquals(200, response.getStatusCode());
+        Assertions.assertEquals(200, response.getStatusCode());
         ResponseBody body = response.getBody();
         AuthorizationValidation.AnonymousAuthValdiation(body.prettyPrint());
     }
@@ -63,7 +63,7 @@ public class AuthorizationPage {
         request.formParam("site_uid", Utils.getSite_UID());
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        Assert.assertEquals(200, response.getStatusCode());
+        Assertions.assertEquals(200, response.getStatusCode());
         ResponseBody body = response.getBody();
         AuthorizationValidation.RegisterCustomerAppleIDValidation(body.prettyPrint());
     }
@@ -82,7 +82,7 @@ public class AuthorizationPage {
         request.formParam("site_uid", Utils.getSite_UID());
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        Assert.assertEquals(200, response.getStatusCode());
+        Assertions.assertEquals(200, response.getStatusCode());
         ResponseBody body = response.getBody();
         AuthorizationValidation.RegisterCustomerFacebookValidation(body.prettyPrint());
     }

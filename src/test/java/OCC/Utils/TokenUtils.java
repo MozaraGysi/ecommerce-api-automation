@@ -5,7 +5,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 
 public class TokenUtils {
@@ -24,7 +24,7 @@ public class TokenUtils {
         request.formParam("site_uid", Utils.getSite_UID());
 
         Response response = request.post("oauth/token");
-        Assert.assertEquals(200, response.getStatusCode());
+        Assertions.assertEquals(200, response.getStatusCode());
         String token = response.jsonPath().get("access_token");
         ResponseBody body = response.getBody();
 
