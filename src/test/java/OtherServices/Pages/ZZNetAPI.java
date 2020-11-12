@@ -3,17 +3,12 @@ package OtherServices.Pages;
 import OtherServices.APIHandler.ZZNetAPIValidation;
 import OtherServices.Utils.Utils;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.http.Cookie;
-import netscape.javascript.JSObject;
 import org.apache.commons.codec.binary.Base64;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
-
-import java.util.Map;
 
 import static OtherServices.Utils.Utils.generateRandomString;
 import static OtherServices.Utils.Utils.getBaseUrl;
