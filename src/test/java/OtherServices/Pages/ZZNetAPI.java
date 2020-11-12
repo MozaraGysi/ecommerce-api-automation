@@ -90,7 +90,7 @@ public class ZZNetAPI {
 
         String json = "{ \"productEans\" : [\"7909276002141\"], \"productQuantities\" : [2], \"voucherCode\": \"\"}";
         RequestSpecification request = RestAssured.given();
-        //request.auth().preemptive().basic("descomplica", "descomplica");
+        request.auth().preemptive().basic("descomplica", "descomplica");
         request.header("CSRFToken", token);
         request.cookie("JSESSIONID", Jsession);
         request.cookie("LBWEB", LBWEB);
