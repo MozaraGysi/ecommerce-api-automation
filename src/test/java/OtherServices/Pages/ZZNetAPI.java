@@ -10,6 +10,8 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
 
+import java.util.Locale;
+
 import static OtherServices.Utils.Utils.generateRandomString;
 import static OtherServices.Utils.Utils.getBaseUrl;
 
@@ -39,7 +41,7 @@ public class ZZNetAPI {
         RequestSpecification request = RestAssured.given();
         request.header("Authorization", "Bearer" + token);
         request.contentType("multipart/form-data");
-        generatedEmail = generateRandomString() + "@gmail.com";
+        generatedEmail = generateRandomString().toLowerCase() + "@gmail.com";
         request.multiPart("login", generatedEmail);
         request.multiPart("firstName", "Teste");
         request.multiPart("lastName", "CWI");
