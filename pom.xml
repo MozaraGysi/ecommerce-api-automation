@@ -9,6 +9,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <aspectj.version>1.8.10</aspectj.version>
+		<env>dev</env>
+		<brand>Arezzo</brand>
     </properties>
     <dependencies>
         <dependency>
@@ -17,6 +19,16 @@
             <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-cucumber-jvm</artifactId>
+			<version>2.0-BETA6</version>
+		</dependency>
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-maven</artifactId>
+			<version>2.9</version>
+		</dependency>
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -44,13 +56,25 @@
     </dependencies>
     <build>
         <plugins>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>2.9</version>
+			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
+					<useSystemClassLoader>false</useSystemClassLoader>
+					<forkCount>0</forkCount>
+					<forkedProcessExitTimeoutInSeconds>120</forkedProcessExitTimeoutInSeconds>
+					<systemPropertyVariables>
+						<env>${env}</env>
+						<brand>${brand}</brand>
+						<allure.results.directory>${project.build.directory}/allure-results-${brand}</allure.results.directory>
+					</systemPropertyVariables>
+				</configuration>
             </plugin>
         </plugins>
     </build>

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 public class ZZNetAPIValidation {
     public static void ValidateResponseLoginAndCustomerSwitch(String response)
     {
-        Assertions.assertTrue(response.contains("homepage"));
+        Assertions.assertTrue(response.contains("Home"));
     }
     public static void ValidateResponseCustomerCreate(String response)
     {

@@ -1,19 +1,13 @@
 package OtherServices.Pages;
 
 import OtherServices.APIHandler.ZZNetAPIValidation;
-import OtherServices.Utils.Utils;
+import static OtherServices.Utils.Utils.*;
 import io.restassured.RestAssured;
 import org.apache.commons.codec.binary.Base64;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
-
-
-import java.util.Locale;
-
-import static OtherServices.Utils.Utils.generateRandomString;
-import static OtherServices.Utils.Utils.getBaseUrl;
 
 public class ZZNetAPI {
 
@@ -26,7 +20,7 @@ public class ZZNetAPI {
         RestAssured.baseURI = getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
-        byte[] encodedBytes = Base64.encodeBase64(("testecwiarezzotelevendas@arezzo.com.br|teste1234|"+generatedEmail+"|"+Utils.getSite_UID()).getBytes());
+        byte[] encodedBytes = Base64.encodeBase64(("testecwiarezzotelevendas@arezzo.com.br|teste1234|"+generatedEmail+"|"+getSite_UID()).getBytes());
         String data = new String(encodedBytes);
         request.auth().preemptive().basic("descomplica", "descomplica");
         request.basePath("?requestData="+data);
@@ -62,7 +56,7 @@ public class ZZNetAPI {
         request.multiPart("defaultShippingAddress.region.isocode", "SP");
         request.multiPart("defaultShippingAddress.phone", "51992639471");
 
-        Response response = request.post("arezzocows/" + Utils.getSite_UID() + "/customers/create");
+        Response response = request.post("arezzocows/" + getSite_UID() + "/customers/create");
         Assertions.assertEquals(200, response.getStatusCode());
         ZZNetAPIValidation.ValidateResponseCustomerCreate(response.getBody().prettyPrint());
     }
@@ -106,9 +100,10 @@ public class ZZNetAPI {
         request.header("Authorization", "Bearer" + token);
         request.contentType("multipart/form-data");
         request.multiPart("employeeCpf", "75557860010");
-        request.multiPart("employeeLogin", "#arzbr_teste_automacao@loja.com");
+        request.multiPart("employeeLogin", "#arzbr_" + generateRandomString().toLowerCase() + "@gmail.com");
         request.multiPart("employeeName", "Teste automacao");
         request.multiPart("employeePwd", "arezzo123");
+        request.multiPart("birthday", "20/11/1995");
         request.multiPart("abacosLogin", "61098_66473983171_FRQArezzo_SZ-BTL_thomasrodrigues_1");
         request.multiPart("employeeAddressData.streetname", "Rua Armando Mattes");
         request.multiPart("employeeAddressData.streetNumber", "77");
@@ -117,7 +112,7 @@ public class ZZNetAPI {
         request.multiPart("employeeAddressData.town", "Portao");
         request.multiPart("employeeAddressData.region.isocode", "RS");
 
-        Response response = request.post("arezzocows/arezzo/employee/create");
+        Response response = request.post("arezzocows/"+ getSite_UID() + "/employee/create");
         Assertions.assertEquals(200, response.getStatusCode());
     }
 }
