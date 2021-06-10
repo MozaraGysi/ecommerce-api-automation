@@ -1,6 +1,7 @@
 **/.project
 **/*.iml
 **/.idea
+**/.run
 **/target
 **/.history
 **/.allure
