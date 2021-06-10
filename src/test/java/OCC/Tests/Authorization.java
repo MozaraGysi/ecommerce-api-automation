@@ -1,6 +1,7 @@
 package OCC.Tests;
 
 import OCC.Pages.AuthorizationPage;
+import OCC.Pages.UsersPage;
 import org.junit.jupiter.api.Test;
 
 public class Authorization {
@@ -12,10 +13,7 @@ public class Authorization {
     }
 
     @Test
-    public void AnonymousAuth()
-    {
-        AuthorizationPage.AnonymousAuth();
-    }
+    public void AnonymousAuth() { AuthorizationPage.AnonymousAuth(); }
 
     @Test
     public void RegisterCustomerAppleID()
@@ -25,4 +23,5 @@ public class Authorization {
 
     @Test
     public void RegisterCustomerfacebook(){ AuthorizationPage.RegisterCustomerFacebook(); }
+
 }

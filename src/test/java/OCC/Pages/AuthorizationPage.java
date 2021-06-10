@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Assertions;
 
 public class AuthorizationPage {
 
-
     public static void CustomerToken()
     {
         RestAssured.baseURI = Utils.getBaseUrl();
@@ -21,14 +20,37 @@ public class AuthorizationPage {
         request.formParam("scope", "basic");
         request.formParam("client_secret", "arezzoco2014");
         request.formParam("grant_type", "password");
-        request.formParam("username","ter_hsaueressig@arezzo.com.br");
-        request.formParam("password","Arezzo123");
+        request.formParam("username","rrsetcwi@gmail.com");
+        request.formParam("password","zero123@");
         request.formParam("site_uid", "marketplacezz");
 
         Response response = request.post("/arezzocoocc/oauth/token");
         Assertions.assertEquals(200, response.getStatusCode());
+        Utils.setCookies(response.getCookies());
+        Utils.setACCESS_TOKEN(response.body().jsonPath().get("access_token"));
         ResponseBody body = response.getBody();
-        AuthorizationValidation.CustomerAuthValidation(body.prettyPrint());
+        AuthorizationValidation.CustomerAuthValidation(body.asString());
+    }
+
+    public static void CustomerTokenNewUser()
+    {
+        RestAssured.baseURI = Utils.getBaseUrl();
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", "application/x-www-form-urlencoded");
+        request.formParam("client_id", "mobile_android");
+        request.formParam("client_secret", "arezzoco2014");
+        request.formParam("scope", "basic");
+        request.formParam("grant_type", "password");
+        request.formParam("site_uid", Utils.getSite_UID());
+        request.formParam("username",Utils.getEMAIL());
+        request.formParam("password","zero123@");
+
+        Response response = request.post("/arezzocoocc/oauth/token");
+        Assertions.assertEquals(200, response.getStatusCode());
+        Utils.setCookies(response.getCookies());
+        Utils.setACCESS_TOKEN(response.body().jsonPath().get("access_token"));
+        AuthorizationValidation.CustomerAuthValidation(response.body().asString());
     }
 
     public static void AnonymousAuth()
@@ -43,8 +65,10 @@ public class AuthorizationPage {
         request.formParam("grant_type", "client_credentials");
         Response response = request.post("/arezzocoocc/oauth/token");
         Assertions.assertEquals(200, response.getStatusCode());
+        Utils.setCookies(response.getCookies());
         ResponseBody body = response.getBody();
-        AuthorizationValidation.AnonymousAuthValdiation(body.prettyPrint());
+        AuthorizationValidation.AnonymousAuthValdiation(body.asString());
+        Utils.setACCESS_TOKEN(body.jsonPath().get("access_token"));
     }
 
     public static void RegisterCustomerAppleID()
