@@ -1,7 +1,7 @@
 package Wallet.Pages;
 
 import Wallet.APIClient;
-import Wallet.Utils.Utils;
+import Wallet.Fixtures.CustomerFixture;
 import Wallet.Validators.StatusCodeCreatedValidator;
 import Wallet.Validators.Validator;
 import com.google.gson.JsonObject;
@@ -14,20 +14,47 @@ import java.util.List;
 public class CustomerPage {
 
 	public static void newUser() {
-		Response response = APIClient.POST_customers(getBodyJsonNewUser());
+		JsonObject requestBody = CustomerFixture.build();
+
+		Response response = APIClient.POST_customers(requestBody);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 
-	public static JsonObject getBodyJsonNewUser() {
-		JsonObject jsonObject = new JsonObject();
-		jsonObject.addProperty("document", Utils.getCPF());
-		jsonObject.addProperty("firstName", "Douglas");
-		jsonObject.addProperty("lastName", "Golke");
-		jsonObject.addProperty("birthday", "2000-01-22");
-		jsonObject.addProperty("email", Utils.getEMAIL());
-		jsonObject.addProperty("mobile", "5552998288513");
-		return jsonObject;
+	public static void newUserWithoutCPF() {
+		JsonObject requestBody = CustomerFixture.build();
+		requestBody.remove("document");
+
+		Response response = APIClient.POST_customers(requestBody);
+
+		List<Validator> validators = Arrays.asList();
+		// TODO: Add after remove API mocks
+		//new StatusCodeBadRequestValidator();
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
+	public static void newUserWithoutFirstName() {
+		JsonObject requestBody = CustomerFixture.build();
+		requestBody.remove("firstName");
+
+		Response response = APIClient.POST_customers(requestBody);
+
+		List<Validator> validators = Arrays.asList();
+		// TODO: Add after remove API mocks
+		//new StatusCodeBadRequestValidator();
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
+	public static void newUserWithoutLastName() {
+		JsonObject requestBody = CustomerFixture.build();
+		requestBody.remove("lastName");
+
+		Response response = APIClient.POST_customers(requestBody);
+
+		List<Validator> validators = Arrays.asList();
+		// TODO: Add after remove API mocks
+		//new StatusCodeBadRequestValidator();
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 }
