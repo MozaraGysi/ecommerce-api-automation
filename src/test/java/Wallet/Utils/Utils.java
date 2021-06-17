@@ -85,4 +85,9 @@ public class Utils {
 		return CPF;
 	}
 
+	public static void init() {
+		ACCESS_TOKEN = null;
+		EMAIL = null;
+		CPF = null;
+	}
 }

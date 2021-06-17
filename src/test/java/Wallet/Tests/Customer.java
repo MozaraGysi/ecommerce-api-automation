@@ -2,21 +2,38 @@ package Wallet.Tests;
 
 import Wallet.Pages.AuthPage;
 import Wallet.Pages.CustomerPage;
-import Wallet.Pages.CustomerPointsPage;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
+import Wallet.Utils.Utils;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class Customer {
 
+	@Before
+	public void init() {
+		Utils.init();
+	}
+
 	@Test
-	@Order(1)
-	public void newUserWithGetBalance() {
+	public void newUser() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
-		CustomerPointsPage.getBalancePointsWithoutAmount();
-		CustomerPointsPage.getPointsWithoutTransactions();
+	}
+
+	@Test
+	public void newUserWithoutCPF() {
+		AuthPage.getToken();
+		CustomerPage.newUserWithoutCPF();
+	}
+
+	@Test
+	public void newUserWithoutFirstName() {
+		AuthPage.getToken();
+		CustomerPage.newUserWithoutFirstName();
+	}
+
+	@Test
+	public void newUserWithoutLastName() {
+		AuthPage.getToken();
+		CustomerPage.newUserWithoutLastName();
 	}
 }
