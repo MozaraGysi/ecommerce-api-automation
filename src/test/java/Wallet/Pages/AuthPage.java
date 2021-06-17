@@ -38,12 +38,15 @@ public class AuthPage {
 	}
 
 	public static void getToken() {
-		RestAssured.baseURI = "https://api.arezzoco.com.br/oauth/v1";
+		RestAssured.baseURI = "http://api.arezzoco.com.br/qa/oauth/v1";
 
 		RequestSpecification request = RestAssured.given();
 		request.headers(getDefaultHeadersWithBasicAuthorization());
 		request.body(getBodyJsonBasicAuth().toString());
 		Response response = request.post("/access-token");
+
+		response.getBody().prettyPrint();
+
 		Assertions.assertEquals(200, response.getStatusCode());
 		Utils.setACCESS_TOKEN(response.body().jsonPath().get("access_token"));
 	}

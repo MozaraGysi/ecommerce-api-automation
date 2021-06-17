@@ -12,7 +12,6 @@ public class StatementDTO {
 	private String status;
 	private String dateTime;
 	private String expireAt;
-	private String estimatedAvailableAt;
 	private String description;
 	private OrderDTO order;
 
@@ -78,14 +77,6 @@ public class StatementDTO {
 
 	public void setExpireAt(String expireAt) {
 		this.expireAt = expireAt;
-	}
-
-	public String getEstimatedAvailableAt() {
-		return estimatedAvailableAt;
-	}
-
-	public void setEstimatedAvailableAt(String estimatedAvailableAt) {
-		this.estimatedAvailableAt = estimatedAvailableAt;
 	}
 
 	public String getDescription() {

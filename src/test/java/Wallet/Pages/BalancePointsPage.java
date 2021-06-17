@@ -22,9 +22,7 @@ public class BalancePointsPage {
 	public static void getBalancePointsWithoutAvailableAmount() {
 		Response response = APIClient.GET_balancePoints(Utils.getCPF());
 
-		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
-		// TODO: Add after remove API mocks
-		// new BalancePointsWithoutAvailableAmountValidator()
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new BalancePointsWithoutAvailableAmountValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 }

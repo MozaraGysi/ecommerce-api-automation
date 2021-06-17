@@ -2,13 +2,13 @@ package Wallet.Tests;
 
 import Wallet.Pages.AuthPage;
 import Wallet.Pages.CustomerPage;
-import Wallet.Pages.EarnPointsPage;
+import Wallet.Pages.CreditPointsPage;
 import Wallet.Pages.PointsPage;
 import Wallet.Utils.Utils;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-public class EarnPoints {
+public class CreditPoints {
 
 	@Before
 	public void init() {
@@ -16,10 +16,10 @@ public class EarnPoints {
 	}
 
 	@Test
-	public void getEarnPoints() {
+	public void creditPoints() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		PointsPage.getPoints();
-		EarnPointsPage.earnPoints();
+		CreditPointsPage.creditPoints();
 	}
 }

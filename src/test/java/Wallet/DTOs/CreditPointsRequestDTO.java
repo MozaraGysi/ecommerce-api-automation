@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 
 import java.util.Map;
 
-public class EarnPointsRequestDTO {
+public class CreditPointsRequestDTO {
 
 	private String document;
 	private float amount;
@@ -15,8 +15,8 @@ public class EarnPointsRequestDTO {
 	private OrderDTO order;
 	private Map<String, Object> extra;
 
-	public static EarnPointsRequestDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, EarnPointsRequestDTO.class);
+	public static CreditPointsRequestDTO fromJsonString(String jsonString) {
+		return new Gson().fromJson(jsonString, CreditPointsRequestDTO.class);
 	}
 
 	public JsonObject toJson() {
