@@ -1,15 +1,18 @@
 package Wallet.Pages;
 
 import Wallet.Utils.Utils;
+import Wallet.Validators.Validator;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
+import java.util.Arrays;
+
 public class CustomerPage {
 
-	public static void newUser() {
+	public static void newUser(Validator...validators) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -17,7 +20,8 @@ public class CustomerPage {
 		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
 		request.body(getBodyJsonNewUser().toString());
 		Response response = request.post("/customers");
-		Assertions.assertEquals(201, response.getStatusCode());
+
+		Assertions.assertTrue(Arrays.stream(validators).allMatch(validator -> validator.validate(response)));
 	}
 
 	public static JsonObject getBodyJsonNewUser() {

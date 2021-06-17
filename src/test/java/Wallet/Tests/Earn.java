@@ -3,6 +3,9 @@ package Wallet.Tests;
 import Wallet.Pages.AuthPage;
 import Wallet.Pages.CustomerPage;
 import Wallet.Pages.CustomerPointsPage;
+import Wallet.Validators.BalanceWithoutAvailableAmountValidator;
+import Wallet.Validators.StatusCodeCreatedValidator;
+import Wallet.Validators.StatusCodeOKValidator;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -15,7 +18,7 @@ public class Earn {
 	@Order(1)
 	public void newUserWithGetBalance() {
 		AuthPage.getToken();
-		CustomerPage.newUser();
-		CustomerPointsPage.getBalance();
+		CustomerPage.newUser(new StatusCodeCreatedValidator());
+		CustomerPointsPage.getBalance(new StatusCodeOKValidator(), new BalanceWithoutAvailableAmountValidator());
 	}
 }
