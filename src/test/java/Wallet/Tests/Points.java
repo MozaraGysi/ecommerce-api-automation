@@ -27,4 +27,12 @@ public class Points {
 		CustomerPage.newUser();
 		PointsPage.getPointsWithoutTransactions();
 	}
+
+	@Test
+	public void deleteEarnPoints() {
+		AuthPage.getToken();
+		CustomerPage.newUser();
+		PointsPage.getPoints();
+		PointsPage.deletedCreditPoints();
+	}
 }

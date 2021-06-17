@@ -59,4 +59,17 @@ public class APIClient {
 
 		return response;
 	}
+
+	public static Response DELETE_creditPoints(JsonObject requestBody) {
+		RestAssured.baseURI = Utils.getBaseUrl();
+		RequestSpecification request = RestAssured.given();
+		request.header("Content-Type", "application/json");
+		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+		request.body(requestBody.toString());
+
+		Response response = request.delete("/customers/credit-points");
+		response.getBody().print();
+
+		return response;
+	}
 }
