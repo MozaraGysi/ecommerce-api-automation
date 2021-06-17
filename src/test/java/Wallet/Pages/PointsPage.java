@@ -24,7 +24,7 @@ public class PointsPage {
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
 		// TODO: Add after remove API mocks
-		//new PointsWithoutTransactionsValidator()
+		// new PointsWithoutTransactionsValidator()
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 }

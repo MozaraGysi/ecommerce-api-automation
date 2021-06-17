@@ -1,10 +1,10 @@
 package Wallet.Pages;
 
 import Wallet.APIClient;
-import Wallet.Fixtures.CustomerFixture;
+import Wallet.DTOs.CustomerRequestDTO;
+import Wallet.Fixtures.CustomerRequestDTOFixture;
 import Wallet.Validators.StatusCodeCreatedValidator;
 import Wallet.Validators.Validator;
-import com.google.gson.JsonObject;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 
@@ -14,19 +14,19 @@ import java.util.List;
 public class CustomerPage {
 
 	public static void newUser() {
-		JsonObject requestBody = CustomerFixture.build();
+		CustomerRequestDTO customerRequestDTO = CustomerRequestDTOFixture.build();
 
-		Response response = APIClient.POST_customers(requestBody);
+		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 
 	public static void newUserWithoutCPF() {
-		JsonObject requestBody = CustomerFixture.build();
-		requestBody.remove("document");
+		CustomerRequestDTO customerRequestDTO = CustomerRequestDTOFixture.build();
+		customerRequestDTO.setDocument(null);
 
-		Response response = APIClient.POST_customers(requestBody);
+		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList();
 		// TODO: Add after remove API mocks
@@ -35,10 +35,10 @@ public class CustomerPage {
 	}
 
 	public static void newUserWithoutFirstName() {
-		JsonObject requestBody = CustomerFixture.build();
-		requestBody.remove("firstName");
+		CustomerRequestDTO customerRequestDTO = CustomerRequestDTOFixture.build();
+		customerRequestDTO.setFirstName(null);
 
-		Response response = APIClient.POST_customers(requestBody);
+		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList();
 		// TODO: Add after remove API mocks
@@ -47,10 +47,10 @@ public class CustomerPage {
 	}
 
 	public static void newUserWithoutLastName() {
-		JsonObject requestBody = CustomerFixture.build();
-		requestBody.remove("lastName");
+		CustomerRequestDTO customerRequestDTO = CustomerRequestDTOFixture.build();
+		customerRequestDTO.setLastName(null);
 
-		Response response = APIClient.POST_customers(requestBody);
+		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList();
 		// TODO: Add after remove API mocks

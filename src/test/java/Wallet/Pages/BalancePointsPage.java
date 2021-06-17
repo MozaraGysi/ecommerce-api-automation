@@ -2,6 +2,7 @@ package Wallet.Pages;
 
 import Wallet.APIClient;
 import Wallet.Utils.Utils;
+import Wallet.Validators.BalancePointsWithoutAvailableAmountValidator;
 import Wallet.Validators.StatusCodeOKValidator;
 import Wallet.Validators.Validator;
 import io.restassured.response.Response;
@@ -23,7 +24,7 @@ public class BalancePointsPage {
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
 		// TODO: Add after remove API mocks
-		//new BalancePointsWithoutAvailableAmountValidator()
+		// new BalancePointsWithoutAvailableAmountValidator()
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 }
