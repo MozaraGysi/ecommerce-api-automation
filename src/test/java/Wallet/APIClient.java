@@ -46,4 +46,17 @@ public class APIClient {
 
 		return response;
 	}
+
+	public static Response POST_earnPoints(JsonObject requestBody) {
+		RestAssured.baseURI = Utils.getBaseUrl();
+		RequestSpecification request = RestAssured.given();
+		request.header("Content-Type", "application/json");
+		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+		request.body(requestBody.toString());
+
+		Response response = request.get("/customers/earn-points");
+		response.getBody().print();
+
+		return response;
+	}
 }

@@ -1,7 +1,6 @@
 package Wallet.Validators;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import Wallet.DTOs.BalancePointsResponseDTO;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 
@@ -9,8 +8,9 @@ public class BalancePointsWithoutAvailableAmountValidator implements Validator {
 
 	@Override
 	public boolean validate(Response response) {
-		JsonObject responseBody = new Gson().fromJson(response.getBody().asString(), JsonObject.class);
-		Assertions.assertEquals(0, responseBody.get("amount").getAsJsonObject().get("available").getAsDouble());
+		BalancePointsResponseDTO balancePointsResponseDTO = BalancePointsResponseDTO.fromJsonString(response.getBody().asString());
+
+		Assertions.assertEquals(0, balancePointsResponseDTO.getAmount().getAvailable());
 
 		return true;
 	}
