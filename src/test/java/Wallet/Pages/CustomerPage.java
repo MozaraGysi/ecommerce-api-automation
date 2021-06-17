@@ -1,27 +1,23 @@
 package Wallet.Pages;
 
+import Wallet.APIClient;
 import Wallet.Utils.Utils;
+import Wallet.Validators.StatusCodeCreatedValidator;
 import Wallet.Validators.Validator;
 import com.google.gson.JsonObject;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class CustomerPage {
 
-	public static void newUser(Validator...validators) {
-		RestAssured.baseURI = Utils.getBaseUrl();
+	public static void newUser() {
+		Response response = APIClient.POST_customers(getBodyJsonNewUser());
 
-		RequestSpecification request = RestAssured.given();
-		request.header("Content-Type", "application/json");
-		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
-		request.body(getBodyJsonNewUser().toString());
-		Response response = request.post("/customers");
-
-		Assertions.assertTrue(Arrays.stream(validators).allMatch(validator -> validator.validate(response)));
+		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 
 	public static JsonObject getBodyJsonNewUser() {

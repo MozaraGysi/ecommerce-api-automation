@@ -1,23 +1,29 @@
 package Wallet.Pages;
 
+import Wallet.APIClient;
 import Wallet.Utils.Utils;
+import Wallet.Validators.BalancePointsWithoutAvailableAmountValidator;
+import Wallet.Validators.PointsWithoutTransactionsValidator;
+import Wallet.Validators.StatusCodeOKValidator;
 import Wallet.Validators.Validator;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class CustomerPointsPage {
-	public static void getBalance(Validator...validators) {
-		RestAssured.baseURI = Utils.getBaseUrl();
-		RequestSpecification request = RestAssured.given();
-		request.header("Content-Type", "application/json");
-		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+	public static void getBalancePointsWithoutAmount() {
+		Response response = APIClient.GET_balancePoints(Utils.getCPF());
 
-		Response response = request.get("/customers/" + Utils.getCPF() + "/balance-points");
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new BalancePointsWithoutAvailableAmountValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
 
-		Assertions.assertTrue(Arrays.stream(validators).allMatch(validator -> validator.validate(response)));
+	public static void getPointsWithoutTransactions() {
+		Response response = APIClient.GET_points(Utils.getCPF());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new PointsWithoutTransactionsValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 }
