@@ -3,6 +3,7 @@ package Wallet.Pages;
 import Wallet.APIClient;
 import Wallet.DTOs.DeletedCreditPointsDTO;
 import Wallet.Utils.Utils;
+import Wallet.Validators.PointsWithoutTransactionsValidator;
 import Wallet.Validators.DeletedCreditPointsValidator;
 import Wallet.Validators.StatusCodeOKValidator;
 import Wallet.Validators.Validator;
@@ -24,9 +25,7 @@ public class PointsPage {
 	public static void getPointsWithoutTransactions() {
 		Response response = APIClient.GET_points(Utils.getCPF());
 
-		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
-		// TODO: Add after remove API mocks
-		// new PointsWithoutTransactionsValidator()
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new PointsWithoutTransactionsValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 

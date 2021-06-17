@@ -3,40 +3,32 @@ package Wallet.DTOs;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class StatementDTO {
+import java.util.Map;
 
-	private String transactionId;
-	private String cancelTransactionId;
+public class CreditPointsRequestDTO {
+
+	private String document;
 	private float amount;
 	private String type;
 	private String status;
 	private String dateTime;
-	private String expireAt;
-	private String description;
 	private OrderDTO order;
+	private Map<String, Object> extra;
 
-	public static StatementDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, StatementDTO.class);
+	public static CreditPointsRequestDTO fromJsonString(String jsonString) {
+		return new Gson().fromJson(jsonString, CreditPointsRequestDTO.class);
 	}
 
 	public JsonObject toJson() {
 		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
 	}
 
-	public String getTransactionId() {
-		return transactionId;
+	public String getDocument() {
+		return document;
 	}
 
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
-	}
-
-	public String getCancelTransactionId() {
-		return cancelTransactionId;
-	}
-
-	public void setCancelTransactionId(String cancelTransactionId) {
-		this.cancelTransactionId = cancelTransactionId;
+	public void setDocument(String document) {
+		this.document = document;
 	}
 
 	public float getAmount() {
@@ -71,27 +63,19 @@ public class StatementDTO {
 		this.dateTime = dateTime;
 	}
 
-	public String getExpireAt() {
-		return expireAt;
-	}
-
-	public void setExpireAt(String expireAt) {
-		this.expireAt = expireAt;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public OrderDTO getOrder() {
 		return order;
 	}
 
 	public void setOrder(OrderDTO order) {
 		this.order = order;
+	}
+
+	public Map<String, Object> getExtra() {
+		return extra;
+	}
+
+	public void setExtra(Map<String, Object> extra) {
+		this.extra = extra;
 	}
 }

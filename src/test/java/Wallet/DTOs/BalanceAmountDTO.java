@@ -6,8 +6,9 @@ import com.google.gson.JsonObject;
 public class BalanceAmountDTO {
 
 	private float amount;
-	private float pending_earnings;
-	private float pending_redeems;
+	private float pendingCredits;
+	private float pendingDebits;
+	private String lastDateTime;
 
 	public static BalanceAmountDTO fromJsonString(String jsonString) {
 		return new Gson().fromJson(jsonString, BalanceAmountDTO.class);
@@ -25,19 +26,27 @@ public class BalanceAmountDTO {
 		this.amount = amount;
 	}
 
-	public float getPending_earnings() {
-		return pending_earnings;
+	public float getPendingCredits() {
+		return pendingCredits;
 	}
 
-	public void setPending_earnings(float pending_earnings) {
-		this.pending_earnings = pending_earnings;
+	public void setPendingCredits(float pendingCredits) {
+		this.pendingCredits = pendingCredits;
 	}
 
-	public float getPending_redeems() {
-		return pending_redeems;
+	public float getPendingDebits() {
+		return pendingDebits;
 	}
 
-	public void setPending_redeems(float pending_redeems) {
-		this.pending_redeems = pending_redeems;
+	public void setPendingDebits(float pendingDebits) {
+		this.pendingDebits = pendingDebits;
+	}
+
+	public String getLastDateTime() {
+		return lastDateTime;
+	}
+
+	public void setLastDateTime(String lastDateTime) {
+		this.lastDateTime = lastDateTime;
 	}
 }
