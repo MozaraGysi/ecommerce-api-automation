@@ -28,12 +28,4 @@ public class PointsPage {
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new PointsWithoutTransactionsValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
-
-	public static void deletedCreditPoints() {
-		DeletedCreditPointsDTO deletedEarnPointsDTO = DeletedCreditPointsDTO.build();
-		Response response = APIClient.DELETE_creditPoints(deletedEarnPointsDTO.toJson());
-
-		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new DeletedCreditPointsValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
-	}
 }

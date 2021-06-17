@@ -86,11 +86,11 @@ public class Utils {
 		return CPF;
 	}
 
-	public static String getTransactionId() {
+	public static String getTRANSACTION_ID() {
 		return TRANSACTION_ID;
 	}
 
-	public static void setTransactionId(String transactionId) {
+	public static void setTRANSACTION_ID(String transactionId) {
 		TRANSACTION_ID = transactionId;
 	}
 

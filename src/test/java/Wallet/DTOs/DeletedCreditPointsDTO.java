@@ -4,8 +4,6 @@ import Wallet.Utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import java.util.Date;
-
 public class DeletedCreditPointsDTO {
 
 	private String transactionId;
@@ -20,7 +18,7 @@ public class DeletedCreditPointsDTO {
 
 	public static DeletedCreditPointsDTO build() {
 		DeletedCreditPointsDTO dto = new DeletedCreditPointsDTO();
-		dto.setTransactionId(Utils.getTransactionId());
+		dto.setTransactionId(Utils.getTRANSACTION_ID());
 		return dto;
 	}
 

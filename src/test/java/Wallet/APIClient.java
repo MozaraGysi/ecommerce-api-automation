@@ -1,5 +1,6 @@
 package Wallet;
 
+import Wallet.DTOs.DeletedCreditPointsDTO;
 import Wallet.Utils.Utils;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
@@ -57,6 +58,9 @@ public class APIClient {
 
 		Response response = request.post("/customers/credit-points");
 		response.getBody().print();
+
+		DeletedCreditPointsDTO dto = DeletedCreditPointsDTO.fromJsonString(response.getBody().asString());
+		Utils.setTRANSACTION_ID(dto.getTransactionId());
 
 		return response;
 	}
