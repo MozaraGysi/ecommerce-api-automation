@@ -1,10 +1,8 @@
 package Wallet.Pages;
 
 import Wallet.APIClient;
-import Wallet.DTOs.DeletedCreditPointsDTO;
 import Wallet.Utils.Utils;
 import Wallet.Validators.PointsWithoutTransactionsValidator;
-import Wallet.Validators.DeletedCreditPointsValidator;
 import Wallet.Validators.StatusCodeOKValidator;
 import Wallet.Validators.Validator;
 import io.restassured.response.Response;
