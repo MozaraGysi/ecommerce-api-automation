@@ -75,7 +75,7 @@ public class GenerateCPF {
 		return listRandom;
 	}
 
-	public String cpfFinal() {
+	public String cpfFinal(boolean formatted) {
 		cpfPartial();
 		cpfFirstDigit();
 		cpfSecondDigit();
@@ -87,13 +87,18 @@ public class GenerateCPF {
 			text += item;
 		}
 
-		try {
-			MaskFormatter mf = new MaskFormatter("###.###.###-##");
-			mf.setValueContainsLiteralCharacters(false);
-			cpf = mf.valueToString(text);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		if (formatted) {
+			try {
+				MaskFormatter mf = new MaskFormatter("###.###.###-##");
+				mf.setValueContainsLiteralCharacters(false);
+				cpf = mf.valueToString(text);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		} else {
+			cpf = text;
 		}
+
 		return cpf;
 	}
 }

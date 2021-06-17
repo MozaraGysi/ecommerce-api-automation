@@ -3,12 +3,12 @@ package Wallet.DTOs;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class EarnPointsResponseDTO {
+public class CreditPointsResponseDTO {
 
 	private String transactionId;
 
-	public static EarnPointsResponseDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, EarnPointsResponseDTO.class);
+	public static CreditPointsResponseDTO fromJsonString(String jsonString) {
+		return new Gson().fromJson(jsonString, CreditPointsResponseDTO.class);
 	}
 
 	public JsonObject toJson() {

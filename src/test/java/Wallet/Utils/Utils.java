@@ -28,7 +28,7 @@ public class Utils {
 	}
 
 	public static String getBaseUrl() {
-		return "https://api.arezzoco.com.br/qa/customer-loyalty/v1/";
+		return "http://api.arezzoco.com.br/qa/customer-loyalty/v1";
 	}
 
 	public static String getUser(String param) {
@@ -73,8 +73,8 @@ public class Utils {
 
 	private static String cpf() {
 		GenerateCPF newCPF = new GenerateCPF();
-		String cpf = newCPF.cpfFinal();
-		System.out.print(cpf);
+		String cpf = newCPF.cpfFinal(false);
+		System.out.println(cpf);
 		return cpf;
 	}
 

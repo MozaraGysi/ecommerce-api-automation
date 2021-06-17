@@ -5,6 +5,7 @@ import Wallet.DTOs.CustomerRequestDTO;
 import Wallet.Fixtures.CustomerRequestDTOFixture;
 import Wallet.Validators.StatusCodeBadRequestValidator;
 import Wallet.Validators.StatusCodeCreatedValidator;
+import Wallet.Validators.StatusCodeUnprocessableEntityValidator;
 import Wallet.Validators.Validator;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
@@ -29,9 +30,7 @@ public class CustomerPage {
 
 		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
-		List<Validator> validators = Arrays.asList();
-		// TODO: Add after remove API mocks
-		//new StatusCodeBadRequestValidator();
+		List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 
@@ -41,7 +40,7 @@ public class CustomerPage {
 
 		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
-		List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
+		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 
@@ -51,7 +50,7 @@ public class CustomerPage {
 
 		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
-		List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
+		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 }
