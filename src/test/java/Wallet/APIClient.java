@@ -1,6 +1,5 @@
 package Wallet;
 
-import Wallet.DTOs.DeletedCreditPointsDTO;
 import Wallet.Utils.Utils;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
@@ -59,9 +58,6 @@ public class APIClient {
 		Response response = request.post("/customers/credit-points");
 		response.getBody().print();
 
-		DeletedCreditPointsDTO dto = DeletedCreditPointsDTO.fromJsonString(response.getBody().asString());
-		Utils.setTRANSACTION_ID(dto.getTransactionId());
-
 		return response;
 	}
 
@@ -73,6 +69,19 @@ public class APIClient {
 		request.body(requestBody.toString());
 
 		Response response = request.delete("/customers/credit-points");
+		response.getBody().print();
+
+		return response;
+	}
+
+	public static Response GET_creditTransactions(String transactionId) {
+		RestAssured.baseURI = Utils.getBaseUrl();
+
+		RequestSpecification request = RestAssured.given();
+		request.header("Content-Type", "application/json");
+		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+
+		Response response = request.get("/customers/credit-transactions/" + transactionId);
 		response.getBody().print();
 
 		return response;
