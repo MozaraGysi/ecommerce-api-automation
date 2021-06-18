@@ -19,7 +19,6 @@ public class CreditPoints {
 	public void creditPoints() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
-		PointsPage.getPoints();
 		CreditPointsPage.creditPoints();
 	}
 
@@ -27,8 +26,7 @@ public class CreditPoints {
 	public void deleteCreditPoints() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
-		PointsPage.getPoints();
 		CreditPointsPage.creditPoints();
-		CreditPointsPage.deletedCreditPoints();
+		CreditPointsPage.deleteCreditPoints();
 	}
 }
