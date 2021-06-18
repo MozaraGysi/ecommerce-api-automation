@@ -5,9 +5,14 @@ import Wallet.Utils.Utils;
 
 public class DeleteDebitPointsRequestDTOFixture {
 
-	public static DeleteDebitPointsRequestDTO build() {
-		DeleteDebitPointsRequestDTO deleteDebitPointsRequestDTO = new DeleteDebitPointsRequestDTO();
-		deleteDebitPointsRequestDTO.setTransactionId(Utils.getTRANSACTION_ID());
+	private DeleteDebitPointsRequestDTO deleteDebitPointsRequestDTO;
+
+	public DeleteDebitPointsRequestDTOFixture() {
+		deleteDebitPointsRequestDTO = new DeleteDebitPointsRequestDTO();
+		deleteDebitPointsRequestDTO.setTransactionId(Utils.getTransactionId());
+	}
+
+	public DeleteDebitPointsRequestDTO build() {
 		return deleteDebitPointsRequestDTO;
 	}
 }

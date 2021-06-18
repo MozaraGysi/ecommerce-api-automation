@@ -1,8 +1,11 @@
 package Wallet.DTOs;
 
+import Wallet.Enums.CreditPointsTypeEnum;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 
 public class CreditPointsRequestDTO {
@@ -25,6 +28,13 @@ public class CreditPointsRequestDTO {
 
 	public String getDocument() {
 		return document;
+	}
+
+	public float getCreditAmount() {
+		if (CreditPointsTypeEnum.VALOR_MONETARIO.getValue().equals(this.type)) {
+			return new BigDecimal(this.amount * 0.12f).setScale(2, RoundingMode.HALF_EVEN).floatValue();
+		}
+		return this.amount;
 	}
 
 	public void setDocument(String document) {

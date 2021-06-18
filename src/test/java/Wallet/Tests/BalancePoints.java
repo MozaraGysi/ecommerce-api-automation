@@ -1,8 +1,6 @@
 package Wallet.Tests;
 
-import Wallet.Pages.AuthPage;
-import Wallet.Pages.BalancePointsPage;
-import Wallet.Pages.CustomerPage;
+import Wallet.Pages.*;
 import Wallet.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,16 +13,18 @@ public class BalancePoints {
 	}
 
 	@Test
-	public void getBalancePoints() {
+	public void getBalancePointsWithoutAvailableAmount() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		BalancePointsPage.getBalancePoints();
 	}
 
 	@Test
-	public void getBalancePointsWithoutAvailableAmount() {
+	public void getBalancePointsWithAvailableAmount() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
-		BalancePointsPage.getBalancePointsWithoutAvailableAmount();
+		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsPage.getBalancePoints();
 	}
 }

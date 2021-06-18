@@ -16,7 +16,7 @@ import java.util.List;
 public class CustomerPage {
 
 	public static void newUser() {
-		CustomerRequestDTO customerRequestDTO = CustomerRequestDTOFixture.build();
+		CustomerRequestDTO customerRequestDTO = new CustomerRequestDTOFixture().build();
 
 		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
@@ -25,8 +25,7 @@ public class CustomerPage {
 	}
 
 	public static void newUserWithoutCPF() {
-		CustomerRequestDTO customerRequestDTO = CustomerRequestDTOFixture.build();
-		customerRequestDTO.setDocument(null);
+		CustomerRequestDTO customerRequestDTO = new CustomerRequestDTOFixture().withoutDocument().build();
 
 		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
@@ -35,8 +34,7 @@ public class CustomerPage {
 	}
 
 	public static void newUserWithoutFirstName() {
-		CustomerRequestDTO customerRequestDTO = CustomerRequestDTOFixture.build();
-		customerRequestDTO.setFirstName(null);
+		CustomerRequestDTO customerRequestDTO = new CustomerRequestDTOFixture().withoutFirstName().build();
 
 		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
@@ -45,8 +43,7 @@ public class CustomerPage {
 	}
 
 	public static void newUserWithoutLastName() {
-		CustomerRequestDTO customerRequestDTO = CustomerRequestDTOFixture.build();
-		customerRequestDTO.setLastName(null);
+		CustomerRequestDTO customerRequestDTO = new CustomerRequestDTOFixture().withoutLastName().build();
 
 		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 

@@ -1,5 +1,6 @@
 package Wallet.Utils;
 
+import Wallet.DTOs.CreditPointsRequestDTO;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -16,6 +17,8 @@ public class Utils {
 	static String EMAIL;
 	static String CPF;
 	static String TRANSACTION_ID;
+	static float AVAILABLE_AMOUNT;
+	static CreditPointsRequestDTO LAST_CREDIT_POINTS;
 
 	// Talvez seja necessário quando tivermos ambiente de dev/qa no motor de cashback
 	public static String getEnv() {
@@ -86,7 +89,7 @@ public class Utils {
 		return CPF;
 	}
 
-	public static String getTRANSACTION_ID() {
+	public static String getTransactionId() {
 		return TRANSACTION_ID;
 	}
 
@@ -99,5 +102,23 @@ public class Utils {
 		EMAIL = null;
 		CPF = null;
 		TRANSACTION_ID = null;
+		AVAILABLE_AMOUNT = 0;
+		LAST_CREDIT_POINTS = null;
+	}
+
+	public static float getAvailableAmount() {
+		return AVAILABLE_AMOUNT;
+	}
+
+	public static void sumAvailableAmount(float availableAmount) {
+		AVAILABLE_AMOUNT += availableAmount;
+	}
+
+	public static CreditPointsRequestDTO getLastCreditPoints() {
+		return LAST_CREDIT_POINTS;
+	}
+
+	public static void setLastCreditPoints(CreditPointsRequestDTO lastCreditPoints) {
+		LAST_CREDIT_POINTS = lastCreditPoints;
 	}
 }
