@@ -15,6 +15,7 @@ public class Utils {
 	static String ACCESS_TOKEN;
 	static String EMAIL;
 	static String CPF;
+	static String TRANSACTION_ID;
 
 	// Talvez seja necessário quando tivermos ambiente de dev/qa no motor de cashback
 	public static String getEnv() {
@@ -85,9 +86,18 @@ public class Utils {
 		return CPF;
 	}
 
+	public static String getTRANSACTION_ID() {
+		return TRANSACTION_ID;
+	}
+
+	public static void setTRANSACTION_ID(String transactionId) {
+		TRANSACTION_ID = transactionId;
+	}
+
 	public static void init() {
 		ACCESS_TOKEN = null;
 		EMAIL = null;
 		CPF = null;
+		TRANSACTION_ID = null;
 	}
 }

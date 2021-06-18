@@ -22,4 +22,13 @@ public class CreditPoints {
 		PointsPage.getPoints();
 		CreditPointsPage.creditPoints();
 	}
+
+	@Test
+	public void deleteCreditPoints() {
+		AuthPage.getToken();
+		CustomerPage.newUser();
+		PointsPage.getPoints();
+		CreditPointsPage.creditPoints();
+		CreditPointsPage.deletedCreditPoints();
+	}
 }
