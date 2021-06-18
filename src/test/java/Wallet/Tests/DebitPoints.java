@@ -1,14 +1,11 @@
 package Wallet.Tests;
 
-import Wallet.Pages.AuthPage;
-import Wallet.Pages.CreditPointsPage;
-import Wallet.Pages.CreditTransactionsPage;
-import Wallet.Pages.CustomerPage;
+import Wallet.Pages.*;
 import Wallet.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class CreditTransactions {
+public class DebitPoints {
 
 	@BeforeEach
 	public void init() {
@@ -16,18 +13,21 @@ public class CreditTransactions {
 	}
 
 	@Test
-	public void creditTransactionsWithStatusPENDENTE() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
-	}
-
-	@Test
-	public void creditTransactionsWithStatusCONFIRMADO() {
+	public void debitPoints() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		CreditPointsPage.creditPoints();
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsPage.debitPoints();
+	}
+
+	@Test
+	public void deleteDebitPoints() {
+		AuthPage.getToken();
+		CustomerPage.newUser();
+		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsPage.debitPoints();
+		DebitPointsPage.deletedDebitPoints();
 	}
 }

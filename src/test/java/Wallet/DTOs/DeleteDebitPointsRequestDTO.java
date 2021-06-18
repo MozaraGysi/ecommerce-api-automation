@@ -1,16 +1,17 @@
 package Wallet.DTOs;
 
+import Wallet.Utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class DeleteCreditPointsRequestDTO {
+public class DeleteDebitPointsRequestDTO {
 
 	private String transactionId;
 	private float amount;
 	private String dateTime;
 
-	public static DeleteCreditPointsRequestDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, DeleteCreditPointsRequestDTO.class);
+	public static DeleteDebitPointsRequestDTO fromJsonString(String jsonString) {
+		return new Gson().fromJson(jsonString, DeleteDebitPointsRequestDTO.class);
 	}
 
 	public JsonObject toJson() {
@@ -41,3 +42,4 @@ public class DeleteCreditPointsRequestDTO {
 		this.dateTime = dateTime;
 	}
 }
+
