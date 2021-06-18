@@ -10,8 +10,8 @@ public class OrderDTO {
 
 	private String id;
 	private float totalPrice;
-	private ArrayList<ItemDTO> items = new ArrayList<>();
-	private ArrayList<PaymentDTO> payments = new ArrayList <> ();
+	private ArrayList<ItemDTO> items;
+	private ArrayList<PaymentDTO> payments;
 	private AddressDTO address;
 	private Map<String, Object> extra;
 
