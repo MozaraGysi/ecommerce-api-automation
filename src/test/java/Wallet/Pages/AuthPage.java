@@ -16,8 +16,8 @@ public class AuthPage {
 
 	private static final String AUTHORIZATION_HEADER = "Authorization";
 	private static final String AUTHORIZATION_HEADER_TYPE_BASIC = "Basic ";
-	private static String clientId = "5dde89d8-e8d9-3ff8-aa79-35cba575aee5";
-	private static String clientSecret = "d973be7d-b75a-3360-a677-610081fcacbc";
+	private static String clientId = "10248d26-ab15-3fbd-96d3-f8054048d0ac";
+	private static String clientSecret = "232214b9-f25f-3593-acb6-93d4e033026d";
 
 	private static HttpHeaders getDefaultHeaders() {
 		HttpHeaders headers = new HttpHeaders();

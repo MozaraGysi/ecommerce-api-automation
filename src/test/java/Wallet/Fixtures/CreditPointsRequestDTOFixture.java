@@ -12,7 +12,7 @@ public class CreditPointsRequestDTOFixture {
 		creditPointsRequestDTO.setType("VALOR_MONETARIO");
 		creditPointsRequestDTO.setStatus("CONFIRMADO");
 		creditPointsRequestDTO.setDateTime("2004-02-12T14:18:20+00:00");
-//		creditPointsRequestDTO.setOrder(OrderDTOFixture.build());
+		creditPointsRequestDTO.setOrder(OrderDTOFixture.build());
 //		creditPointsRequestDTO.setExtra();
 		return creditPointsRequestDTO;
 	}
