@@ -16,7 +16,6 @@ public class DebitPoints {
 	public void debitPoints() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
-		PointsPage.getPoints();
 		CreditPointsPage.creditPoints();
 		DebitPointsPage.debitPoints();
 	}

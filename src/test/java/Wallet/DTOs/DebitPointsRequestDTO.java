@@ -7,27 +7,26 @@ import com.google.gson.JsonObject;
 
 import java.util.Map;
 
-public class DebitPointsDTO {
+public class DebitPointsRequestDTO {
 
 	private String document;
 	private float amount;
 	private String type;
-	//esse campo não está no swagger mas ao chamar o endpoint ele pede
 	private String status;
 	private String dateTime;
 	private OrderDTO order;
 	private Map<String, Object> extra;
 
-	public static DebitPointsDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, DebitPointsDTO.class);
+	public static DebitPointsRequestDTO fromJsonString(String jsonString) {
+		return new Gson().fromJson(jsonString, DebitPointsRequestDTO.class);
 	}
 
 	public JsonObject toJson() {
 		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
 	}
 
-	public static DebitPointsDTO build() {
-		DebitPointsDTO dto = new DebitPointsDTO();
+	public static DebitPointsRequestDTO build() {
+		DebitPointsRequestDTO dto = new DebitPointsRequestDTO();
 		dto.setDocument(Utils.getCPF());
 		dto.setAmount(100);
 		dto.setStatus("CONFIRMADO");
