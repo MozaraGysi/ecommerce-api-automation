@@ -1,6 +1,5 @@
 package Wallet;
 
-import Wallet.DTOs.DeleteDebitPointsRequestDTO;
 import Wallet.Utils.Utils;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
@@ -26,6 +25,7 @@ public class APIClient {
 
 	public static Response GET_balancePoints(String document) {
 		RestAssured.baseURI = Utils.getBaseUrl();
+
 		RequestSpecification request = RestAssured.given();
 		request.header("Content-Type", "application/json");
 		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
@@ -38,6 +38,7 @@ public class APIClient {
 
 	public static Response GET_points(String document) {
 		RestAssured.baseURI = Utils.getBaseUrl();
+
 		RequestSpecification request = RestAssured.given();
 		request.header("Content-Type", "application/json");
 		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
@@ -64,6 +65,7 @@ public class APIClient {
 
 	public static Response DELETE_creditPoints(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
+
 		RequestSpecification request = RestAssured.given();
 		request.header("Content-Type", "application/json");
 		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
@@ -99,15 +101,12 @@ public class APIClient {
 		Response response = request.post("/customers/debit-points");
 		response.getBody().print();
 
-
-		DeleteDebitPointsRequestDTO dto = DeleteDebitPointsRequestDTO.fromJsonString(response.getBody().asString());
-		Utils.setTRANSACTION_ID(dto.getTransactionId());
-
 		return response;
 	}
 
 	public static Response DELETE_debitPoints(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
+
 		RequestSpecification request = RestAssured.given();
 		request.header("Content-Type", "application/json");
 		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());

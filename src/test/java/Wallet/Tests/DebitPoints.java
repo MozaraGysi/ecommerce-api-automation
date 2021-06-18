@@ -2,12 +2,12 @@ package Wallet.Tests;
 
 import Wallet.Pages.*;
 import Wallet.Utils.Utils;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class DebitPoints {
 
-	@Before
+	@BeforeEach
 	public void init() {
 		Utils.init();
 	}
@@ -17,6 +17,7 @@ public class DebitPoints {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
 		DebitPointsPage.debitPoints();
 	}
 
@@ -24,7 +25,8 @@ public class DebitPoints {
 	public void deleteDebitPoints() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
-		PointsPage.getPoints();
+		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
 		DebitPointsPage.debitPoints();
 		DebitPointsPage.deletedDebitPoints();
 	}

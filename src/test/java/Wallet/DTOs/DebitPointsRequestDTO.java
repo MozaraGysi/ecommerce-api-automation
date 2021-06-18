@@ -25,17 +25,6 @@ public class DebitPointsRequestDTO {
 		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
 	}
 
-	public static DebitPointsRequestDTO build() {
-		DebitPointsRequestDTO dto = new DebitPointsRequestDTO();
-		dto.setDocument(Utils.getCPF());
-		dto.setAmount(100);
-		dto.setStatus("CONFIRMADO");
-		dto.setType("VALOR_MONETARIO");
-		dto.setDateTime("2004-02-12T14:18:20+00:00");
-		dto.setOrder(OrderDTOFixture.build());
-		return dto;
-	}
-
 	public String getDocument() {
 		return document;
 	}

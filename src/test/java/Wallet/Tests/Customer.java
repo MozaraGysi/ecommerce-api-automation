@@ -3,12 +3,12 @@ package Wallet.Tests;
 import Wallet.Pages.AuthPage;
 import Wallet.Pages.CustomerPage;
 import Wallet.Utils.Utils;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Customer {
 
-	@Before
+	@BeforeEach
 	public void init() {
 		Utils.init();
 	}

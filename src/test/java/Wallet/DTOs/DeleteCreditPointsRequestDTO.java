@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 public class DeleteCreditPointsRequestDTO {
 
 	private String transactionId;
+	private float amount;
+	private String dateTime;
 
 	public static DeleteCreditPointsRequestDTO fromJsonString(String jsonString) {
 		return new Gson().fromJson(jsonString, DeleteCreditPointsRequestDTO.class);
@@ -21,5 +23,21 @@ public class DeleteCreditPointsRequestDTO {
 
 	public void setTransactionId(String transactionId) {
 		this.transactionId = transactionId;
+	}
+
+	public float getAmount() {
+		return amount;
+	}
+
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+
+	public String getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
 	}
 }

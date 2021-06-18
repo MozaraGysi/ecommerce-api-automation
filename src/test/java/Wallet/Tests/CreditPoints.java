@@ -1,16 +1,15 @@
 package Wallet.Tests;
 
 import Wallet.Pages.AuthPage;
-import Wallet.Pages.CustomerPage;
 import Wallet.Pages.CreditPointsPage;
-import Wallet.Pages.PointsPage;
+import Wallet.Pages.CustomerPage;
 import Wallet.Utils.Utils;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CreditPoints {
 
-	@Before
+	@BeforeEach
 	public void init() {
 		Utils.init();
 	}
