@@ -14,7 +14,7 @@ import java.util.List;
 public class CreditTransactionsPage {
 
 	public static void getCreditTransactionsWithStatusPENDENTE() {
-		Response response = APIClient.GET_creditTransactions(Utils.getTRANSACTION_ID());
+		Response response = APIClient.GET_creditTransactions(Utils.getTransactionId());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CreditTransactionsWithStatusPENDENTEValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -25,6 +25,13 @@ public class CreditTransactionsPage {
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CreditTransactionsWithStatusCONFIRMADOValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
+		handleCreditTransactions(response);
+	}
+
+	private static void handleCreditTransactions(Response response) {
+		CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
+		Utils.sumAvailableAmount(creditTransactionsResponseDTO.getCreditAmount());
 	}
 
 	private static Response getResponseCreditTransactionsWithStatusCONFIRMADO() {
@@ -33,7 +40,7 @@ public class CreditTransactionsPage {
 		boolean creditTransactionConfirmed = false;
 		int count = 0;
 		while (!creditTransactionConfirmed && count < 7) {
-			response = APIClient.GET_creditTransactions(Utils.getTRANSACTION_ID());
+			response = APIClient.GET_creditTransactions(Utils.getTransactionId());
 
 			CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
 			creditTransactionConfirmed = CreditTransactionStatusEnum.CONFIRMADO.getValue().equals(creditTransactionsResponseDTO.getStatus());

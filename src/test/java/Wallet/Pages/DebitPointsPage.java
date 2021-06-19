@@ -17,7 +17,7 @@ import java.util.List;
 public class DebitPointsPage {
 
 	public static void debitPoints() {
-		DebitPointsRequestDTO debitPointsRequestDTO = DebitPointsRequestDTOFixture.build();
+		DebitPointsRequestDTO debitPointsRequestDTO = new DebitPointsRequestDTOFixture().build();
 
 		Response response = APIClient.POST_debitPoints(debitPointsRequestDTO.toJson());
 
@@ -29,7 +29,7 @@ public class DebitPointsPage {
 	}
 
 	public static void deletedDebitPoints() {
-		DeleteDebitPointsRequestDTO deleteDebitPointsRequestDTO = DeleteDebitPointsRequestDTOFixture.build();
+		DeleteDebitPointsRequestDTO deleteDebitPointsRequestDTO = new DeleteDebitPointsRequestDTOFixture().build();
 
 		Response response = APIClient.DELETE_debitPoints(deleteDebitPointsRequestDTO.toJson());
 
