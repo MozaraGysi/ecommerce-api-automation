@@ -31,4 +31,9 @@ public class CreditPointsRequestDTOFixture {
 		creditPointsRequestDTO.setType(CreditPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
 		return this;
 	}
+
+	public CreditPointsRequestDTOFixture withoutOrder() {
+		creditPointsRequestDTO.setOrder(null);
+		return this;
+	}
 }

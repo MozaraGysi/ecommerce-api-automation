@@ -12,7 +12,7 @@ public class CreditTransactionsWithStatusCONFIRMADOValidator implements Validato
 	public boolean validate(Response response) {
 		CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
 
-		Assertions.assertEquals(Utils.getTransactionId(), creditTransactionsResponseDTO.getTransactionId());
+		Assertions.assertEquals(Utils.getCreditTransactionId(), creditTransactionsResponseDTO.getTransactionId());
 		Assertions.assertEquals(Utils.getLastCreditPoints().getDocument(), creditTransactionsResponseDTO.getDocument());
 		Assertions.assertEquals(Utils.getLastCreditPoints().getAmount(), creditTransactionsResponseDTO.getAmount());
 		Assertions.assertEquals(Utils.getLastCreditPoints().getCreditAmount(), creditTransactionsResponseDTO.getCreditAmount());

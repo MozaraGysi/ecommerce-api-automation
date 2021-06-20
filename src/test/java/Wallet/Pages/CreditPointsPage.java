@@ -49,6 +49,17 @@ public class CreditPointsPage {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
+	public static void creditPointsWithoutOrder() {
+		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().withoutOrder().build();
+
+		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
+		handleCreditPoints(creditPointsRequestDTO, response);
+	}
+
 	public static void deleteCreditPoints() {
 		DeleteCreditPointsRequestDTO deleteCreditPointsRequestDTO = new DeleteCreditPointsRequestDTOFixture().build();
 
@@ -60,7 +71,7 @@ public class CreditPointsPage {
 
 	private static void handleCreditPoints(CreditPointsRequestDTO creditPointsRequestDTO, Response response) {
 		CreditPointsResponseDTO creditPointsResponseDTO = CreditPointsResponseDTO.fromJsonString(response.getBody().asString());
-		Utils.setTRANSACTION_ID(creditPointsResponseDTO.getTransactionId());
+		Utils.setCreditTransactionId(creditPointsResponseDTO.getTransactionId());
 		Utils.setLastCreditPoints(creditPointsRequestDTO);
 	}
 }

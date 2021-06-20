@@ -13,12 +13,33 @@ public class DebitPoints {
 	}
 
 	@Test
-	public void debitPoints() {
+	public void debitPointsWithTypeQUANTIDADE_DE_PONTOS() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		CreditPointsPage.creditPoints();
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsPage.debitPoints();
+		DebitPointsPage.debitPointsWithTypeQUANTIDADE_DE_PONTOS();
+		BalancePointsPage.getBalancePoints();
+	}
+
+	@Test
+	public void debitPointsWithTypeVALOR_MONETARIO() {
+		AuthPage.getToken();
+		CustomerPage.newUser();
+		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsPage.debitPointsWithTypeVALOR_MONETARIO();
+		BalancePointsPage.getBalancePoints();
+	}
+
+	@Test
+	public void debitPointsWithoutOrder() {
+		AuthPage.getToken();
+		CustomerPage.newUser();
+		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsPage.debitPointsWithoutOrder();
+		BalancePointsPage.getBalancePoints();
 	}
 
 	@Test

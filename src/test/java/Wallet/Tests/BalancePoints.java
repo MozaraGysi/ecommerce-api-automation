@@ -13,18 +13,19 @@ public class BalancePoints {
 	}
 
 	@Test
-	public void getBalancePointsWithoutAvailableAmount() {
+	public void getBalancePointsWithoutTransactions() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
-		BalancePointsPage.getBalancePoints();
+		BalancePointsPage.getBalancePointsWithoutTransactions();
 	}
 
 	@Test
-	public void getBalancePointsWithAvailableAmount() {
+	public void getBalancePointsWithTransactions() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		CreditPointsPage.creditPoints();
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsPage.debitPoints();
 		BalancePointsPage.getBalancePoints();
 	}
 }

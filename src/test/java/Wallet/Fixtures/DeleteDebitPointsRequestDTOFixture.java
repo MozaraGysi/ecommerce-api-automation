@@ -9,7 +9,7 @@ public class DeleteDebitPointsRequestDTOFixture {
 
 	public DeleteDebitPointsRequestDTOFixture() {
 		deleteDebitPointsRequestDTO = new DeleteDebitPointsRequestDTO();
-		deleteDebitPointsRequestDTO.setTransactionId(Utils.getTransactionId());
+		deleteDebitPointsRequestDTO.setTransactionId(Utils.getDebitTransactionId());
 	}
 
 	public DeleteDebitPointsRequestDTO build() {

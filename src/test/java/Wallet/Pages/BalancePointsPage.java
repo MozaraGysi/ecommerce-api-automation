@@ -13,7 +13,14 @@ public class BalancePointsPage {
 	public static void getBalancePoints() {
 		Response response = APIClient.GET_balancePoints(Utils.getCPF());
 
-		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new BalancePointsValidator(), new BalancePointsAvailableAmountValidator());
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new BalancePointsValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
+	public static void getBalancePointsWithoutTransactions() {
+		Response response = APIClient.GET_balancePoints(Utils.getCPF());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new BalancePointsWithoutTransactionsValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 }

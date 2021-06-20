@@ -2,6 +2,7 @@ package Wallet.Pages;
 
 import Wallet.APIClient;
 import Wallet.Utils.Utils;
+import Wallet.Validators.PointsValidator;
 import Wallet.Validators.PointsWithoutTransactionsValidator;
 import Wallet.Validators.StatusCodeOKValidator;
 import Wallet.Validators.Validator;
@@ -16,7 +17,7 @@ public class PointsPage {
 	public static void getPoints() {
 		Response response = APIClient.GET_points(Utils.getCPF());
 
-		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new PointsValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 

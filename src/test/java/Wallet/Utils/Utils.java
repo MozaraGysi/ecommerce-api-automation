@@ -1,11 +1,14 @@
 package Wallet.Utils;
 
 import Wallet.DTOs.CreditPointsRequestDTO;
+import Wallet.DTOs.DebitPointsRequestDTO;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
@@ -16,9 +19,11 @@ public class Utils {
 	static String ACCESS_TOKEN;
 	static String EMAIL;
 	static String CPF;
-	static String TRANSACTION_ID;
+	static String CREDIT_TRANSACTION_ID;
+	static String DEBIT_TRANSACTION_ID;
 	static float AVAILABLE_AMOUNT;
 	static CreditPointsRequestDTO LAST_CREDIT_POINTS;
+	static DebitPointsRequestDTO LAST_DEBIT_POINTS;
 
 	// Talvez seja necessário quando tivermos ambiente de dev/qa no motor de cashback
 	public static String getEnv() {
@@ -89,29 +94,43 @@ public class Utils {
 		return CPF;
 	}
 
-	public static String getTransactionId() {
-		return TRANSACTION_ID;
+	public static String getCreditTransactionId() {
+		return CREDIT_TRANSACTION_ID;
 	}
 
-	public static void setTRANSACTION_ID(String transactionId) {
-		TRANSACTION_ID = transactionId;
+	public static void setCreditTransactionId(String creditTransactionId) {
+		CREDIT_TRANSACTION_ID = creditTransactionId;
+	}
+
+	public static String getDebitTransactionId() {
+		return DEBIT_TRANSACTION_ID;
+	}
+
+	public static void setDebitTransactionId(String debitTransactionId) {
+		DEBIT_TRANSACTION_ID = debitTransactionId;
 	}
 
 	public static void init() {
 		ACCESS_TOKEN = null;
 		EMAIL = null;
 		CPF = null;
-		TRANSACTION_ID = null;
+		CREDIT_TRANSACTION_ID = null;
+		DEBIT_TRANSACTION_ID = null;
 		AVAILABLE_AMOUNT = 0;
 		LAST_CREDIT_POINTS = null;
+		LAST_DEBIT_POINTS = null;
 	}
 
 	public static float getAvailableAmount() {
 		return AVAILABLE_AMOUNT;
 	}
 
-	public static void sumAvailableAmount(float availableAmount) {
-		AVAILABLE_AMOUNT += availableAmount;
+	public static void creditPoints(float points) {
+		AVAILABLE_AMOUNT = new BigDecimal(AVAILABLE_AMOUNT).add(new BigDecimal(points)).setScale(2, RoundingMode.HALF_EVEN).floatValue();
+	}
+
+	public static void debitPoints(float points) {
+		AVAILABLE_AMOUNT = new BigDecimal(AVAILABLE_AMOUNT).subtract(new BigDecimal(points)).setScale(2, RoundingMode.HALF_EVEN).floatValue();
 	}
 
 	public static CreditPointsRequestDTO getLastCreditPoints() {
@@ -120,5 +139,13 @@ public class Utils {
 
 	public static void setLastCreditPoints(CreditPointsRequestDTO lastCreditPoints) {
 		LAST_CREDIT_POINTS = lastCreditPoints;
+	}
+
+	public static DebitPointsRequestDTO getLastDebitPoints() {
+		return LAST_DEBIT_POINTS;
+	}
+
+	public static void setLastDebitPoints(DebitPointsRequestDTO lastDebitPoints) {
+		LAST_DEBIT_POINTS = lastDebitPoints;
 	}
 }

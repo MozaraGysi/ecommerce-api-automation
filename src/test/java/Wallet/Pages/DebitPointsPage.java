@@ -24,8 +24,40 @@ public class DebitPointsPage {
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new DebitPointsWithTransactionIdValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
-		DebitPointsResponseDTO debitPointsResponseDTO = DebitPointsResponseDTO.fromJsonString(response.getBody().asString());
-		Utils.setTRANSACTION_ID(debitPointsResponseDTO.getTransactionId());
+		handleDebitPoints(debitPointsRequestDTO, response);
+	}
+
+	public static void debitPointsWithTypeQUANTIDADE_DE_PONTOS() {
+		DebitPointsRequestDTO debitPointsRequestDTO = new DebitPointsRequestDTOFixture().type_QUANTIDADE_DE_PONTOS().build();
+
+		Response response = APIClient.POST_debitPoints(debitPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new DebitPointsWithTransactionIdValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
+		handleDebitPoints(debitPointsRequestDTO, response);
+	}
+
+	public static void debitPointsWithTypeVALOR_MONETARIO() {
+		DebitPointsRequestDTO debitPointsRequestDTO = new DebitPointsRequestDTOFixture().type_VALOR_MONETARIO().build();
+
+		Response response = APIClient.POST_debitPoints(debitPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new DebitPointsWithTransactionIdValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
+		handleDebitPoints(debitPointsRequestDTO, response);
+	}
+
+	public static void debitPointsWithoutOrder() {
+		DebitPointsRequestDTO debitPointsRequestDTO = new DebitPointsRequestDTOFixture().withoutOrder().build();
+
+		Response response = APIClient.POST_debitPoints(debitPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new DebitPointsWithTransactionIdValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
+		handleDebitPoints(debitPointsRequestDTO, response);
 	}
 
 	public static void deletedDebitPoints() {
@@ -35,5 +67,12 @@ public class DebitPointsPage {
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new DeletedDebitPointsPointsValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
+	private static void handleDebitPoints(DebitPointsRequestDTO debitPointsRequestDTO, Response response) {
+		DebitPointsResponseDTO debitPointsResponseDTO = DebitPointsResponseDTO.fromJsonString(response.getBody().asString());
+		Utils.setDebitTransactionId(debitPointsResponseDTO.getTransactionId());
+		Utils.setLastDebitPoints(debitPointsRequestDTO);
+		Utils.debitPoints(debitPointsRequestDTO.getDebitAmount());
 	}
 }

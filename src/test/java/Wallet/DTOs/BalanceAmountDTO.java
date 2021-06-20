@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 
 public class BalanceAmountDTO {
 
-	private float amount;
+	private float available;
 	private float pendingCredits;
 	private float pendingDebits;
 	private String lastDateTime;
@@ -18,12 +18,12 @@ public class BalanceAmountDTO {
 		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
 	}
 
-	public float getAmount() {
-		return amount;
+	public float getAvailable() {
+		return available;
 	}
 
-	public void setAmount(float amount) {
-		this.amount = amount;
+	public void setAvailable(float available) {
+		this.available = available;
 	}
 
 	public float getPendingCredits() {

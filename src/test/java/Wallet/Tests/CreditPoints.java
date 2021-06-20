@@ -1,9 +1,6 @@
 package Wallet.Tests;
 
-import Wallet.Pages.AuthPage;
-import Wallet.Pages.CreditPointsPage;
-import Wallet.Pages.CreditTransactionsPage;
-import Wallet.Pages.CustomerPage;
+import Wallet.Pages.*;
 import Wallet.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +26,7 @@ public class CreditPoints {
 		CreditPointsPage.creditPointsWithTypeVALOR_MONETARIO();
 		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsPage.getBalancePoints();
 	}
 
 	@Test
@@ -38,6 +36,17 @@ public class CreditPoints {
 		CreditPointsPage.creditPointsWithTypeQUANTIDADE_DE_PONTOS();
 		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsPage.getBalancePoints();
+	}
+
+	@Test
+	public void creditPointsWithoutOrder() {
+		AuthPage.getToken();
+		CustomerPage.newUser();
+		CreditPointsPage.creditPointsWithoutOrder();
+		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsPage.getBalancePoints();
 	}
 
 	@Test
