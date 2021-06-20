@@ -60,6 +60,17 @@ public class DebitPointsPage {
 		handleDebitPoints(debitPointsRequestDTO, response);
 	}
 
+	public static void debitPointsToReturnLastCredit() {
+		DebitPointsRequestDTO debitPointsRequestDTO = new DebitPointsRequestDTOFixture().returnLastCreditPoints().build();
+
+		Response response = APIClient.POST_debitPoints(debitPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new DebitPointsWithTransactionIdValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
+		handleDebitPoints(debitPointsRequestDTO, response);
+	}
+
 	public static void deletedDebitPoints() {
 		DeleteDebitPointsRequestDTO deleteDebitPointsRequestDTO = new DeleteDebitPointsRequestDTOFixture().build();
 
