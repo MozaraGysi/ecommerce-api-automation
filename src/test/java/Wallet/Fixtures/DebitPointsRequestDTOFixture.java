@@ -47,4 +47,10 @@ public class DebitPointsRequestDTOFixture {
 		}
 		return this;
 	}
+
+	public DebitPointsRequestDTOFixture withoutAvailableAmount() {
+		debitPointsRequestDTO.setAmount(Utils.getAvailableAmount()+1);
+		debitPointsRequestDTO.setType(DebitPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
+		return this;
+	}
 }

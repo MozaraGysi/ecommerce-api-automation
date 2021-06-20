@@ -72,6 +72,15 @@ public class CreditPointsPage {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
+	public static void creditPointsWithoutAuthentication() {
+		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().build();
+
+		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
 	public static void deleteCreditPoints() {
 		DeleteCreditPointsRequestDTO deleteCreditPointsRequestDTO = new DeleteCreditPointsRequestDTOFixture().build();
 

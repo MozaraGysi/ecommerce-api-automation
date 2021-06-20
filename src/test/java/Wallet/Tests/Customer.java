@@ -20,9 +20,20 @@ public class Customer {
 	}
 
 	@Test
+	public void newUserWithoutAuthentication() {
+		CustomerPage.newUserWithoutAuthentication();
+	}
+
+	@Test
 	public void newUserWithoutCPF() {
 		AuthPage.getToken();
 		CustomerPage.newUserWithoutCPF();
+	}
+
+	@Test
+	public void newUserWithInvalidCPF() {
+		AuthPage.getToken();
+		CustomerPage.newUserWithInvalidCPF();
 	}
 
 	@Test

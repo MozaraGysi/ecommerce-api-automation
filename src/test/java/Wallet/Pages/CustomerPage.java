@@ -3,10 +3,7 @@ package Wallet.Pages;
 import Wallet.APIClient;
 import Wallet.DTOs.CustomerRequestDTO;
 import Wallet.Fixtures.CustomerRequestDTOFixture;
-import Wallet.Validators.StatusCodeBadRequestValidator;
-import Wallet.Validators.StatusCodeCreatedValidator;
-import Wallet.Validators.StatusCodeUnprocessableEntityValidator;
-import Wallet.Validators.Validator;
+import Wallet.Validators.*;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 
@@ -33,6 +30,15 @@ public class CustomerPage {
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 
+	public static void newUserWithInvalidCPF() {
+		CustomerRequestDTO customerRequestDTO = new CustomerRequestDTOFixture().withInvalidDocument().build();
+
+		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
 	public static void newUserWithoutFirstName() {
 		CustomerRequestDTO customerRequestDTO = new CustomerRequestDTOFixture().withoutFirstName().build();
 
@@ -48,6 +54,15 @@ public class CustomerPage {
 		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
+	public static void newUserWithoutAuthentication() {
+		CustomerRequestDTO customerRequestDTO = new CustomerRequestDTOFixture().build();
+
+		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 }

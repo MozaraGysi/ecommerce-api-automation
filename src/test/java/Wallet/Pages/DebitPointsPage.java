@@ -72,6 +72,24 @@ public class DebitPointsPage {
 		handleDebitPoints(debitPointsRequestDTO, response);
 	}
 
+	public static void debitPointsWithoutAuthentication() {
+		DebitPointsRequestDTO debitPointsRequestDTO = new DebitPointsRequestDTOFixture().build();
+
+		Response response = APIClient.POST_debitPoints(debitPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
+	public static void debitPointsWithoutAvailableAmount() {
+		DebitPointsRequestDTO debitPointsRequestDTO = new DebitPointsRequestDTOFixture().withoutAvailableAmount().build();
+
+		Response response = APIClient.POST_debitPoints(debitPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator(), new DebitPointsWithoutAvailableAmountValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
 	public static void deletedDebitPoints() {
 		DeleteDebitPointsRequestDTO deleteDebitPointsRequestDTO = new DeleteDebitPointsRequestDTOFixture().build();
 

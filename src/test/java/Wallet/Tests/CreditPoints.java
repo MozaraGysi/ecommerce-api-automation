@@ -13,20 +13,13 @@ public class CreditPoints {
 	}
 
 	@Test
-	public void creditPoints() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-	}
-
-	@Test
 	public void creditPointsWithTypeVALOR_MONETARIO() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		CreditPointsPage.creditPointsWithTypeVALOR_MONETARIO();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
 	}
 
 	@Test
@@ -34,9 +27,9 @@ public class CreditPoints {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		CreditPointsPage.creditPointsWithTypeQUANTIDADE_DE_PONTOS();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
 	}
 
 	@Test
@@ -44,9 +37,14 @@ public class CreditPoints {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		CreditPointsPage.creditPointsWithoutOrder();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
+	}
+
+	@Test
+	public void creditPointsWithoutAuthentication() {
+		CreditPointsPage.creditPointsWithoutAuthentication();
 	}
 
 	@Test
