@@ -9,7 +9,7 @@ public class DeleteCreditPointsRequestDTOFixture {
 
 	public DeleteCreditPointsRequestDTOFixture() {
 		deleteCreditPointsRequestDTO = new DeleteCreditPointsRequestDTO();
-		deleteCreditPointsRequestDTO.setTransactionId(Utils.getCreditTransactionId());
+		deleteCreditPointsRequestDTO.setTransactionId(Utils.getLastConfirmedCreditPoints().getTransactionId());
 	}
 
 	public DeleteCreditPointsRequestDTO build() {

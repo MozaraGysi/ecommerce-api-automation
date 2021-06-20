@@ -50,10 +50,39 @@ public class CreditPoints {
 	}
 
 	@Test
+	public void doubleCreditPoints() {
+		AuthPage.getToken();
+		CustomerPage.newUser();
+		BalancePointsPage.getBalancePointsWithoutTransactions();
+		PointsPage.getPointsWithoutTransactions();
+		CreditPointsPage.creditPoints();
+		BalancePointsPage.getBalancePointsWithoutTransactions();
+		PointsPage.getPointsWithoutTransactions();
+		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
+		BalancePointsPage.getBalancePointsWithoutTransactions();
+		PointsPage.getPointsWithoutTransactions();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
+		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
+		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
+		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
+		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
+	}
+
+	@Test
 	public void deleteCreditPoints() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
 		CreditPointsPage.deleteCreditPoints();
 	}
 }

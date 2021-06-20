@@ -6,6 +6,7 @@ import Wallet.DTOs.CreditPointsResponseDTO;
 import Wallet.DTOs.DeleteCreditPointsRequestDTO;
 import Wallet.Fixtures.CreditPointsRequestDTOFixture;
 import Wallet.Fixtures.DeleteCreditPointsRequestDTOFixture;
+import Wallet.Utils.CreditPointsHandler;
 import Wallet.Utils.Utils;
 import Wallet.Validators.*;
 import io.restassured.response.Response;
@@ -82,7 +83,6 @@ public class CreditPointsPage {
 
 	private static void handleCreditPoints(CreditPointsRequestDTO creditPointsRequestDTO, Response response) {
 		CreditPointsResponseDTO creditPointsResponseDTO = CreditPointsResponseDTO.fromJsonString(response.getBody().asString());
-		Utils.setCreditTransactionId(creditPointsResponseDTO.getTransactionId());
-		Utils.setLastCreditPoints(creditPointsRequestDTO);
+		Utils.addCreditPoints(new CreditPointsHandler(creditPointsResponseDTO.getTransactionId(), creditPointsRequestDTO));
 	}
 }
