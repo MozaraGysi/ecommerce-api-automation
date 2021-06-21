@@ -1,10 +1,11 @@
 package Wallet.DTOs;
 
-import Wallet.Fixtures.OrderDTOFixture;
-import Wallet.Utils.Utils;
+import Wallet.Enums.DebitPointsTypeEnum;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 
 public class DebitPointsRequestDTO {
@@ -23,6 +24,14 @@ public class DebitPointsRequestDTO {
 
 	public JsonObject toJson() {
 		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+	}
+
+	public float getDebitAmount() {
+		if (DebitPointsTypeEnum.VALOR_MONETARIO.getValue().equals(this.type)) {
+			return new BigDecimal(this.amount * 0.12f).setScale(2, RoundingMode.HALF_EVEN).floatValue();
+		}
+		// TODO: Ajustar para this.amount, após o ajuste na API
+		return new BigDecimal("0.0" + new BigDecimal(this.amount).setScale(0, RoundingMode.DOWN)).floatValue();
 	}
 
 	public String getDocument() {

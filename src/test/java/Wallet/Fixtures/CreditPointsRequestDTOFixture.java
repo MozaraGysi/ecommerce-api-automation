@@ -4,6 +4,8 @@ import Wallet.DTOs.CreditPointsRequestDTO;
 import Wallet.Enums.CreditPointsTypeEnum;
 import Wallet.Utils.Utils;
 
+import java.util.Objects;
+
 public class CreditPointsRequestDTOFixture {
 
 	private CreditPointsRequestDTO creditPointsRequestDTO;
@@ -29,6 +31,20 @@ public class CreditPointsRequestDTOFixture {
 
 	public CreditPointsRequestDTOFixture type_QUANTIDADE_DE_PONTOS() {
 		creditPointsRequestDTO.setType(CreditPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
+		return this;
+	}
+
+	public CreditPointsRequestDTOFixture withoutOrder() {
+		creditPointsRequestDTO.setOrder(null);
+		return this;
+	}
+
+	public CreditPointsRequestDTOFixture returnLastDebitPoints() {
+		creditPointsRequestDTO.setAmount(Utils.getLastDebitPoints().getRequestDTO().getDebitAmount());
+		creditPointsRequestDTO.setType(CreditPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
+		if (Objects.nonNull(Utils.getLastDebitPoints().getRequestDTO().getOrder())) {
+			creditPointsRequestDTO.setOrder(new OrderDTOFixture().returnLastDebitPoints().build());
+		}
 		return this;
 	}
 }

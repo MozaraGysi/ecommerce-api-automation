@@ -6,6 +6,7 @@ import Wallet.DTOs.CreditPointsResponseDTO;
 import Wallet.DTOs.DeleteCreditPointsRequestDTO;
 import Wallet.Fixtures.CreditPointsRequestDTOFixture;
 import Wallet.Fixtures.DeleteCreditPointsRequestDTOFixture;
+import Wallet.Utils.CreditPointsHandler;
 import Wallet.Utils.Utils;
 import Wallet.Validators.*;
 import io.restassured.response.Response;
@@ -49,6 +50,37 @@ public class CreditPointsPage {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
+	public static void creditPointsWithoutOrder() {
+		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().withoutOrder().build();
+
+		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
+		handleCreditPoints(creditPointsRequestDTO, response);
+	}
+
+	public static void creditPointsToReturnLastDebit() {
+		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().returnLastDebitPoints().build();
+
+		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
+		handleCreditPoints(creditPointsRequestDTO, response);
+	}
+
+	public static void creditPointsWithoutAuthentication() {
+		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().build();
+
+		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
 	public static void deleteCreditPoints() {
 		DeleteCreditPointsRequestDTO deleteCreditPointsRequestDTO = new DeleteCreditPointsRequestDTOFixture().build();
 
@@ -60,7 +92,6 @@ public class CreditPointsPage {
 
 	private static void handleCreditPoints(CreditPointsRequestDTO creditPointsRequestDTO, Response response) {
 		CreditPointsResponseDTO creditPointsResponseDTO = CreditPointsResponseDTO.fromJsonString(response.getBody().asString());
-		Utils.setTRANSACTION_ID(creditPointsResponseDTO.getTransactionId());
-		Utils.setLastCreditPoints(creditPointsRequestDTO);
+		Utils.addCreditPoints(new CreditPointsHandler(creditPointsResponseDTO.getTransactionId(), creditPointsRequestDTO));
 	}
 }

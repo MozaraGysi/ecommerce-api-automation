@@ -15,6 +15,3 @@ public class DebitPointsWithTransactionIdValidator implements Validator {
 		return true;
 	}
 }
-
-
-

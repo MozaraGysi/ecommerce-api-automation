@@ -26,15 +26,15 @@ public class CreditPointsRequestDTO {
 		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
 	}
 
-	public String getDocument() {
-		return document;
-	}
-
 	public float getCreditAmount() {
 		if (CreditPointsTypeEnum.VALOR_MONETARIO.getValue().equals(this.type)) {
 			return new BigDecimal(this.amount * 0.12f).setScale(2, RoundingMode.HALF_EVEN).floatValue();
 		}
 		return this.amount;
+	}
+
+	public String getDocument() {
+		return document;
 	}
 
 	public void setDocument(String document) {

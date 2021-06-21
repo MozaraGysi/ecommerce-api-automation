@@ -26,6 +26,11 @@ public class CustomerRequestDTOFixture {
 		return this;
 	}
 
+	public CustomerRequestDTOFixture withInvalidDocument() {
+		customerRequestDTO.setDocument("26988485024");
+		return this;
+	}
+
 	public CustomerRequestDTOFixture withoutFirstName() {
 		customerRequestDTO.setFirstName(null);
 		return this;

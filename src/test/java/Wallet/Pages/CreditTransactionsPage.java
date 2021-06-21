@@ -14,33 +14,47 @@ import java.util.List;
 public class CreditTransactionsPage {
 
 	public static void getCreditTransactionsWithStatusPENDENTE() {
-		Response response = APIClient.GET_creditTransactions(Utils.getTransactionId());
-
-		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CreditTransactionsWithStatusPENDENTEValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		Utils.getCreditPoints().stream()
+				.filter(creditPointsHandler -> !creditPointsHandler.isConfirmed())
+				.forEach(creditPointsHandler -> getCreditTransactionWithStatusPENDENTE(creditPointsHandler.getTransactionId()));
 	}
 
 	public static void getCreditTransactionsWithStatusCONFIRMADO() {
-		Response response = getResponseCreditTransactionsWithStatusCONFIRMADO();
+		Utils.getCreditPoints().stream()
+				.filter(creditPointsHandler -> !creditPointsHandler.isConfirmed())
+				.forEach(creditPointsHandler -> getCreditTransactionWithStatusCONFIRMADO(creditPointsHandler.getTransactionId()));
+	}
 
-		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CreditTransactionsWithStatusCONFIRMADOValidator());
+	public static void creditTransactionsWithoutAuthentication() {
+		Response response = APIClient.GET_creditTransactions("123");
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
+	private static void getCreditTransactionWithStatusPENDENTE(String transactionId) {
+		Response response = APIClient.GET_creditTransactions(transactionId);
+
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CreditTransactionsWithStatusPENDENTEValidator(transactionId));
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
+	private static void getCreditTransactionWithStatusCONFIRMADO(String transactionId) {
+		Response response = getResponseCreditTransactionsWithStatusCONFIRMADO(transactionId);
+
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CreditTransactionsWithStatusCONFIRMADOValidator(transactionId));
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
 		handleCreditTransactions(response);
 	}
 
-	private static void handleCreditTransactions(Response response) {
-		CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
-		Utils.sumAvailableAmount(creditTransactionsResponseDTO.getCreditAmount());
-	}
-
-	private static Response getResponseCreditTransactionsWithStatusCONFIRMADO() {
+	private static Response getResponseCreditTransactionsWithStatusCONFIRMADO(String transactionId) {
 		Response response = null;
 
 		boolean creditTransactionConfirmed = false;
 		int count = 0;
 		while (!creditTransactionConfirmed && count < 7) {
-			response = APIClient.GET_creditTransactions(Utils.getTransactionId());
+			response = APIClient.GET_creditTransactions(transactionId);
 
 			CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
 			creditTransactionConfirmed = CreditTransactionStatusEnum.CONFIRMADO.getValue().equals(creditTransactionsResponseDTO.getStatus());
@@ -54,5 +68,10 @@ public class CreditTransactionsPage {
 			}
 		}
 		return response;
+	}
+
+	private static void handleCreditTransactions(Response response) {
+		CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
+		Utils.creditPoints(creditTransactionsResponseDTO);
 	}
 }
