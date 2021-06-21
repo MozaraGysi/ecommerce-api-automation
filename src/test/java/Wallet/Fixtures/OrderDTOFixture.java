@@ -18,14 +18,14 @@ public class OrderDTOFixture {
 	}
 
 	public OrderDTOFixture returnLastCreditPoints() {
-		orderDTO.setId(Utils.getLastCreditPoints().getOrder().getId());
-		orderDTO.setTotalPrice(Utils.getLastCreditPoints().getOrder().getTotalPrice());
+		orderDTO.setId(Utils.getLastConfirmedCreditPoints().getRequestDTO().getOrder().getId());
+		orderDTO.setTotalPrice(Utils.getLastConfirmedCreditPoints().getRequestDTO().getOrder().getTotalPrice());
 		return this;
 	}
 
 	public OrderDTOFixture returnLastDebitPoints() {
-		orderDTO.setId(Utils.getLastDebitPoints().getOrder().getId());
-		orderDTO.setTotalPrice(Utils.getLastDebitPoints().getOrder().getTotalPrice());
+		orderDTO.setId(Utils.getLastDebitPoints().getRequestDTO().getOrder().getId());
+		orderDTO.setTotalPrice(Utils.getLastDebitPoints().getRequestDTO().getOrder().getTotalPrice());
 		return this;
 	}
 }

@@ -6,6 +6,7 @@ import Wallet.DTOs.DebitPointsResponseDTO;
 import Wallet.DTOs.DeleteDebitPointsRequestDTO;
 import Wallet.Fixtures.DebitPointsRequestDTOFixture;
 import Wallet.Fixtures.DeleteDebitPointsRequestDTOFixture;
+import Wallet.Utils.DebitPointsHandler;
 import Wallet.Utils.Utils;
 import Wallet.Validators.*;
 import io.restassured.response.Response;
@@ -71,6 +72,24 @@ public class DebitPointsPage {
 		handleDebitPoints(debitPointsRequestDTO, response);
 	}
 
+	public static void debitPointsWithoutAuthentication() {
+		DebitPointsRequestDTO debitPointsRequestDTO = new DebitPointsRequestDTOFixture().build();
+
+		Response response = APIClient.POST_debitPoints(debitPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
+	public static void debitPointsWithoutAvailableAmount() {
+		DebitPointsRequestDTO debitPointsRequestDTO = new DebitPointsRequestDTOFixture().withoutAvailableAmount().build();
+
+		Response response = APIClient.POST_debitPoints(debitPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator(), new DebitPointsWithoutAvailableAmountValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
 	public static void deletedDebitPoints() {
 		DeleteDebitPointsRequestDTO deleteDebitPointsRequestDTO = new DeleteDebitPointsRequestDTOFixture().build();
 
@@ -82,8 +101,7 @@ public class DebitPointsPage {
 
 	private static void handleDebitPoints(DebitPointsRequestDTO debitPointsRequestDTO, Response response) {
 		DebitPointsResponseDTO debitPointsResponseDTO = DebitPointsResponseDTO.fromJsonString(response.getBody().asString());
-		Utils.setDebitTransactionId(debitPointsResponseDTO.getTransactionId());
-		Utils.setLastDebitPoints(debitPointsRequestDTO);
-		Utils.debitPoints(debitPointsRequestDTO.getDebitAmount());
+		Utils.addDebitPoints(new DebitPointsHandler(debitPointsResponseDTO.getTransactionId(), debitPointsRequestDTO));
+
 	}
 }

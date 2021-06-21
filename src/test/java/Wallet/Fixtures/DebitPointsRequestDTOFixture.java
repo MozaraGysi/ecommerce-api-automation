@@ -40,11 +40,17 @@ public class DebitPointsRequestDTOFixture {
 	}
 
 	public DebitPointsRequestDTOFixture returnLastCreditPoints() {
-		debitPointsRequestDTO.setAmount(Utils.getLastCreditPoints().getCreditAmount());
+		debitPointsRequestDTO.setAmount(Utils.getLastConfirmedCreditPoints().getRequestDTO().getCreditAmount());
 		debitPointsRequestDTO.setType(DebitPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
-		if (Objects.nonNull(Utils.getLastCreditPoints())) {
+		if (Objects.nonNull(Utils.getLastConfirmedCreditPoints().getRequestDTO().getOrder())) {
 			debitPointsRequestDTO.setOrder(new OrderDTOFixture().returnLastCreditPoints().build());
 		}
+		return this;
+	}
+
+	public DebitPointsRequestDTOFixture withoutAvailableAmount() {
+		debitPointsRequestDTO.setAmount(Utils.getAvailableAmount()+1);
+		debitPointsRequestDTO.setType(DebitPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
 		return this;
 	}
 }

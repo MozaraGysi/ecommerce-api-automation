@@ -23,4 +23,11 @@ public class BalancePointsPage {
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new BalancePointsWithoutTransactionsValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
+
+	public static void getBalancePointsWithoutAuthentication() {
+		Response response = APIClient.GET_balancePoints(Utils.getCPF());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
 }

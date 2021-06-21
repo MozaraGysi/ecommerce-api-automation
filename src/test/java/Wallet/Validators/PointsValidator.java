@@ -4,6 +4,7 @@ import Wallet.DTOs.PointsResponseDTO;
 import Wallet.DTOs.StatementDTO;
 import Wallet.Enums.StatementStatusEnum;
 import Wallet.Enums.StatementTypeEnum;
+import Wallet.Utils.CreditPointsHandler;
 import Wallet.Utils.Utils;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
@@ -23,43 +24,44 @@ public class PointsValidator implements Validator {
 		Assertions.assertEquals(0, pointsResponseDTO.getBalance().getPendingCredits());
 		Assertions.assertEquals(0, pointsResponseDTO.getBalance().getPendingDebits());
 
-		if (Objects.nonNull(Utils.getCreditTransactionId())) {
-			StatementDTO lastCreditPointsStatement = pointsResponseDTO.getStatements().stream()
-					.filter(statementDTO -> StatementTypeEnum.CREDITO.getValue().equals(statementDTO.getType()))
-					.filter(statementDTO -> statementDTO.getTransactionId().equals(Utils.getCreditTransactionId()))
-					.findFirst()
-					.orElse(null);
+		Utils.getCreditPoints().stream().filter(CreditPointsHandler::isConfirmed)
+				.forEach(creditPointsHandler -> {
+					StatementDTO creditPointsStatement = pointsResponseDTO.getStatements().stream()
+							.filter(statementDTO -> StatementTypeEnum.CREDITO.getValue().equals(statementDTO.getType()))
+							.filter(statementDTO -> statementDTO.getTransactionId().equals(creditPointsHandler.getTransactionId()))
+							.findFirst()
+							.orElse(null);
 
-			Assertions.assertNotNull(lastCreditPointsStatement);
-			Assertions.assertEquals(Utils.getLastCreditPoints().getCreditAmount(), lastCreditPointsStatement.getAmount());
-			Assertions.assertEquals(StatementStatusEnum.CONFIRMADO.getValue(), lastCreditPointsStatement.getStatus());
-			Assertions.assertNotNull(lastCreditPointsStatement.getDateTime());
-			Assertions.assertNotNull(lastCreditPointsStatement.getExpireAt());
-			Assertions.assertNotNull(lastCreditPointsStatement.getDescription());
-			if (Objects.nonNull(Utils.getLastCreditPoints().getOrder())) {
-				Assertions.assertEquals(Utils.getLastCreditPoints().getOrder().getId(), lastCreditPointsStatement.getOrder().getId());
-				Assertions.assertEquals(Utils.getLastCreditPoints().getOrder().getTotalPrice(), lastCreditPointsStatement.getOrder().getTotalPrice());
-			}
-		}
+					Assertions.assertNotNull(creditPointsStatement);
+					Assertions.assertEquals(creditPointsHandler.getRequestDTO().getCreditAmount(), creditPointsStatement.getAmount());
+					Assertions.assertEquals(StatementStatusEnum.CONFIRMADO.getValue(), creditPointsStatement.getStatus());
+					Assertions.assertNotNull(creditPointsStatement.getDateTime());
+					Assertions.assertNotNull(creditPointsStatement.getExpireAt());
+					Assertions.assertNotNull(creditPointsStatement.getDescription());
+					if (Objects.nonNull(creditPointsHandler.getRequestDTO().getOrder())) {
+						Assertions.assertEquals(creditPointsHandler.getRequestDTO().getOrder().getId(), creditPointsStatement.getOrder().getId());
+						Assertions.assertEquals(creditPointsHandler.getRequestDTO().getOrder().getTotalPrice(), creditPointsStatement.getOrder().getTotalPrice());
+					}
+				});
 
-		if (Objects.nonNull(Utils.getDebitTransactionId())) {
-			StatementDTO lastDebitPointsStatement = pointsResponseDTO.getStatements().stream()
+		Utils.getDebitPoints().forEach(debitPointsHandler -> {
+			StatementDTO debitPointsStatement = pointsResponseDTO.getStatements().stream()
 					.filter(statementDTO -> StatementTypeEnum.DEBITO.getValue().equals(statementDTO.getType()))
-					.filter(statementDTO -> statementDTO.getTransactionId().equals(Utils.getDebitTransactionId()))
+					.filter(statementDTO -> statementDTO.getTransactionId().equals(debitPointsHandler.getTransactionId()))
 					.findFirst()
 					.orElse(null);
 
-			Assertions.assertNotNull(lastDebitPointsStatement);
-			Assertions.assertEquals(Utils.getLastDebitPoints().getDebitAmount(), lastDebitPointsStatement.getAmount());
-			Assertions.assertEquals(StatementStatusEnum.CONFIRMADO.getValue(), lastDebitPointsStatement.getStatus());
-			Assertions.assertNotNull(lastDebitPointsStatement.getDateTime());
-			Assertions.assertNotNull(lastDebitPointsStatement.getExpireAt());
-			Assertions.assertNotNull(lastDebitPointsStatement.getDescription());
-			if (Objects.nonNull(Utils.getLastDebitPoints().getOrder())) {
-				Assertions.assertEquals(Utils.getLastDebitPoints().getOrder().getId(), lastDebitPointsStatement.getOrder().getId());
-				Assertions.assertEquals(Utils.getLastDebitPoints().getOrder().getTotalPrice(), lastDebitPointsStatement.getOrder().getTotalPrice());
+			Assertions.assertNotNull(debitPointsStatement);
+			Assertions.assertEquals(Utils.getLastDebitPoints().getRequestDTO().getDebitAmount(), debitPointsStatement.getAmount());
+			Assertions.assertEquals(StatementStatusEnum.CONFIRMADO.getValue(), debitPointsStatement.getStatus());
+			Assertions.assertNotNull(debitPointsStatement.getDateTime());
+			Assertions.assertNotNull(debitPointsStatement.getExpireAt());
+			Assertions.assertNotNull(debitPointsStatement.getDescription());
+			if (Objects.nonNull(Utils.getLastDebitPoints().getRequestDTO().getOrder())) {
+				Assertions.assertEquals(Utils.getLastDebitPoints().getRequestDTO().getOrder().getId(), debitPointsStatement.getOrder().getId());
+				Assertions.assertEquals(Utils.getLastDebitPoints().getRequestDTO().getOrder().getTotalPrice(), debitPointsStatement.getOrder().getTotalPrice());
 			}
-		}
+		});
 
 		return true;
 	}

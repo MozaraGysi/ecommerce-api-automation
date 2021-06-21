@@ -20,6 +20,7 @@ public class DebitPoints {
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
 		DebitPointsPage.debitPointsWithTypeQUANTIDADE_DE_PONTOS();
 		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
 	}
 
 	@Test
@@ -30,6 +31,7 @@ public class DebitPoints {
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
 		DebitPointsPage.debitPointsWithTypeVALOR_MONETARIO();
 		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
 	}
 
 	@Test
@@ -40,6 +42,23 @@ public class DebitPoints {
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
 		DebitPointsPage.debitPointsWithoutOrder();
 		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
+	}
+
+	@Test
+	public void debitPointsWithoutAuthentication() {
+		DebitPointsPage.debitPointsWithoutAuthentication();
+	}
+
+	@Test
+	public void debitPointsWithoutAvailableAmount() {
+		AuthPage.getToken();
+		CustomerPage.newUser();
+		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsPage.debitPointsWithoutAvailableAmount();
+		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
 	}
 
 	@Test

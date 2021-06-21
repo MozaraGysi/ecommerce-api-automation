@@ -40,9 +40,9 @@ public class CreditPointsRequestDTOFixture {
 	}
 
 	public CreditPointsRequestDTOFixture returnLastDebitPoints() {
-		creditPointsRequestDTO.setAmount(Utils.getLastDebitPoints().getDebitAmount());
+		creditPointsRequestDTO.setAmount(Utils.getLastDebitPoints().getRequestDTO().getDebitAmount());
 		creditPointsRequestDTO.setType(CreditPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
-		if (Objects.nonNull(Utils.getLastDebitPoints())) {
+		if (Objects.nonNull(Utils.getLastDebitPoints().getRequestDTO().getOrder())) {
 			creditPointsRequestDTO.setOrder(new OrderDTOFixture().returnLastDebitPoints().build());
 		}
 		return this;
