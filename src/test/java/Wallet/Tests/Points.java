@@ -20,12 +20,26 @@ public class Points {
 	}
 
 	@Test
-	public void getPoints() {
+	public void getPointsWithoutTransactionsAndCreditTransactionStatusPENDENTE() {
+		AuthPage.getToken();
+		CustomerPage.newUser();
+		CreditPointsPage.creditPoints();
+		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
+		PointsPage.getPointsWithoutTransactions();
+	}
+
+	@Test
+	public void getPointsWithTransactions() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		CreditPointsPage.creditPoints();
 		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
 		DebitPointsPage.debitPoints();
 		PointsPage.getPoints();
+	}
+
+	@Test
+	public void getPointsWithoutAuthentication() {
+		PointsPage.getPointsWithoutAuthentication();
 	}
 }

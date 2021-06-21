@@ -25,6 +25,13 @@ public class CreditTransactionsPage {
 				.forEach(creditPointsHandler -> getCreditTransactionWithStatusCONFIRMADO(creditPointsHandler.getTransactionId()));
 	}
 
+	public static void creditTransactionsWithoutAuthentication() {
+		Response response = APIClient.GET_creditTransactions("123");
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
 	private static void getCreditTransactionWithStatusPENDENTE(String transactionId) {
 		Response response = APIClient.GET_creditTransactions(transactionId);
 
