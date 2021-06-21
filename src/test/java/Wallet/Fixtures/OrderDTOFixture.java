@@ -1,6 +1,7 @@
 package Wallet.Fixtures;
 
 import Wallet.DTOs.OrderDTO;
+import Wallet.Utils.Utils;
 
 public class OrderDTOFixture {
 
@@ -14,5 +15,17 @@ public class OrderDTOFixture {
 
 	public OrderDTO build() {
 		return orderDTO;
+	}
+
+	public OrderDTOFixture returnLastCreditPoints() {
+		orderDTO.setId(Utils.getLastConfirmedCreditPoints().getRequestDTO().getOrder().getId());
+		orderDTO.setTotalPrice(Utils.getLastConfirmedCreditPoints().getRequestDTO().getOrder().getTotalPrice());
+		return this;
+	}
+
+	public OrderDTOFixture returnLastDebitPoints() {
+		orderDTO.setId(Utils.getLastDebitPoints().getRequestDTO().getOrder().getId());
+		orderDTO.setTotalPrice(Utils.getLastDebitPoints().getRequestDTO().getOrder().getTotalPrice());
+		return this;
 	}
 }
