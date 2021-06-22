@@ -30,8 +30,7 @@ public class DebitPointsRequestDTO {
 		if (DebitPointsTypeEnum.VALOR_MONETARIO.getValue().equals(this.type)) {
 			return new BigDecimal(this.amount * 0.12f).setScale(2, RoundingMode.HALF_EVEN).floatValue();
 		}
-		// TODO: Ajustar para this.amount, após o ajuste na API
-		return new BigDecimal("0.0" + new BigDecimal(this.amount).setScale(0, RoundingMode.DOWN)).floatValue();
+		return this.amount;
 	}
 
 	public String getDocument() {

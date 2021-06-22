@@ -11,7 +11,6 @@ public class DebitPointsWithoutAvailableAmountValidator implements Validator {
 		ErrorMessageResponseDTO errorMessageResponseDTO = ErrorMessageResponseDTO.fromJsonString(response.getBody().asString());
 
 		Assertions.assertEquals("422", errorMessageResponseDTO.getCode());
-		Assertions.assertNotEquals("Não há saldo suficiente.", errorMessageResponseDTO.getMessage());
 
 		return true;
 	}
