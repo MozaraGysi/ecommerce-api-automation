@@ -5,8 +5,7 @@ import java.util.Optional;
 
 public enum StatementTypeEnum {
 
-	// TODO: Ajustar para CREDITO/DEBITO, após o ajuste na API
-	CREDITO("ACUMULO"), DEBITO("RESGATE");
+	CREDITO("CREDITO"), DEBITO("DEBITO");
 
 	private String value;
 
