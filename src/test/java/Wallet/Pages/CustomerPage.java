@@ -65,4 +65,13 @@ public class CustomerPage {
 		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
+
+	public static void newUserWithInvalidMobile() {
+		CustomerRequestDTO customerRequestDTO = new CustomerRequestDTOFixture().withInvalidMobile().build();
+
+		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
 }

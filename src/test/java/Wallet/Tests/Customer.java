@@ -47,4 +47,10 @@ public class Customer {
 		AuthPage.getToken();
 		CustomerPage.newUserWithoutLastName();
 	}
+
+	@Test
+	public void newUserWithInvalidMobile() {
+		AuthPage.getToken();
+		CustomerPage.newUserWithInvalidMobile();
+	}
 }
