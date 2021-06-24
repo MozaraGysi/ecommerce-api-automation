@@ -40,4 +40,9 @@ public class CustomerRequestDTOFixture {
 		customerRequestDTO.setLastName(null);
 		return this;
 	}
+
+	public CustomerRequestDTOFixture withInvalidMobile() {
+		customerRequestDTO.setMobile(51998288513L);
+		return this;
+	}
 }
