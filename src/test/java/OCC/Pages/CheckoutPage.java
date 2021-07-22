@@ -96,7 +96,7 @@ public class CheckoutPage {
         request.header("Authorization","Bearer " + Utils.getACCESS_TOKEN());
         request.header("Cookie",Utils.getCookies());
         request.sessionId(Utils.getJSESSIONID());
-        request.body(new CreditCardDTOFixture().build().toJson().toString());
+        request.body(new CreditCardDTOFixture().defaultCreditCard().build().toJson().toString());
         Response response = request.post("/arezzocoocc/v2/"+Utils.getSite_UID()+"/users/current/orders?cartId=current&fields=FULL");
         Utils.setCookies(response.getCookies());
         System.out.println(response.jsonPath().get("code").toString());

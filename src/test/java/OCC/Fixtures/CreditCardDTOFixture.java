@@ -9,6 +9,14 @@ public class CreditCardDTOFixture {
 
 	public CreditCardDTOFixture() {
 		creditCardDTO = new CreditCardDTO();
+
+	}
+
+	public CreditCardDTO build() {
+		return creditCardDTO;
+	}
+
+	public CreditCardDTOFixture defaultCreditCard() {
 		creditCardDTO.setCardNumber("4444333322221111");
 		creditCardDTO.setAccountHolderName("Automation User");
 		creditCardDTO.setCpf("03834691046");
@@ -18,10 +26,6 @@ public class CreditCardDTOFixture {
 		creditCardDTO.setSecurityCode(String.valueOf(737));
 		creditCardDTO.setSaved(true);
 		creditCardDTO.setInstallments((short) 1);
-
-	}
-
-	public CreditCardDTO build() {
-		return creditCardDTO;
+		return this;
 	}
 }
