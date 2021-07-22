@@ -8,17 +8,19 @@ public class CartDTOFixture {
 
 	public CartDTOFixture() {
 		cartDTO = new CartDTO();
-		cartDTO.setProduct(new ProductDTOFixture().build());
-		cartDTO.setQuantity(1L);
-
 	}
 
 	public CartDTO build() {
 		return cartDTO;
 	}
 
+	public CartDTOFixture withDefaultProduct() {
+		cartDTO.setProduct(new ProductDTOFixture().withDefaultSeller().build());
+		cartDTO.setQuantity(1L);
+		return this;
+	}
+
 	public CartDTOFixture withExternalSellerProduct() {
-		cartDTO = new CartDTO();
 		cartDTO.setProduct(new ProductDTOFixture().withExternalSeller().build());
 		cartDTO.setQuantity(1L);
 		return this;

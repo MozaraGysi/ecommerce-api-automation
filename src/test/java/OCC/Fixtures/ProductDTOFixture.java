@@ -9,15 +9,18 @@ public class ProductDTOFixture {
 
 	public ProductDTOFixture() {
 		productDTO = new ProductDTO();
-		productDTO.setCode(Utils.getProduct("Padrao").get(0).concat("-36"));
 	}
 
 	public ProductDTO build() {
 		return productDTO;
 	}
 
+	public ProductDTOFixture withDefaultSeller() {
+		productDTO.setCode(Utils.getProduct("Padrao").get(0).concat("-36"));
+		return this;
+	}
+
 	public ProductDTOFixture withExternalSeller() {
-		productDTO = new ProductDTO();
 		productDTO.setCode(Utils.getProduct("SellerExterno").get(0).concat("-36"));
 		return this;
 	}
