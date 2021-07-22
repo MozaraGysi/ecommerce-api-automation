@@ -1,7 +1,7 @@
 package OCC.Pages;
 
+import OCC.Fixtures.CreditCardDTOFixture;
 import OCC.Utils.Utils;
-import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -82,7 +82,6 @@ public class CheckoutPage {
         request.header("Authorization","Bearer " + Utils.getACCESS_TOKEN());
         request.header("Cookie",Utils.getCookies());
         request.sessionId(Utils.getJSESSIONID());
-//        request.body(getBodyJsonCreditCard().toString());
         Response response = request.post("/arezzocoocc/v2/"+Utils.getSite_UID()+"/users/current/orders?cartId=current&fields=FULL");
         Utils.setCookies(response.getCookies());
         System.out.println(response.jsonPath().get("code").toString());
@@ -97,24 +96,10 @@ public class CheckoutPage {
         request.header("Authorization","Bearer " + Utils.getACCESS_TOKEN());
         request.header("Cookie",Utils.getCookies());
         request.sessionId(Utils.getJSESSIONID());
-        request.body(getBodyJsonCreditCard().toString());
+        request.body(new CreditCardDTOFixture().build().toJson().toString());
         Response response = request.post("/arezzocoocc/v2/"+Utils.getSite_UID()+"/users/current/orders?cartId=current&fields=FULL");
         Utils.setCookies(response.getCookies());
         System.out.println(response.jsonPath().get("code").toString());
         Assertions.assertEquals(201, response.getStatusCode());
-    }
-
-    public static JsonObject getBodyJsonCreditCard(){
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("cardNumber", "4444333322221111");
-        jsonObject.addProperty("accountHolderName", "Douglas Golke");
-        jsonObject.addProperty("cpf", "03834691046");
-        jsonObject.addProperty("expiryMonth", 3);
-        jsonObject.addProperty("expiryYear", 2030);
-        jsonObject.addProperty("defaultPayment", true);
-        jsonObject.addProperty("securityCode", 737);
-        jsonObject.addProperty("saved", true);
-        jsonObject.addProperty("installments", 1);
-        return jsonObject;
     }
 }
