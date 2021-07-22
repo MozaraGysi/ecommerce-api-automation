@@ -1,9 +1,6 @@
 package OCC.DTOs;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-public class CreditCardDTO {
+public class CreditCardDTO extends AbstractDTO<CreditCardDTO> {
 
 	private String cardNumber;
 	private String accountHolderName;
@@ -14,14 +11,6 @@ public class CreditCardDTO {
 	private String securityCode;
 	private boolean saved;
 	private short installments;
-
-	public static CreditCardDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, CreditCardDTO.class);
-	}
-
-	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
-	}
 
 	public String getCardNumber() {
 		return cardNumber;

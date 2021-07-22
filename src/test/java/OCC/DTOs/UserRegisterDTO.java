@@ -1,9 +1,6 @@
 package OCC.DTOs;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-public class UserRegisterDTO {
+public class UserRegisterDTO extends AbstractDTO<UserRegisterDTO> {
 
 	private String firstName;
 	private String lastName;
@@ -13,14 +10,6 @@ public class UserRegisterDTO {
 	private String birthday;
 	private String mobilePhone;
 	private String cpf;
-
-	public static UserRegisterDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, UserRegisterDTO.class);
-	}
-
-	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
-	}
 
 	public String getFirstName() {
 		return firstName;

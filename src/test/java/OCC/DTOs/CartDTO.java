@@ -1,20 +1,9 @@
 package OCC.DTOs;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-public class CartDTO {
+public class CartDTO extends AbstractDTO<CartDTO> {
 
 	private ProductDTO product;
 	private Long quantity;
-
-	public static CartDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, CartDTO.class);
-	}
-
-	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
-	}
 
 	public ProductDTO getProduct() {
 		return product;

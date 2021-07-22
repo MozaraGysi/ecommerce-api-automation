@@ -9,7 +9,6 @@ public class CreditCardDTOFixture {
 
 	public CreditCardDTOFixture() {
 		creditCardDTO = new CreditCardDTO();
-
 	}
 
 	public CreditCardDTO build() {

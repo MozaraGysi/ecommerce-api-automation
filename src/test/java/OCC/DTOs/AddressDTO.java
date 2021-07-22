@@ -1,9 +1,6 @@
 package OCC.DTOs;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-public class AddressDTO {
+public class AddressDTO extends AbstractDTO<AddressDTO> {
 
 	private String addressName;
 	private String complement;
@@ -19,14 +16,6 @@ public class AddressDTO {
 	private String town;
 	private String titleCode;
 	private RegionDTO region;
-
-	public static AddressDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, AddressDTO.class);
-	}
-
-	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
-	}
 
 	public String getAddressName() {
 		return addressName;
