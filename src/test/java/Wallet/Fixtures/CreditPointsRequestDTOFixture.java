@@ -2,6 +2,7 @@ package Wallet.Fixtures;
 
 import Wallet.DTOs.CreditPointsRequestDTO;
 import Wallet.Enums.CreditPointsTypeEnum;
+import Wallet.Enums.CreditTransactionStatusEnum;
 import Wallet.Utils.Utils;
 
 import java.util.Objects;
@@ -15,7 +16,7 @@ public class CreditPointsRequestDTOFixture {
 		creditPointsRequestDTO.setDocument(Utils.getCPF());
 		creditPointsRequestDTO.setAmount(660.66f);
 		creditPointsRequestDTO.setType(CreditPointsTypeEnum.VALOR_MONETARIO.getValue());
-		creditPointsRequestDTO.setStatus("CONFIRMADO");
+		creditPointsRequestDTO.setStatus(CreditTransactionStatusEnum.CONFIRMADO.getValue());
 		creditPointsRequestDTO.setDateTime("2004-02-12T14:18:20+00:00");
 		creditPointsRequestDTO.setOrder(new OrderDTOFixture().build());
 	}
@@ -31,6 +32,16 @@ public class CreditPointsRequestDTOFixture {
 
 	public CreditPointsRequestDTOFixture type_QUANTIDADE_DE_PONTOS() {
 		creditPointsRequestDTO.setType(CreditPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
+		return this;
+	}
+
+	public CreditPointsRequestDTOFixture status_CONFIRMADO() {
+		creditPointsRequestDTO.setStatus(CreditTransactionStatusEnum.CONFIRMADO.getValue());
+		return this;
+	}
+
+	public CreditPointsRequestDTOFixture status_PENDENTE() {
+		creditPointsRequestDTO.setStatus(CreditTransactionStatusEnum.PENDENTE.getValue());
 		return this;
 	}
 

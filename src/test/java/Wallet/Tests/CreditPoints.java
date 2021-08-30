@@ -33,6 +33,16 @@ public class CreditPoints {
 	}
 
 	@Test
+	public void creditPointsWithStatusPENDENTE() {
+		AuthPage.getToken();
+		CustomerPage.newUser();
+		CreditPointsPage.creditPointsWithStatusPENDENTE();
+		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
+		BalancePointsPage.getBalancePoints();
+		PointsPage.getPoints();
+	}
+
+	@Test
 	public void creditPointsWithoutOrder() {
 		AuthPage.getToken();
 		CustomerPage.newUser();
