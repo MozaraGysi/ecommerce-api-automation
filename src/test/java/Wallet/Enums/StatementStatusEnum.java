@@ -5,7 +5,8 @@ import java.util.Optional;
 
 public enum StatementStatusEnum {
 
-	CONFIRMADO("CONFIRMADO");
+	CONFIRMADO("CONFIRMADO"),
+	PENDENTE("PENDENTE");
 
 	private String value;
 

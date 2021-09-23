@@ -37,9 +37,9 @@ public class CreditPoints {
 		AuthPage.getToken();
 		CustomerPage.newUser();
 		CreditPointsPage.creditPointsWithStatusPENDENTE();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
+		CreditTransactionsPage.getPendingCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsPage.getBalancePointsWithPendingCredits();
+		PointsPage.getPointsPending();
 	}
 
 	@Test

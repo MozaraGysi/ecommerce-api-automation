@@ -18,6 +18,13 @@ public class PointsPage {
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 
+	public static void getPointsPending() {
+		Response response = APIClient.GET_points(Utils.getCPF());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new PointsPendingValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+
 	public static void getPointsWithoutTransactions() {
 		Response response = APIClient.GET_points(Utils.getCPF());
 
