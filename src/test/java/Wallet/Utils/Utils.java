@@ -23,6 +23,7 @@ public class Utils {
 	static String EMAIL;
 	static String CPF;
 	static float AVAILABLE_AMOUNT;
+	static float PENDING_AMOUNT;
 	static List<CreditPointsHandler> CREDIT_POINTS;
 	static List<DebitPointsHandler> DEBIT_POINTS;
 
@@ -100,6 +101,7 @@ public class Utils {
 		EMAIL = null;
 		CPF = null;
 		AVAILABLE_AMOUNT = 0;
+		PENDING_AMOUNT = 0;
 		CREDIT_POINTS = new ArrayList<>();
 		DEBIT_POINTS = new ArrayList<>();
 	}
@@ -108,12 +110,24 @@ public class Utils {
 		return AVAILABLE_AMOUNT;
 	}
 
+	public static float getPendingAmount() {
+		return PENDING_AMOUNT;
+	}
+
 	public static void creditPoints(CreditTransactionsResponseDTO creditTransactionsResponseDTO) {
 		AVAILABLE_AMOUNT = new BigDecimal(AVAILABLE_AMOUNT).add(BigDecimal.valueOf(creditTransactionsResponseDTO.getCreditAmount())).setScale(2, RoundingMode.HALF_EVEN).floatValue();
 		Utils.getCreditPoints().stream()
 				.filter(creditPointsHandler -> creditTransactionsResponseDTO.getTransactionId().equals(creditPointsHandler.getTransactionId()))
 				.findFirst()
 				.ifPresent(creditPointsHandler -> creditPointsHandler.setConfirmed(true));
+	}
+
+	public static void creditPendingPoints(CreditTransactionsResponseDTO creditTransactionsResponseDTO) {
+		PENDING_AMOUNT = new BigDecimal(PENDING_AMOUNT).add(BigDecimal.valueOf(creditTransactionsResponseDTO.getCreditAmount())).setScale(2, RoundingMode.HALF_EVEN).floatValue();
+		Utils.getCreditPoints().stream()
+			.filter(creditPointsHandler -> creditTransactionsResponseDTO.getTransactionId().equals(creditPointsHandler.getTransactionId()))
+			.findFirst()
+			.ifPresent(creditPointsHandler -> creditPointsHandler.setConfirmed(true));
 	}
 
 	public static void debitPoints(float points) {

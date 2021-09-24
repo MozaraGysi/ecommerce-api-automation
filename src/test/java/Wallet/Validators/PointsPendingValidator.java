@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 
 import java.util.Objects;
 
-public class PointsValidator implements Validator {
+public class PointsPendingValidator implements Validator {
 
 	@Override
 	public boolean validate(Response response) {
@@ -34,7 +34,7 @@ public class PointsValidator implements Validator {
 
 					Assertions.assertNotNull(creditPointsStatement);
 					Assertions.assertEquals(creditPointsHandler.getRequestDTO().getCreditAmount(), creditPointsStatement.getAmount());
-					Assertions.assertEquals(StatementStatusEnum.CONFIRMADO.getValue(), creditPointsStatement.getStatus());
+					Assertions.assertEquals(StatementStatusEnum.PENDENTE.getValue(), creditPointsStatement.getStatus());
 					Assertions.assertNotNull(creditPointsStatement.getDateTime());
 					Assertions.assertNotNull(creditPointsStatement.getExpireAt());
 					Assertions.assertNotNull(creditPointsStatement.getDescription());

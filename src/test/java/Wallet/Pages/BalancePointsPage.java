@@ -30,4 +30,11 @@ public class BalancePointsPage {
 		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
+
+	public static void getBalancePointsWithPendingCredits() {
+		Response response = APIClient.GET_balancePoints(Utils.getCPF());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new BalancePointsAvailablePendingCreditsValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
 }

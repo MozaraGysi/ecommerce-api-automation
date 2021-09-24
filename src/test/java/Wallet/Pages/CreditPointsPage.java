@@ -50,6 +50,17 @@ public class CreditPointsPage {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
+	public static void creditPointsWithStatusPENDENTE() {
+		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().status_PENDENTE().build();
+
+		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+
+		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
+		handleCreditPoints(creditPointsRequestDTO, response);
+	}
+
 	public static void creditPointsWithoutOrder() {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().withoutOrder().build();
 
