@@ -3,6 +3,8 @@ package Wallet.Utils;
 import Wallet.DTOs.CreditPointsRequestDTO;
 import Wallet.DTOs.CreditTransactionsResponseDTO;
 import Wallet.DTOs.DebitPointsRequestDTO;
+import Wallet.Handlers.CreditPointsHandler;
+import Wallet.Handlers.DebitPointsHandler;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;

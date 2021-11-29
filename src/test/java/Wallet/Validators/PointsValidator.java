@@ -4,7 +4,7 @@ import Wallet.DTOs.PointsResponseDTO;
 import Wallet.DTOs.StatementDTO;
 import Wallet.Enums.StatementStatusEnum;
 import Wallet.Enums.StatementTypeEnum;
-import Wallet.Utils.CreditPointsHandler;
+import Wallet.Handlers.CreditPointsHandler;
 import Wallet.Utils.Utils;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;

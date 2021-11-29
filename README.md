@@ -15,7 +15,7 @@ Os testes estão divididos conforme os projetos de APIs, sendo localizados dentr
 - CentralSeller
   - DTOs (Objetos)
   - Fixtures (Objetos gerados com dados dinâmicos)
-  - Handler (Responsáveis por salvar os dados recebidos de uma requisição)
+  - Handlers (Responsáveis por salvar os dados recebidos de uma requisição)
   - Scenarios (Cenários de testes)
   - Services (Testes de cada serviço de forma isolada)
   - Utils (Utilitários para testes da respetiva API)
@@ -23,7 +23,7 @@ Os testes estão divididos conforme os projetos de APIs, sendo localizados dentr
 - NovoEcommerce
   - DTOs
   - Fixtures
-  - Handler
+  - Handlers
   - Scenarios
   - Services
   - Utils
@@ -31,7 +31,7 @@ Os testes estão divididos conforme os projetos de APIs, sendo localizados dentr
 - OCC
     - DTOs
     - Fixtures
-    - Handler
+    - Handlers
     - Scenarios
     - Services
     - Utils
@@ -39,7 +39,7 @@ Os testes estão divididos conforme os projetos de APIs, sendo localizados dentr
 - Wallet
     - DTOs
     - Fixtures
-    - Handler
+    - Handlers
     - Scenarios
     - Services
     - Utils
