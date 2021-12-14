@@ -1,5 +1,6 @@
 package Wallet.Services;
 
+import Wallet.Handlers.CreditPointsHandler;
 import Wallet.Utils.APIClient;
 import Wallet.DTOs.CreditTransactionsResponseDTO;
 import Wallet.Enums.CreditTransactionStatusEnum;
@@ -10,8 +11,9 @@ import org.junit.jupiter.api.Assertions;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class CreditTransactionsPage {
+public class CreditTransactionsService {
 
 	public static void getCreditTransactionsWithStatusPENDENTE() {
 		Utils.getCreditPoints().stream()
@@ -20,9 +22,9 @@ public class CreditTransactionsPage {
 	}
 
 	public static void getCreditTransactionsWithStatusCONFIRMADO() {
-		Utils.getCreditPoints().stream()
-				.filter(creditPointsHandler -> !creditPointsHandler.isConfirmed())
-				.forEach(creditPointsHandler -> getCreditTransactionWithStatusCONFIRMADO(creditPointsHandler.getTransactionId()));
+		List<CreditPointsHandler> pendingTransactions = Utils.getCreditPoints().stream()
+				.filter(creditPointsHandler -> !creditPointsHandler.isConfirmed()).collect(Collectors.toList());
+		pendingTransactions.forEach(creditPointsHandler -> getCreditTransactionWithStatusCONFIRMADO(creditPointsHandler.getTransactionId()));
 	}
 
 	public static void getPendingCreditTransactionsWithStatusCONFIRMADO() {
@@ -88,6 +90,7 @@ public class CreditTransactionsPage {
 	private static void handleCreditTransactions(Response response) {
 		CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
 		Utils.creditPoints(creditTransactionsResponseDTO);
+//		Utils.removePendingCreditTransactionConfirmed(creditTransactionsResponseDTO);
 	}
 
 	private static void handleCreditPendingTransactions(Response response) {

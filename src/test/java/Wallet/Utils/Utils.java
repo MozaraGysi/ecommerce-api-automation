@@ -3,6 +3,8 @@ package Wallet.Utils;
 import Wallet.DTOs.CreditPointsRequestDTO;
 import Wallet.DTOs.CreditTransactionsResponseDTO;
 import Wallet.DTOs.DebitPointsRequestDTO;
+import Wallet.Enums.CreditPointsTypeEnum;
+import Wallet.Enums.StatementStatusEnum;
 import Wallet.Handlers.CreditPointsHandler;
 import Wallet.Handlers.DebitPointsHandler;
 import com.google.gson.Gson;
@@ -117,11 +119,31 @@ public class Utils {
 	}
 
 	public static void creditPoints(CreditTransactionsResponseDTO creditTransactionsResponseDTO) {
+		CreditPointsRequestDTO creditPointsConfirmation = Utils.getCreditPoints(creditTransactionsResponseDTO.getTransactionId());
+		cleanPendingTransactions(creditTransactionsResponseDTO, creditPointsConfirmation);
 		AVAILABLE_AMOUNT = new BigDecimal(AVAILABLE_AMOUNT).add(BigDecimal.valueOf(creditTransactionsResponseDTO.getCreditAmount())).setScale(2, RoundingMode.HALF_EVEN).floatValue();
 		Utils.getCreditPoints().stream()
 				.filter(creditPointsHandler -> creditTransactionsResponseDTO.getTransactionId().equals(creditPointsHandler.getTransactionId()))
 				.findFirst()
 				.ifPresent(creditPointsHandler -> creditPointsHandler.setConfirmed(true));
+	}
+
+	private static void cleanPendingTransactions(CreditTransactionsResponseDTO creditTransactionsResponseDTO, CreditPointsRequestDTO creditPointsConfirmation) {
+		if (Objects.nonNull(creditPointsConfirmation) && StatementStatusEnum.CONFIRMADO.getValue().equals(creditPointsConfirmation.getStatus()) && CreditPointsTypeEnum.VALOR_MONETARIO.getValue().equals(creditPointsConfirmation.getType())) {
+			CreditPointsHandler creditPointsHandlerPENDENTE = Utils.getCreditPoints().stream()
+					.filter(handler -> StatementStatusEnum.PENDENTE.getValue().equals(handler.getRequestDTO().getStatus()) && Objects.nonNull(creditPointsConfirmation.getOrder()) && creditPointsConfirmation.getOrder().getId().equals(handler.getRequestDTO().getOrder().getId()))
+					.findFirst()
+					.orElse(null);
+			CreditPointsHandler creditPointsHandlerCONFIRMADO = Utils.getCreditPoints().stream()
+					.filter(handler -> StatementStatusEnum.CONFIRMADO.getValue().equals(handler.getRequestDTO().getStatus()) && Objects.nonNull(creditPointsConfirmation.getOrder()) && creditPointsConfirmation.getOrder().getId().equals(handler.getRequestDTO().getOrder().getId()))
+					.findFirst()
+					.orElse(null);
+			PENDING_AMOUNT = new BigDecimal(PENDING_AMOUNT).subtract(BigDecimal.valueOf(creditTransactionsResponseDTO.getCreditAmount())).setScale(2, RoundingMode.HALF_EVEN).floatValue();
+			if (Objects.nonNull(creditPointsHandlerPENDENTE) && Objects.nonNull(creditPointsHandlerCONFIRMADO)) {
+				creditPointsHandlerPENDENTE.setRequestDTO(creditPointsHandlerCONFIRMADO.getRequestDTO());
+			}
+			Utils.getCreditPoints().remove(creditPointsHandlerCONFIRMADO);
+		}
 	}
 
 	public static void creditPendingPoints(CreditTransactionsResponseDTO creditTransactionsResponseDTO) {

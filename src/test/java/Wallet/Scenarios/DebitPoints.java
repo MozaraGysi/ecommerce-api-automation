@@ -14,60 +14,60 @@ public class DebitPoints {
 
 	@Test
 	public void debitPointsWithTypeQUANTIDADE_DE_PONTOS() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsPage.debitPointsWithTypeQUANTIDADE_DE_PONTOS();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsService.debitPointsWithTypeQUANTIDADE_DE_PONTOS();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
 	}
 
 	@Test
 	public void debitPointsWithTypeVALOR_MONETARIO() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsPage.debitPointsWithTypeVALOR_MONETARIO();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsService.debitPointsWithTypeVALOR_MONETARIO();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
 	}
 
 	@Test
 	public void debitPointsWithoutOrder() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsPage.debitPointsWithoutOrder();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsService.debitPointsWithoutOrder();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
 	}
 
 	@Test
 	public void debitPointsWithoutAuthentication() {
-		DebitPointsPage.debitPointsWithoutAuthentication();
+		DebitPointsService.debitPointsWithoutAuthentication();
 	}
 
 	@Test
 	public void debitPointsWithoutAvailableAmount() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsPage.debitPointsWithoutAvailableAmount();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsService.debitPointsWithoutAvailableAmount();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
 	}
 
 	@Test
 	public void deleteDebitPoints() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsPage.debitPoints();
-		DebitPointsPage.deletedDebitPoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsService.debitPoints();
+		DebitPointsService.deletedDebitPoints();
 	}
 }

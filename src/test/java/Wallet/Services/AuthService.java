@@ -12,7 +12,7 @@ import org.springframework.util.Base64Utils;
 
 import java.util.Collections;
 
-public class AuthPage {
+public class AuthService {
 
 	private static final String AUTHORIZATION_HEADER = "Authorization";
 	private static final String AUTHORIZATION_HEADER_TYPE_BASIC = "Basic ";

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Assertions;
 import java.util.Arrays;
 import java.util.List;
 
-public class DebitPointsPage {
+public class DebitPointsService {
 
 	public static void debitPoints() {
 		DebitPointsRequestDTO debitPointsRequestDTO = new DebitPointsRequestDTOFixture().build();

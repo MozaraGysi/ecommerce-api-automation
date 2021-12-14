@@ -1,7 +1,7 @@
 package Wallet.Scenarios;
 
-import Wallet.Services.AuthPage;
-import Wallet.Services.CustomerPage;
+import Wallet.Services.AuthService;
+import Wallet.Services.CustomerService;
 import Wallet.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,42 +15,48 @@ public class Customer {
 
 	@Test
 	public void newUser() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
+		AuthService.getToken();
+		CustomerService.newUser();
 	}
 
 	@Test
 	public void newUserWithoutAuthentication() {
-		CustomerPage.newUserWithoutAuthentication();
+		CustomerService.newUserWithoutAuthentication();
 	}
 
 	@Test
 	public void newUserWithoutCPF() {
-		AuthPage.getToken();
-		CustomerPage.newUserWithoutCPF();
+		AuthService.getToken();
+		CustomerService.newUserWithoutCPF();
 	}
 
 	@Test
 	public void newUserWithInvalidCPF() {
-		AuthPage.getToken();
-		CustomerPage.newUserWithInvalidCPF();
+		AuthService.getToken();
+		CustomerService.newUserWithInvalidCPF();
 	}
 
 	@Test
 	public void newUserWithoutFirstName() {
-		AuthPage.getToken();
-		CustomerPage.newUserWithoutFirstName();
+		AuthService.getToken();
+		CustomerService.newUserWithoutFirstName();
 	}
 
 	@Test
 	public void newUserWithoutLastName() {
-		AuthPage.getToken();
-		CustomerPage.newUserWithoutLastName();
+		AuthService.getToken();
+		CustomerService.newUserWithoutLastName();
 	}
 
 	@Test
 	public void newUserWithInvalidMobile() {
-		AuthPage.getToken();
-		CustomerPage.newUserWithInvalidMobile();
+		AuthService.getToken();
+		CustomerService.newUserWithInvalidMobile();
+	}
+
+	@Test
+	public void newUserWithoutFirstNameAndWithoutLastName() {
+		AuthService.getToken();
+		CustomerService.newUserWithoutFirstNameAndWithoutLastName();
 	}
 }
