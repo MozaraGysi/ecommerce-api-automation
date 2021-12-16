@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import java.util.Arrays;
 import java.util.List;
 
-public class CreditTransactionsPage {
+public class CreditTransactionsService {
 
 	public static void getCreditTransactionsWithStatusPENDENTE() {
 		Utils.getCreditPoints().stream()

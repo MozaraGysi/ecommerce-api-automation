@@ -14,40 +14,40 @@ public class BalancePoints {
 
 	@Test
 	public void getBalancePointsWithoutTransactions() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		BalancePointsPage.getBalancePointsWithoutTransactions();
+		AuthService.getToken();
+		CustomerService.newUser();
+		BalancePointsService.getBalancePointsWithoutTransactions();
 	}
 
 	@Test
 	public void getBalancePointsWithoutTransactionsAndCreditTransactionWithStatusPENDENTE() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
-		BalancePointsPage.getBalancePointsWithoutTransactions();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
+		BalancePointsService.getBalancePointsWithoutTransactions();
 	}
 
 	@Test
 	public void getBalancePointsWithCreditTransaction() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		BalancePointsPage.getBalancePoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePoints();
 	}
 
 	@Test
 	public void getBalancePointsWithTransactions() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsPage.debitPoints();
-		BalancePointsPage.getBalancePoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsService.debitPoints();
+		BalancePointsService.getBalancePoints();
 	}
 
 	@Test
 	public void getBalancePointsWithoutAuthentication() {
-		BalancePointsPage.getBalancePointsWithoutAuthentication();
+		BalancePointsService.getBalancePointsWithoutAuthentication();
 	}
 }

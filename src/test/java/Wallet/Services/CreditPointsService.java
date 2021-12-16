@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Assertions;
 import java.util.Arrays;
 import java.util.List;
 
-public class CreditPointsPage {
+public class CreditPointsService {
 
 	public static void creditPoints() {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().build();
