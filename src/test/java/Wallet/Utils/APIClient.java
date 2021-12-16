@@ -117,4 +117,17 @@ public class APIClient {
 
 		return response;
 	}
+
+	public static Response GET_expirePoints(String expireAt) {
+		RestAssured.baseURI = Utils.getBaseUrl();
+
+		RequestSpecification request = RestAssured.given();
+		request.header("Content-Type", "application/json");
+		request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+
+		Response response = request.get("/customers/expire-points?expire-at=" + expireAt);
+		response.getBody().print();
+
+		return response;
+	}
 }

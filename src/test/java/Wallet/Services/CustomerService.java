@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import java.util.Arrays;
 import java.util.List;
 
-public class CustomerPage {
+public class CustomerService {
 
 	public static void newUser() {
 		CustomerRequestDTO customerRequestDTO = new CustomerRequestDTOFixture().build();

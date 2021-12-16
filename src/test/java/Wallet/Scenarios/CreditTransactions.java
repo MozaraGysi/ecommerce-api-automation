@@ -14,26 +14,26 @@ public class CreditTransactions {
 
 	@Test
 	public void creditTransactionsWithStatusPENDENTE() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
-		BalancePointsPage.getBalancePointsWithoutTransactions();
-		PointsPage.getPointsWithoutTransactions();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
+		BalancePointsService.getBalancePointsWithoutTransactions();
+		PointsService.getPointsWithoutTransactions();
 	}
 
 	@Test
 	public void creditTransactionsWithStatusCONFIRMADO() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
 	}
 
 	@Test
 	public void creditTransactionsWithoutAuthentication() {
-		CreditTransactionsPage.creditTransactionsWithoutAuthentication();
+		CreditTransactionsService.creditTransactionsWithoutAuthentication();
 	}
 }

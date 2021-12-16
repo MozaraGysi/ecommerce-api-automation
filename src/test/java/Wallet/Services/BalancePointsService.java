@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import java.util.Arrays;
 import java.util.List;
 
-public class BalancePointsPage {
+public class BalancePointsService {
 	public static void getBalancePoints() {
 		Response response = APIClient.GET_balancePoints(Utils.getCPF());
 

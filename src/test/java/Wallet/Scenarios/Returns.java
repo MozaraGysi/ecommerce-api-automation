@@ -14,44 +14,44 @@ public class Returns {
 
 	@Test
 	public void creditAndReturn() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		BalancePointsPage.getBalancePointsWithoutTransactions();
-		PointsPage.getPointsWithoutTransactions();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
-		BalancePointsPage.getBalancePointsWithoutTransactions();
-		PointsPage.getPointsWithoutTransactions();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
-		DebitPointsPage.debitPointsToReturnLastCredit();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		BalancePointsService.getBalancePointsWithoutTransactions();
+		PointsService.getPointsWithoutTransactions();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
+		BalancePointsService.getBalancePointsWithoutTransactions();
+		PointsService.getPointsWithoutTransactions();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
+		DebitPointsService.debitPointsToReturnLastCredit();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
 	}
 
 	@Test
 	public void debitAndReturnOrCancel() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		BalancePointsPage.getBalancePointsWithoutTransactions();
-		PointsPage.getPointsWithoutTransactions();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
-		BalancePointsPage.getBalancePointsWithoutTransactions();
-		PointsPage.getPointsWithoutTransactions();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
-		DebitPointsPage.debitPoints();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
-		CreditPointsPage.creditPointsToReturnLastDebit();
-		BalancePointsPage.getBalancePoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
-		BalancePointsPage.getBalancePoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		BalancePointsPage.getBalancePoints();
-		PointsPage.getPoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		BalancePointsService.getBalancePointsWithoutTransactions();
+		PointsService.getPointsWithoutTransactions();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
+		BalancePointsService.getBalancePointsWithoutTransactions();
+		PointsService.getPointsWithoutTransactions();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
+		DebitPointsService.debitPoints();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
+		CreditPointsService.creditPointsToReturnLastDebit();
+		BalancePointsService.getBalancePoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
+		BalancePointsService.getBalancePoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
 	}
 }

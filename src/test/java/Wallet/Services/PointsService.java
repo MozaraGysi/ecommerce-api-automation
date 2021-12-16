@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import java.util.Arrays;
 import java.util.List;
 
-public class PointsPage {
+public class PointsService {
 
 	public static void getPoints() {
 		Response response = APIClient.GET_points(Utils.getCPF());

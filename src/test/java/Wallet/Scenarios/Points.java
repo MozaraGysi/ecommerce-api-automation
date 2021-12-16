@@ -14,32 +14,32 @@ public class Points {
 
 	@Test
 	public void getPointsWithoutTransactions() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		PointsPage.getPointsWithoutTransactions();
+		AuthService.getToken();
+		CustomerService.newUser();
+		PointsService.getPointsWithoutTransactions();
 	}
 
 	@Test
 	public void getPointsWithoutTransactionsAndCreditTransactionStatusPENDENTE() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusPENDENTE();
-		PointsPage.getPointsWithoutTransactions();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
+		PointsService.getPointsWithoutTransactions();
 	}
 
 	@Test
 	public void getPointsWithTransactions() {
-		AuthPage.getToken();
-		CustomerPage.newUser();
-		CreditPointsPage.creditPoints();
-		CreditTransactionsPage.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsPage.debitPoints();
-		PointsPage.getPoints();
+		AuthService.getToken();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		DebitPointsService.debitPoints();
+		PointsService.getPoints();
 	}
 
 	@Test
 	public void getPointsWithoutAuthentication() {
-		PointsPage.getPointsWithoutAuthentication();
+		PointsService.getPointsWithoutAuthentication();
 	}
 }
