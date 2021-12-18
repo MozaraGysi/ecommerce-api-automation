@@ -74,13 +74,4 @@ public class CustomerService {
 		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
-
-	public static void newUserWithoutFirstNameAndWithoutLastName() {
-		CustomerRequestDTO customerRequestDTO = new CustomerRequestDTOFixture().withoutFirstName().withoutLastName().build();
-
-		Response response = APIClient.POST_customers(customerRequestDTO.toJson());
-
-		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
-	}
 }

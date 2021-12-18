@@ -53,10 +53,4 @@ public class Customer {
 		AuthService.getToken();
 		CustomerService.newUserWithInvalidMobile();
 	}
-
-	@Test
-	public void newUserWithoutFirstNameAndWithoutLastName() {
-		AuthService.getToken();
-		CustomerService.newUserWithoutFirstNameAndWithoutLastName();
-	}
 }
