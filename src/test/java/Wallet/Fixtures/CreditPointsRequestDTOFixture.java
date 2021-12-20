@@ -5,6 +5,8 @@ import Wallet.Enums.CreditPointsTypeEnum;
 import Wallet.Enums.CreditTransactionStatusEnum;
 import Wallet.Utils.Utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class CreditPointsRequestDTOFixture {
@@ -15,9 +17,10 @@ public class CreditPointsRequestDTOFixture {
 		creditPointsRequestDTO = new CreditPointsRequestDTO();
 		creditPointsRequestDTO.setDocument(Utils.getCPF());
 		creditPointsRequestDTO.setAmount(660.66f);
-		creditPointsRequestDTO.setType(CreditPointsTypeEnum.VALOR_MONETARIO.getValue());
+		creditPointsRequestDTO.setType(CreditPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
 		creditPointsRequestDTO.setStatus(CreditTransactionStatusEnum.CONFIRMADO.getValue());
-		creditPointsRequestDTO.setDateTime("2004-02-12T14:18:20+00:00");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+		creditPointsRequestDTO.setDateTime(simpleDateFormat.format(new Date()));
 		creditPointsRequestDTO.setOrder(new OrderDTOFixture().build());
 	}
 

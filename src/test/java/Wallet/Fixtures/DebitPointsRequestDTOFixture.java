@@ -4,6 +4,8 @@ import Wallet.DTOs.DebitPointsRequestDTO;
 import Wallet.Enums.DebitPointsTypeEnum;
 import Wallet.Utils.Utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class DebitPointsRequestDTOFixture {
@@ -16,7 +18,8 @@ public class DebitPointsRequestDTOFixture {
 		debitPointsRequestDTO.setAmount(4.91f);
 		debitPointsRequestDTO.setStatus("CONFIRMADO");
 		debitPointsRequestDTO.setType(DebitPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
-		debitPointsRequestDTO.setDateTime("2004-02-12T14:18:20+00:00");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+		debitPointsRequestDTO.setDateTime(simpleDateFormat.format(new Date()));
 		debitPointsRequestDTO.setOrder(new OrderDTOFixture().build());
 	}
 

@@ -28,7 +28,7 @@ public class CreditPointsService {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
-	public static void creditPointsWithTypeQUANTIDADE_DE_PONTOS() {
+	public static void creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO() {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().type_QUANTIDADE_DE_PONTOS().build();
 
 		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
@@ -39,7 +39,7 @@ public class CreditPointsService {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
-	public static void creditPointsWithTypeVALOR_MONETARIO() {
+	public static void creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO() {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().type_VALOR_MONETARIO().build();
 
 		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
@@ -50,8 +50,8 @@ public class CreditPointsService {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
-	public static void creditPointsWithStatusPENDENTE() {
-		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().status_PENDENTE().build();
+	public static void creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE() {
+		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().type_VALOR_MONETARIO().status_PENDENTE().build();
 
 		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
 

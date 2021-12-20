@@ -22,7 +22,7 @@ public class ExpirePoints {
 	public void getExpirePointsWithCustomersWithExpirePoints() {
 		AuthService.getToken();
 		CustomerService.newUser();
-		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOS();
+		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		ExpirePointsService.getExpirePointsWithCustomersWithExpirePoints();
 	}
@@ -31,7 +31,7 @@ public class ExpirePoints {
 	public void getExpirePointsWithCustomersWithPartialExpirePoints() {
 		AuthService.getToken();
 		CustomerService.newUser();
-		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOS();
+		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		DebitPointsService.debitPointsWithTypeQUANTIDADE_DE_PONTOS();
 		ExpirePointsService.getExpirePointsWithCustomersWithExpirePoints();
@@ -41,8 +41,8 @@ public class ExpirePoints {
 	public void getExpirePointsWithCustomersWithTwoTransactionsExpireAtSameDay() {
 		AuthService.getToken();
 		CustomerService.newUser();
-		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOS();
-		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOS();
+		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
+		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		ExpirePointsService.getExpirePointsWithCustomersWithExpirePoints();
 	}
