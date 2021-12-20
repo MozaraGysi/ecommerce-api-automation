@@ -3,10 +3,8 @@ package Wallet.Scenarios;
 import Wallet.Services.*;
 import Wallet.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Crédito de pontos")
 public class CreditPoints {
 
 	@BeforeEach
@@ -15,7 +13,6 @@ public class CreditPoints {
 	}
 
 	@Test
-	@DisplayName("Credito de pontos com o tipo VALOR MONETÁRIO")
 	public void creditPointsWithTypeVALOR_MONETARIO() {
 		AuthService.getToken();
 		CustomerService.newUser();
@@ -102,7 +99,6 @@ public class CreditPoints {
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		////
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO();
@@ -117,13 +113,10 @@ public class CreditPoints {
 		PointsService.getPointsWithoutTransactions();
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		////
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		///
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		////
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 	}

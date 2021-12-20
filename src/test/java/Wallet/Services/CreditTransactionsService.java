@@ -90,7 +90,6 @@ public class CreditTransactionsService {
 	private static void handleCreditTransactions(Response response) {
 		CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
 		Utils.creditPoints(creditTransactionsResponseDTO);
-//		Utils.removePendingCreditTransactionConfirmed(creditTransactionsResponseDTO);
 	}
 
 	private static void handleCreditPendingTransactions(Response response) {
