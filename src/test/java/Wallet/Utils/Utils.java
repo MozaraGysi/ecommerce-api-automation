@@ -34,7 +34,7 @@ public class Utils {
 	public static String getBrand() {
 		String brand = "";
 		if (System.getProperty("brand") == null){
-			System.out.println("Marca não adicionada: Ex.: -Dbrand=Zzpay ");
+			System.out.println("Brand not informed: Ex.: -Dbrand=Zzpay ");
 		}else{
 			brand = System.getProperty("brand");
 		}
@@ -44,7 +44,7 @@ public class Utils {
 	public static String getEnv() {
 		String env = "";
 		if (System.getProperty("env") == null) {
-			System.out.println("Env não adicionado: Ex.: -Denv=qa ");
+			System.out.println("Environment not informed: Ex.: -Denv=qa ");
 		} else {
 			env = System.getProperty("env");
 		}
@@ -53,7 +53,7 @@ public class Utils {
 
 	public static String getBaseUrl() {
 		StringBuilder fileName = new StringBuilder();
-		fileName.append("src/test/resources/baseUrl.json");
+		fileName.append("src/test/resources/wallet.json");
 		String jsonBaseUrl = "";
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
 			Gson gson = new Gson();
@@ -67,7 +67,7 @@ public class Utils {
 
 	public static String getBaseUrlAccessToken() {
 		StringBuilder fileName = new StringBuilder();
-		fileName.append("src/test/resources/baseUrl.json");
+		fileName.append("src/test/resources/wallet.json");
 		String jsonBaseUrl = "";
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
 			Gson gson = new Gson();
@@ -77,6 +77,22 @@ public class Utils {
 			e.printStackTrace();
 		}
 		return jsonBaseUrl.concat("oauth/v1");
+	}
+
+	public static String getCredentials() {
+		StringBuilder fileName = new StringBuilder();
+		fileName.append("src/test/resources/wallet.json");
+		String clientId = "";
+		String clientSecret = "";
+		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
+			Gson gson = new Gson();
+			Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
+			clientId = ((Map<String, String>)((Map<String, Object>)element.get(getBrand())).get(getEnv())).get("clientId");
+			clientSecret = ((Map<String, String>)((Map<String, Object>)element.get(getBrand())).get(getEnv())).get("clientSecret");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return clientId.concat(":").concat(clientSecret);
 	}
 
 	public static String getUser(String param) {

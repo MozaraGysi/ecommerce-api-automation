@@ -207,13 +207,5 @@
     "integ06": {
       "url": "https://integ06.zzmall.com.br/"
     }
-  },
-  "Zzpay": {
-    "dev": {
-      "url": "http://api.arezzoco.com.br/dev/"
-    },
-    "qa": {
-      "url": "http://api.arezzoco.com.br/qa/"
-    }
   }
 }
