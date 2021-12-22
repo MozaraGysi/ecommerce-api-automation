@@ -16,8 +16,11 @@ public class AuthService {
 
 	private static final String AUTHORIZATION_HEADER = "Authorization";
 	private static final String AUTHORIZATION_HEADER_TYPE_BASIC = "Basic ";
-	private static String clientId = "10248d26-ab15-3fbd-96d3-f8054048d0ac";
-	private static String clientSecret = "232214b9-f25f-3593-acb6-93d4e033026d";
+	private static String ENV_DEV = "dev";
+	private static String clientIdDev = "a281cd5d-8b5e-3600-87fc-082bf3c6d855";
+	private static String clientSecretDev = "c5931073-a5c0-3641-a04c-c8654b3e70cd";
+	private static String clientIdQa = "10248d26-ab15-3fbd-96d3-f8054048d0ac";
+	private static String clientSecretQa = "232214b9-f25f-3593-acb6-93d4e033026d";
 
 	private static HttpHeaders getDefaultHeaders() {
 		HttpHeaders headers = new HttpHeaders();
@@ -29,7 +32,7 @@ public class AuthService {
 	private static HttpHeaders getDefaultHeadersWithBasicAuthorization() {
 		HttpHeaders headers = getDefaultHeaders();
 
-		final String authorization = clientId.concat(":").concat(clientSecret);
+		final String authorization = ENV_DEV.equals(Utils.getEnv()) ? clientIdDev.concat(":").concat(clientSecretDev) : clientIdQa.concat(":").concat(clientSecretQa);
 		final String authorizationBase64 = Base64Utils.encodeToString(authorization.getBytes());
 
 		headers.add(AUTHORIZATION_HEADER, AUTHORIZATION_HEADER_TYPE_BASIC + authorizationBase64);
@@ -38,7 +41,7 @@ public class AuthService {
 	}
 
 	public static void getToken() {
-		RestAssured.baseURI = "http://api.arezzoco.com.br/qa/oauth/v1";
+		RestAssured.baseURI = Utils.getBaseUrlAccessToken();
 
 		RequestSpecification request = RestAssured.given();
 		request.headers(getDefaultHeadersWithBasicAuthorization());

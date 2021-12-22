@@ -31,11 +31,20 @@ public class Utils {
 	static List<CreditPointsHandler> CREDIT_POINTS;
 	static List<DebitPointsHandler> DEBIT_POINTS;
 
-	// Talvez seja necessário quando tivermos ambiente de dev/qa no motor de cashback
+	public static String getBrand() {
+		String brand = "";
+		if (System.getProperty("brand") == null){
+			System.out.println("Marca não adicionada: Ex.: -Dbrand=Zzpay ");
+		}else{
+			brand = System.getProperty("brand");
+		}
+		return brand;
+	}
+
 	public static String getEnv() {
 		String env = "";
 		if (System.getProperty("env") == null) {
-			System.out.println("Env não adicionado: Ex.: -Denv=hml ");
+			System.out.println("Env não adicionado: Ex.: -Denv=qa ");
 		} else {
 			env = System.getProperty("env");
 		}
@@ -43,7 +52,31 @@ public class Utils {
 	}
 
 	public static String getBaseUrl() {
-		return "http://api.arezzoco.com.br/qa/customer-loyalty/v1";
+		StringBuilder fileName = new StringBuilder();
+		fileName.append("src/test/resources/baseUrl.json");
+		String jsonBaseUrl = "";
+		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
+			Gson gson = new Gson();
+			Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
+			jsonBaseUrl = ((Map<String, String>)((Map<String, Object>)element.get(getBrand())).get(getEnv())).get("url");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return jsonBaseUrl.concat("customer-loyalty/v1");
+	}
+
+	public static String getBaseUrlAccessToken() {
+		StringBuilder fileName = new StringBuilder();
+		fileName.append("src/test/resources/baseUrl.json");
+		String jsonBaseUrl = "";
+		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
+			Gson gson = new Gson();
+			Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
+			jsonBaseUrl = ((Map<String, String>)((Map<String, Object>)element.get(getBrand())).get(getEnv())).get("url");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return jsonBaseUrl.concat("oauth/v1");
 	}
 
 	public static String getUser(String param) {
