@@ -1,0 +1,14 @@
+{
+  "dev": {
+    "clientId": "a281cd5d-8b5e-3600-87fc-082bf3c6d855",
+    "clientSecret": "c5931073-a5c0-3641-a04c-c8654b3e70cd",
+    "baseUrl": "http://api.arezzoco.com.br/dev/customer-loyalty/v1",
+    "baseAuthUrl": "http://api.arezzoco.com.br/dev/oauth/v1"
+  },
+  "qa": {
+    "clientId": "10248d26-ab15-3fbd-96d3-f8054048d0ac",
+    "clientSecret": "232214b9-f25f-3593-acb6-93d4e033026d",
+    "baseUrl": "http://api.arezzoco.com.br/qa/customer-loyalty/v1",
+    "baseAuthUrl": "http://api.arezzoco.com.br/qa/oauth/v1"
+  }
+}

@@ -30,12 +30,13 @@ public class Utils {
 	static float PENDING_AMOUNT;
 	static List<CreditPointsHandler> CREDIT_POINTS;
 	static List<DebitPointsHandler> DEBIT_POINTS;
+	static String WALLET_JSON_PATH = "src/test/resources/wallet.json";
+	static Map<String, Object> WALLET_JSON_MAPPED;
 
-	// Talvez seja necessário quando tivermos ambiente de dev/qa no motor de cashback
 	public static String getEnv() {
 		String env = "";
 		if (System.getProperty("env") == null) {
-			System.out.println("Env não adicionado: Ex.: -Denv=hml ");
+			System.out.println("Environment not informed: Ex.: -Denv=qa ");
 		} else {
 			env = System.getProperty("env");
 		}
@@ -43,7 +44,38 @@ public class Utils {
 	}
 
 	public static String getBaseUrl() {
-		return "http://api.arezzoco.com.br/qa/customer-loyalty/v1";
+		return ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("baseUrl");
+	}
+
+	public static String getBaseAuthUrl() {
+		return ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("baseAuthUrl");
+	}
+
+	public static String getCredentials() {
+		String clientId = ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("clientId");
+		String clientSecret = ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("clientSecret");
+
+		return clientId.concat(":").concat(clientSecret);
+	}
+
+	private static Map<String, Object> getWalletJsonMapped() {
+		if (Objects.isNull(WALLET_JSON_MAPPED)) {
+			WALLET_JSON_MAPPED = readWalletJson();
+		}
+		return WALLET_JSON_MAPPED;
+	}
+
+	private static Map<String, Object> readWalletJson() {
+		StringBuilder fileName = new StringBuilder();
+		fileName.append(WALLET_JSON_PATH);
+		Map<String, Object> element = null;
+		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
+			Gson gson = new Gson();
+			element = gson.fromJson(bufferedReader, Map.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return element;
 	}
 
 	public static String getUser(String param) {
