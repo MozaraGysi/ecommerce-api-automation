@@ -36,7 +36,7 @@ public class AuthService {
 	}
 
 	public static void getToken() {
-		RestAssured.baseURI = Utils.getBaseUrlAccessToken();
+		RestAssured.baseURI = Utils.getBaseAuthUrl();
 
 		RequestSpecification request = RestAssured.given();
 		request.headers(getDefaultHeadersWithBasicAuthorization());

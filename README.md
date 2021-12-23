@@ -8,6 +8,11 @@ o json dos ambientes se encontra em `src\test\resources\baseUrl.json`
 - Escolher o método que quer rodar, os testes se encontram em `src\test\java\OCC\Tests\...`
 - Salve e rode o teste
 
+## Observações
+
+- Para testar a Wallet é preciso informar só o `-Denv=`,
+os ambientes disponíveis se encontram em `src\test\resources\wallet.json`
+
 ## Estrutura
 
 ##### DTOs: Objetos de resquest/response

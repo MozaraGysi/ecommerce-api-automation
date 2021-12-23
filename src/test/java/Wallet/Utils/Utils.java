@@ -30,16 +30,8 @@ public class Utils {
 	static float PENDING_AMOUNT;
 	static List<CreditPointsHandler> CREDIT_POINTS;
 	static List<DebitPointsHandler> DEBIT_POINTS;
-
-	public static String getBrand() {
-		String brand = "";
-		if (System.getProperty("brand") == null){
-			System.out.println("Brand not informed: Ex.: -Dbrand=Zzpay ");
-		}else{
-			brand = System.getProperty("brand");
-		}
-		return brand;
-	}
+	static String WALLET_JSON_PATH = "src/test/resources/wallet.json";
+	static Map<String, Object> WALLET_JSON_MAPPED;
 
 	public static String getEnv() {
 		String env = "";
@@ -52,47 +44,38 @@ public class Utils {
 	}
 
 	public static String getBaseUrl() {
-		StringBuilder fileName = new StringBuilder();
-		fileName.append("src/test/resources/wallet.json");
-		String jsonBaseUrl = "";
-		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
-			Gson gson = new Gson();
-			Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
-			jsonBaseUrl = ((Map<String, String>)((Map<String, Object>)element.get(getBrand())).get(getEnv())).get("url");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return jsonBaseUrl.concat("customer-loyalty/v1");
+		return ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("baseUrl");
 	}
 
-	public static String getBaseUrlAccessToken() {
-		StringBuilder fileName = new StringBuilder();
-		fileName.append("src/test/resources/wallet.json");
-		String jsonBaseUrl = "";
-		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
-			Gson gson = new Gson();
-			Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
-			jsonBaseUrl = ((Map<String, String>)((Map<String, Object>)element.get(getBrand())).get(getEnv())).get("url");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return jsonBaseUrl.concat("oauth/v1");
+	public static String getBaseAuthUrl() {
+		return ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("baseAuthUrl");
 	}
 
 	public static String getCredentials() {
+		String clientId = ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("clientId");
+		String clientSecret = ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("clientSecret");
+
+		return clientId.concat(":").concat(clientSecret);
+	}
+
+	private static Map<String, Object> getWalletJsonMapped() {
+		if (Objects.isNull(WALLET_JSON_MAPPED)) {
+			WALLET_JSON_MAPPED = readWalletJson();
+		}
+		return WALLET_JSON_MAPPED;
+	}
+
+	private static Map<String, Object> readWalletJson() {
 		StringBuilder fileName = new StringBuilder();
-		fileName.append("src/test/resources/wallet.json");
-		String clientId = "";
-		String clientSecret = "";
+		fileName.append(WALLET_JSON_PATH);
+		Map<String, Object> element = null;
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
 			Gson gson = new Gson();
-			Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
-			clientId = ((Map<String, String>)((Map<String, Object>)element.get(getBrand())).get(getEnv())).get("clientId");
-			clientSecret = ((Map<String, String>)((Map<String, Object>)element.get(getBrand())).get(getEnv())).get("clientSecret");
+			element = gson.fromJson(bufferedReader, Map.class);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return clientId.concat(":").concat(clientSecret);
+		return element;
 	}
 
 	public static String getUser(String param) {
