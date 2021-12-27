@@ -5,7 +5,9 @@ import Wallet.Services.CustomerService;
 import Wallet.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
+@DisabledIfSystemProperty(named = "excludeWallet", matches = "true")
 public class Customer {
 
 	@BeforeEach

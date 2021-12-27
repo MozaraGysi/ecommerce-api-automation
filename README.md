@@ -13,6 +13,10 @@ o json dos ambientes se encontra em `src\test\resources\baseUrl.json`
 - Para testar a Wallet é preciso informar só o `-Denv=`,
 os ambientes disponíveis se encontram em `src\test\resources\wallet.json`
 
+- Para testar todo o projeto ignorando só os testes da Wallet é preciso
+adicionar -DexcludeWallet=true nos parametros do teste.
+Ex: `mvn test -Dtest=** -Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`
+
 ## Estrutura
 
 ##### DTOs: Objetos de resquest/response
