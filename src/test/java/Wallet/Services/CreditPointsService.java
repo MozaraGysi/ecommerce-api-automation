@@ -102,7 +102,7 @@ public class CreditPointsService {
 	}
 
 	private static void handleCreditPoints(CreditPointsRequestDTO creditPointsRequestDTO, Response response) {
-		CreditPointsResponseDTO creditPointsResponseDTO = CreditPointsResponseDTO.fromJsonString(response.getBody().asString());
+		CreditPointsResponseDTO creditPointsResponseDTO = new CreditPointsResponseDTO().fromJsonString(response.getBody().asString());
 		Utils.addCreditPoints(new CreditPointsHandler(creditPointsResponseDTO.getTransactionId(), creditPointsRequestDTO));
 	}
 }

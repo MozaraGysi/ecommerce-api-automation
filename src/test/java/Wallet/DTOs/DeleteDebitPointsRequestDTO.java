@@ -4,18 +4,20 @@ import Wallet.Utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class DeleteDebitPointsRequestDTO {
+public class DeleteDebitPointsRequestDTO extends AbstractWalletDTO<DeleteDebitPointsRequestDTO>{
 
 	private String transactionId;
 	private float amount;
 	private String dateTime;
 
-	public static DeleteDebitPointsRequestDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, DeleteDebitPointsRequestDTO.class);
+	@Override
+	public DeleteDebitPointsRequestDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public String getTransactionId() {

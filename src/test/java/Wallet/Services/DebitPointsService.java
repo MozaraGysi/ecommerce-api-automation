@@ -100,7 +100,7 @@ public class DebitPointsService {
 	}
 
 	private static void handleDebitPoints(DebitPointsRequestDTO debitPointsRequestDTO, Response response) {
-		DebitPointsResponseDTO debitPointsResponseDTO = DebitPointsResponseDTO.fromJsonString(response.getBody().asString());
+		DebitPointsResponseDTO debitPointsResponseDTO = new DebitPointsResponseDTO().fromJsonString(response.getBody().asString());
 		Utils.addDebitPoints(new DebitPointsHandler(debitPointsResponseDTO.getTransactionId(), debitPointsRequestDTO));
 
 	}

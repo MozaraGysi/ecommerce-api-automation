@@ -15,7 +15,7 @@ public class PointsPendingValidator implements Validator {
 
 	@Override
 	public boolean validate(Response response) {
-		PointsResponseDTO pointsResponseDTO = PointsResponseDTO.fromJsonString(response.getBody().asString());
+		PointsResponseDTO pointsResponseDTO = new PointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertEquals(Utils.getCPF(), pointsResponseDTO.getDocument());
 

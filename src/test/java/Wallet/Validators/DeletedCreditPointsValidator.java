@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
 public class DeletedCreditPointsValidator implements Validator {
 	@Override
 	public boolean validate(Response response) {
-		DeleteCreditPointsResponseDTO deleteCreditPointsResponseDTO = DeleteCreditPointsResponseDTO.fromJsonString(response.getBody().asString());
+		DeleteCreditPointsResponseDTO deleteCreditPointsResponseDTO = new DeleteCreditPointsResponseDTO().fromJsonString(response.getBody().asString());
 		Assertions.assertFalse(deleteCreditPointsResponseDTO.getTransactionId().isEmpty());
 
 		return true;

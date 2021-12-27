@@ -73,7 +73,7 @@ public class CreditTransactionsService {
 		while (!creditTransactionConfirmed && count < 7) {
 			response = APIClient.GET_creditTransactions(transactionId);
 
-			CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
+			CreditTransactionsResponseDTO creditTransactionsResponseDTO = new CreditTransactionsResponseDTO().fromJsonString(response.getBody().asString());
 			creditTransactionConfirmed = CreditTransactionStatusEnum.CONFIRMADO.getValue().equals(creditTransactionsResponseDTO.getStatus());
 			if (!creditTransactionConfirmed) {
 				count++;
@@ -88,12 +88,12 @@ public class CreditTransactionsService {
 	}
 
 	private static void handleCreditTransactions(Response response) {
-		CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
+		CreditTransactionsResponseDTO creditTransactionsResponseDTO = new CreditTransactionsResponseDTO().fromJsonString(response.getBody().asString());
 		Utils.creditPoints(creditTransactionsResponseDTO);
 	}
 
 	private static void handleCreditPendingTransactions(Response response) {
-		CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
+		CreditTransactionsResponseDTO creditTransactionsResponseDTO = new CreditTransactionsResponseDTO().fromJsonString(response.getBody().asString());
 		Utils.creditPendingPoints(creditTransactionsResponseDTO);
 	}
 }

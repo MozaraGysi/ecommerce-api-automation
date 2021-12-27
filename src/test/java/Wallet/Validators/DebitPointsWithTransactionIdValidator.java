@@ -8,7 +8,7 @@ public class DebitPointsWithTransactionIdValidator implements Validator {
 
 	@Override
 	public boolean validate(Response response) {
-		DebitPointsResponseDTO debitPointsResponseDTO = DebitPointsResponseDTO.fromJsonString(response.getBody().asString());
+		DebitPointsResponseDTO debitPointsResponseDTO = new DebitPointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertNotNull(debitPointsResponseDTO.getTransactionId());
 

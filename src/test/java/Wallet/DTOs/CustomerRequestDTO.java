@@ -3,7 +3,7 @@ package Wallet.DTOs;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class CustomerRequestDTO {
+public class CustomerRequestDTO extends AbstractWalletDTO<CustomerRequestDTO> {
 
 	private String document;
 	private String firstName;
@@ -12,12 +12,14 @@ public class CustomerRequestDTO {
 	private String birthday;
 	private Long mobile;
 
-	public static CustomerRequestDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, CustomerRequestDTO.class);
+	@Override
+	public CustomerRequestDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public String getDocument() {

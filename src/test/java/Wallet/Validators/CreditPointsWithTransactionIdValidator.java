@@ -8,7 +8,7 @@ public class CreditPointsWithTransactionIdValidator implements Validator {
 
 	@Override
 	public boolean validate(Response response) {
-		CreditPointsResponseDTO creditPointsResponseDTO = CreditPointsResponseDTO.fromJsonString(response.getBody().asString());
+		CreditPointsResponseDTO creditPointsResponseDTO = new CreditPointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertNotNull(creditPointsResponseDTO.getTransactionId());
 

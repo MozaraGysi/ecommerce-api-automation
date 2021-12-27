@@ -5,19 +5,21 @@ import com.google.gson.JsonObject;
 
 import java.util.Map;
 
-public class PaymentDTO {
+public class PaymentDTO extends AbstractWalletDTO<PaymentDTO>{
 
 	private String type;
 	private String amount;
 	private String installments;
 	private Map extra;
 
-	public static PaymentDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, PaymentDTO.class);
+	@Override
+	public PaymentDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public String getType() {
