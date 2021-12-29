@@ -20,7 +20,7 @@ public class CreditPoints {
 		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePointsWithPendingCredits();
 		PointsService.getPointsPending();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO();
+		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
@@ -97,11 +97,11 @@ public class CreditPoints {
 		PointsService.getPointsWithoutTransactions();
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO();
+		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO();
+		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(1);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 	}
 
@@ -112,13 +112,45 @@ public class CreditPoints {
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
-		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePointsWithPendingCredits();
+		PointsService.getPointsPending();
 		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePointsWithPendingCredits();
+		PointsService.getPointsPending();
+		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
+		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(1);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
+	}
+
+	@Test
+	public void doubleCreditPointsPending_typeVALOR_MONETARIO_ChangeTheOrderOfConfirmations() {
+		AuthService.getToken();
+		CustomerService.newUser();
+		BalancePointsService.getBalancePointsWithoutTransactions();
+		PointsService.getPointsWithoutTransactions();
+		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePointsWithPendingCredits();
+		PointsService.getPointsPending();
+		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePointsWithPendingCredits();
+		PointsService.getPointsPending();
+		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(1);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
+		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
+		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
+		BalancePointsService.getBalancePoints();
+		PointsService.getPoints();
 	}
 
 	@Test

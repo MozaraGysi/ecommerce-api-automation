@@ -39,8 +39,11 @@ public class CreditPointsService {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
-	public static void creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADO() {
-		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().type_VALOR_MONETARIO().build();
+	public static void creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(int index) {
+		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture()
+				.withOrder(Utils.getCreditPoints().get(index).getRequestDTO().getOrder())
+				.type_VALOR_MONETARIO()
+				.build();
 
 		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
 

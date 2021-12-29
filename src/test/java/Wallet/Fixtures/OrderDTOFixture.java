@@ -2,6 +2,7 @@ package Wallet.Fixtures;
 
 import Wallet.DTOs.OrderDTO;
 import Wallet.Utils.Utils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class OrderDTOFixture {
 
@@ -9,7 +10,7 @@ public class OrderDTOFixture {
 
 	public OrderDTOFixture() {
 		orderDTO = new OrderDTO();
-		orderDTO.setId("123");
+		orderDTO.setId(RandomStringUtils.randomNumeric(6));
 		orderDTO.setTotalPrice(100);
 	}
 
