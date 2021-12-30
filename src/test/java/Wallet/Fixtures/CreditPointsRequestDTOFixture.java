@@ -1,6 +1,7 @@
 package Wallet.Fixtures;
 
 import Wallet.DTOs.CreditPointsRequestDTO;
+import Wallet.DTOs.OrderDTO;
 import Wallet.Enums.CreditPointsTypeEnum;
 import Wallet.Enums.CreditTransactionStatusEnum;
 import Wallet.Utils.Utils;
@@ -50,6 +51,11 @@ public class CreditPointsRequestDTOFixture {
 
 	public CreditPointsRequestDTOFixture withoutOrder() {
 		creditPointsRequestDTO.setOrder(null);
+		return this;
+	}
+
+	public CreditPointsRequestDTOFixture withOrder(OrderDTO orderDTO) {
+		creditPointsRequestDTO.setOrder(orderDTO);
 		return this;
 	}
 
