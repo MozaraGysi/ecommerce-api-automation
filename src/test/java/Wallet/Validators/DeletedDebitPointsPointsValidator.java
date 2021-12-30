@@ -8,7 +8,7 @@ public class DeletedDebitPointsPointsValidator implements Validator {
 
 	@Override
 	public boolean validate(Response response) {
-		DeleteDebitPointsResponseDTO deleteDebitPointsRequestDTO = DeleteDebitPointsResponseDTO.fromJsonString(response.getBody().asString());
+		DeleteDebitPointsResponseDTO deleteDebitPointsRequestDTO = new DeleteDebitPointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertFalse(deleteDebitPointsRequestDTO.getTransactionId().isEmpty());
 

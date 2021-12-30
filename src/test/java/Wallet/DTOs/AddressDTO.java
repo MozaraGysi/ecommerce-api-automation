@@ -3,7 +3,7 @@ package Wallet.DTOs;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class AddressDTO {
+public class AddressDTO extends AbstractWalletDTO<AddressDTO> {
 
 	private String streetName;
 	private String number;
@@ -14,12 +14,14 @@ public class AddressDTO {
 	private String postalCode;
 	private String country;
 
-	public static AddressDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, AddressDTO.class);
+	@Override
+	public AddressDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public String getStreetName() {

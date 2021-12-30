@@ -14,7 +14,7 @@ public class ExpirePointsWithCustomersWithExpirePointsValidator implements Valid
 
 	@Override
 	public boolean validate(Response response) {
-		ExpirePointsResponseDTO expirePointsResponseDTO = ExpirePointsResponseDTO.fromJsonString(response.getBody().asString());
+		ExpirePointsResponseDTO expirePointsResponseDTO = new ExpirePointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertTrue(CollectionUtils.isNotEmpty(expirePointsResponseDTO.getCustomers()));
 

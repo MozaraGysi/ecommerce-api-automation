@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
 
-public class DebitPointsRequestDTO {
+public class DebitPointsRequestDTO extends AbstractWalletDTO<DebitPointsRequestDTO>{
 
 	private String document;
 	private float amount;
@@ -18,12 +18,14 @@ public class DebitPointsRequestDTO {
 	private OrderDTO order;
 	private Map<String, Object> extra;
 
-	public static DebitPointsRequestDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, DebitPointsRequestDTO.class);
+	@Override
+	public DebitPointsRequestDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public float getDebitAmount() {

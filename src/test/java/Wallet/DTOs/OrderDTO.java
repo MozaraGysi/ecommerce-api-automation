@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class OrderDTO {
+public class OrderDTO extends AbstractWalletDTO<OrderDTO>{
 
 	private String id;
 	private float totalPrice;
@@ -15,12 +15,14 @@ public class OrderDTO {
 	private AddressDTO address;
 	private Map<String, Object> extra;
 
-	public static OrderDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, OrderDTO.class);
+	@Override
+	public OrderDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public String getId() {

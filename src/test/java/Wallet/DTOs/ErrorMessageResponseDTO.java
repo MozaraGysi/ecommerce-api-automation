@@ -3,17 +3,19 @@ package Wallet.DTOs;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class ErrorMessageResponseDTO {
+public class ErrorMessageResponseDTO extends AbstractWalletDTO<ErrorMessageResponseDTO>{
 
 	private String code;
 	private String message;
 
-	public static ErrorMessageResponseDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, ErrorMessageResponseDTO.class);
+	@Override
+	public ErrorMessageResponseDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public String getCode() {

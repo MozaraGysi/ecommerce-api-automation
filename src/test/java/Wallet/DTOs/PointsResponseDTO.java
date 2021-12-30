@@ -5,18 +5,20 @@ import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
-public class PointsResponseDTO {
+public class PointsResponseDTO extends AbstractWalletDTO<PointsResponseDTO>{
 
 	private String document;
 	private BalanceAmountDTO balance;
 	private ArrayList<StatementDTO> statements = new ArrayList<>();
 
-	public static PointsResponseDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, PointsResponseDTO.class);
+	@Override
+	public PointsResponseDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public String getDocument() {

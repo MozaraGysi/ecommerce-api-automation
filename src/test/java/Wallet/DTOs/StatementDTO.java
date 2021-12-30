@@ -3,7 +3,7 @@ package Wallet.DTOs;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class StatementDTO {
+public class StatementDTO extends AbstractWalletDTO<StatementDTO>{
 
 	private String transactionId;
 	private String cancelTransactionId;
@@ -15,12 +15,14 @@ public class StatementDTO {
 	private String description;
 	private OrderDTO order;
 
-	public static StatementDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, StatementDTO.class);
+	@Override
+	public StatementDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public String getTransactionId() {

@@ -17,7 +17,7 @@ public class CreditTransactionsWithStatusPENDENTEValidator implements Validator 
 
 	@Override
 	public boolean validate(Response response) {
-		CreditTransactionsResponseDTO creditTransactionsResponseDTO = CreditTransactionsResponseDTO.fromJsonString(response.getBody().asString());
+		CreditTransactionsResponseDTO creditTransactionsResponseDTO = new CreditTransactionsResponseDTO().fromJsonString(response.getBody().asString());
 
 		CreditPointsRequestDTO creditPointsRequestDTO = Utils.getCreditPoints(transactionId);
 

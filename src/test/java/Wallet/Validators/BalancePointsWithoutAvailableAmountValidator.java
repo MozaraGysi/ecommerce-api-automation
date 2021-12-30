@@ -8,7 +8,7 @@ public class BalancePointsWithoutAvailableAmountValidator implements Validator {
 
 	@Override
 	public boolean validate(Response response) {
-		BalancePointsResponseDTO balancePointsResponseDTO = BalancePointsResponseDTO.fromJsonString(response.getBody().asString());
+		BalancePointsResponseDTO balancePointsResponseDTO = new BalancePointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertEquals(0, balancePointsResponseDTO.getAmount().getAvailable());
 

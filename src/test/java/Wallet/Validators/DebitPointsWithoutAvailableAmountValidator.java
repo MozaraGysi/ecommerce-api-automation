@@ -8,7 +8,7 @@ public class DebitPointsWithoutAvailableAmountValidator implements Validator {
 
 	@Override
 	public boolean validate(Response response) {
-		ErrorMessageResponseDTO errorMessageResponseDTO = ErrorMessageResponseDTO.fromJsonString(response.getBody().asString());
+		ErrorMessageResponseDTO errorMessageResponseDTO = new ErrorMessageResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertEquals("422", errorMessageResponseDTO.getCode());
 

@@ -3,16 +3,18 @@ package Wallet.DTOs;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class DebitPointsResponseDTO {
+public class DebitPointsResponseDTO extends AbstractWalletDTO<DebitPointsResponseDTO>{
 
 	private String transactionId;
 
-	public static DebitPointsResponseDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, DebitPointsResponseDTO.class);
+	@Override
+	public DebitPointsResponseDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public String getTransactionId() {

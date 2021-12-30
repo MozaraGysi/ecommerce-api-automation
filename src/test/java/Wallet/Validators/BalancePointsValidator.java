@@ -9,7 +9,7 @@ public class BalancePointsValidator implements Validator {
 
 	@Override
 	public boolean validate(Response response) {
-		BalancePointsResponseDTO balancePointsResponseDTO = BalancePointsResponseDTO.fromJsonString(response.getBody().asString());
+		BalancePointsResponseDTO balancePointsResponseDTO = new BalancePointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertEquals(Utils.getCPF(), balancePointsResponseDTO.getDocument());
 		Assertions.assertNotNull(balancePointsResponseDTO.getLastDateTime());

@@ -3,18 +3,20 @@ package Wallet.DTOs;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class AmountDTO {
+public class AmountDTO extends AbstractWalletDTO<AmountDTO>{
 
 	private float available;
 	private float pendingDebit;
 	private float pendingCredit;
 
-	public static AmountDTO fromJsonString(String jsonString) {
-		return new Gson().fromJson(jsonString, AmountDTO.class);
+	@Override
+	public AmountDTO fromJsonString(String jsonString) {
+		return super.fromJsonString(jsonString);
 	}
 
+	@Override
 	public JsonObject toJson() {
-		return new Gson().fromJson(new Gson().toJson(this), JsonObject.class);
+		return super.toJson();
 	}
 
 	public float getAvailable() {
