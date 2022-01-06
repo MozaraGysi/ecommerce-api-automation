@@ -1,11 +1,17 @@
 package OCC.Services;
 
+import AutomationUtils.Validator;
 import OCC.Utils.Utils;
+import OCC.Validators.ValidacaoImages;
+import OCC.Validators.ValidacaoName;
+import OCC.Validators.ValidacaoValue;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
-import java.util.ArrayList;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class CategoryPage {
@@ -18,9 +24,8 @@ public class CategoryPage {
         request.header("Authorization","Bearer " + Utils.getACCESS_TOKEN());
         request.header("Cookie",Utils.getCookies());
         Response response = request.get("/arezzocoocc/v2/"+Utils.getSite_UID()+"/products/search?fields=FULL&query=3510500180001U&currentPage=0");
-        ArrayList productNameList = response.jsonPath().get("products.name");
-        int indexOfList = productNameList.size();
-        productNameList.get(indexOfList-1).toString().contains("DORA JEANS VENICE NIGHT SHADE");
+        List<Validator> validators = Arrays.asList(new ValidacaoName());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
         Utils.setCookies(response.getCookies());
         Assertions.assertEquals(200, response.getStatusCode());
     }
@@ -33,9 +38,8 @@ public class CategoryPage {
         request.header("Authorization","Bearer " + Utils.getACCESS_TOKEN());
         request.header("Cookie",Utils.getCookies());
         Response response = request.get("/arezzocoocc/v2/"+Utils.getSite_UID()+"/products/search?fields=FULL&query=3510500180001U&currentPage=0");
-        ArrayList productValueList = response.jsonPath().get("products.price.value");
-        int indexOfList = productValueList.size();
-        Assertions.assertTrue(!productValueList.get(indexOfList-1).toString().isEmpty());
+        List<Validator> validators = Arrays.asList(new ValidacaoValue());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
         Utils.setCookies(response.getCookies());
         Assertions.assertEquals(200, response.getStatusCode());
     }
@@ -48,9 +52,8 @@ public class CategoryPage {
         request.header("Authorization","Bearer " + Utils.getACCESS_TOKEN());
         request.header("Cookie",Utils.getCookies());
         Response response = request.get("/arezzocoocc/v2/"+Utils.getSite_UID()+"/products/search?fields=FULL&currentPage=0");
-        ArrayList productImagesList = response.jsonPath().get("products.images.url");
-        int indexOfList = productImagesList.size();
-        Assertions.assertTrue(!productImagesList.get(indexOfList-1).toString().isEmpty());
+        List<Validator> validators = Arrays.asList(new ValidacaoImages());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
         Utils.setCookies(response.getCookies());
         Assertions.assertEquals(200, response.getStatusCode());
     }

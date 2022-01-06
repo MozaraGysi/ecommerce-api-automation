@@ -1,5 +1,6 @@
 package Wallet.Validators;
 
+import AutomationUtils.Validator;
 import Wallet.DTOs.PointsResponseDTO;
 import Wallet.DTOs.StatementDTO;
 import Wallet.Enums.StatementStatusEnum;

@@ -1,5 +1,6 @@
 package Wallet.Services;
 
+import AutomationUtils.Validator;
 import Wallet.Handlers.CreditPointsHandler;
 import Wallet.Utils.APIClient;
 import Wallet.DTOs.CreditTransactionsResponseDTO;

@@ -1,5 +1,6 @@
 package Wallet.Services;
 
+import AutomationUtils.Validator;
 import Wallet.Utils.APIClient;
 import Wallet.DTOs.CustomerRequestDTO;
 import Wallet.Fixtures.CustomerRequestDTOFixture;

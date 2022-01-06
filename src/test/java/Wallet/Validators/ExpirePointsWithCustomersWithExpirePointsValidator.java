@@ -1,5 +1,6 @@
 package Wallet.Validators;
 
+import AutomationUtils.Validator;
 import Wallet.DTOs.ExpirePointsDTO;
 import Wallet.DTOs.ExpirePointsResponseDTO;
 import Wallet.Utils.Utils;

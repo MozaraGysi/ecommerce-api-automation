@@ -1,4 +1,4 @@
-package Wallet.Validators;
+package AutomationUtils;
 
 import io.restassured.response.Response;
 
