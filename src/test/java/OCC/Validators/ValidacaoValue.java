@@ -1,6 +1,6 @@
 package OCC.Validators;
 
-import AutomationUtils.Validator;
+import Common.Validators.Validator;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
@@ -12,7 +12,7 @@ public class ValidacaoValue implements Validator {
     public boolean validate(@NotNull Response response) {
         ArrayList productValueList = response.jsonPath().get("products.price.value");
         int indexOfList = productValueList.size();
-        boolean result = (!productValueList.get(indexOfList-1).toString().isEmpty());
-        return result;
+        Assertions.assertTrue((!productValueList.get(indexOfList-1).toString().isEmpty()));
+        return true;
         }
     }

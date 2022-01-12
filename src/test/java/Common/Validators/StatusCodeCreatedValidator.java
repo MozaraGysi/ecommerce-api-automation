@@ -1,6 +1,6 @@
-package Wallet.Validators;
+package Common.Validators;
 
-import AutomationUtils.Validator;
+import Common.Validators.Validator;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Assertions;

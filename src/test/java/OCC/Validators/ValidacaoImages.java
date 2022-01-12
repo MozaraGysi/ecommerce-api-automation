@@ -1,6 +1,6 @@
 package OCC.Validators;
 
-import AutomationUtils.Validator;
+import Common.Validators.Validator;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +13,7 @@ public class ValidacaoImages implements Validator {
 
         ArrayList productImagesList = response.jsonPath().get("products.images.url");
         int indexOfList = productImagesList.size();
-        boolean result = (!productImagesList.get(indexOfList-1).toString().isEmpty());
-        return result;
+        Assertions.assertTrue(!productImagesList.get(indexOfList - 1).toString().isEmpty());
+        return true;
     }
 }

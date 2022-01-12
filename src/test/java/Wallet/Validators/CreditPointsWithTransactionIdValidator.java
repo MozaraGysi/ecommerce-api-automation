@@ -1,6 +1,6 @@
 package Wallet.Validators;
 
-import AutomationUtils.Validator;
+import Common.Validators.Validator;
 import Wallet.DTOs.CreditPointsResponseDTO;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
