@@ -2,11 +2,12 @@ package OCC.Services;
 
 import Common.Validators.StatusCodeOKValidator;
 import Common.Validators.Validator;
+import OCC.DTOs.ProductCategorySearchPageRequestDTO;
 import OCC.Utils.APIClient;
 import OCC.Utils.Utils;
-import OCC.Validators.ValidacaoImages;
-import OCC.Validators.ValidacaoName;
-import OCC.Validators.ValidacaoValue;
+import OCC.Validators.ProductImagesValidator;
+import OCC.Validators.ProductNameValidator;
+import OCC.Validators.ProductValueValidator;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
@@ -17,26 +18,27 @@ import java.util.List;
 
 public class CategoryPage {
 
-    public static void GET_searchName() {
-        Response response = APIClient.GET_product(Utils.getSite_UID());
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(),new ValidacaoName());
+    public static void GET_searchProductsByCode() {
+        ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO = new ProductCategorySearchPageRequestDTO();
+        productCategorySearchPageRequestDTO.setFields("FULL");
+        productCategorySearchPageRequestDTO.setQuery("3510500180001U");
+        productCategorySearchPageRequestDTO.setCurrentPage("0");
+
+        Response response = APIClient.GET_product(productCategorySearchPageRequestDTO);
+
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductNameValidator(), new ProductValueValidator(), new ProductImagesValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
-        Utils.setCookies(response.getCookies());
-        Assertions.assertEquals(200, response.getStatusCode());
     }
 
-    public static void GET_searchValue() {
-        Response response = APIClient.GET_product(Utils.getSite_UID());
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(),new ValidacaoValue());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
-        Utils.setCookies(response.getCookies());
-    }
+    public static void GET_searchProductsWithoutFilters() {
+        ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO = new ProductCategorySearchPageRequestDTO();
+        productCategorySearchPageRequestDTO.setFields("FULL");
+        productCategorySearchPageRequestDTO.setCurrentPage("0");
 
-    public static void GET_searchImages(){
-        Response response = APIClient.GET_productFull(Utils.getSite_UID());
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(),new ValidacaoImages());
+        Response response = APIClient.GET_product(productCategorySearchPageRequestDTO);
+
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductImagesValidator(), new ProductNameValidator(), new ProductValueValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
-        Utils.setCookies(response.getCookies());
 
     }
 
