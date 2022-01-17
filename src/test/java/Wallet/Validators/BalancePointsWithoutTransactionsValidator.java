@@ -1,5 +1,6 @@
 package Wallet.Validators;
 
+import Common.Validators.Validator;
 import Wallet.DTOs.BalancePointsResponseDTO;
 import Wallet.Utils.Utils;
 import io.restassured.response.Response;

@@ -62,7 +62,7 @@ public class Utils {
             case "AREZZO":
                 return "arezzo";
             case "ALEXANDREBIRMAN":
-                return "alexandrebirman";
+                return "birman";
             case "ANACAPRI":
                 return "anacapri";
             case "ALME":

@@ -1,5 +1,6 @@
 package Wallet.Validators;
 
+import Common.Validators.Validator;
 import Wallet.DTOs.CreditPointsRequestDTO;
 import Wallet.DTOs.CreditTransactionsResponseDTO;
 import Wallet.Enums.CreditTransactionStatusEnum;

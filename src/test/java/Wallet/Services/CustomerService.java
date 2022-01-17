@@ -1,9 +1,9 @@
 package Wallet.Services;
 
+import Common.Validators.*;
 import Wallet.Utils.APIClient;
 import Wallet.DTOs.CustomerRequestDTO;
 import Wallet.Fixtures.CustomerRequestDTOFixture;
-import Wallet.Validators.*;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 

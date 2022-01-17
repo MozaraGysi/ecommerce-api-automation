@@ -1,5 +1,9 @@
 package Wallet.Services;
 
+import Common.Validators.StatusCodeCreatedValidator;
+import Common.Validators.StatusCodeOKValidator;
+import Common.Validators.StatusCodeUnauthorizedValidator;
+import Common.Validators.Validator;
 import Wallet.Utils.APIClient;
 import Wallet.DTOs.CreditPointsRequestDTO;
 import Wallet.DTOs.CreditPointsResponseDTO;
