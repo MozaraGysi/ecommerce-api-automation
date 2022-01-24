@@ -1,63 +1,240 @@
+# E-Commerce API Automation
+
+Este é um projeto do time de e-commerce, com a finalidade de testar de forma automatizada suas APIs.
+### APIs presentes nos testes:
+- Hybris | OCC
+- Hybris | V3
+- ZZNet | Prateleira Infinita
+- Sensedia | Wallet
+
+### Tech Talk: [Link da gravação](https://drive.google.com/file/d/1tx1_DGb73UWVVXTHeUa1qL0hNmmgUIDy/view)
+
 ## Executar o Projeto
 
-- Baixar o projeto
+### Pelo IntelliJ IDEA
+- Clonar o projeto
 - No IntelliJ em Run/Debug Configuration, Add New Configuration `Junit`
 - Seleciona uma versão do java 8
-- Remove o -ea e coloque `-Dbrand=Zzmall` e `-Denv=integ01` se utilizar outro ambiente o mesmo pode ser mudado, 
-o json dos ambientes se encontra em `src\test\resources\baseUrl.json`
-- Escolher o método que quer rodar, os testes se encontram em `src\test\java\OCC\Tests\...`
+- Remove o `-ea` e coloque `-Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`.
+  - Se for outra marca ou ambiente, deve utilizar os listados na seção **Argumentos disponíveis**.
+- Escolher o método que quer rodar, os testes se encontram em `ssrc/test/java/OCC/Scenarios/...`
 - Salve e rode o teste
 
-## Observações
+### Por linha de comando
+- Possuir o artefato construído
+- Executar a tarefa `test` do Maven, com os argumentos necessários
+  - Ex.: `mvn test -Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`
 
-- Para testar a Wallet é preciso informar só o `-Denv=`,
-os ambientes disponíveis se encontram em `src\test\resources\wallet.json`
+## Argumentos disponíveis
 
-- Para testar todo o projeto ignorando só os testes da Wallet é preciso
-adicionar -DexcludeWallet=true nos parametros do teste.
-Ex: `mvn test -Dtest=** -Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`
+- `-Dbrand`: Identificação de qual será a marca da execução dos testes.
+  - Valores disponíveis: `AlexandreBirman`/`Anacapri`/`Arezzo`/`Fiever`/`Owme`/`Schutz`/`Vans`/`Zzmall`
+  - Valores no arquivo: `src/test/resources/baseUrl.json`
+- `-Denv`: Identificação de qual será o ambiente de execução dos testes.
+  - Valores disponíveis: 
+    - OCC: `prd`/`hml`/`integ01`/`integ02`/`integ03`/`integ04`/`integ05`/`integ06`
+    - Valores no arquivo: `src/test/resources/baseUrl.json`
+    - Wallet: `dev`/`qa`
+    - Valores no arquivo: `src/test/resources/wallet.json`
+- `-DexcludeWallet`: Identificação se os cenários da **Wallet** devem ser executados.
+  - Valores disponiveis: `true`/`false`
 
-## Estrutura
+## Estrutura de arquivos
 
-##### DTOs: Objetos de resquest/response
-##### Fixtures: Objetos gerados com dados dinâmicos
-##### Handlers: Responsáveis por salvar os dados a serem manupulados de uma ou mais requisições
-##### Scenarios: Cenários de testes
-##### Services: Testes de cada serviço de forma isolada
-##### Utils: Utilitários para testes da respetiva API
-##### Validators: Validam se os dados retornados estão de acordo com o esperado
+- Common: Classes compartilhadas por mais uma API.
+- OCC: Classes utilizadas apenas para cenários de testes do Hybris OCC.
+- V3: Classes utilizadas apenas para cenários de testes da API V3 da Hybris.
+- Wallet: Classes utilizadas apenas para cenários de testes do API da Wallet, hospedada na Sensedia.
+- OtherServices: Classes utilizadas para cenários de testes de APIs menores.
 
-Os testes estão divididos conforme os projetos de APIs, sendo localizados dentro de `\src\java\`:
+## Padrões de Desenvolviemnto
 
-- CentralSeller
-  - DTOs
-  - Fixtures
-  - Handlers
-  - Scenarios
-  - Services
-  - Utils
-  - Validators
-- NovoEcommerce
-  - DTOs
-  - Fixtures
-  - Handlers
-  - Scenarios
-  - Services
-  - Utils
-  - Validators
-- OCC
-    - DTOs
-    - Fixtures
-    - Handlers
-    - Scenarios
-    - Services
-    - Utils
-    - Validators
-- Wallet
-    - DTOs
-    - Fixtures
-    - Handlers
-    - Scenarios
-    - Services
-    - Utils
-    - Validators
+### DTO
+Classe com definição dos objetos de request e response.
+<details>
+  <summary>Exemplo</summary>
+
+   ```
+public class ClassNameDTO extends AbstractDTO<ClassNameDTO> {
+
+	private String attribute;
+	private ClassNameChildDTO childAttribute;
+
+	public String getAttribute() {
+		return attribute;
+	}
+
+	public void setAttribute(String attribute) {
+		this.attribute = attribute;
+	}
+
+	public String getChildAttribute() {
+		return childAttribute;
+	}
+
+	public void setChildAttribute(String childAttribute) {
+		this.childAttribute = childAttribute;
+	}
+}
+   ```
+</details>
+
+### Fixture
+Classes responsáveis por criar DTOs com dados dinâmicos para os testes.
+<details>
+  <summary>Exemplo</summary>
+
+   ```
+public class ClassNameDTOFixture {
+
+	private ClassNameDTO classNameDTO;
+
+	public ClassNameDTOFixture() {
+		classNameDTO = new ClassNameDTO();
+		classNameDTO.setAttributo(RandomStringUtils.randomNumeric(6));
+		classNameDTO.setChildAttribute(new ClassNameChildDTOFixture().build());
+	}
+
+	public ClassNameDTO build() {
+		return classNameDTO;
+	}
+
+	public ClassNameDTOFixture withAttributeSomeValue() {
+		classNameDTO.setAttribute(someValue);
+		return this;
+	}
+	
+	public ClassNameDTOFixture withChildAttributeSomeValue() {
+		classNameDTO.setChildAttribute(someValue);
+		return this;
+	}
+}
+   ```
+</details>
+
+### Scenario
+Classes com os roteiros dos cenários de testes
+<details>
+  <summary>Exemplo</summary>
+
+   ```
+public class ClassName {
+
+	@BeforeEach
+	public void init() {
+		Utils.init();
+	}
+
+	@Test
+	public void someScenario() {
+		ClassName01Service.someTest();
+		ClassName02Service.someTest();
+	}
+}
+   ```
+</details>
+
+### Service
+Classes responsáveis pela definição de cada cenário de teste, sempre seguindo o padrão [AAA](https://medium.com/@alamonunes/teste-unit%C3%A1rio-e-o-padr%C3%A3o-aaa-arrange-act-assert-cb81d587368a).
+<details>
+  <summary>Exemplo</summary>
+
+   ```
+public class ClassNameService {
+
+	public static void someTest() {
+		ClassNameDTO classNameDTO = new ClassNameDTOFixture().withAttributeSomeValue().build();
+
+		Response response = APIClient.POST_someRequest(classNameDTO);
+
+		List<Validator> validators = Arrays.asList(new StatusCodeValidator(), new Some01Validator(), new Some02Validator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+	}
+	
+	public static void someTestWithHandleValues() {
+		ClassNameDTO classNameDTO = new ClassNameDTOFixture().withAttributeSomeValue().build();
+
+		Response response = APIClient.POST_someRequest(classNameDTO);
+
+		List<Validator> validators = Arrays.asList(new StatusCodeValidator(), new Some01Validator(), new Some02Validator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		
+		handleSomeValue(classNameDTO, response);
+	}
+}
+   ```
+</details>
+
+### Validator
+Classes responsáveis por validar se os dados respondidos estão de acordo com o esperado.
+<details>
+  <summary>Exemplo</summary>
+
+   ```
+public class SomeValidator implements Validator {
+
+	@Override
+	public boolean validate(Response response) {
+		ClassNameDTO classNameDTO = new ClassNameDTO().fromJsonString(response.getBody().asString());
+
+		Assertions.assertNotNull(classNameDTO.getAttribute());
+		Assertions.assertEquals(someValue, classNameDTO.getAttribute());
+
+		return true;
+	}
+}
+   ```
+</details>
+
+### APIClient
+Classe responsável pela definição de cada serviço a ser requisitado para a API.
+<details>
+  <summary>Exemplo</summary>
+
+   ```
+public class APIClient {
+
+    public static Response POST_someRequest(ClassNameDTO requestDTO) {
+        RestAssured.baseURI = Utils.getBaseUrl();
+
+        RequestSpecification request = RestAssured.given();
+        request.contentType(ContentType.JSON);
+        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Cookie",Utils.getCookies());
+
+        request.body(requestDTO.toJson().toString());
+
+        Response response = request.post("/arezzocoocc/v2/" + Utils.getSite_UID() + "/something/something");
+        response.getBody().print();
+
+        Utils.setCookies(response.getCookies());
+
+        return response;
+    }
+    
+    public static Response GET_someRequest(ClassNameDTO requestDTO) {
+        RestAssured.baseURI = Utils.getBaseUrl();
+
+        RequestSpecification request = RestAssured.given();
+        request.contentType(ContentType.JSON);
+        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Cookie",Utils.getCookies());
+
+        request.queryParams(requestDTO.toMap());
+
+        Response response = request.get("/arezzocoocc/v2/" + Utils.getSite_UID() + "/something/something");
+        response.getBody().print();
+
+        Utils.setCookies(response.getCookies());
+
+        return response;
+    }
+}
+   ```
+</details>
+
+### Handler
+Classes responsáveis por salvar os dados a serem manupulados durante a execução dos testes.
+
+### Util
+Classes utilitárias para a execução dos testes de cada API.
