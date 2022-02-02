@@ -2,10 +2,8 @@ package OCC.Services;
 
 import Common.Validators.StatusCodeOKValidator;
 import Common.Validators.Validator;
-import OCC.DTOs.ProductCategorySearchPageRequestDTO;
 import OCC.Fixtures.ProductCategorySearchPageRequestDTOFixture;
 import OCC.Utils.APIClient;
-import OCC.Utils.Utils;
 import OCC.Validators.ProductImagesValidator;
 import OCC.Validators.ProductNameValidator;
 import OCC.Validators.ProductValueValidator;
