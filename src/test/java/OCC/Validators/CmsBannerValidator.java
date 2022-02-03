@@ -15,7 +15,7 @@ public class CmsBannerValidator implements Validator {
         cmsPageResponseDTO.getContentSlots().getContentSlot().forEach(contentSlot -> {
             if (contentSlot.getPosition().equals("SectionVideo")){
                 contentSlot.getComponents().getComponent().forEach(component -> {
-                    Assertions.assertNotNull(component.getUrl());
+                    Assertions.assertFalse(component.getUrl().isEmpty());
                 });
             }
         });
