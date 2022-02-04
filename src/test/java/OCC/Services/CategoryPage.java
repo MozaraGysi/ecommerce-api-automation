@@ -34,7 +34,7 @@ public class CategoryPage {
 
         Response response = APIClient.GET_product(productCategorySearchPageRequestDTO);
 
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductImagesValidator(), new ProductNameValidator(), new ProductValueValidator());
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductImagesValidator(), new ProductValueValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
     }
