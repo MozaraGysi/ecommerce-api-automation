@@ -21,10 +21,10 @@ import java.util.List;
 
 public class CreditPointsService {
 
-	public static void creditPoints() {
+	public static void postCreditPoints() {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().build();
 
-		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+		Response response = APIClient.postCreditpoints(creditPointsRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -32,10 +32,10 @@ public class CreditPointsService {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
-	public static void creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO() {
+	public static void postCreditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO() {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().type_QUANTIDADE_DE_PONTOS().build();
 
-		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+		Response response = APIClient.postCreditpoints(creditPointsRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -43,13 +43,13 @@ public class CreditPointsService {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
-	public static void creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(int index) {
+	public static void postCreditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(int index) {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture()
 				.withOrder(Utils.getCreditPoints().get(index).getRequestDTO().getOrder())
 				.type_VALOR_MONETARIO()
 				.build();
 
-		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+		Response response = APIClient.postCreditpoints(creditPointsRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -57,10 +57,10 @@ public class CreditPointsService {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
-	public static void creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE() {
+	public static void postCreditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE() {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().type_VALOR_MONETARIO().status_PENDENTE().build();
 
-		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+		Response response = APIClient.postCreditpoints(creditPointsRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -68,10 +68,10 @@ public class CreditPointsService {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
-	public static void creditPointsWithoutOrder() {
+	public static void postCreditPointsWithoutOrder() {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().withoutOrder().build();
 
-		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+		Response response = APIClient.postCreditpoints(creditPointsRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -79,10 +79,10 @@ public class CreditPointsService {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
-	public static void creditPointsToReturnLastDebit() {
+	public static void postCreditPointsToReturnLastDebit() {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().returnLastDebitPoints().build();
 
-		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+		Response response = APIClient.postCreditpoints(creditPointsRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -90,10 +90,10 @@ public class CreditPointsService {
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
 
-	public static void creditPointsWithoutAuthentication() {
+	public static void postCreditPointsWithoutAuthentication() {
 		CreditPointsRequestDTO creditPointsRequestDTO = new CreditPointsRequestDTOFixture().build();
 
-		Response response = APIClient.POST_creditPoints(creditPointsRequestDTO.toJson());
+		Response response = APIClient.postCreditpoints(creditPointsRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -102,7 +102,7 @@ public class CreditPointsService {
 	public static void deleteCreditPoints() {
 		DeleteCreditPointsRequestDTO deleteCreditPointsRequestDTO = new DeleteCreditPointsRequestDTOFixture().build();
 
-		Response response = APIClient.DELETE_creditPoints(deleteCreditPointsRequestDTO.toJson());
+		Response response = APIClient.deleteCreditpoints(deleteCreditPointsRequestDTO.toJson());
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new DeleteCreditPointsValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));

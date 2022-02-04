@@ -23,8 +23,8 @@ public class ExpirePoints {
 	@Test
 	public void getExpirePointsWithCustomersWithExpirePoints() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		ExpirePointsService.getExpirePointsWithCustomersWithExpirePoints();
 	}
@@ -32,19 +32,19 @@ public class ExpirePoints {
 	@Test
 	public void getExpirePointsWithCustomersWithPartialExpirePoints() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.debitPointsWithTypeQUANTIDADE_DE_PONTOS();
+		DebitPointsService.postDebitPointsWithTypeQUANTIDADE_DE_PONTOS();
 		ExpirePointsService.getExpirePointsWithCustomersWithExpirePoints();
 	}
 
 	@Test
 	public void getExpirePointsWithCustomersWithTwoTransactionsExpireAtSameDay() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
-		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
+		CreditPointsService.postCreditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		ExpirePointsService.getExpirePointsWithCustomersWithExpirePoints();
 	}

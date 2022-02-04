@@ -17,15 +17,15 @@ public class Points {
 	@Test
 	public void getPointsWithoutTransactions() {
 		AuthService.getToken();
-		CustomerService.newUser();
+		CustomerService.postNewUser();
 		PointsService.getPointsWithoutTransactions();
 	}
 
 	@Test
 	public void getPointsWithoutTransactionsAndCreditTransactionStatusPENDENTE() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPoints();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		PointsService.getPointsWithoutTransactions();
 	}
@@ -33,10 +33,10 @@ public class Points {
 	@Test
 	public void getPointsWithTransactions() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPoints();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.debitPoints();
+		DebitPointsService.postDebitPoints();
 		PointsService.getPoints();
 	}
 
