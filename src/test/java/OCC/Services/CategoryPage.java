@@ -5,7 +5,6 @@ import Common.Validators.Validator;
 import OCC.DTOs.ProductCategorySearchPageRequestDTO;
 import OCC.Fixtures.ProductCategorySearchPageRequestDTOFixture;
 import OCC.Utils.APIClient;
-import OCC.Utils.Utils;
 import OCC.Validators.ProductImagesValidator;
 import OCC.Validators.ProductNameValidator;
 import OCC.Validators.ProductValueValidator;
@@ -21,7 +20,9 @@ public class CategoryPage {
 
     public static void GET_searchProductsByCode() {
 
-        Response response = APIClient.GET_product(new ProductCategorySearchPageRequestDTOFixture().defaultRequestByCode().build());
+        ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO =  new ProductCategorySearchPageRequestDTOFixture().defaultRequestByCode().build();
+
+        Response response = APIClient.GET_product(productCategorySearchPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductNameValidator(), new ProductValueValidator(), new ProductImagesValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -29,9 +30,11 @@ public class CategoryPage {
 
     public static void GET_searchProductsWithoutFilters() {
 
-        Response response = APIClient.GET_product(new ProductCategorySearchPageRequestDTOFixture().defaultRequestFull().build());
+        ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO = new ProductCategorySearchPageRequestDTOFixture().defaultRequestFull().build();
 
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductImagesValidator(), new ProductNameValidator(), new ProductValueValidator());
+        Response response = APIClient.GET_product(productCategorySearchPageRequestDTO);
+
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductImagesValidator(), new ProductValueValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
     }
