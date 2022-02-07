@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 
 import java.util.Map;
 
-public class PaymentResponseDTO extends AbstractWalletRequestDTO<PaymentResponseDTO> {
+public class PaymentResponseDTO extends AbstractWalletResponseDTO<PaymentResponseDTO> {
 
 	private String type;
 	private String amount;

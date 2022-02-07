@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ItemResponseDTO extends AbstractWalletRequestDTO<ItemResponseDTO> {
+public class ItemResponseDTO extends AbstractWalletResponseDTO<ItemResponseDTO> {
 
 	private String id;
 	private String sku;

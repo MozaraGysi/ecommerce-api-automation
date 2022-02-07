@@ -9,7 +9,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class OrderResponseDTO extends AbstractWalletRequestDTO<OrderResponseDTO> {
+public class OrderResponseDTO extends AbstractWalletResponseDTO<OrderResponseDTO> {
 
 	private String id;
 	private float totalPrice;
