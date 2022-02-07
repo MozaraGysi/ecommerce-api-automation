@@ -7,27 +7,27 @@ import org.junit.jupiter.api.Test;
 public class Login {
 
     @Test
-    public void searchOptionsByEmail(){
+    public void searchOptionsListByEmail(){
         AuthorizationPage.AnonymousAuth();
-        LoginPage.GET_searchListByEmail();
+        LoginPage.GET_searchOptionsListByEmail();
     }
 
     @Test
-    public void searchOptionsByWrongEmail(){
+    public void searchOptionsListByWrongEmail(){
         AuthorizationPage.AnonymousAuth();
-        LoginPage.GET_searchListByWrongEmail();
+        LoginPage.GET_searchOptionsListByWrongEmail();
     }
 
     @Test
     public void requestPasswordChangeByOption(){
         AuthorizationPage.AnonymousAuth();
-        LoginPage.POST_searchRequestPasswordChangeByOption();
+        LoginPage.POST_RequestPasswordChangeByOption();
     }
 
     @Test
-    public void requestPasswordChangeByOptionWrong(){
+    public void requestPasswordChangeByWrongOption(){
         AuthorizationPage.AnonymousAuth();
-        LoginPage.POST_searchRequestPasswordChangeByWrongOption();
+        LoginPage.POST_RequestPasswordChangeByWrongOption();
     }
 
     @Test

@@ -16,27 +16,27 @@ import java.util.List;
 
 public class LoginPage {
 
-    public static void GET_searchListByEmail() {
+    public static void GET_searchOptionsListByEmail() {
 
         LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultRequestByEmail().build();
 
-        Response response = APIClient.GET_list(loginPageRequestDTO);
+        Response response = APIClient.GET_optionslist(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new RecoverOptionEmailValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void GET_searchListByWrongEmail() {
+    public static void GET_searchOptionsListByWrongEmail() {
 
         LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultRequestByWrongEmail().build();
 
-        Response response = APIClient.GET_list(loginPageRequestDTO);
+        Response response = APIClient.GET_optionslist(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void POST_searchRequestPasswordChangeByOption() {
+    public static void POST_RequestPasswordChangeByOption() {
 
         LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultPasswordOptionRequestByEmail().build();
 
@@ -46,7 +46,7 @@ public class LoginPage {
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void POST_searchRequestPasswordChangeByWrongOption() {
+    public static void POST_RequestPasswordChangeByWrongOption() {
 
         LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultPasswordOptionRequestByWrongEmail().build();
 

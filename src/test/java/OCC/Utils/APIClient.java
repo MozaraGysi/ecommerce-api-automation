@@ -27,7 +27,7 @@ public class APIClient {
         return response;
     }
 
-    public static Response GET_list(LoginPageRequestDTO requestDTO) {
+    public static Response GET_optionslist(LoginPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
