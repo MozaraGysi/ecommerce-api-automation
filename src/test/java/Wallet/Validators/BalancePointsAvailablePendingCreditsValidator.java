@@ -1,7 +1,7 @@
 package Wallet.Validators;
 
 import Common.Validators.Validator;
-import Wallet.DTOs.BalancePointsResponseDTO;
+import Wallet.DTOs.Response.BalancePointsResponseDTO;
 import Wallet.Utils.Utils;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;

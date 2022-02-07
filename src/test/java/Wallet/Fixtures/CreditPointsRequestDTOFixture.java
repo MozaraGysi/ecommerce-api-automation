@@ -1,6 +1,6 @@
 package Wallet.Fixtures;
 
-import Wallet.DTOs.CreditPointsRequestDTO;
+import Wallet.DTOs.Request.CreditPointsRequestDTO;
 import Wallet.DTOs.OrderDTO;
 import Wallet.Enums.CreditPointsTypeEnum;
 import Wallet.Enums.CreditTransactionStatusEnum;

@@ -1,14 +1,14 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Response;
 
-import com.google.gson.Gson;
+import Wallet.DTOs.AbstractWalletDTO;
 import com.google.gson.JsonObject;
 
-public class DebitPointsResponseDTO extends AbstractWalletDTO<DebitPointsResponseDTO>{
+public class CreditPointsResponseDTO extends AbstractWalletDTO<CreditPointsResponseDTO> {
 
 	private String transactionId;
 
 	@Override
-	public DebitPointsResponseDTO fromJsonString(String jsonString) {
+	public CreditPointsResponseDTO fromJsonString(String jsonString) {
 		return super.fromJsonString(jsonString);
 	}
 

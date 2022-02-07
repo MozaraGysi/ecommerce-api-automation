@@ -1,7 +1,7 @@
 package Wallet.Validators;
 
 import Common.Validators.Validator;
-import Wallet.DTOs.PointsResponseDTO;
+import Wallet.DTOs.Response.PointsResponseDTO;
 import Wallet.DTOs.StatementDTO;
 import Wallet.Enums.StatementStatusEnum;
 import Wallet.Enums.StatementTypeEnum;

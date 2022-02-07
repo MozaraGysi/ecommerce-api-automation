@@ -1,6 +1,7 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Response;
 
-import com.google.gson.Gson;
+import Wallet.DTOs.AbstractWalletDTO;
+import Wallet.DTOs.AmountDTO;
 import com.google.gson.JsonObject;
 
 public class BalancePointsResponseDTO extends AbstractWalletDTO<BalancePointsResponseDTO> {

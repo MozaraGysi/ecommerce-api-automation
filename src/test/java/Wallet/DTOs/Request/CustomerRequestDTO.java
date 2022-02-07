@@ -1,6 +1,6 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Request;
 
-import com.google.gson.Gson;
+import Wallet.DTOs.AbstractWalletDTO;
 import com.google.gson.JsonObject;
 
 public class CustomerRequestDTO extends AbstractWalletDTO<CustomerRequestDTO> {
