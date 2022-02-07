@@ -17,7 +17,7 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
 - Seleciona uma versão do java 8
 - Remove o `-ea` e coloque `-Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`.
   - Se for outra marca ou ambiente, deve utilizar os listados na seção **Argumentos disponíveis**.
-- Escolher o método que quer rodar, os testes se encontram em `ssrc/test/java/OCC/Scenarios/...`
+- Escolher o método que quer rodar, os testes se encontram em `src/test/java/OCC/Scenarios/...`
 - Salve e rode o teste
 
 ### Por linha de comando
@@ -34,6 +34,8 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
   - Valores disponíveis: 
     - OCC: `prd`/`hml`/`integ01`/`integ02`/`integ03`/`integ04`/`integ05`/`integ06`
     - Valores no arquivo: `src/test/resources/baseUrl.json`
+- `-DwalletEnv:` Identificação de qual será o ambiente de execução dos testes da wallet.
+  - Valores disponíveis:
     - Wallet: `dev`/`qa`
     - Valores no arquivo: `src/test/resources/wallet.json`
 - `-DexcludeWallet`: Identificação se os cenários da **Wallet** devem ser executados.
@@ -41,11 +43,11 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
 
 ## Estrutura de arquivos
 
-- Common: Classes compartilhadas por mais uma API.
-- OCC: Classes utilizadas apenas para cenários de testes do Hybris OCC.
-- V3: Classes utilizadas apenas para cenários de testes da API V3 da Hybris.
-- Wallet: Classes utilizadas apenas para cenários de testes do API da Wallet, hospedada na Sensedia.
-- OtherServices: Classes utilizadas para cenários de testes de APIs menores.
+- **Common**: Classes compartilhadas por mais uma API.
+- **OCC**: Classes utilizadas apenas para cenários de testes do Hybris OCC.
+- **V3**: Classes utilizadas apenas para cenários de testes da API V3 da Hybris.
+- **Wallet**: Classes utilizadas apenas para cenários de testes do API da Wallet, hospedada na Sensedia.
+- **OtherServices**: Classes utilizadas para cenários de testes de APIs menores.
 
 ## Padrões de Desenvolviemnto
 
