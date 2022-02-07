@@ -1,7 +1,5 @@
 package Wallet.DTOs.Request;
 
-import Wallet.DTOs.AbstractWalletDTO;
-import Wallet.DTOs.OrderDTO;
 import Wallet.Enums.DebitPointsTypeEnum;
 import com.google.gson.JsonObject;
 
@@ -9,14 +7,14 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
 
-public class DebitPointsRequestDTO extends AbstractWalletDTO<DebitPointsRequestDTO> {
+public class DebitPointsRequestDTO extends AbstractWalletRequestDTO<DebitPointsRequestDTO> {
 
 	private String document;
 	private float amount;
 	private String type;
 	private String status;
 	private String dateTime;
-	private OrderDTO order;
+	private OrderRequestDTO order;
 	private Map<String, Object> extra;
 
 	@Override
@@ -68,11 +66,11 @@ public class DebitPointsRequestDTO extends AbstractWalletDTO<DebitPointsRequestD
 		this.dateTime = dateTime;
 	}
 
-	public OrderDTO getOrder() {
+	public OrderRequestDTO getOrder() {
 		return order;
 	}
 
-	public void setOrder(OrderDTO order) {
+	public void setOrder(OrderRequestDTO order) {
 		this.order = order;
 	}
 

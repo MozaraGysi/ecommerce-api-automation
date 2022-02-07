@@ -1,21 +1,21 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Request;
 
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class OrderDTO extends AbstractWalletDTO<OrderDTO>{
+public class OrderRequestDTO extends AbstractWalletRequestDTO<OrderRequestDTO> {
 
 	private String id;
 	private float totalPrice;
-	private ArrayList<ItemDTO> items;
-	private ArrayList<PaymentDTO> payments;
-	private AddressDTO address;
+	private ArrayList<ItemRequestDTO> items;
+	private ArrayList<PaymentRequestDTO> payments;
+	private AddressRequestDTO address;
 	private Map<String, Object> extra;
 
 	@Override
-	public OrderDTO fromJsonString(String jsonString) {
+	public OrderRequestDTO fromJsonString(String jsonString) {
 		return super.fromJsonString(jsonString);
 	}
 
@@ -40,27 +40,27 @@ public class OrderDTO extends AbstractWalletDTO<OrderDTO>{
 		this.totalPrice = totalPrice;
 	}
 
-	public ArrayList<ItemDTO> getItems() {
+	public ArrayList<ItemRequestDTO> getItems() {
 		return items;
 	}
 
-	public void setItems(ArrayList<ItemDTO> items) {
+	public void setItems(ArrayList<ItemRequestDTO> items) {
 		this.items = items;
 	}
 
-	public ArrayList<PaymentDTO> getPayments() {
+	public ArrayList<PaymentRequestDTO> getPayments() {
 		return payments;
 	}
 
-	public void setPayments(ArrayList<PaymentDTO> payments) {
+	public void setPayments(ArrayList<PaymentRequestDTO> payments) {
 		this.payments = payments;
 	}
 
-	public AddressDTO getAddress() {
+	public AddressRequestDTO getAddress() {
 		return address;
 	}
 
-	public void setAddress(AddressDTO address) {
+	public void setAddress(AddressRequestDTO address) {
 		this.address = address;
 	}
 

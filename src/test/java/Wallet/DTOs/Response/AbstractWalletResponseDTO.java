@@ -1,11 +1,11 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Response;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.lang.reflect.Type;
 
-public abstract class AbstractWalletDTO<T> {
+public abstract class AbstractWalletResponseDTO<T> {
 	public T fromJsonString(String jsonString) {
 		return new Gson().fromJson(jsonString, (Type) getClass());
 	}

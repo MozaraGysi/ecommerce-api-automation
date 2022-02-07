@@ -1,7 +1,7 @@
 package Wallet.Validators;
 
 import Common.Validators.Validator;
-import Wallet.DTOs.ExpirePointsDTO;
+import Wallet.DTOs.Response.CustomerExpirePointsResponseDTO;
 import Wallet.DTOs.Response.ExpirePointsResponseDTO;
 import Wallet.Utils.Utils;
 import io.restassured.response.Response;
@@ -19,7 +19,7 @@ public class ExpirePointsWithCustomersWithExpirePointsValidator implements Valid
 
 		Assertions.assertTrue(CollectionUtils.isNotEmpty(expirePointsResponseDTO.getCustomers()));
 
-		List<ExpirePointsDTO> customerExpirePoints = expirePointsResponseDTO.getCustomers()
+		List<CustomerExpirePointsResponseDTO> customerExpirePoints = expirePointsResponseDTO.getCustomers()
 				.stream()
 				.filter(customer -> customer.getDocument().equals(Utils.getCPF()))
 				.collect(Collectors.toList());

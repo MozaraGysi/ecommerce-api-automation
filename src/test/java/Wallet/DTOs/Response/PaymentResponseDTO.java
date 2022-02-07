@@ -1,10 +1,11 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Response;
 
+import Wallet.DTOs.Request.AbstractWalletRequestDTO;
 import com.google.gson.JsonObject;
 
 import java.util.Map;
 
-public class PaymentDTO extends AbstractWalletDTO<PaymentDTO>{
+public class PaymentResponseDTO extends AbstractWalletRequestDTO<PaymentResponseDTO> {
 
 	private String type;
 	private String amount;
@@ -12,7 +13,7 @@ public class PaymentDTO extends AbstractWalletDTO<PaymentDTO>{
 	private Map extra;
 
 	@Override
-	public PaymentDTO fromJsonString(String jsonString) {
+	public PaymentResponseDTO fromJsonString(String jsonString) {
 		return super.fromJsonString(jsonString);
 	}
 

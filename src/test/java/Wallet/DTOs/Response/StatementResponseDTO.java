@@ -1,8 +1,8 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Response;
 
 import com.google.gson.JsonObject;
 
-public class StatementDTO extends AbstractWalletDTO<StatementDTO>{
+public class StatementResponseDTO extends AbstractWalletResponseDTO<StatementResponseDTO> {
 
 	private String transactionId;
 	private String cancelTransactionId;
@@ -12,10 +12,10 @@ public class StatementDTO extends AbstractWalletDTO<StatementDTO>{
 	private String dateTime;
 	private String expireAt;
 	private String description;
-	private OrderDTO order;
+	private OrderResponseDTO order;
 
 	@Override
-	public StatementDTO fromJsonString(String jsonString) {
+	public StatementResponseDTO fromJsonString(String jsonString) {
 		return super.fromJsonString(jsonString);
 	}
 
@@ -88,11 +88,11 @@ public class StatementDTO extends AbstractWalletDTO<StatementDTO>{
 		this.description = description;
 	}
 
-	public OrderDTO getOrder() {
+	public OrderResponseDTO getOrder() {
 		return order;
 	}
 
-	public void setOrder(OrderDTO order) {
+	public void setOrder(OrderResponseDTO order) {
 		this.order = order;
 	}
 }

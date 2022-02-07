@@ -1,14 +1,12 @@
 package Wallet.DTOs.Response;
 
-import Wallet.DTOs.AbstractWalletDTO;
-import Wallet.DTOs.ExpirePointsDTO;
 import com.google.gson.JsonObject;
 
 import java.util.List;
 
-public class ExpirePointsResponseDTO extends AbstractWalletDTO<ExpirePointsResponseDTO> {
+public class ExpirePointsResponseDTO extends AbstractWalletResponseDTO<ExpirePointsResponseDTO> {
 
-	private List<ExpirePointsDTO> customers;
+	private List<CustomerExpirePointsResponseDTO> customers;
 
 	@Override
 	public ExpirePointsResponseDTO fromJsonString(String jsonString) {
@@ -20,11 +18,11 @@ public class ExpirePointsResponseDTO extends AbstractWalletDTO<ExpirePointsRespo
 		return super.toJson();
 	}
 
-	public List<ExpirePointsDTO> getCustomers() {
+	public List<CustomerExpirePointsResponseDTO> getCustomers() {
 		return customers;
 	}
 
-	public void setCustomers(List<ExpirePointsDTO> customers) {
+	public void setCustomers(List<CustomerExpirePointsResponseDTO> customers) {
 		this.customers = customers;
 	}
 }

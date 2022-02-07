@@ -1,17 +1,14 @@
 package Wallet.DTOs.Response;
 
-import Wallet.DTOs.AbstractWalletDTO;
-import Wallet.DTOs.BalanceAmountDTO;
-import Wallet.DTOs.StatementDTO;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
-public class PointsResponseDTO extends AbstractWalletDTO<PointsResponseDTO> {
+public class PointsResponseDTO extends AbstractWalletResponseDTO<PointsResponseDTO> {
 
 	private String document;
-	private BalanceAmountDTO balance;
-	private ArrayList<StatementDTO> statements = new ArrayList<>();
+	private BalanceAmountResponseDTO balance;
+	private ArrayList<StatementResponseDTO> statements = new ArrayList<>();
 
 	@Override
 	public PointsResponseDTO fromJsonString(String jsonString) {
@@ -31,19 +28,19 @@ public class PointsResponseDTO extends AbstractWalletDTO<PointsResponseDTO> {
 		this.document = document;
 	}
 
-	public BalanceAmountDTO getBalance() {
+	public BalanceAmountResponseDTO getBalance() {
 		return balance;
 	}
 
-	public void setBalance(BalanceAmountDTO balance) {
+	public void setBalance(BalanceAmountResponseDTO balance) {
 		this.balance = balance;
 	}
 
-	public ArrayList<StatementDTO> getStatements() {
+	public ArrayList<StatementResponseDTO> getStatements() {
 		return statements;
 	}
 
-	public void setStatements(ArrayList<StatementDTO> statements) {
+	public void setStatements(ArrayList<StatementResponseDTO> statements) {
 		this.statements = statements;
 	}
 }

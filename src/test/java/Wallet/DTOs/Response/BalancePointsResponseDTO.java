@@ -1,14 +1,12 @@
 package Wallet.DTOs.Response;
 
-import Wallet.DTOs.AbstractWalletDTO;
-import Wallet.DTOs.AmountDTO;
 import com.google.gson.JsonObject;
 
-public class BalancePointsResponseDTO extends AbstractWalletDTO<BalancePointsResponseDTO> {
+public class BalancePointsResponseDTO extends AbstractWalletResponseDTO<BalancePointsResponseDTO> {
 
 	private String document;
 	private String lastDateTime;
-	private AmountDTO amount;
+	private AmountResponseDTO amount;
 
 	@Override
 	public BalancePointsResponseDTO fromJsonString(String jsonString) {
@@ -36,11 +34,11 @@ public class BalancePointsResponseDTO extends AbstractWalletDTO<BalancePointsRes
 		this.lastDateTime = lastDateTime;
 	}
 
-	public AmountDTO getAmount() {
+	public AmountResponseDTO getAmount() {
 		return amount;
 	}
 
-	public void setAmount(AmountDTO amount) {
+	public void setAmount(AmountResponseDTO amount) {
 		this.amount = amount;
 	}
 }
