@@ -22,7 +22,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response getBalancepoints(String document) {
+	public static Response getBalancePoints(String document) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -48,7 +48,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response postCreditpoints(JsonObject requestBody) {
+	public static Response postCreditPoints(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -62,7 +62,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response deleteCreditpoints(JsonObject requestBody) {
+	public static Response deleteCreditPoints(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -76,7 +76,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response getCredittransactions(String transactionId) {
+	public static Response getCreditTransactions(String transactionId) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -89,7 +89,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response postDebitpoints(JsonObject requestBody) {
+	public static Response postDebitPoints(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -103,7 +103,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response deleteDebitpoints(JsonObject requestBody) {
+	public static Response deleteDebitPoints(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -117,7 +117,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response getExpirepoints(String expireAt) {
+	public static Response getExpirePoints(String expireAt) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
