@@ -14,7 +14,7 @@ public class ItemRequestDTO extends AbstractWalletRequestDTO<ItemRequestDTO> {
 	private String originalPrice;
 	private float quantity;
 	private String brand;
-	private ArrayList<CategorieRequestDTO> categories = new ArrayList<>();
+	private ArrayList<CategoryRequestDTO> categories = new ArrayList<>();
 	private String imageUrl;
 	private Map<String, Object> extra;
 
@@ -84,11 +84,11 @@ public class ItemRequestDTO extends AbstractWalletRequestDTO<ItemRequestDTO> {
 		this.brand = brand;
 	}
 
-	public ArrayList<CategorieRequestDTO> getCategories() {
+	public ArrayList<CategoryRequestDTO> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(ArrayList<CategorieRequestDTO> categories) {
+	public void setCategories(ArrayList<CategoryRequestDTO> categories) {
 		this.categories = categories;
 	}
 

@@ -1,7 +1,6 @@
 package Wallet.DTOs.Response;
 
 import Wallet.DTOs.Request.AbstractWalletRequestDTO;
-import Wallet.DTOs.Request.CategorieRequestDTO;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
