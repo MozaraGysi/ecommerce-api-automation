@@ -14,7 +14,7 @@ public class ItemResponseDTO extends AbstractWalletResponseDTO<ItemResponseDTO> 
 	private String originalPrice;
 	private float quantity;
 	private String brand;
-	private ArrayList<CategorieResponseDTO> categories = new ArrayList<>();
+	private ArrayList<CategoryResponseDTO> categories = new ArrayList<>();
 	private String imageUrl;
 	private Map<String, Object> extra;
 
@@ -84,11 +84,11 @@ public class ItemResponseDTO extends AbstractWalletResponseDTO<ItemResponseDTO> 
 		this.brand = brand;
 	}
 
-	public ArrayList<CategorieResponseDTO> getCategories() {
+	public ArrayList<CategoryResponseDTO> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(ArrayList<CategorieResponseDTO> categories) {
+	public void setCategories(ArrayList<CategoryResponseDTO> categories) {
 		this.categories = categories;
 	}
 
