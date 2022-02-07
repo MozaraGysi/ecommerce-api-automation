@@ -1,11 +1,12 @@
 package Wallet.DTOs.Response;
 
+import Wallet.DTOs.AbstractWalletDTO;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class OrderResponseDTO extends AbstractWalletResponseDTO<OrderResponseDTO> {
+public class OrderResponseDTO extends AbstractWalletDTO<OrderResponseDTO> {
 
 	private String id;
 	private float totalPrice;

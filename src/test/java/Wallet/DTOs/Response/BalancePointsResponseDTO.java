@@ -1,8 +1,9 @@
 package Wallet.DTOs.Response;
 
+import Wallet.DTOs.AbstractWalletDTO;
 import com.google.gson.JsonObject;
 
-public class BalancePointsResponseDTO extends AbstractWalletResponseDTO<BalancePointsResponseDTO> {
+public class BalancePointsResponseDTO extends AbstractWalletDTO<BalancePointsResponseDTO> {
 
 	private String document;
 	private String lastDateTime;

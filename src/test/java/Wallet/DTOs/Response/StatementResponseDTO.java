@@ -1,8 +1,9 @@
 package Wallet.DTOs.Response;
 
+import Wallet.DTOs.AbstractWalletDTO;
 import com.google.gson.JsonObject;
 
-public class StatementResponseDTO extends AbstractWalletResponseDTO<StatementResponseDTO> {
+public class StatementResponseDTO extends AbstractWalletDTO<StatementResponseDTO> {
 
 	private String transactionId;
 	private String cancelTransactionId;

@@ -1,5 +1,6 @@
 package Wallet.DTOs.Request;
 
+import Wallet.DTOs.AbstractWalletDTO;
 import Wallet.Enums.DebitPointsTypeEnum;
 import com.google.gson.JsonObject;
 
@@ -7,7 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
 
-public class DebitPointsRequestDTO extends AbstractWalletRequestDTO<DebitPointsRequestDTO> {
+public class DebitPointsRequestDTO extends AbstractWalletDTO<DebitPointsRequestDTO> {
 
 	private String document;
 	private float amount;
