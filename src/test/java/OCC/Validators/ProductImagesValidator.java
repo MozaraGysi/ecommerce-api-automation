@@ -6,8 +6,6 @@ import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 
-import java.util.ArrayList;
-
 public class ProductImagesValidator implements Validator {
     @Override
     public boolean validate(@NotNull Response response) {
