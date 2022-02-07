@@ -136,25 +136,27 @@ public class ClassName {
 
 ### Service
 Classes responsáveis pela definição de cada cenário de teste, sempre seguindo o padrão [AAA](https://medium.com/@alamonunes/teste-unit%C3%A1rio-e-o-padr%C3%A3o-aaa-arrange-act-assert-cb81d587368a).
+
+Utilizamos no prefixo o método HTTP para evidênciar a ação que será executada na api.
 <details>
   <summary>Exemplo</summary>
 
    ```
 public class ClassNameService {
 
-	public static void someTest() {
+	public static void postSomeTest() {
 		ClassNameDTO classNameDTO = new ClassNameDTOFixture().withAttributeSomeValue().build();
 
-		Response response = APIClient.POST_someRequest(classNameDTO);
+		Response response = APIClient.postSomeRequest(classNameDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeValidator(), new Some01Validator(), new Some02Validator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 	
-	public static void someTestWithHandleValues() {
+	public static void postSomeTestWithHandleValues() {
 		ClassNameDTO classNameDTO = new ClassNameDTOFixture().withAttributeSomeValue().build();
 
-		Response response = APIClient.POST_someRequest(classNameDTO);
+		Response response = APIClient.postSomeRequest(classNameDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeValidator(), new Some01Validator(), new Some02Validator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));

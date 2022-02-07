@@ -37,7 +37,7 @@ public class CreditTransactionsService {
 	}
 
 	public static void getCreditTransactionsWithoutAuthentication() {
-		Response response = APIClient.getCredittransactions("123");
+		Response response = APIClient.getCreditTransactions("123");
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -53,7 +53,7 @@ public class CreditTransactionsService {
 	}
 
 	private static void getCreditTransactionWithStatusPENDENTE(String transactionId) {
-		Response response = APIClient.getCredittransactions(transactionId);
+		Response response = APIClient.getCreditTransactions(transactionId);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CreditTransactionsWithStatusPENDENTEValidator(transactionId));
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -74,7 +74,7 @@ public class CreditTransactionsService {
 		boolean creditTransactionConfirmed = false;
 		int count = 0;
 		while (!creditTransactionConfirmed && count < 7) {
-			response = APIClient.getCredittransactions(transactionId);
+			response = APIClient.getCreditTransactions(transactionId);
 
 			CreditTransactionsResponseDTO creditTransactionsResponseDTO = new CreditTransactionsResponseDTO().fromJsonString(response.getBody().asString());
 			creditTransactionConfirmed = CreditTransactionStatusEnum.CONFIRMADO.getValue().equals(creditTransactionsResponseDTO.getStatus());
