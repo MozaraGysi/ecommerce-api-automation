@@ -1,5 +1,7 @@
 package OCC.DTOs;
 
+import Common.AbstractDTO;
+
 import java.util.List;
 
 public class ProductDTO extends AbstractDTO<ProductDTO> {

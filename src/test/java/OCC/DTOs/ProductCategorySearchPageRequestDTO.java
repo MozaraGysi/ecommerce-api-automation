@@ -1,5 +1,7 @@
 package OCC.DTOs;
 
+import Common.AbstractDTO;
+
 public class ProductCategorySearchPageRequestDTO extends AbstractDTO<ProductCategorySearchPageRequestDTO> {
 
     private String fields;

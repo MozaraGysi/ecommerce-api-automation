@@ -1,8 +1,10 @@
 package OCC.DTOs;
 
+import Common.AbstractDTO;
+
 import java.util.List;
 
-public class CmsPageContentSlotsResponseDTO extends AbstractDTO<CmsPageContentSlotsResponseDTO>{
+public class CmsPageContentSlotsResponseDTO extends AbstractDTO<CmsPageContentSlotsResponseDTO> {
     private List<ContentSlotResponseDTO> contentSlot;
 
     public List<ContentSlotResponseDTO> getContentSlot() {

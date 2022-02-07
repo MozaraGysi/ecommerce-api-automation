@@ -1,14 +1,14 @@
 package Wallet.DTOs;
 
+import Common.AbstractDTO;
 import Wallet.Enums.DebitPointsTypeEnum;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
 
-public class DebitPointsRequestDTO extends AbstractWalletDTO<DebitPointsRequestDTO>{
+public class DebitPointsRequestDTO extends AbstractDTO<DebitPointsRequestDTO> {
 
 	private String document;
 	private float amount;

@@ -1,9 +1,9 @@
 package Wallet.DTOs;
 
-import com.google.gson.Gson;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class CategorieDTO extends AbstractWalletDTO<CategorieDTO>{
+public class CategorieDTO extends AbstractDTO<CategorieDTO> {
 
 	private String id;
 	private String name;

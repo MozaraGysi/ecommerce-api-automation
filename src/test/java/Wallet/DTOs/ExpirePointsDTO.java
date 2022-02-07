@@ -1,9 +1,9 @@
 package Wallet.DTOs;
 
-import com.google.gson.Gson;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class ExpirePointsDTO extends AbstractWalletDTO<ExpirePointsDTO>{
+public class ExpirePointsDTO extends AbstractDTO<ExpirePointsDTO> {
 
 	private String document;
 	private Double amount;

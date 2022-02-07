@@ -1,6 +1,8 @@
 package OCC.DTOs;
 
-public class CmsPageResponseDTO extends AbstractDTO<CmsPageResponseDTO>{
+import Common.AbstractDTO;
+
+public class CmsPageResponseDTO extends AbstractDTO<CmsPageResponseDTO> {
     private CmsPageContentSlotsResponseDTO contentSlots;
 
     public CmsPageContentSlotsResponseDTO getContentSlots() {

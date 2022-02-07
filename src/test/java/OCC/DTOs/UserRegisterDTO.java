@@ -1,5 +1,7 @@
 package OCC.DTOs;
 
+import Common.AbstractDTO;
+
 public class UserRegisterDTO extends AbstractDTO<UserRegisterDTO> {
 
 	private String firstName;
