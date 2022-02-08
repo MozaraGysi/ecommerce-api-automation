@@ -1,10 +1,10 @@
-package OCC.Scenarios;
+package OCC.Tests;
 
 import OCC.Services.AuthorizationPage;
 import OCC.Services.CategoryPage;
 import org.junit.jupiter.api.Test;
 
-public class Products {
+public class ProductsTest {
 
     @Test
     public void searchProductsByProductCode(){

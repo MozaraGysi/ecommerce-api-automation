@@ -17,7 +17,7 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
 - Seleciona uma versão do java 8
 - Remove o `-ea` e coloque `-Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`.
   - Se for outra marca ou ambiente, deve utilizar os listados na seção **Argumentos disponíveis**.
-- Escolher o método que quer rodar, os testes se encontram em `ssrc/test/java/OCC/Scenarios/...`
+- Escolher o método que quer rodar, os testes se encontram em `src/test/java/OCC/Tests/...`
 - Salve e rode o teste
 
 ### Por linha de comando
@@ -112,13 +112,13 @@ public class ClassNameDTOFixture {
    ```
 </details>
 
-### Scenario
+### Tests
 Classes com os roteiros dos cenários de testes
 <details>
   <summary>Exemplo</summary>
 
    ```
-public class ClassName {
+public class ClassNameTest {
 
 	@BeforeEach
 	public void init() {
@@ -126,7 +126,7 @@ public class ClassName {
 	}
 
 	@Test
-	public void someScenario() {
+	public void someTest() {
 		ClassName01Service.someTest();
 		ClassName02Service.someTest();
 	}
