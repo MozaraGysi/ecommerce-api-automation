@@ -1,4 +1,4 @@
-package OCC.DTOs;
+package Common;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

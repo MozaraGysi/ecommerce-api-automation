@@ -1,5 +1,7 @@
 package OCC.DTOs;
 
+import Common.AbstractDTO;
+
 public class CreditCardDTO extends AbstractDTO<CreditCardDTO> {
 
 	private String cardNumber;

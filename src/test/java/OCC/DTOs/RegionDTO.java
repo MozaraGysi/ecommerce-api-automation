@@ -1,5 +1,7 @@
 package OCC.DTOs;
 
+import Common.AbstractDTO;
+
 public class RegionDTO extends AbstractDTO<RegionDTO> {
 
 	private String isocode;

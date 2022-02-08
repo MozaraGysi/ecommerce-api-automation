@@ -1,5 +1,7 @@
 package OCC.DTOs;
 
+import Common.AbstractDTO;
+
 public class CartDTO extends AbstractDTO<CartDTO> {
 
 	private ProductDTO product;

@@ -1,9 +1,9 @@
 package Wallet.DTOs;
 
-import com.google.gson.Gson;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class AmountDTO extends AbstractWalletDTO<AmountDTO>{
+public class AmountDTO extends AbstractDTO<AmountDTO> {
 
 	private float available;
 	private float pendingDebit;

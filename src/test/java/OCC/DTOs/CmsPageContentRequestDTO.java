@@ -1,6 +1,8 @@
 package OCC.DTOs;
 
-public class CmsPageContentRequestDTO extends AbstractDTO<CmsPageContentRequestDTO>{
+import Common.AbstractDTO;
+
+public class CmsPageContentRequestDTO extends AbstractDTO<CmsPageContentRequestDTO> {
     private String fields;
 
     public String getFields() {

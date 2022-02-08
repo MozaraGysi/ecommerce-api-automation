@@ -1,12 +1,12 @@
 package Wallet.DTOs;
 
-import com.google.gson.Gson;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ItemDTO extends AbstractWalletDTO<ItemDTO>{
+public class ItemDTO extends AbstractDTO<ItemDTO> {
 
 	private String id;
 	private String sku;
