@@ -1,6 +1,5 @@
 package Wallet.Utils;
 
-import Wallet.Utils.Utils;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -9,7 +8,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class APIClient {
 
-	public static Response POST_customers(JsonObject requestBody) {
+	public static Response postCustomers(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -23,7 +22,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response GET_balancePoints(String document) {
+	public static Response getBalancePoints(String document) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -36,7 +35,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response GET_points(String document) {
+	public static Response getPoints(String document) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -49,7 +48,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response POST_creditPoints(JsonObject requestBody) {
+	public static Response postCreditPoints(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -63,7 +62,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response DELETE_creditPoints(JsonObject requestBody) {
+	public static Response deleteCreditPoints(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -77,7 +76,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response GET_creditTransactions(String transactionId) {
+	public static Response getCreditTransactions(String transactionId) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -90,7 +89,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response POST_debitPoints(JsonObject requestBody) {
+	public static Response postDebitPoints(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -104,7 +103,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response DELETE_debitPoints(JsonObject requestBody) {
+	public static Response deleteDebitPoints(JsonObject requestBody) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();
@@ -118,7 +117,7 @@ public class APIClient {
 		return response;
 	}
 
-	public static Response GET_expirePoints(String expireAt) {
+	public static Response getExpirePoints(String expireAt) {
 		RestAssured.baseURI = Utils.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();

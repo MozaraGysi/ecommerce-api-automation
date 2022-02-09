@@ -17,12 +17,12 @@ public class CreditPoints {
 	@Test
 	public void creditPointsWithTypeVALOR_MONETARIO() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePointsWithPendingCredits();
 		PointsService.getPointsPending();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
@@ -31,8 +31,8 @@ public class CreditPoints {
 	@Test
 	public void creditPointsWithTypeQUANTIDADE_DE_PONTOS() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPointsWithTypeQUANTIDADE_DE_PONTOSAndStatusCONFIRMADO();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
@@ -41,8 +41,8 @@ public class CreditPoints {
 	@Test
 	public void creditPointsWithStatusPENDENTE() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePointsWithPendingCredits();
 		PointsService.getPointsPending();
@@ -51,8 +51,8 @@ public class CreditPoints {
 	@Test
 	public void creditPointsWithoutOrder() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPointsWithoutOrder();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPointsWithoutOrder();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
@@ -60,16 +60,16 @@ public class CreditPoints {
 
 	@Test
 	public void creditPointsWithoutAuthentication() {
-		CreditPointsService.creditPointsWithoutAuthentication();
+		CreditPointsService.postCreditPointsWithoutAuthentication();
 	}
 
 	@Test
 	public void doubleCreditPoints() {
 		AuthService.getToken();
-		CustomerService.newUser();
+		CustomerService.postNewUser();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
-		CreditPointsService.creditPoints();
+		CreditPointsService.postCreditPoints();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
@@ -78,11 +78,11 @@ public class CreditPoints {
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
-		CreditPointsService.creditPoints();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
-		CreditPointsService.creditPoints();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
@@ -94,38 +94,38 @@ public class CreditPoints {
 	@Test
 	public void doubleCreditPoints_typeVALOR_MONETARIO() {
 		AuthService.getToken();
-		CustomerService.newUser();
+		CustomerService.postNewUser();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(1);
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(1);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 	}
 
 	@Test
 	public void doubleCreditPointsPending_typeVALOR_MONETARIO() {
 		AuthService.getToken();
-		CustomerService.newUser();
+		CustomerService.postNewUser();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePointsWithPendingCredits();
 		PointsService.getPointsPending();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePointsWithPendingCredits();
 		PointsService.getPointsPending();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(1);
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(1);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
@@ -134,22 +134,22 @@ public class CreditPoints {
 	@Test
 	public void doubleCreditPointsPending_typeVALOR_MONETARIO_ChangeTheOrderOfConfirmations() {
 		AuthService.getToken();
-		CustomerService.newUser();
+		CustomerService.postNewUser();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePointsWithPendingCredits();
 		PointsService.getPointsPending();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusPENDENTE();
 		CreditTransactionsService.getPendingCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePointsWithPendingCredits();
 		PointsService.getPointsPending();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(1);
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(1);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
-		CreditPointsService.creditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
+		CreditPointsService.postCreditPointsWithTypeVALOR_MONETARIOAndStatusCONFIRMADOByOrderPendingIndex(0);
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
@@ -158,8 +158,8 @@ public class CreditPoints {
 	@Test
 	public void deleteCreditPoints() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPoints();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		CreditPointsService.deleteCreditPoints();
 	}
