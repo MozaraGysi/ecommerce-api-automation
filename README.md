@@ -1,6 +1,122 @@
 # E-Commerce API Automation
-
 Este é um projeto do time de e-commerce, com a finalidade de testar de forma automatizada suas APIs.
+
+### Padrões do GIT:
+<details>
+  <summary>Estrutura de branches</summary>
+
+```   
+ main
+  |
+  |
+  |_____ develop -> branch com o código que reflete o produto em atual desenvolvimento
+          |
+          |
+          |_______ feat/login -> branch de uma nova feature que será mergeada para a dev
+          |
+          |
+          |_______ fix/home-alignment -> branch de uma correção que será mergeada para a dev
+          |
+          |
+          |_______ refactor/user-state -> branch de um refactor que será mergeado para a dev
+          |
+          |
+          |_______ docs/define-git-default -> branch de uma inclusão de documentação que será mergeado na dev
+          |
+          |
+          |_______ revert/login -> branch de um código que foi implementado recentemente e terá que voltar ao seu estado anterior
+```
+Sendo assim para criar uma nova feature, corrigir um bug ou fazer um refactor 
+você sempre abrirá uma nova branch a partir da `develop`.
+```
+git checkout develop
+git pull
+git checkout -b <nome_da_sua_branch>
+```
+
+</details>
+
+<details>
+  <summary>Nomenclatura de branches</summary>
+
+Para criar um nova branch devemos seguir alguns padrões para preservar uma boa organização do repositório.
+O nome da sua branch sempre será composto por duas seções principais separados por uma `/`. São elas:
+
+**O tipo de tarefa feita na branch:**
+- **feat**: Nova feature
+- **fix**: Correção de bug
+- **refactor**: Mudanças no código que não são nem correção de bug nem novas features
+- **docs**: Inclusão ou mudanças na documentação
+- **revert**: Quando uma implementação recente precisa ser retornada ao seu estado anterior
+
+**O que está sendo feito na branch:**
+
+Nessa parte iremos ser um pouco mais específicos, que tipo de `feat`, `fix`,`refactor`, `docs` ou `revert` vocês está fazendo?
+Digamos que eu esteja fazendo a feature de login do usuário.
+Sendo assim, posso criar uma branch nomeada `feat/user-login`, tente ser objetivo e claro ao pensar neste nome.
+Outro ponto importante é que: nomes compostos devem ser sempre separados por `-` mantendo todas as letras em lowercase
+e sempre utilizando a lingua inglesa.
+
+</details>
+
+<details>
+  <summary>Nomenclatura das mensagens de commit</summary>
+
+Da mesma forma que as novas branches, as mensagens de commit também devem seguir um padrão predefinido.
+Todas elas devem conter um dos seguintes prefixos: `feat`,`fix`,`refactor`,`docs`, `revert`.
+
+- `feat`: Implementação de uma nova feature
+- `fix`: Correção de um bug
+- `refactor`: Mudanças no código que não são nem correção de bug nem novas features, normalmente mudanças relacionadas a estrutura do código
+- `docs`: Adições ou mudanças na documentação
+- `revert`: Quando algo que foi feito recentemente dentro da branch estiver sendo revertido para o seu estado anterior
+
+Após o prefixo seguido de `:` devemos detalhar melhor o que exatamente foi feito nos arquivos que estão sendo `commitados`.
+Seguindo o mesmo exemplo dado anteriormente, digamos que eu tenha feito a parte de chamar o endpoint de autenticação para buscar o `accessToken` e o `refreshToken`.
+A mensagem de commit poderia ser algo como: `Feat: Request access and refresh tokens`.
+
+**Boas práticas:**
+- Escrever mensagens de commit curtas com no máximo 50 caracteres
+- Escrever as mensagens sempre em inglês
+- Evitar muitas abreviações
+
+</details>
+
+<details>
+  <summary>Pull Requests</summary>
+
+Nessa etapa teremos que seguir algumas regras e padrões, conforme abaixo.
+
+**Título:**
+
+O título deve ser o nome da branch na qual você estava trabalhando no formato literal, `Feat: Nome da branch de forma literal`,
+pois dessa forma as mensagens de merge no histórico do git ficam limpas e claras. 
+
+Exemplo no histórico: `Merged PR 1085: Feat: Change wallet services methods name`.
+
+**Descrição:**
+
+Aqui você colocará o objetivo daquele PR, detalhes sobre as modificações feitas e pontos de atenção, caso existam,
+que devem ser observados durante o code review.
+
+**Reviewers:**
+
+Solicite o review de todos os membros que atuam no projeto da automação de api.
+
+**Work items to link:**
+
+Nesse campo do pull request você deve vincular a task relacionada.
+
+</details>
+
+<details>
+  <summary>Condições de Merge</summary>
+
+Um PR poderá ser mergeado após ter pelo menos 2 approves e nenhum `change request` ou comentários não resolvidos.
+Qualquer um pode fazer o merge desde que o PR atenda esses critérios.
+
+</details>
+
 ### APIs presentes nos testes:
 - Hybris | OCC
 - Hybris | V3
