@@ -17,10 +17,10 @@ public class DebitPointsTest {
 	@Test
 	public void debitPointsWithTypeQUANTIDADE_DE_PONTOS() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPoints();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.debitPointsWithTypeQUANTIDADE_DE_PONTOS();
+		DebitPointsService.postDebitPointsWithTypeQUANTIDADE_DE_PONTOS();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
 	}
@@ -28,10 +28,10 @@ public class DebitPointsTest {
 	@Test
 	public void debitPointsWithTypeVALOR_MONETARIO() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPoints();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.debitPointsWithTypeVALOR_MONETARIO();
+		DebitPointsService.postDebitPointsWithTypeVALOR_MONETARIO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
 	}
@@ -39,26 +39,26 @@ public class DebitPointsTest {
 	@Test
 	public void debitPointsWithoutOrder() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPoints();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.debitPointsWithoutOrder();
+		DebitPointsService.postDebitPointsWithoutOrder();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
 	}
 
 	@Test
 	public void debitPointsWithoutAuthentication() {
-		DebitPointsService.debitPointsWithoutAuthentication();
+		DebitPointsService.postDebitPointsWithoutAuthentication();
 	}
 
 	@Test
 	public void debitPointsWithoutAvailableAmount() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPoints();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.debitPointsWithoutAvailableAmount();
+		DebitPointsService.postDebitPointsWithoutAvailableAmount();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
 	}
@@ -66,10 +66,10 @@ public class DebitPointsTest {
 	@Test
 	public void deleteDebitPoints() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPoints();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.debitPoints();
+		DebitPointsService.postDebitPoints();
 		DebitPointsService.deletedDebitPoints();
 	}
 }

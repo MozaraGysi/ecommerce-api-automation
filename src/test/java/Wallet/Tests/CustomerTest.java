@@ -18,41 +18,41 @@ public class CustomerTest {
 	@Test
 	public void newUser() {
 		AuthService.getToken();
-		CustomerService.newUser();
+		CustomerService.postNewUser();
 	}
 
 	@Test
 	public void newUserWithoutAuthentication() {
-		CustomerService.newUserWithoutAuthentication();
+		CustomerService.postNewUserWithoutAuthentication();
 	}
 
 	@Test
 	public void newUserWithoutCPF() {
 		AuthService.getToken();
-		CustomerService.newUserWithoutCPF();
+		CustomerService.postNewUserWithoutCPF();
 	}
 
 	@Test
 	public void newUserWithInvalidCPF() {
 		AuthService.getToken();
-		CustomerService.newUserWithInvalidCPF();
+		CustomerService.postNewUserWithInvalidCPF();
 	}
 
 	@Test
 	public void newUserWithoutFirstName() {
 		AuthService.getToken();
-		CustomerService.newUserWithoutFirstName();
+		CustomerService.postNewUserWithoutFirstName();
 	}
 
 	@Test
 	public void newUserWithoutLastName() {
 		AuthService.getToken();
-		CustomerService.newUserWithoutLastName();
+		CustomerService.postNewUserWithoutLastName();
 	}
 
 	@Test
 	public void newUserWithInvalidMobile() {
 		AuthService.getToken();
-		CustomerService.newUserWithInvalidMobile();
+		CustomerService.postNewUserWithInvalidMobile();
 	}
 }

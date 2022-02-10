@@ -17,17 +17,17 @@ public class ReturnsTest {
 	@Test
 	public void creditAndReturn() {
 		AuthService.getToken();
-		CustomerService.newUser();
+		CustomerService.postNewUser();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
-		CreditPointsService.creditPoints();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
-		DebitPointsService.debitPointsToReturnLastCredit();
+		DebitPointsService.postDebitPointsToReturnLastCredit();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
 	}
@@ -35,20 +35,20 @@ public class ReturnsTest {
 	@Test
 	public void debitAndReturnOrCancel() {
 		AuthService.getToken();
-		CustomerService.newUser();
+		CustomerService.postNewUser();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
-		CreditPointsService.creditPoints();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
-		DebitPointsService.debitPoints();
+		DebitPointsService.postDebitPoints();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
-		CreditPointsService.creditPointsToReturnLastDebit();
+		CreditPointsService.postCreditPointsToReturnLastDebit();
 		BalancePointsService.getBalancePoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		BalancePointsService.getBalancePoints();
