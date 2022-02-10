@@ -1,5 +1,6 @@
 package Wallet.Utils;
 
+import Common.Utils.GenerateCPF;
 import Wallet.DTOs.CreditPointsRequestDTO;
 import Wallet.DTOs.CreditTransactionsResponseDTO;
 import Wallet.DTOs.DebitPointsRequestDTO;
