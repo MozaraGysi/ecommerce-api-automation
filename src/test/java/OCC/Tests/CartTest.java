@@ -1,6 +1,6 @@
-package OCC.Scenarios;
+package OCC.Tests;
 
-public class Cart {
+public class CartTest {
 
     public void RegistrationSuccessful() {
     }

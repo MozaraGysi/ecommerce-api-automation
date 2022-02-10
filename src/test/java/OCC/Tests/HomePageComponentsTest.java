@@ -1,10 +1,10 @@
-package OCC.Scenarios;
+package OCC.Tests;
 
 import OCC.Services.AuthorizationPage;
 import OCC.Services.HomePage;
 import org.junit.jupiter.api.Test;
 
-public class HomePageComponents {
+public class HomePageComponentsTest {
 
     @Test
     public void showHomePageComponents(){

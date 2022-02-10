@@ -17,7 +17,8 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
 - Seleciona uma versão do java 8
 - Remove o `-ea` e coloque `-Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`.
   - Se for outra marca ou ambiente, deve utilizar os listados na seção **Argumentos disponíveis**.
-- Escolher o método que quer rodar, os testes se encontram em `ssrc/test/java/OCC/Scenarios/...`
+- Escolher o método que quer rodar, os testes se encontram em `src/test/java/OCC/Tests/...`
+
 - Salve e rode o teste
 
 ### Por linha de comando
@@ -34,6 +35,8 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
   - Valores disponíveis: 
     - OCC: `prd`/`hml`/`integ01`/`integ02`/`integ03`/`integ04`/`integ05`/`integ06`
     - Valores no arquivo: `src/test/resources/baseUrl.json`
+- `-DwalletEnv:` Identificação de qual será o ambiente de execução dos testes da wallet.
+  - Valores disponíveis:
     - Wallet: `dev`/`qa`
     - Valores no arquivo: `src/test/resources/wallet.json`
 - `-DexcludeWallet`: Identificação se os cenários da **Wallet** devem ser executados.
@@ -41,11 +44,11 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
 
 ## Estrutura de arquivos
 
-- Common: Classes compartilhadas por mais uma API.
-- OCC: Classes utilizadas apenas para cenários de testes do Hybris OCC.
-- V3: Classes utilizadas apenas para cenários de testes da API V3 da Hybris.
-- Wallet: Classes utilizadas apenas para cenários de testes do API da Wallet, hospedada na Sensedia.
-- OtherServices: Classes utilizadas para cenários de testes de APIs menores.
+- **Common**: Classes compartilhadas por mais uma API.
+- **OCC**: Classes utilizadas apenas para cenários de testes do Hybris OCC.
+- **V3**: Classes utilizadas apenas para cenários de testes da API V3 da Hybris.
+- **Wallet**: Classes utilizadas apenas para cenários de testes do API da Wallet, hospedada na Sensedia.
+- **OtherServices**: Classes utilizadas para cenários de testes de APIs menores.
 
 ## Padrões de Desenvolviemnto
 
@@ -112,13 +115,13 @@ public class ClassNameDTOFixture {
    ```
 </details>
 
-### Scenario
+### Tests
 Classes com os roteiros dos cenários de testes
 <details>
   <summary>Exemplo</summary>
 
    ```
-public class ClassName {
+public class ClassNameTest {
 
 	@BeforeEach
 	public void init() {
@@ -126,7 +129,7 @@ public class ClassName {
 	}
 
 	@Test
-	public void someScenario() {
+	public void someTest() {
 		ClassName01Service.someTest();
 		ClassName02Service.someTest();
 	}
@@ -136,25 +139,27 @@ public class ClassName {
 
 ### Service
 Classes responsáveis pela definição de cada cenário de teste, sempre seguindo o padrão [AAA](https://medium.com/@alamonunes/teste-unit%C3%A1rio-e-o-padr%C3%A3o-aaa-arrange-act-assert-cb81d587368a).
+
+Utilizamos no prefixo o método HTTP para evidênciar a ação que será executada na api.
 <details>
   <summary>Exemplo</summary>
 
    ```
 public class ClassNameService {
 
-	public static void someTest() {
+	public static void postSomeTest() {
 		ClassNameDTO classNameDTO = new ClassNameDTOFixture().withAttributeSomeValue().build();
 
-		Response response = APIClient.POST_someRequest(classNameDTO);
+		Response response = APIClient.postSomeRequest(classNameDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeValidator(), new Some01Validator(), new Some02Validator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 	}
 	
-	public static void someTestWithHandleValues() {
+	public static void postSomeTestWithHandleValues() {
 		ClassNameDTO classNameDTO = new ClassNameDTOFixture().withAttributeSomeValue().build();
 
-		Response response = APIClient.POST_someRequest(classNameDTO);
+		Response response = APIClient.postSomeRequest(classNameDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeValidator(), new Some01Validator(), new Some02Validator());
 		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));

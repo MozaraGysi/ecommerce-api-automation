@@ -1,9 +1,9 @@
 package Wallet.DTOs.Request;
 
-import Wallet.DTOs.AbstractWalletDTO;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class DeleteDebitPointsRequestDTO extends AbstractWalletDTO<DeleteDebitPointsRequestDTO> {
+public class DeleteDebitPointsRequestDTO extends AbstractDTO<DeleteDebitPointsRequestDTO> {
 
 	private String transactionId;
 	private float amount;

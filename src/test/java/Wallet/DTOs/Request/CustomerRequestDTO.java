@@ -1,9 +1,9 @@
 package Wallet.DTOs.Request;
 
-import Wallet.DTOs.AbstractWalletDTO;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class CustomerRequestDTO extends AbstractWalletDTO<CustomerRequestDTO> {
+public class CustomerRequestDTO extends AbstractDTO<CustomerRequestDTO> {
 
 	private String document;
 	private String firstName;

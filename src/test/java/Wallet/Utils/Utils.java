@@ -1,5 +1,6 @@
 package Wallet.Utils;
 
+import Common.Utils.GenerateCPF;
 import Wallet.DTOs.Request.CreditPointsRequestDTO;
 import Wallet.DTOs.Response.CreditTransactionsResponseDTO;
 import Wallet.DTOs.Request.DebitPointsRequestDTO;
@@ -33,27 +34,27 @@ public class Utils {
 	static String WALLET_JSON_PATH = "src/test/resources/wallet.json";
 	static Map<String, Object> WALLET_JSON_MAPPED;
 
-	public static String getEnv() {
+	public static String getWalletEnv() {
 		String env = "";
-		if (System.getProperty("env") == null) {
-			System.out.println("Environment not informed: Ex.: -Denv=qa ");
+		if (System.getProperty("walletEnv") == null) {
+			System.out.println("Environment not informed: Ex.: -DwalletEnv=qa ");
 		} else {
-			env = System.getProperty("env");
+			env = System.getProperty("walletEnv");
 		}
 		return env;
 	}
 
 	public static String getBaseUrl() {
-		return ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("baseUrl");
+		return ((Map<String, String>)getWalletJsonMapped().get(getWalletEnv())).get("baseUrl");
 	}
 
 	public static String getBaseAuthUrl() {
-		return ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("baseAuthUrl");
+		return ((Map<String, String>)getWalletJsonMapped().get(getWalletEnv())).get("baseAuthUrl");
 	}
 
 	public static String getCredentials() {
-		String clientId = ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("clientId");
-		String clientSecret = ((Map<String, String>)getWalletJsonMapped().get(getEnv())).get("clientSecret");
+		String clientId = ((Map<String, String>)getWalletJsonMapped().get(getWalletEnv())).get("clientId");
+		String clientSecret = ((Map<String, String>)getWalletJsonMapped().get(getWalletEnv())).get("clientSecret");
 
 		return clientId.concat(":").concat(clientSecret);
 	}

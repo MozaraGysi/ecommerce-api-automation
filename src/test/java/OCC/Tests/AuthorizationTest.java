@@ -1,9 +1,9 @@
-package OCC.Scenarios;
+package OCC.Tests;
 
 import OCC.Services.AuthorizationPage;
 import org.junit.jupiter.api.Test;
 
-public class Authorization {
+public class AuthorizationTest {
     
     @Test
     public void CustomerAuth()

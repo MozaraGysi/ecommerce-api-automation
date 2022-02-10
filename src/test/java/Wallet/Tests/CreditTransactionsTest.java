@@ -1,4 +1,4 @@
-package Wallet.Scenarios;
+package Wallet.Tests;
 
 import Wallet.Services.*;
 import Wallet.Utils.Utils;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 @DisabledIfSystemProperty(named = "excludeWallet", matches = "true")
-public class CreditTransactions {
+public class CreditTransactionsTest {
 
 	@BeforeEach
 	public void init() {

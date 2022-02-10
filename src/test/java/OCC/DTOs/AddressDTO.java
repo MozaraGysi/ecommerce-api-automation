@@ -1,5 +1,7 @@
 package OCC.DTOs;
 
+import Common.AbstractDTO;
+
 public class AddressDTO extends AbstractDTO<AddressDTO> {
 
 	private String addressName;

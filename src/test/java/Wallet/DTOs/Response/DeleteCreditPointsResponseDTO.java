@@ -1,9 +1,9 @@
 package Wallet.DTOs.Response;
 
-import Wallet.DTOs.AbstractWalletDTO;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class DeleteCreditPointsResponseDTO extends AbstractWalletDTO<DeleteCreditPointsResponseDTO> {
+public class DeleteCreditPointsResponseDTO extends AbstractDTO<DeleteCreditPointsResponseDTO> {
 
 	private String transactionId;
 

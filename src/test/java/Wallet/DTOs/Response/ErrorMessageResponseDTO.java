@@ -1,9 +1,9 @@
 package Wallet.DTOs.Response;
 
-import Wallet.DTOs.AbstractWalletDTO;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class ErrorMessageResponseDTO extends AbstractWalletDTO<ErrorMessageResponseDTO> {
+public class ErrorMessageResponseDTO extends AbstractDTO<ErrorMessageResponseDTO> {
 
 	private String code;
 	private String message;

@@ -1,6 +1,8 @@
 package OCC.DTOs;
 
-public class ImageDTO extends AbstractDTO<ImageDTO>{
+import Common.AbstractDTO;
+
+public class ImageDTO extends AbstractDTO<ImageDTO> {
     private String url;
 
     public String getUrl() {

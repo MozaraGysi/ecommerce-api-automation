@@ -1,4 +1,4 @@
-package Wallet.Utils;
+package Common.Utils;
 
 import javax.swing.text.MaskFormatter;
 import java.util.ArrayList;

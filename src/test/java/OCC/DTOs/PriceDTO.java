@@ -1,6 +1,8 @@
 package OCC.DTOs;
 
-public class PriceDTO extends AbstractDTO<ProductCategorySearchPageResponseDTO>{
+import Common.AbstractDTO;
+
+public class PriceDTO extends AbstractDTO<ProductCategorySearchPageResponseDTO> {
     private Float value;
 
     public Float getValue() {

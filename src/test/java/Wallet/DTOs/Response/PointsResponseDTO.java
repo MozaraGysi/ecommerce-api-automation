@@ -1,11 +1,11 @@
 package Wallet.DTOs.Response;
 
-import Wallet.DTOs.AbstractWalletDTO;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
-public class PointsResponseDTO extends AbstractWalletDTO<PointsResponseDTO> {
+public class PointsResponseDTO extends AbstractDTO<PointsResponseDTO> {
 
 	private String document;
 	private BalanceAmountResponseDTO balance;

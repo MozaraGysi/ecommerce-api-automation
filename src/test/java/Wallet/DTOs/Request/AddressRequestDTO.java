@@ -1,9 +1,9 @@
 package Wallet.DTOs.Request;
 
-import Wallet.DTOs.AbstractWalletDTO;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class AddressRequestDTO extends AbstractWalletDTO<AddressRequestDTO> {
+public class AddressRequestDTO extends AbstractDTO<AddressRequestDTO> {
 
 	private String streetName;
 	private String number;

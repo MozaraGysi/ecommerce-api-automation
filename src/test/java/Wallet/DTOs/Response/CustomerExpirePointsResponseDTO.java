@@ -1,9 +1,9 @@
 package Wallet.DTOs.Response;
 
-import Wallet.DTOs.AbstractWalletDTO;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class CustomerExpirePointsResponseDTO extends AbstractWalletDTO<CustomerExpirePointsResponseDTO> {
+public class CustomerExpirePointsResponseDTO extends AbstractDTO<CustomerExpirePointsResponseDTO> {
 
 	private String document;
 	private Double amount;

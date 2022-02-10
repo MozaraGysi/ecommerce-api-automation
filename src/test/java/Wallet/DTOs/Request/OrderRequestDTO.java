@@ -1,12 +1,12 @@
 package Wallet.DTOs.Request;
 
-import Wallet.DTOs.AbstractWalletDTO;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class OrderRequestDTO extends AbstractWalletDTO<OrderRequestDTO> {
+public class OrderRequestDTO extends AbstractDTO<OrderRequestDTO> {
 
 	private String id;
 	private float totalPrice;

@@ -1,11 +1,11 @@
 package Wallet.DTOs.Request;
 
-import Wallet.DTOs.AbstractWalletDTO;
+import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
 import java.util.Map;
 
-public class PaymentRequestDTO extends AbstractWalletDTO<PaymentRequestDTO> {
+public class PaymentRequestDTO extends AbstractDTO<PaymentRequestDTO> {
 
 	private String type;
 	private String amount;
