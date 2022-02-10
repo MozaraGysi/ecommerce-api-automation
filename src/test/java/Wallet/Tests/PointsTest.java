@@ -1,4 +1,4 @@
-package Wallet.Scenarios;
+package Wallet.Tests;
 
 import Wallet.Services.*;
 import Wallet.Utils.Utils;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 @DisabledIfSystemProperty(named = "excludeWallet", matches = "true")
-public class Points {
+public class PointsTest {
 
 	@BeforeEach
 	public void init() {
@@ -17,15 +17,15 @@ public class Points {
 	@Test
 	public void getPointsWithoutTransactions() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
+		CustomerService.newUser();
 		PointsService.getPointsWithoutTransactions();
 	}
 
 	@Test
 	public void getPointsWithoutTransactionsAndCreditTransactionStatusPENDENTE() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
-		CreditPointsService.postCreditPoints();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		PointsService.getPointsWithoutTransactions();
 	}
@@ -33,10 +33,10 @@ public class Points {
 	@Test
 	public void getPointsWithTransactions() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
-		CreditPointsService.postCreditPoints();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.postDebitPoints();
+		DebitPointsService.debitPoints();
 		PointsService.getPoints();
 	}
 

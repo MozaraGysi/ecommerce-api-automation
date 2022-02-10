@@ -1,4 +1,4 @@
-package Wallet.Scenarios;
+package Wallet.Tests;
 
 import Wallet.Services.AuthService;
 import Wallet.Services.CustomerService;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 @DisabledIfSystemProperty(named = "excludeWallet", matches = "true")
-public class Customer {
+public class CustomerTest {
 
 	@BeforeEach
 	public void init() {
@@ -18,41 +18,41 @@ public class Customer {
 	@Test
 	public void newUser() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
+		CustomerService.newUser();
 	}
 
 	@Test
 	public void newUserWithoutAuthentication() {
-		CustomerService.postNewUserWithoutAuthentication();
+		CustomerService.newUserWithoutAuthentication();
 	}
 
 	@Test
 	public void newUserWithoutCPF() {
 		AuthService.getToken();
-		CustomerService.postNewUserWithoutCPF();
+		CustomerService.newUserWithoutCPF();
 	}
 
 	@Test
 	public void newUserWithInvalidCPF() {
 		AuthService.getToken();
-		CustomerService.postNewUserWithInvalidCPF();
+		CustomerService.newUserWithInvalidCPF();
 	}
 
 	@Test
 	public void newUserWithoutFirstName() {
 		AuthService.getToken();
-		CustomerService.postNewUserWithoutFirstName();
+		CustomerService.newUserWithoutFirstName();
 	}
 
 	@Test
 	public void newUserWithoutLastName() {
 		AuthService.getToken();
-		CustomerService.postNewUserWithoutLastName();
+		CustomerService.newUserWithoutLastName();
 	}
 
 	@Test
 	public void newUserWithInvalidMobile() {
 		AuthService.getToken();
-		CustomerService.postNewUserWithInvalidMobile();
+		CustomerService.newUserWithInvalidMobile();
 	}
 }

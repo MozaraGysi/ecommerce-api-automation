@@ -1,4 +1,4 @@
-package Wallet.Scenarios;
+package Wallet.Tests;
 
 import Wallet.Services.*;
 import Wallet.Utils.Utils;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 @DisabledIfSystemProperty(named = "excludeWallet", matches = "true")
-public class DebitPoints {
+public class DebitPointsTest {
 
 	@BeforeEach
 	public void init() {
@@ -17,10 +17,10 @@ public class DebitPoints {
 	@Test
 	public void debitPointsWithTypeQUANTIDADE_DE_PONTOS() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
-		CreditPointsService.postCreditPoints();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.postDebitPointsWithTypeQUANTIDADE_DE_PONTOS();
+		DebitPointsService.debitPointsWithTypeQUANTIDADE_DE_PONTOS();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
 	}
@@ -28,10 +28,10 @@ public class DebitPoints {
 	@Test
 	public void debitPointsWithTypeVALOR_MONETARIO() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
-		CreditPointsService.postCreditPoints();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.postDebitPointsWithTypeVALOR_MONETARIO();
+		DebitPointsService.debitPointsWithTypeVALOR_MONETARIO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
 	}
@@ -39,26 +39,26 @@ public class DebitPoints {
 	@Test
 	public void debitPointsWithoutOrder() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
-		CreditPointsService.postCreditPoints();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.postDebitPointsWithoutOrder();
+		DebitPointsService.debitPointsWithoutOrder();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
 	}
 
 	@Test
 	public void debitPointsWithoutAuthentication() {
-		DebitPointsService.postDebitPointsWithoutAuthentication();
+		DebitPointsService.debitPointsWithoutAuthentication();
 	}
 
 	@Test
 	public void debitPointsWithoutAvailableAmount() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
-		CreditPointsService.postCreditPoints();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.postDebitPointsWithoutAvailableAmount();
+		DebitPointsService.debitPointsWithoutAvailableAmount();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
 	}
@@ -66,10 +66,10 @@ public class DebitPoints {
 	@Test
 	public void deleteDebitPoints() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
-		CreditPointsService.postCreditPoints();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.postDebitPoints();
+		DebitPointsService.debitPoints();
 		DebitPointsService.deletedDebitPoints();
 	}
 }

@@ -1,4 +1,4 @@
-package Wallet.Scenarios;
+package Wallet.Tests;
 
 import Wallet.Services.*;
 import Wallet.Utils.Utils;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 @DisabledIfSystemProperty(named = "excludeWallet", matches = "true")
-public class BalancePoints {
+public class BalancePointsTest {
 
 	@BeforeEach
 	public void init() {
@@ -17,14 +17,14 @@ public class BalancePoints {
 	@Test
 	public void getBalancePointsWithoutTransactions() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
+		CustomerService.newUser();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 	}
 
 	@Test
 	public void getBalancePointsWithoutTransactionsAndCreditTransactionWithStatusPENDENTE() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
+		CustomerService.newUser();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 	}
@@ -32,8 +32,8 @@ public class BalancePoints {
 	@Test
 	public void getBalancePointsWithCreditTransaction() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
-		CreditPointsService.postCreditPoints();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 	}
@@ -41,10 +41,10 @@ public class BalancePoints {
 	@Test
 	public void getBalancePointsWithTransactions() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
-		CreditPointsService.postCreditPoints();
+		CustomerService.newUser();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.postDebitPoints();
+		DebitPointsService.debitPoints();
 		BalancePointsService.getBalancePoints();
 	}
 

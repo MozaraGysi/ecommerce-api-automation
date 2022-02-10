@@ -1,4 +1,4 @@
-package OCC.Scenarios;
+package OCC.Tests;
 
 import OCC.Services.AuthorizationPage;
 import OCC.Services.CartPage;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class Customer {
+public class CustomerTest {
 
     @Test
     @Order(1)

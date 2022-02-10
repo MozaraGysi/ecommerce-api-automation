@@ -1,4 +1,4 @@
-package Wallet.Scenarios;
+package Wallet.Tests;
 
 import Wallet.Services.*;
 import Wallet.Utils.Utils;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 @DisabledIfSystemProperty(named = "excludeWallet", matches = "true")
-public class Returns {
+public class ReturnsTest {
 
 	@BeforeEach
 	public void init() {
@@ -17,17 +17,17 @@ public class Returns {
 	@Test
 	public void creditAndReturn() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
+		CustomerService.newUser();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
-		CreditPointsService.postCreditPoints();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
-		DebitPointsService.postDebitPointsToReturnLastCredit();
+		DebitPointsService.debitPointsToReturnLastCredit();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
 	}
@@ -35,20 +35,20 @@ public class Returns {
 	@Test
 	public void debitAndReturnOrCancel() {
 		AuthService.getToken();
-		CustomerService.postNewUser();
+		CustomerService.newUser();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
-		CreditPointsService.postCreditPoints();
+		CreditPointsService.creditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 		PointsService.getPointsWithoutTransactions();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
-		DebitPointsService.postDebitPoints();
+		DebitPointsService.debitPoints();
 		BalancePointsService.getBalancePoints();
 		PointsService.getPoints();
-		CreditPointsService.postCreditPointsToReturnLastDebit();
+		CreditPointsService.creditPointsToReturnLastDebit();
 		BalancePointsService.getBalancePoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		BalancePointsService.getBalancePoints();
