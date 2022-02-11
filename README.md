@@ -1,6 +1,47 @@
 # E-Commerce API Automation
 Este é um projeto do time de e-commerce, com a finalidade de testar de forma automatizada suas APIs.
 
+### APIs presentes nos testes:
+- Hybris | OCC
+- Hybris | V3
+- ZZNet | Prateleira Infinita
+- Sensedia | Wallet
+
+### Tech Talk: [Link da gravação](https://drive.google.com/file/d/1tx1_DGb73UWVVXTHeUa1qL0hNmmgUIDy/view)
+
+## Executar o Projeto
+
+### Pelo IntelliJ IDEA
+- Clonar o projeto
+- No IntelliJ em Run/Debug Configuration, Add New Configuration `Junit`
+- Seleciona uma versão do java 8
+- Remove o `-ea` e coloque `-Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`.
+  - Se for outra marca ou ambiente, deve utilizar os listados na seção **Argumentos disponíveis**.
+- Escolher o método que quer rodar, os testes se encontram em `src/test/java/OCC/Tests/...`
+
+- Salve e rode o teste
+
+### Por linha de comando
+- Possuir o artefato construído
+- Executar a tarefa `test` do Maven, com os argumentos necessários
+  - Ex.: `mvn test -Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`
+
+## Argumentos disponíveis
+
+- `-Dbrand`: Identificação de qual será a marca da execução dos testes.
+  - Valores disponíveis: `AlexandreBirman`/`Anacapri`/`Arezzo`/`Fiever`/`Owme`/`Schutz`/`Vans`/`Zzmall`
+  - Valores no arquivo: `src/test/resources/baseUrl.json`
+- `-Denv`: Identificação de qual será o ambiente de execução dos testes.
+  - Valores disponíveis: 
+    - OCC: `prd`/`hml`/`integ01`/`integ02`/`integ03`/`integ04`/`integ05`/`integ06`
+    - Valores no arquivo: `src/test/resources/baseUrl.json`
+- `-DwalletEnv:` Identificação de qual será o ambiente de execução dos testes da wallet.
+  - Valores disponíveis:
+    - Wallet: `dev`/`qa`
+    - Valores no arquivo: `src/test/resources/wallet.json`
+- `-DexcludeWallet`: Identificação se os cenários da **Wallet** devem ser executados.
+  - Valores disponiveis: `true`/`false`
+
 ## Padrões do GIT:
 <details>
   <summary>Estrutura de branches</summary>
@@ -26,7 +67,7 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
           |
           |_______ revert/login -> branch de um código que foi implementado recentemente e terá que voltar ao seu estado anterior
 ```
-Sendo assim para criar uma nova feature, corrigir um bug ou fazer um refactor 
+Sendo assim para criar uma nova feature, corrigir um bug ou fazer um refactor
 você sempre abrirá uma nova branch a partir da `develop`.
 ```
 git checkout develop
@@ -90,7 +131,7 @@ Nessa etapa teremos que seguir algumas regras e padrões, conforme abaixo.
 **Título:**
 
 O título deve ser o nome da branch na qual você estava trabalhando no formato literal, `Feat: Nome da branch de forma literal`,
-pois dessa forma as mensagens de merge no histórico do git ficam limpas e claras. 
+pois dessa forma as mensagens de merge no histórico do git ficam limpas e claras.
 
 Exemplo no histórico: `Merged PR 1085: Feat: Change wallet services methods name`.
 
@@ -116,47 +157,6 @@ Um PR poderá ser mergeado após ter pelo menos 2 approves e nenhum `change requ
 Qualquer um pode fazer o merge desde que o PR atenda esses critérios.
 
 </details>
-
-### APIs presentes nos testes:
-- Hybris | OCC
-- Hybris | V3
-- ZZNet | Prateleira Infinita
-- Sensedia | Wallet
-
-### Tech Talk: [Link da gravação](https://drive.google.com/file/d/1tx1_DGb73UWVVXTHeUa1qL0hNmmgUIDy/view)
-
-## Executar o Projeto
-
-### Pelo IntelliJ IDEA
-- Clonar o projeto
-- No IntelliJ em Run/Debug Configuration, Add New Configuration `Junit`
-- Seleciona uma versão do java 8
-- Remove o `-ea` e coloque `-Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`.
-  - Se for outra marca ou ambiente, deve utilizar os listados na seção **Argumentos disponíveis**.
-- Escolher o método que quer rodar, os testes se encontram em `src/test/java/OCC/Tests/...`
-
-- Salve e rode o teste
-
-### Por linha de comando
-- Possuir o artefato construído
-- Executar a tarefa `test` do Maven, com os argumentos necessários
-  - Ex.: `mvn test -Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`
-
-## Argumentos disponíveis
-
-- `-Dbrand`: Identificação de qual será a marca da execução dos testes.
-  - Valores disponíveis: `AlexandreBirman`/`Anacapri`/`Arezzo`/`Fiever`/`Owme`/`Schutz`/`Vans`/`Zzmall`
-  - Valores no arquivo: `src/test/resources/baseUrl.json`
-- `-Denv`: Identificação de qual será o ambiente de execução dos testes.
-  - Valores disponíveis: 
-    - OCC: `prd`/`hml`/`integ01`/`integ02`/`integ03`/`integ04`/`integ05`/`integ06`
-    - Valores no arquivo: `src/test/resources/baseUrl.json`
-- `-DwalletEnv:` Identificação de qual será o ambiente de execução dos testes da wallet.
-  - Valores disponíveis:
-    - Wallet: `dev`/`qa`
-    - Valores no arquivo: `src/test/resources/wallet.json`
-- `-DexcludeWallet`: Identificação se os cenários da **Wallet** devem ser executados.
-  - Valores disponiveis: `true`/`false`
 
 ## Estrutura de arquivos
 
