@@ -1,7 +1,7 @@
 # E-Commerce API Automation
 Este é um projeto do time de e-commerce, com a finalidade de testar de forma automatizada suas APIs.
 
-### Padrões do GIT:
+## Padrões do GIT:
 <details>
   <summary>Estrutura de branches</summary>
 
