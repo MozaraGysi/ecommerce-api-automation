@@ -1,15 +1,15 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Response;
 
 import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class ExpirePointsDTO extends AbstractDTO<ExpirePointsDTO> {
+public class CustomerExpirePointsResponseDTO extends AbstractDTO<CustomerExpirePointsResponseDTO> {
 
 	private String document;
 	private Double amount;
 
 	@Override
-	public ExpirePointsDTO fromJsonString(String jsonString) {
+	public CustomerExpirePointsResponseDTO fromJsonString(String jsonString) {
 		return super.fromJsonString(jsonString);
 	}
 

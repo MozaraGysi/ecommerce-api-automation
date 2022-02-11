@@ -1,16 +1,16 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Request;
 
 import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class DeleteCreditPointsRequestDTO extends AbstractDTO<DeleteCreditPointsRequestDTO> {
+public class DeleteDebitPointsRequestDTO extends AbstractDTO<DeleteDebitPointsRequestDTO> {
 
 	private String transactionId;
 	private float amount;
 	private String dateTime;
 
 	@Override
-	public DeleteCreditPointsRequestDTO fromJsonString(String jsonString) {
+	public DeleteDebitPointsRequestDTO fromJsonString(String jsonString) {
 		return super.fromJsonString(jsonString);
 	}
 
@@ -43,3 +43,4 @@ public class DeleteCreditPointsRequestDTO extends AbstractDTO<DeleteCreditPoints
 		this.dateTime = dateTime;
 	}
 }
+

@@ -1,6 +1,11 @@
 package Wallet.Utils;
 
 import Wallet.DTOs.*;
+import Wallet.DTOs.Request.CreditPointsRequestDTO;
+import Wallet.DTOs.Request.CustomerRequestDTO;
+import Wallet.DTOs.Request.DebitPointsRequestDTO;
+import Wallet.DTOs.Request.DeleteCreditPointsRequestDTO;
+import Wallet.DTOs.Request.DeleteDebitPointsRequestDTO;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

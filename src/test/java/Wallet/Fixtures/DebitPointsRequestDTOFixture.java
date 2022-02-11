@@ -1,6 +1,6 @@
 package Wallet.Fixtures;
 
-import Wallet.DTOs.DebitPointsRequestDTO;
+import Wallet.DTOs.Request.DebitPointsRequestDTO;
 import Wallet.Enums.DebitPointsTypeEnum;
 import Wallet.Utils.Utils;
 

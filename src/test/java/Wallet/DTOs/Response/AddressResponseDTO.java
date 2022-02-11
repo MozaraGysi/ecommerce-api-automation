@@ -1,9 +1,9 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Response;
 
 import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class AddressDTO extends AbstractDTO<AddressDTO> {
+public class AddressResponseDTO extends AbstractDTO<AddressResponseDTO> {
 
 	private String streetName;
 	private String number;
@@ -15,7 +15,7 @@ public class AddressDTO extends AbstractDTO<AddressDTO> {
 	private String country;
 
 	@Override
-	public AddressDTO fromJsonString(String jsonString) {
+	public AddressResponseDTO fromJsonString(String jsonString) {
 		return super.fromJsonString(jsonString);
 	}
 

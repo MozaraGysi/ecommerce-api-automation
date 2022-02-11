@@ -1,8 +1,10 @@
 package OCC.DTOs;
 
+import Common.AbstractDTO;
+
 import java.util.List;
 
-public class LoginPageResponseDTO extends AbstractDTO<LoginPageResponseDTO>{
+public class LoginPageResponseDTO extends AbstractDTO<LoginPageResponseDTO> {
     private List<RecoveryOptionsDTO> recoveryOptions;
 
     public List<RecoveryOptionsDTO> getRecoveryOptions() {

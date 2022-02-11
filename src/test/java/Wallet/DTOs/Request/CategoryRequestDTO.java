@@ -1,16 +1,16 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Request;
 
 import Common.AbstractDTO;
 import com.google.gson.JsonObject;
 
-public class CategorieDTO extends AbstractDTO<CategorieDTO> {
+public class CategoryRequestDTO extends AbstractDTO<CategoryRequestDTO> {
 
 	private String id;
 	private String name;
 	private String parentId;
 
 	@Override
-	public CategorieDTO fromJsonString(String jsonString) {
+	public CategoryRequestDTO fromJsonString(String jsonString) {
 		return super.fromJsonString(jsonString);
 	}
 

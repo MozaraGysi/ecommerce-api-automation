@@ -17,14 +17,14 @@ public class BalancePointsTest {
 	@Test
 	public void getBalancePointsWithoutTransactions() {
 		AuthService.getToken();
-		CustomerService.newUser();
+		CustomerService.postNewUser();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 	}
 
 	@Test
 	public void getBalancePointsWithoutTransactionsAndCreditTransactionWithStatusPENDENTE() {
 		AuthService.getToken();
-		CustomerService.newUser();
+		CustomerService.postNewUser();
 		CreditTransactionsService.getCreditTransactionsWithStatusPENDENTE();
 		BalancePointsService.getBalancePointsWithoutTransactions();
 	}
@@ -32,8 +32,8 @@ public class BalancePointsTest {
 	@Test
 	public void getBalancePointsWithCreditTransaction() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPoints();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
 		BalancePointsService.getBalancePoints();
 	}
@@ -41,10 +41,10 @@ public class BalancePointsTest {
 	@Test
 	public void getBalancePointsWithTransactions() {
 		AuthService.getToken();
-		CustomerService.newUser();
-		CreditPointsService.creditPoints();
+		CustomerService.postNewUser();
+		CreditPointsService.postCreditPoints();
 		CreditTransactionsService.getCreditTransactionsWithStatusCONFIRMADO();
-		DebitPointsService.debitPoints();
+		DebitPointsService.postDebitPoints();
 		BalancePointsService.getBalancePoints();
 	}
 

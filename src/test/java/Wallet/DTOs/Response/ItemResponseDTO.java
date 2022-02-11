@@ -1,4 +1,4 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Response;
 
 import Common.AbstractDTO;
 import com.google.gson.JsonObject;
@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ItemDTO extends AbstractDTO<ItemDTO> {
+public class ItemResponseDTO extends AbstractDTO<ItemResponseDTO> {
 
 	private String id;
 	private String sku;
@@ -15,12 +15,12 @@ public class ItemDTO extends AbstractDTO<ItemDTO> {
 	private String originalPrice;
 	private float quantity;
 	private String brand;
-	private ArrayList<CategorieDTO> categories = new ArrayList<>();
+	private ArrayList<CategoryResponseDTO> categories = new ArrayList<>();
 	private String imageUrl;
 	private Map<String, Object> extra;
 
 	@Override
-	public ItemDTO fromJsonString(String jsonString) {
+	public ItemResponseDTO fromJsonString(String jsonString) {
 		return super.fromJsonString(jsonString);
 	}
 
@@ -85,11 +85,11 @@ public class ItemDTO extends AbstractDTO<ItemDTO> {
 		this.brand = brand;
 	}
 
-	public ArrayList<CategorieDTO> getCategories() {
+	public ArrayList<CategoryResponseDTO> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(ArrayList<CategorieDTO> categories) {
+	public void setCategories(ArrayList<CategoryResponseDTO> categories) {
 		this.categories = categories;
 	}
 

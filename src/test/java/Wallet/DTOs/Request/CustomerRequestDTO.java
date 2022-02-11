@@ -1,4 +1,4 @@
-package Wallet.DTOs;
+package Wallet.DTOs.Request;
 
 import Common.AbstractDTO;
 import com.google.gson.JsonObject;

@@ -1,5 +1,7 @@
 package OCC.DTOs;
 
+import Common.AbstractDTO;
+
 public class LoginPageRequestDTO extends AbstractDTO<LoginPageRequestDTO> {
 
     private String email;

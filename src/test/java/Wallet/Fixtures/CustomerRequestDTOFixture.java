@@ -1,6 +1,6 @@
 package Wallet.Fixtures;
 
-import Wallet.DTOs.CustomerRequestDTO;
+import Wallet.DTOs.Request.CustomerRequestDTO;
 import Wallet.Utils.Utils;
 
 public class CustomerRequestDTOFixture {

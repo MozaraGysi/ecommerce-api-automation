@@ -2,9 +2,9 @@ package Wallet.Services;
 
 import Common.Validators.*;
 import Wallet.Utils.APIClient;
-import Wallet.DTOs.DebitPointsRequestDTO;
-import Wallet.DTOs.DebitPointsResponseDTO;
-import Wallet.DTOs.DeleteDebitPointsRequestDTO;
+import Wallet.DTOs.Request.DebitPointsRequestDTO;
+import Wallet.DTOs.Response.DebitPointsResponseDTO;
+import Wallet.DTOs.Request.DeleteDebitPointsRequestDTO;
 import Wallet.Fixtures.DebitPointsRequestDTOFixture;
 import Wallet.Fixtures.DeleteDebitPointsRequestDTOFixture;
 import Wallet.Handlers.DebitPointsHandler;

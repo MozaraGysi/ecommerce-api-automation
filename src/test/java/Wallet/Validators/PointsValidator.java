@@ -1,8 +1,8 @@
 package Wallet.Validators;
 
 import Common.Validators.Validator;
-import Wallet.DTOs.PointsResponseDTO;
-import Wallet.DTOs.StatementDTO;
+import Wallet.DTOs.Response.PointsResponseDTO;
+import Wallet.DTOs.Response.StatementResponseDTO;
 import Wallet.Enums.StatementStatusEnum;
 import Wallet.Enums.StatementTypeEnum;
 import Wallet.Handlers.CreditPointsHandler;
@@ -27,9 +27,9 @@ public class PointsValidator implements Validator {
 
 		Utils.getCreditPoints().stream().filter(CreditPointsHandler::isConfirmed)
 				.forEach(creditPointsHandler -> {
-					StatementDTO creditPointsStatement = pointsResponseDTO.getStatements().stream()
-							.filter(statementDTO -> StatementTypeEnum.CREDITO.getValue().equals(statementDTO.getType()))
-							.filter(statementDTO -> statementDTO.getTransactionId().equals(creditPointsHandler.getTransactionId()))
+					StatementResponseDTO creditPointsStatement = pointsResponseDTO.getStatements().stream()
+							.filter(statementResponseDTO -> StatementTypeEnum.CREDITO.getValue().equals(statementResponseDTO.getType()))
+							.filter(statementResponseDTO -> statementResponseDTO.getTransactionId().equals(creditPointsHandler.getTransactionId()))
 							.findFirst()
 							.orElse(null);
 
@@ -46,9 +46,9 @@ public class PointsValidator implements Validator {
 				});
 
 		Utils.getDebitPoints().forEach(debitPointsHandler -> {
-			StatementDTO debitPointsStatement = pointsResponseDTO.getStatements().stream()
-					.filter(statementDTO -> StatementTypeEnum.DEBITO.getValue().equals(statementDTO.getType()))
-					.filter(statementDTO -> statementDTO.getTransactionId().equals(debitPointsHandler.getTransactionId()))
+			StatementResponseDTO debitPointsStatement = pointsResponseDTO.getStatements().stream()
+					.filter(statementResponseDTO -> StatementTypeEnum.DEBITO.getValue().equals(statementResponseDTO.getType()))
+					.filter(statementResponseDTO -> statementResponseDTO.getTransactionId().equals(debitPointsHandler.getTransactionId()))
 					.findFirst()
 					.orElse(null);
 

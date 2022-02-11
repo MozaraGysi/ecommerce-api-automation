@@ -1,6 +1,6 @@
 package Wallet.Handlers;
 
-import Wallet.DTOs.CreditPointsRequestDTO;
+import Wallet.DTOs.Request.CreditPointsRequestDTO;
 
 public class CreditPointsHandler {
 
