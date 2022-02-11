@@ -1,5 +1,6 @@
 package OCC.Utils;
 
+import Common.Utils.GenerateCPF;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -205,7 +206,7 @@ public class Utils {
 
     public static String cpf(){
         GenerateCPF newCPF = new GenerateCPF();
-        String cpf = newCPF.cpfFinal();
+        String cpf = newCPF.cpfFinal(true);
         System.out.print(cpf);
         return cpf;
     }

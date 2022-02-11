@@ -1,8 +1,9 @@
 package Wallet.Utils;
 
-import Wallet.DTOs.CreditPointsRequestDTO;
-import Wallet.DTOs.CreditTransactionsResponseDTO;
-import Wallet.DTOs.DebitPointsRequestDTO;
+import Common.Utils.GenerateCPF;
+import Wallet.DTOs.Request.CreditPointsRequestDTO;
+import Wallet.DTOs.Response.CreditTransactionsResponseDTO;
+import Wallet.DTOs.Request.DebitPointsRequestDTO;
 import Wallet.Enums.CreditPointsTypeEnum;
 import Wallet.Enums.StatementStatusEnum;
 import Wallet.Handlers.CreditPointsHandler;

@@ -1,6 +1,6 @@
 package Wallet.Fixtures;
 
-import Wallet.DTOs.DeleteCreditPointsRequestDTO;
+import Wallet.DTOs.Request.DeleteCreditPointsRequestDTO;
 import Wallet.Utils.Utils;
 
 public class DeleteCreditPointsRequestDTOFixture {

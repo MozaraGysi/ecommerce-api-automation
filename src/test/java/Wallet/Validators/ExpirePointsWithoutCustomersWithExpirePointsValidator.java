@@ -1,7 +1,7 @@
 package Wallet.Validators;
 
 import Common.Validators.Validator;
-import Wallet.DTOs.ExpirePointsResponseDTO;
+import Wallet.DTOs.Response.ExpirePointsResponseDTO;
 import io.restassured.response.Response;
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.jupiter.api.Assertions;

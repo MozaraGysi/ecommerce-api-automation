@@ -5,7 +5,7 @@ import Common.Validators.StatusCodeUnauthorizedValidator;
 import Common.Validators.Validator;
 import Wallet.Handlers.CreditPointsHandler;
 import Wallet.Utils.APIClient;
-import Wallet.DTOs.CreditTransactionsResponseDTO;
+import Wallet.DTOs.Response.CreditTransactionsResponseDTO;
 import Wallet.Enums.CreditTransactionStatusEnum;
 import Wallet.Utils.Utils;
 import Wallet.Validators.*;

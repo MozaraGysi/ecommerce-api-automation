@@ -1,8 +1,8 @@
 package Wallet.Validators;
 
 import Common.Validators.Validator;
-import Wallet.DTOs.CreditPointsRequestDTO;
-import Wallet.DTOs.CreditTransactionsResponseDTO;
+import Wallet.DTOs.Request.CreditPointsRequestDTO;
+import Wallet.DTOs.Response.CreditTransactionsResponseDTO;
 import Wallet.Enums.CreditTransactionStatusEnum;
 import Wallet.Utils.Utils;
 import io.restassured.response.Response;

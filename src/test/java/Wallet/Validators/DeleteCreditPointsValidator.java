@@ -1,7 +1,7 @@
 package Wallet.Validators;
 
 import Common.Validators.Validator;
-import Wallet.DTOs.DeleteCreditPointsResponseDTO;
+import Wallet.DTOs.Response.DeleteCreditPointsResponseDTO;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 
