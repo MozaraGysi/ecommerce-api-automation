@@ -12,9 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class StoreFinderPage {
+public class StoreFinderService {
 
-    public static void GET_searchPostalcode() {
+    public static void getSearchPostalCode() {
 
         StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByPostalCode().build();
 
@@ -24,7 +24,7 @@ public class StoreFinderPage {
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void GET_searchCoordinates() {
+    public static void getSearchCoordinates() {
 
         StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByCoordinates().build();
 
@@ -34,7 +34,7 @@ public class StoreFinderPage {
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void GET_searchAddress() {
+    public static void getSearchAddress() {
 
         StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByAddress().build();
 
@@ -44,7 +44,7 @@ public class StoreFinderPage {
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void GET_searchWrongPostalCode() {
+    public static void getSearchWrongPostalCode() {
 
         StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByWrongPostalCode().build();
 
