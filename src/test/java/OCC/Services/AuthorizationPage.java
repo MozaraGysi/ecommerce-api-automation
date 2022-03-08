@@ -12,7 +12,7 @@ public class AuthorizationPage {
 
     public static void CustomerToken()
     {
-        RestAssured.baseURI = Utils.getBaseUrl();
+        RestAssured.baseURI = Utils.getBaseUrl(true);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/x-www-form-urlencoded");
@@ -34,7 +34,7 @@ public class AuthorizationPage {
 
     public static void CustomerTokenNewUser()
     {
-        RestAssured.baseURI = Utils.getBaseUrl();
+        RestAssured.baseURI = Utils.getBaseUrl(true);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/x-www-form-urlencoded");
@@ -55,7 +55,7 @@ public class AuthorizationPage {
 
     public static void AnonymousAuth()
     {
-        RestAssured.baseURI = Utils.getBaseUrl();
+        RestAssured.baseURI = Utils.getBaseUrl(true);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/x-www-form-urlencoded");
@@ -73,7 +73,7 @@ public class AuthorizationPage {
 
     public static void RegisterCustomerAppleID()
     {
-        RestAssured.baseURI = Utils.getBaseUrl();
+        RestAssured.baseURI = Utils.getBaseUrl(true);
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/x-www-form-urlencoded");
         request.formParam("client_id", "mobile_android");
@@ -94,7 +94,7 @@ public class AuthorizationPage {
 
     public static void RegisterCustomerFacebook()
     {
-        RestAssured.baseURI = Utils.getBaseUrl();
+        RestAssured.baseURI = Utils.getBaseUrl(true);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/x-www-form-urlencoded");

@@ -12,7 +12,7 @@ import io.restassured.specification.RequestSpecification;
 public class APIClient {
 
     public static Response GET_product(ProductCategorySearchPageRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl();
+        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -21,7 +21,7 @@ public class APIClient {
 
         request.queryParams(requestDTO.toMap());
 
-        Response response = request.get("/arezzocoocc/v2/" + Utils.getSite_UID() + "/products/search");
+        Response response = request.get("/products/search");
 
         response.getBody().print();
         Utils.setCookies(response.getCookies());
@@ -30,7 +30,7 @@ public class APIClient {
     }
 
     public static Response GET_optionslist(LoginPageRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl();
+        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -39,7 +39,7 @@ public class APIClient {
 
         request.queryParams(requestDTO.toMap());
 
-        Response response = request.get("/arezzocoocc/v2/" + Utils.getSite_UID() + "/password-reset/request-recovery-options");
+        Response response = request.get("/password-reset/request-recovery-options");
 
         response.getBody().print();
         Utils.setCookies(response.getCookies());
@@ -48,7 +48,7 @@ public class APIClient {
     }
 
     public static Response POST_password(LoginPageRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl();
+        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -57,7 +57,7 @@ public class APIClient {
 
         request.queryParams(requestDTO.toMap());
 
-        Response response = request.post("/arezzocoocc/v2/" + Utils.getSite_UID() + "/password-reset/request");
+        Response response = request.post("/password-reset/request");
 
         response.getBody().print();
         Utils.setCookies(response.getCookies());
@@ -66,7 +66,7 @@ public class APIClient {
     }
 
     public static Response GET_receivdcode(LoginPageRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl();
+        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -75,7 +75,7 @@ public class APIClient {
 
         request.queryParams(requestDTO.toMap());
 
-        Response response = request.get("/arezzocoocc/v2/" + Utils.getSite_UID() + "/password-reset/check-received-code");
+        Response response = request.get("/password-reset/check-received-code");
 
         response.getBody().print();
         Utils.setCookies(response.getCookies());
@@ -84,7 +84,7 @@ public class APIClient {
     }
 
     public static Response POST_changepassword(LoginPageRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl();
+        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -93,7 +93,7 @@ public class APIClient {
 
         request.queryParams(requestDTO.toMap());
 
-        Response response = request.post("/arezzocoocc/v2/" + Utils.getSite_UID() + "/password-reset/change");
+        Response response = request.post("/password-reset/change");
 
         response.getBody().print();
         Utils.setCookies(response.getCookies());
@@ -102,7 +102,7 @@ public class APIClient {
     }
 
     public static Response GET_stores(StoreFinderSearchRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl();
+        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -111,7 +111,7 @@ public class APIClient {
 
         request.queryParams(requestDTO.toMap());
 
-        Response response = request.get("/arezzocoocc/v2/" + Utils.getSite_UID() + "/stores");
+        Response response = request.get("/stores");
 
         response.getBody().print();
         Utils.setCookies(response.getCookies());
@@ -120,7 +120,7 @@ public class APIClient {
     }
 
     public static Response GET_homepage(CmsPageContentRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl();
+        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -129,7 +129,7 @@ public class APIClient {
 
         request.queryParams(requestDTO.toMap());
 
-        Response response = request.get("/arezzocoocc/v2/" + Utils.getSite_UID() + "/cms/pages/homepageHeadless");
+        Response response = request.get("/cms/pages/homepageHeadless");
 
         response.getBody().print();
         Utils.setCookies(response.getCookies());
