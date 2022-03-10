@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 public class TokenUtils {
 
     public String GetCustomerToken() {
-        RestAssured.baseURI = Utils.getBaseUrl();
+        RestAssured.baseURI = Utils.getBaseUrl(true);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/x-www-form-urlencoded");

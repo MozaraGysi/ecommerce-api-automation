@@ -43,7 +43,7 @@ public class Utils {
         return env;
     }
 
-    public static String getBaseUrl() {
+    public static String getBaseUrl(boolean auth) {
         StringBuilder fileName = new StringBuilder();
         fileName.append("src/test/resources/baseUrl.json");
         String jsonBaseUrl = "";
@@ -54,7 +54,7 @@ public class Utils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonBaseUrl;
+        return auth ? jsonBaseUrl : jsonBaseUrl  + "arezzocoocc/v2/" + getSite_UID() + "/";
     }
 
     public static String getSite_UID() {
