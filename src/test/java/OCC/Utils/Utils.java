@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Utils {
 
@@ -20,8 +21,12 @@ public class Utils {
     static String ACCESS_TOKEN;
     static String ID_ADDRESS;
     static String EMAIL;
-
-
+    static String BASE_URL_JSON_PATH = "src/test/resources/baseUrl.json";
+    static String PRODUCT_JSON_PATH= "src/test/resources/product.json";
+    static String USER_JSON_PATH= "src/test/resources/users.json";
+    static Map<String, Object> BASE_URL_JSON_MAPPED;
+    static Map<String, Object> PRODUCT_JSON_MAPPED;
+    static Map<String, Object> USER_JSON_MAPPED;
 
     public static String getBrand() {
         String brand = "";
@@ -41,20 +46,6 @@ public class Utils {
             env = System.getProperty("env");
         }
         return env;
-    }
-
-    public static String getBaseUrl(boolean auth) {
-        StringBuilder fileName = new StringBuilder();
-        fileName.append("src/test/resources/baseUrl.json");
-        String jsonBaseUrl = "";
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
-            Gson gson = new Gson();
-            Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
-            jsonBaseUrl = ((Map<String, String>)((Map<String, Object>)element.get(getBrand())).get(getEnv())).get("url");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return auth ? jsonBaseUrl : jsonBaseUrl  + "arezzocoocc/v2/" + getSite_UID() + "/";
     }
 
     public static String getSite_UID() {
@@ -81,47 +72,17 @@ public class Utils {
         }
     }
 
-    public static List<String> getProduct(String param) {
-
-        StringBuilder fileName = new StringBuilder();
-        fileName.append("src/test/resources/product.json");
-        List<String> sku = new ArrayList<>();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
-            Gson gson = new Gson();
-            Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
-            sku.addAll(((Map<String, List<String>>)((Map<String, Object>)((Map<String, Object>)element.get(param)).get(getBrand())).get(getEnv())).get("sku"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sku;
+    public static String getBaseUrl(boolean auth) {
+        String baseUrl = ((Map<String, String>) ((Map<String, Object>) getBaseUrlJsonMapped().get(getBrand())).get(getEnv())).get("url");
+        return auth ? baseUrl : baseUrl + "arezzocoocc/v2/" + getSite_UID() + "/";
     }
 
-    public static String getUrlNavigation(String param) {
-        StringBuilder fileName = new StringBuilder();
-        fileName.append("src/test/resources/urlNavigation.json");
-        String jsonUrlNavigation = "";
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
-            Gson gson = new Gson();
-            Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
-            jsonUrlNavigation = ((Map<String, String>)((Map<String, Object>)((Map<String, Object>)element.get(param)).get(getBrand())).get(getEnv())).get("url");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return jsonUrlNavigation;
+    public static List<String> getProduct(String param) {
+        return ((Map<String, List<String>>) ((Map<String, Object>) ((Map<String, Object>) getProductJsonMapped().get(param)).get(getBrand())).get(getEnv())).get("sku");
     }
 
     public static String getUser(String param) {
-        StringBuilder fileName = new StringBuilder();
-        fileName.append("src/test/resources/users.json");
-        String jsonUsers = "";
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
-            Gson gson = new Gson();
-            Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
-            jsonUsers = ((Map<String, String>)element.get(param)).get("email");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return jsonUsers;
+        return ((Map<String, String>) getUserJsonMapped().get(param)).get("email");
     }
 
     public static String getUserAuthBrand(){
@@ -211,17 +172,38 @@ public class Utils {
         return cpf;
     }
 
-//    static long _timestamp = 0;
-//
-//    public static long timestamp(){
-//        if(_timestamp == 0){
-//            _timestamp = System.currentTimeMillis();
-//            return _timestamp;
-//        }else{
-//            _timestamp = _timestamp +1;
-//            return _timestamp;
-//        }
+    private static Map<String, Object> getBaseUrlJsonMapped() {
+        if (Objects.isNull(BASE_URL_JSON_MAPPED)) {
+            BASE_URL_JSON_MAPPED = readJson(BASE_URL_JSON_PATH);
+        }
+        return BASE_URL_JSON_MAPPED;
+    }
 
-//    }
+    private static Map<String, Object> getProductJsonMapped() {
+        if (Objects.isNull(PRODUCT_JSON_MAPPED)) {
+            PRODUCT_JSON_MAPPED = readJson(PRODUCT_JSON_PATH);
+        }
+        return PRODUCT_JSON_MAPPED;
+    }
+
+    private static Map<String, Object> getUserJsonMapped() {
+        if (Objects.isNull(USER_JSON_MAPPED)) {
+            USER_JSON_MAPPED = readJson(USER_JSON_PATH);
+        }
+        return USER_JSON_MAPPED;
+    }
+
+    private static Map<String, Object> readJson(String jsonFilePath) {
+        StringBuilder fileName = new StringBuilder();
+        fileName.append(jsonFilePath);
+        Map<String, Object> element = null;
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
+            Gson gson = new Gson();
+            element = gson.fromJson(bufferedReader, Map.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return element;
+    }
 
 }
