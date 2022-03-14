@@ -28,6 +28,17 @@ public class Utils {
     static Map<String, Object> PRODUCT_JSON_MAPPED;
     static Map<String, Object> USER_JSON_MAPPED;
 
+    public static void init() {
+        ACCESS_TOKEN = null;
+        EMAIL = null;
+        JSESSIONID = null;
+        CSRFTOKEN = null;
+        ID_ADDRESS = null;
+        BASE_URL_JSON_MAPPED = null;
+        PRODUCT_JSON_MAPPED = null;
+        USER_JSON_MAPPED = null;
+    }
+
     public static String getBrand() {
         String brand = "";
         if (System.getProperty("brand") == null){
