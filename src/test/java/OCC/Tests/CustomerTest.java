@@ -4,13 +4,16 @@ import OCC.Services.AuthorizationPage;
 import OCC.Services.CartPage;
 import OCC.Services.CheckoutPage;
 import OCC.Services.UsersPage;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import OCC.Utils.Utils;
+import org.junit.jupiter.api.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CustomerTest {
+
+    @BeforeEach
+    public void init() {
+        Utils.init();
+    }
 
     @Test
     @Order(1)
