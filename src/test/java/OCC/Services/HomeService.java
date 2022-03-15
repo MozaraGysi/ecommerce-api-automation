@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import java.util.Arrays;
 import java.util.List;
 
-public class HomePage {
+public class HomeService {
 
     public static void GET_searchHomePageComponents() {
         CmsPageContentRequestDTO cmsPageContentRequestDTO = new CmsPageRequestDTOFixture().defaultRequestByHome().build();

@@ -1,12 +1,12 @@
 package OCC.Tests;
 
-import OCC.Services.AuthorizationPage;
-import OCC.Services.HomePage;
+import OCC.Services.AuthorizationService;
+import OCC.Services.HomeService;
 import OCC.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class HomePageComponentsTest {
+public class HomeServiceComponentsTest {
 
     @BeforeEach
     public void init() {
@@ -15,8 +15,8 @@ public class HomePageComponentsTest {
 
     @Test
     public void showHomePageComponents(){
-        AuthorizationPage.AnonymousAuth();
-        HomePage.GET_searchHomePageComponents();
+        AuthorizationService.AnonymousAuth();
+        HomeService.GET_searchHomePageComponents();
 
     }
 }

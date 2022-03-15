@@ -8,7 +8,7 @@ import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
-public class AuthorizationPage {
+public class AuthorizationService {
 
     public static void CustomerToken()
     {

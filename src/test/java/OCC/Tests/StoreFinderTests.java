@@ -1,6 +1,6 @@
 package OCC.Tests;
 
-import OCC.Services.AuthorizationPage;
+import OCC.Services.AuthorizationService;
 import OCC.Services.StoreFinderService;
 import OCC.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,25 +15,25 @@ public class StoreFinderTests {
 
     @Test
     public void searchStoresByPostalCodeTest(){
-        AuthorizationPage.AnonymousAuth();
+        AuthorizationService.AnonymousAuth();
         StoreFinderService.getSearchPostalCode();
     }
 
     @Test
     public void searchStoresByCoordinatesTest(){
-        AuthorizationPage.AnonymousAuth();
+        AuthorizationService.AnonymousAuth();
         StoreFinderService.getSearchCoordinates();
     }
 
     @Test
     public void searchStoresByWrongPostalCodeTest(){
-        AuthorizationPage.AnonymousAuth();
+        AuthorizationService.AnonymousAuth();
         StoreFinderService.getSearchWrongPostalCode();
     }
 
     @Test
     public void searchStoresByAddressTest(){
-        AuthorizationPage.AnonymousAuth();
+        AuthorizationService.AnonymousAuth();
         StoreFinderService.getSearchAddress();
     }
 

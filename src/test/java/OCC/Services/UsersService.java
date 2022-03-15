@@ -9,7 +9,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
-public class UsersPage {
+public class UsersService {
 
     public static void Users() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
