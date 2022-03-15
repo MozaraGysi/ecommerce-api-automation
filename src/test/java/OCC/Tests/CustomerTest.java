@@ -1,9 +1,9 @@
 package OCC.Tests;
 
-import OCC.Services.AuthorizationPage;
-import OCC.Services.CartPage;
-import OCC.Services.CheckoutPage;
-import OCC.Services.UsersPage;
+import OCC.Services.AuthorizationService;
+import OCC.Services.CartService;
+import OCC.Services.CheckoutService;
+import OCC.Services.UsersService;
 import OCC.Utils.Utils;
 import org.junit.jupiter.api.*;
 
@@ -18,103 +18,103 @@ public class CustomerTest {
     @Test
     @Order(1)
     public void register_NEWUser_BuyCreditCard() {
-        AuthorizationPage.AnonymousAuth();
-        UsersPage.Users();
-        AuthorizationPage.CustomerTokenNewUser();
-        UsersPage.POST_Addresses();
-        UsersPage.PATCH_User();
-        CartPage.POST_Cart();
-        CartPage.POST_Entry();
-        CartPage.GET_Cart();
-        UsersPage.GET_Addresses();
-        CheckoutPage.PUT_AddressesDelivery();
-        CheckoutPage.GET_DeliveryModes();
-        CheckoutPage.GET_PaymentMethods();
-        CheckoutPage.PUT_PaymentMethod();
-        CheckoutPage.POST_Order();
+        AuthorizationService.AnonymousAuth();
+        UsersService.Users();
+        AuthorizationService.CustomerTokenNewUser();
+        UsersService.POST_Addresses();
+        UsersService.PATCH_User();
+        CartService.POST_Cart();
+        CartService.POST_Entry();
+        CartService.GET_Cart();
+        UsersService.GET_Addresses();
+        CheckoutService.PUT_AddressesDelivery();
+        CheckoutService.GET_DeliveryModes();
+        CheckoutService.GET_PaymentMethods();
+        CheckoutService.PUT_PaymentMethod();
+        CheckoutService.POST_Order();
     }
 
     @Test
     @Order(2)
     public void register_NEWUser_BuyCreditCard_SellerExterno() {
-        AuthorizationPage.AnonymousAuth();
-        UsersPage.Users();
-        AuthorizationPage.CustomerTokenNewUser();
-        UsersPage.POST_Addresses();
-        UsersPage.PATCH_User();
-        CartPage.POST_Cart();
-        CartPage.POST_Entry_SellerExterno();
-        CartPage.GET_Cart();
-        UsersPage.GET_Addresses();
-        CheckoutPage.PUT_AddressesDelivery();
-        CheckoutPage.GET_DeliveryModes();
-        CheckoutPage.GET_PaymentMethods();
-        CheckoutPage.PUT_PaymentMethod();
-        CheckoutPage.POST_Order();
+        AuthorizationService.AnonymousAuth();
+        UsersService.Users();
+        AuthorizationService.CustomerTokenNewUser();
+        UsersService.POST_Addresses();
+        UsersService.PATCH_User();
+        CartService.POST_Cart();
+        CartService.POST_Entry_SellerExterno();
+        CartService.GET_Cart();
+        UsersService.GET_Addresses();
+        CheckoutService.PUT_AddressesDelivery();
+        CheckoutService.GET_DeliveryModes();
+        CheckoutService.GET_PaymentMethods();
+        CheckoutService.PUT_PaymentMethod();
+        CheckoutService.POST_Order();
     }
 
     @Test
     @Order(3)
     public void register_NEWUser_BuyBoleto() {
-        AuthorizationPage.AnonymousAuth();
-        UsersPage.Users();
-        AuthorizationPage.CustomerTokenNewUser();
-        UsersPage.POST_Addresses();
-        UsersPage.PATCH_User();
-        CartPage.POST_Cart();
-        CartPage.POST_Entry();
-        CartPage.GET_Cart();
-        UsersPage.GET_Addresses();
-        CheckoutPage.PUT_AddressesDelivery();
-        CheckoutPage.GET_DeliveryModes();
-        CheckoutPage.GET_PaymentMethods();
-        CheckoutPage.PUT_PaymentMethodBoleto();
-        CheckoutPage.POST_OrderBoleto();
+        AuthorizationService.AnonymousAuth();
+        UsersService.Users();
+        AuthorizationService.CustomerTokenNewUser();
+        UsersService.POST_Addresses();
+        UsersService.PATCH_User();
+        CartService.POST_Cart();
+        CartService.POST_Entry();
+        CartService.GET_Cart();
+        UsersService.GET_Addresses();
+        CheckoutService.PUT_AddressesDelivery();
+        CheckoutService.GET_DeliveryModes();
+        CheckoutService.GET_PaymentMethods();
+        CheckoutService.PUT_PaymentMethodBoleto();
+        CheckoutService.POST_OrderBoleto();
     }
 
     @Test
     @Order(4)
     public void register_OLDUser_BuyCreditCard() {
-        AuthorizationPage.CustomerToken();
-        CartPage.POST_Cart();
-        CartPage.POST_Entry();
-        CartPage.GET_Cart();
-        UsersPage.GET_Addresses();
-        CheckoutPage.PUT_AddressesDelivery();
-        CheckoutPage.GET_DeliveryModes();
-        CheckoutPage.GET_PaymentMethods();
-        CheckoutPage.PUT_PaymentMethod();
-        CheckoutPage.POST_Order();
+        AuthorizationService.CustomerToken();
+        CartService.POST_Cart();
+        CartService.POST_Entry();
+        CartService.GET_Cart();
+        UsersService.GET_Addresses();
+        CheckoutService.PUT_AddressesDelivery();
+        CheckoutService.GET_DeliveryModes();
+        CheckoutService.GET_PaymentMethods();
+        CheckoutService.PUT_PaymentMethod();
+        CheckoutService.POST_Order();
     }
 
     @Test
     @Order(5)
     public void register_OLDUser_BuyCreditCard_SellerExterno() {
-        AuthorizationPage.CustomerToken();
-        CartPage.POST_Cart();
-        CartPage.POST_Entry_SellerExterno();
-        CartPage.GET_Cart();
-        UsersPage.GET_Addresses();
-        CheckoutPage.PUT_AddressesDelivery();
-        CheckoutPage.GET_DeliveryModes();
-        CheckoutPage.GET_PaymentMethods();
-        CheckoutPage.PUT_PaymentMethod();
-        CheckoutPage.POST_Order();
+        AuthorizationService.CustomerToken();
+        CartService.POST_Cart();
+        CartService.POST_Entry_SellerExterno();
+        CartService.GET_Cart();
+        UsersService.GET_Addresses();
+        CheckoutService.PUT_AddressesDelivery();
+        CheckoutService.GET_DeliveryModes();
+        CheckoutService.GET_PaymentMethods();
+        CheckoutService.PUT_PaymentMethod();
+        CheckoutService.POST_Order();
     }
 
     @Test
     @Order(6)
     public void register_OLDUser_BuyBoleto() {
-        AuthorizationPage.CustomerToken();
-        CartPage.POST_Cart();
-        CartPage.POST_Entry();
-        CartPage.GET_Cart();
-        UsersPage.GET_Addresses();
-        CheckoutPage.PUT_AddressesDelivery();
-        CheckoutPage.GET_DeliveryModes();
-        CheckoutPage.GET_PaymentMethods();
-        CheckoutPage.PUT_PaymentMethodBoleto();
-        CheckoutPage.POST_OrderBoleto();
+        AuthorizationService.CustomerToken();
+        CartService.POST_Cart();
+        CartService.POST_Entry();
+        CartService.GET_Cart();
+        UsersService.GET_Addresses();
+        CheckoutService.PUT_AddressesDelivery();
+        CheckoutService.GET_DeliveryModes();
+        CheckoutService.GET_PaymentMethods();
+        CheckoutService.PUT_PaymentMethodBoleto();
+        CheckoutService.POST_OrderBoleto();
     }
 
 }

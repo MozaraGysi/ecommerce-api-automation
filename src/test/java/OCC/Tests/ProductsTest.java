@@ -1,7 +1,7 @@
 package OCC.Tests;
 
-import OCC.Services.AuthorizationPage;
-import OCC.Services.CategoryPage;
+import OCC.Services.AuthorizationService;
+import OCC.Services.CategoryService;
 import OCC.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,13 +15,13 @@ public class ProductsTest {
 
     @Test
     public void searchProductsByProductCode(){
-        AuthorizationPage.AnonymousAuth();
-        CategoryPage.GET_searchProductsByCode();
+        AuthorizationService.AnonymousAuth();
+        CategoryService.GET_searchProductsByCode();
     }
 
     @Test
     public void searchProductsWithoutFilters(){
-        AuthorizationPage.AnonymousAuth();
-        CategoryPage.GET_searchProductsWithoutFilters();
+        AuthorizationService.AnonymousAuth();
+        CategoryService.GET_searchProductsWithoutFilters();
     }
 }

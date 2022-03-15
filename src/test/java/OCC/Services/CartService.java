@@ -8,7 +8,7 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
 
-public class CartPage {
+public class CartService {
 
     public static void POST_Cart() {
         RestAssured.baseURI = Utils.getBaseUrl(false);

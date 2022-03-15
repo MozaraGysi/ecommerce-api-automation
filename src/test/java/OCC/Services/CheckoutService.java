@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
-public class CheckoutPage {
+public class CheckoutService {
 
     public static void PUT_AddressesDelivery() {
         RestAssured.baseURI = Utils.getBaseUrl(false);

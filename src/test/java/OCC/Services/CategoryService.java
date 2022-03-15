@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class CategoryPage {
+public class CategoryService {
 
     public static void GET_searchProductsByCode() {
 
