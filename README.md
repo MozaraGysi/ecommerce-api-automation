@@ -245,9 +245,9 @@ public class ClassNameTest {
 	}
 
 	@Test
-	public void someTest() {
-		ClassName01Service.someTest();
-		ClassName02Service.someTest();
+	public void [post/get/...]SomeTest() {
+		ClassName01Service.[post/get/...]SomeTest();
+		ClassName02Service.[post/get/...]SomeTest();
 	}
 }
    ```
@@ -315,17 +315,17 @@ Classe responsável pela definição de cada serviço a ser requisitado para a A
    ```
 public class APIClient {
 
-    public static Response POST_someRequest(ClassNameDTO requestDTO) {
+    public static Response postSomeRequest(ClassNameRequestDTO requestDTO) {
         RestAssured.baseURI = Utils.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.body(requestDTO.toJson().toString());
 
-        Response response = request.post("/arezzocoocc/v2/" + Utils.getSite_UID() + "/something/something");
+        Response response = request.post("/arezzocoocc/v2/" + Utils.getSiteUid() + "/something/something");
         response.getBody().print();
 
         Utils.setCookies(response.getCookies());
@@ -333,17 +333,17 @@ public class APIClient {
         return response;
     }
     
-    public static Response GET_someRequest(ClassNameDTO requestDTO) {
+    public static Response getSomeRequest(ClassNameRequestDTO requestDTO) {
         RestAssured.baseURI = Utils.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.queryParams(requestDTO.toMap());
 
-        Response response = request.get("/arezzocoocc/v2/" + Utils.getSite_UID() + "/something/something");
+        Response response = request.get("/arezzocoocc/v2/" + Utils.getSiteUid() + "/something/something");
         response.getBody().print();
 
         Utils.setCookies(response.getCookies());

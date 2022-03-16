@@ -14,9 +14,9 @@ public class HomeServiceComponentsTest {
     }
 
     @Test
-    public void showHomePageComponents(){
+    public void getShowHomePageComponents(){
         AuthorizationService.AnonymousAuth();
-        HomeService.GET_searchHomePageComponents();
+        HomeService.getSearchHomePageComponents();
 
     }
 }

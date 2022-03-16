@@ -18,21 +18,21 @@ import java.util.List;
 
 public class CategoryService {
 
-    public static void GET_searchProductsByCode() {
+    public static void getSearchProductsByCode() {
 
         ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO =  new ProductCategorySearchPageRequestDTOFixture().defaultRequestByCode().build();
 
-        Response response = APIClient.GET_product(productCategorySearchPageRequestDTO);
+        Response response = APIClient.getProduct(productCategorySearchPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductNameValidator(), new ProductValueValidator(), new ProductImagesValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void GET_searchProductsWithoutFilters() {
+    public static void getSearchProductsWithoutFilters() {
 
         ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO = new ProductCategorySearchPageRequestDTOFixture().defaultRequestFull().build();
 
-        Response response = APIClient.GET_product(productCategorySearchPageRequestDTO);
+        Response response = APIClient.getProduct(productCategorySearchPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductImagesValidator(), new ProductValueValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));

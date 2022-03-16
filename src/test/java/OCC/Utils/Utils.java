@@ -59,7 +59,7 @@ public class Utils {
         return env;
     }
 
-    public static String getSite_UID() {
+    public static String getSiteUid() {
         String brand = getBrand().toUpperCase();
         switch (brand) {
             case "AREZZO":
@@ -85,7 +85,7 @@ public class Utils {
 
     public static String getBaseUrl(boolean auth) {
         String baseUrl = ((Map<String, String>) ((Map<String, Object>) getBaseUrlJsonMapped().get(getBrand())).get(getEnv())).get("url");
-        return auth ? baseUrl : baseUrl + "arezzocoocc/v2/" + getSite_UID() + "/";
+        return auth ? baseUrl : baseUrl + "arezzocoocc/v2/" + getSiteUid() + "/";
     }
 
     public static List<String> getProduct(String param) {
@@ -125,35 +125,35 @@ public class Utils {
         return EMAIL;
     }
 
-    public static String getEMAIL(){
+    public static String getEmail(){
         return EMAIL;
     }
 
-    public static String setACCESS_TOKEN(String access_token){
+    public static String setAccessToken(String access_token){
         ACCESS_TOKEN = access_token;
         return ACCESS_TOKEN;
     }
 
-    public static String getACCESS_TOKEN(){
+    public static String getAccessToken(){
         return ACCESS_TOKEN;
     }
 
-    public static String setID_ADDRESS(ArrayList id_adrress){
+    public static String setIdAddress(ArrayList id_adrress){
         ID_ADDRESS = id_adrress.get(0).toString().replace("[","").replace("]","");
         return ID_ADDRESS;
     }
 
-    public static String getID_ADDRESS(){
+    public static String getIdAddress(){
         return ID_ADDRESS;
     }
 
 
-    public static String setJSESSIONID(String jsessionID){
+    public static String setJSessionId(String jsessionID){
         JSESSIONID = jsessionID;
         return JSESSIONID;
     }
 
-    public static String getJSESSIONID(){
+    public static String getJSessionId(){
         return JSESSIONID;
     }
 

@@ -1,6 +1,5 @@
 package OCC.Utils;
 
-import OCC.Utils.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class TokenUtils {
 
-    public String GetCustomerToken() {
+    public String getCustomerToken() {
         RestAssured.baseURI = Utils.getBaseUrl(true);
 
         RequestSpecification request = RestAssured.given();
@@ -21,7 +20,7 @@ public class TokenUtils {
         request.formParam("grant_type", "password");
         request.formParam("username","ter_hsaueressig@arezzo.com.br");
         request.formParam("password","Arezzo123");
-        request.formParam("site_uid", Utils.getSite_UID());
+        request.formParam("site_uid", Utils.getSiteUid());
 
         Response response = request.post("oauth/token");
         Assertions.assertEquals(200, response.getStatusCode());

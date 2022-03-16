@@ -18,7 +18,7 @@ public class StoreFinderService {
 
         StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByPostalCode().build();
 
-        Response response = APIClient.GET_stores(storeFinderSearchRequestDTO);
+        Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -28,7 +28,7 @@ public class StoreFinderService {
 
         StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByCoordinates().build();
 
-        Response response = APIClient.GET_stores(storeFinderSearchRequestDTO);
+        Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -38,7 +38,7 @@ public class StoreFinderService {
 
         StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByAddress().build();
 
-        Response response = APIClient.GET_stores(storeFinderSearchRequestDTO);
+        Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -48,7 +48,7 @@ public class StoreFinderService {
 
         StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByWrongPostalCode().build();
 
-        Response response = APIClient.GET_stores(storeFinderSearchRequestDTO);
+        Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));

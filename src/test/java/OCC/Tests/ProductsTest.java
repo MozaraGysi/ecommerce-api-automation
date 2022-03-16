@@ -14,14 +14,14 @@ public class ProductsTest {
     }
 
     @Test
-    public void searchProductsByProductCode(){
+    public void getSearchProductsByProductCode(){
         AuthorizationService.AnonymousAuth();
-        CategoryService.GET_searchProductsByCode();
+        CategoryService.getSearchProductsByCode();
     }
 
     @Test
-    public void searchProductsWithoutFilters(){
+    public void getSearchProductsWithoutFilters(){
         AuthorizationService.AnonymousAuth();
-        CategoryService.GET_searchProductsWithoutFilters();
+        CategoryService.getSearchProductsWithoutFilters();
     }
 }

@@ -16,61 +16,61 @@ import java.util.List;
 
 public class LoginService {
 
-    public static void GET_searchOptionsListByEmail() {
+    public static void getSearchOptionsListByEmail() {
 
         LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultRequestByEmail().build();
 
-        Response response = APIClient.GET_optionslist(loginPageRequestDTO);
+        Response response = APIClient.getOptionslist(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new RecoverOptionEmailValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void GET_searchOptionsListByWrongEmail() {
+    public static void getSearchOptionsListByWrongEmail() {
 
         LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultRequestByWrongEmail().build();
 
-        Response response = APIClient.GET_optionslist(loginPageRequestDTO);
+        Response response = APIClient.getOptionslist(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void POST_RequestPasswordChangeByOption() {
+    public static void postRequestPasswordChangeByOption() {
 
         LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultPasswordOptionRequestByEmail().build();
 
-        Response response = APIClient.POST_password(loginPageRequestDTO);
+        Response response = APIClient.postPassword(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void POST_RequestPasswordChangeByWrongOption() {
+    public static void postRequestPasswordChangeByWrongOption() {
 
         LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultPasswordOptionRequestByWrongEmail().build();
 
-        Response response = APIClient.POST_password(loginPageRequestDTO);
+        Response response = APIClient.postPassword(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void GET_requestCheckReceivdCode() {
+    public static void getRequestCheckReceivedCode() {
 
         LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultRequestByWrongCode().build();
 
-        Response response = APIClient.GET_receivdcode(loginPageRequestDTO);
+        Response response = APIClient.getReceivedcode(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void POST_requestChangePassword() {
+    public static void postRequestChangePassword() {
 
         LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultRequestByWrongToken().build();
 
-        Response response = APIClient.POST_changepassword(loginPageRequestDTO);
+        Response response = APIClient.postChangePassword(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
