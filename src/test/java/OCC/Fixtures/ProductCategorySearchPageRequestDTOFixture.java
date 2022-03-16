@@ -1,13 +1,17 @@
 package OCC.Fixtures;
 
-import OCC.DTOs.ProductCategorySearchPageRequestDTO;
+import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
 
-public class ProductCategorySearchPageRequestDTOFixture {
+public final class ProductCategorySearchPageRequestDTOFixture {
     private ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO;
 
-    public ProductCategorySearchPageRequestDTOFixture() {
+    private ProductCategorySearchPageRequestDTOFixture() {
         productCategorySearchPageRequestDTO = new ProductCategorySearchPageRequestDTO();
     }
+
+    public static ProductCategorySearchPageRequestDTOFixture get(){
+		return new ProductCategorySearchPageRequestDTOFixture();
+	}
 
     public ProductCategorySearchPageRequestDTO build() {
         return productCategorySearchPageRequestDTO;

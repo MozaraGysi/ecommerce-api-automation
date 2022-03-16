@@ -1,7 +1,7 @@
 package OCC.Validators;
 
 import Common.Validators.Validator;
-import OCC.DTOs.LoginPageResponseDTO;
+import OCC.DTOs.Response.LoginPageResponseDTO;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
