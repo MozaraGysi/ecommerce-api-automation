@@ -1,11 +1,11 @@
 package OCC.Services;
 
+import Common.Validators.StatusCodeOKValidator;
 import Common.Validators.Validator;
 import OCC.DTOs.AuthorizationResponseDTO;
 import OCC.Handlers.AuthorizationHandler;
 import OCC.Utils.Utils;
 import OCC.Validators.AnonymousAuthorizationValidator;
-import OCC.Validators.StatusCodeResponseValidator;
 import OCC.Validators.CustomerAuthorizationValidator;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -32,7 +32,10 @@ public class AuthorizationService {
         request.formParam("site_uid", "marketplacezz");
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        validateAuthorizationResponse(request, response);
+
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
         handleAuthorization(response);
 
     }
@@ -52,7 +55,10 @@ public class AuthorizationService {
         request.formParam("password","zero123@");
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        validateAuthorizationResponse(request, response);
+
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
         handleAuthorization(response);
     }
 
@@ -68,7 +74,10 @@ public class AuthorizationService {
         request.formParam("grant_type", "client_credentials");
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        validateAuthorizationResponse(request, response);
+
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new AnonymousAuthorizationValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
         handleAuthorization(response);
     }
 
@@ -89,7 +98,10 @@ public class AuthorizationService {
         request.formParam("site_uid", Utils.getSite_UID());
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        validateAuthorizationResponse(request, response);
+
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
         handleAuthorization(response);
     }
 
@@ -107,24 +119,16 @@ public class AuthorizationService {
         request.formParam("site_uid", Utils.getSite_UID());
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        validateAuthorizationResponse(request, response);
+
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
         handleAuthorization(response);
     }
 
     private static void handleAuthorization(Response response) {
         AuthorizationResponseDTO authorizationResponseDTO = new AuthorizationResponseDTO().fromJsonString(response.getBody().asString());
         authorizationResponseDTO.setCookies(response.getCookies());
-        AuthorizationHandler.addAuthorization(authorizationResponseDTO);
-    }
-
-    private static void validateAuthorizationResponse(RequestSpecification request, Response response) {
-        if (Utils.isAnonymousUser(request)) {
-            List<Validator> validators = Arrays.asList(new StatusCodeResponseValidator(), new AnonymousAuthorizationValidator());
-            Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
-        } else {
-            List<Validator> validators = Arrays.asList(new StatusCodeResponseValidator(), new CustomerAuthorizationValidator());
-            Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
-        }
-
+        AuthorizationHandler.setAuthorization(authorizationResponseDTO);
     }
 }

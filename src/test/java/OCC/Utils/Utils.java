@@ -1,9 +1,8 @@
 package OCC.Utils;
 
 import Common.Utils.GenerateCPF;
+import OCC.Handlers.AuthorizationHandler;
 import com.google.gson.Gson;
-import io.restassured.internal.RequestSpecificationImpl;
-import io.restassured.specification.RequestSpecification;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -38,7 +37,7 @@ public class Utils {
         ID_ADDRESS = null;
         BASE_URL_JSON_MAPPED = null;
         PRODUCT_JSON_MAPPED = null;
-        USER_JSON_MAPPED = null;
+        AuthorizationHandler.clear();
     }
 
     public static String getBrand() {
@@ -164,11 +163,6 @@ public class Utils {
         String cpf = newCPF.cpfFinal(true);
         System.out.print(cpf);
         return cpf;
-    }
-
-    public static boolean isAnonymousUser(RequestSpecification request) {
-        String grantType = ((RequestSpecificationImpl) request).getFormParams().get("grant_type");
-        return ANONYMOUS_GRANT_TYPE.equals(grantType);
     }
 
     private static Map<String, Object> getBaseUrlJsonMapped() {
