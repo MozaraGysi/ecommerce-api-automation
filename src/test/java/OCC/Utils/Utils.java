@@ -27,7 +27,6 @@ public class Utils {
     static Map<String, Object> BASE_URL_JSON_MAPPED;
     static Map<String, Object> PRODUCT_JSON_MAPPED;
     static Map<String, Object> USER_JSON_MAPPED;
-    static String ANONYMOUS_GRANT_TYPE = "client_credentials";
 
     public static void init() {
         ACCESS_TOKEN = null;
@@ -37,6 +36,7 @@ public class Utils {
         ID_ADDRESS = null;
         BASE_URL_JSON_MAPPED = null;
         PRODUCT_JSON_MAPPED = null;
+        USER_JSON_MAPPED = null;
         AuthorizationHandler.clear();
     }
 
