@@ -3,7 +3,11 @@ package OCC.DTOs;
 import Common.AbstractDTO;
 import com.google.gson.annotations.SerializedName;
 
-public class AuthResponseDTO extends AbstractDTO<AuthResponseDTO> {
+import java.util.Map;
+
+public class AuthorizationResponseDTO extends AbstractDTO<AuthorizationResponseDTO> {
+
+	private Map<String,String> cookies;
 
 	@SerializedName("access_token")
 	private String accessToken;
@@ -20,6 +24,13 @@ public class AuthResponseDTO extends AbstractDTO<AuthResponseDTO> {
 	@SerializedName("scope")
 	private String scope;
 
+	public Map<String, String> getCookies() {
+		return cookies;
+	}
+
+	public void setCookies(Map<String, String> cookies) {
+		this.cookies = cookies;
+	}
 	public String getAccessToken() {
 		return accessToken;
 	}

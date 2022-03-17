@@ -1,15 +1,19 @@
 package OCC.Services;
 
-import OCC.DTOs.AuthResponseDTO;
+import Common.Validators.Validator;
+import OCC.DTOs.AuthorizationResponseDTO;
+import OCC.Handlers.AuthorizationHandler;
 import OCC.Utils.Utils;
-import OCC.Validators.AnonymousAuthValidator;
-import OCC.Validators.AppleAuthValidator;
-import OCC.Validators.CustomerAuthValidator;
-import OCC.Validators.FacebookAuthValidator;
+import OCC.Validators.AnonymousAuthorizationValidator;
+import OCC.Validators.StatusCodeResponseValidator;
+import OCC.Validators.CustomerAuthorizationValidator;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AuthorizationService {
 
@@ -28,12 +32,8 @@ public class AuthorizationService {
         request.formParam("site_uid", "marketplacezz");
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        Assertions.assertTrue(new CustomerAuthValidator().validate(response));
-
-        AuthResponseDTO authResponseDTO = new AuthResponseDTO().fromJsonString(response.getBody().asString());
-
-        Utils.setCookies(response.getCookies());
-        Utils.setACCESS_TOKEN(authResponseDTO.getAccessToken());
+        validateAuthorizationResponse(request, response);
+        handleAuthorization(response);
 
     }
 
@@ -52,12 +52,8 @@ public class AuthorizationService {
         request.formParam("password","zero123@");
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        Assertions.assertTrue(new CustomerAuthValidator().validate(response));
-
-        AuthResponseDTO authResponseDTO = new AuthResponseDTO().fromJsonString(response.getBody().asString());
-
-        Utils.setCookies(response.getCookies());
-        Utils.setACCESS_TOKEN(authResponseDTO.getAccessToken());
+        validateAuthorizationResponse(request, response);
+        handleAuthorization(response);
     }
 
     public static void AnonymousAuth()
@@ -72,12 +68,8 @@ public class AuthorizationService {
         request.formParam("grant_type", "client_credentials");
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        Assertions.assertTrue(new AnonymousAuthValidator().validate(response));
-
-        AuthResponseDTO authResponseDTO = new AuthResponseDTO().fromJsonString(response.getBody().asString());
-
-        Utils.setCookies(response.getCookies());
-        Utils.setACCESS_TOKEN(authResponseDTO.getAccessToken());
+        validateAuthorizationResponse(request, response);
+        handleAuthorization(response);
     }
 
     public static void RegisterCustomerAppleID()
@@ -97,12 +89,8 @@ public class AuthorizationService {
         request.formParam("site_uid", Utils.getSite_UID());
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        Assertions.assertTrue(new AppleAuthValidator().validate(response));
-
-        AuthResponseDTO authResponseDTO = new AuthResponseDTO().fromJsonString(response.getBody().asString());
-
-        Utils.setCookies(response.getCookies());
-        Utils.setACCESS_TOKEN(authResponseDTO.getAccessToken());
+        validateAuthorizationResponse(request, response);
+        handleAuthorization(response);
     }
 
     public static void RegisterCustomerFacebook()
@@ -119,11 +107,24 @@ public class AuthorizationService {
         request.formParam("site_uid", Utils.getSite_UID());
 
         Response response = request.post("/arezzocoocc/oauth/token");
-        Assertions.assertTrue(new FacebookAuthValidator().validate(response));
+        validateAuthorizationResponse(request, response);
+        handleAuthorization(response);
+    }
 
-        AuthResponseDTO authResponseDTO = new AuthResponseDTO().fromJsonString(response.getBody().asString());
+    private static void handleAuthorization(Response response) {
+        AuthorizationResponseDTO authorizationResponseDTO = new AuthorizationResponseDTO().fromJsonString(response.getBody().asString());
+        authorizationResponseDTO.setCookies(response.getCookies());
+        AuthorizationHandler.addAuthorization(authorizationResponseDTO);
+    }
 
-        Utils.setCookies(response.getCookies());
-        Utils.setACCESS_TOKEN(authResponseDTO.getAccessToken());
+    private static void validateAuthorizationResponse(RequestSpecification request, Response response) {
+        if (Utils.isAnonymousUser(request)) {
+            List<Validator> validators = Arrays.asList(new StatusCodeResponseValidator(), new AnonymousAuthorizationValidator());
+            Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        } else {
+            List<Validator> validators = Arrays.asList(new StatusCodeResponseValidator(), new CustomerAuthorizationValidator());
+            Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        }
+
     }
 }

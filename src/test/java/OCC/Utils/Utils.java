@@ -2,6 +2,8 @@ package OCC.Utils;
 
 import Common.Utils.GenerateCPF;
 import com.google.gson.Gson;
+import io.restassured.internal.RequestSpecificationImpl;
+import io.restassured.specification.RequestSpecification;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -9,7 +11,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -27,6 +28,7 @@ public class Utils {
     static Map<String, Object> BASE_URL_JSON_MAPPED;
     static Map<String, Object> PRODUCT_JSON_MAPPED;
     static Map<String, Object> USER_JSON_MAPPED;
+    static String ANONYMOUS_GRANT_TYPE = "client_credentials";
 
     public static void init() {
         ACCESS_TOKEN = null;
@@ -129,15 +131,6 @@ public class Utils {
         return EMAIL;
     }
 
-    public static String setACCESS_TOKEN(String access_token){
-        ACCESS_TOKEN = access_token;
-        return ACCESS_TOKEN;
-    }
-
-    public static String getACCESS_TOKEN(){
-        return ACCESS_TOKEN;
-    }
-
     public static String setID_ADDRESS(ArrayList id_adrress){
         ID_ADDRESS = id_adrress.get(0).toString().replace("[","").replace("]","");
         return ID_ADDRESS;
@@ -166,21 +159,16 @@ public class Utils {
         return CSRFTOKEN;
     }
 
-    static Map<String,String> cookies = new HashMap<>();
-
-    public static Map<String,String> getCookies(){
-        return cookies;
-    }
-
-    public static void setCookies(Map<String,String> cookie){
-        cookies = cookie;
-    }
-
     public static String cpf(){
         GenerateCPF newCPF = new GenerateCPF();
         String cpf = newCPF.cpfFinal(true);
         System.out.print(cpf);
         return cpf;
+    }
+
+    public static boolean isAnonymousUser(RequestSpecification request) {
+        String grantType = ((RequestSpecificationImpl) request).getFormParams().get("grant_type");
+        return ANONYMOUS_GRANT_TYPE.equals(grantType);
     }
 
     private static Map<String, Object> getBaseUrlJsonMapped() {
