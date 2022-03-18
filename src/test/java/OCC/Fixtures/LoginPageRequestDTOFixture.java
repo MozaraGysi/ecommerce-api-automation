@@ -1,14 +1,19 @@
 package OCC.Fixtures;
 
 
-import OCC.DTOs.LoginPageRequestDTO;
+import OCC.DTOs.Request.LoginPageRequestDTO;
 
-public class LoginPageRequestDTOFixture {
+public final class LoginPageRequestDTOFixture {
+
     private LoginPageRequestDTO loginPageRequestDTO;
 
-    public LoginPageRequestDTOFixture() {
+    private LoginPageRequestDTOFixture() {
         loginPageRequestDTO = new LoginPageRequestDTO();
     }
+
+    public static LoginPageRequestDTOFixture get(){
+		return new LoginPageRequestDTOFixture();
+	}
 
     public LoginPageRequestDTO build() {
         return loginPageRequestDTO;

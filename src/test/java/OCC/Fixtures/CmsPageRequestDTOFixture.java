@@ -1,13 +1,18 @@
 package OCC.Fixtures;
 
-import OCC.DTOs.CmsPageContentRequestDTO;
+import OCC.DTOs.Request.CmsPageContentRequestDTO;
 
-public class CmsPageRequestDTOFixture {
+public final class CmsPageRequestDTOFixture {
+
     private CmsPageContentRequestDTO cmsPageContentRequestDTO;
 
-    public CmsPageRequestDTOFixture(){
+    private CmsPageRequestDTOFixture(){
         cmsPageContentRequestDTO = new CmsPageContentRequestDTO();
     }
+
+    public static CmsPageRequestDTOFixture get() {
+		return new CmsPageRequestDTOFixture();
+	}
 
     public CmsPageContentRequestDTO build(){
         return cmsPageContentRequestDTO;
