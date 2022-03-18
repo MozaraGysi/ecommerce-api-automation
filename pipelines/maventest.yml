@@ -3,9 +3,6 @@ parameters:
     type: string
 
   - name: wallet
-    type: boolean
-
-  - name: task
     type: string
 
   - name: arezzo
