@@ -14,7 +14,8 @@ parameters:
   - hml
   
 - name: wallet
-  type: boolean
+  displayName: Wallet
+  type: string
   default: true
   values:
   - true
