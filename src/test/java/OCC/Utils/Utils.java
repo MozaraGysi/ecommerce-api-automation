@@ -1,6 +1,7 @@
 package OCC.Utils;
 
 import Common.Utils.GenerateCPF;
+import OCC.Handlers.AuthorizationHandler;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -9,7 +10,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -37,6 +37,7 @@ public class Utils {
         BASE_URL_JSON_MAPPED = null;
         PRODUCT_JSON_MAPPED = null;
         USER_JSON_MAPPED = null;
+        AuthorizationHandler.clear();
     }
 
     public static String getBrand() {
@@ -129,15 +130,6 @@ public class Utils {
         return EMAIL;
     }
 
-    public static String setACCESS_TOKEN(String access_token){
-        ACCESS_TOKEN = access_token;
-        return ACCESS_TOKEN;
-    }
-
-    public static String getACCESS_TOKEN(){
-        return ACCESS_TOKEN;
-    }
-
     public static String setID_ADDRESS(ArrayList id_adrress){
         ID_ADDRESS = id_adrress.get(0).toString().replace("[","").replace("]","");
         return ID_ADDRESS;
@@ -164,16 +156,6 @@ public class Utils {
 
     public static String getCSRFTOKEN(){
         return CSRFTOKEN;
-    }
-
-    static Map<String,String> cookies = new HashMap<>();
-
-    public static Map<String,String> getCookies(){
-        return cookies;
-    }
-
-    public static void setCookies(Map<String,String> cookie){
-        cookies = cookie;
     }
 
     public static String cpf(){
