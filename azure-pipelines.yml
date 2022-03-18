@@ -13,21 +13,12 @@ parameters:
   - integ01
   - hml
   
-- name: Wallet
+- name: wallet
   type: boolean
   default: true
   values:
   - true
   - false
-
-# - name : task
-#   displayName: Task
-#   type: string
-#   default: regressao
-#   values:
-#   - regressao
-#   - smoke
-#   - prod
 
 - name : arezzo
   displayName: Arezzo
@@ -73,8 +64,7 @@ stages:
   - template: pipelines/maventest.yml
     parameters:
       env: ${{ parameters.env }}
-      mode: ${{ parameters.mode }}
-      task: ${{ parameters.task }}
+      task: ${{ parameters.wallet }}
       arezzo: ${{ parameters.arezzo }}
       alme: ${{ parameters.alme }}
       fiever: ${{ parameters.fiever }}
