@@ -2,7 +2,7 @@ parameters:
   - name: env
     type: string
 
-  - name: modes
+  - name: wallet
     type: object
     default:
       - true
