@@ -60,35 +60,42 @@ stages:
                 ${{ if eq(parameters.arezzo, true) }}:
                   Arezzo${{value}}:
                     flavor: 'Arezzo'
-
+                    currMode: ${{value}}
 
                 ${{ if eq(parameters.alme, true) }}:
                   Alme${{value}}:
                     flavor: 'Owme'
+                    currMode: ${{value}}
 
                 ${{ if eq(parameters.fiever, true) }}:
                   Fiever${{value}}:
                     flavor: 'Fiever'
+                    currMode: ${{value}}
 
                 ${{ if eq(parameters.birman, true) }}:
                   Birman${{value}}:
                     flavor: 'AlexandreBirman'
+                    currMode: ${{value}}
 
                 ${{ if eq(parameters.schutz, true) }}:
                   Schutz${{value}}:
                     flavor: 'Schutz'
+                    currMode: ${{value}}
 
                 ${{ if eq(parameters.anacapri, true) }}:
                   Anacapri${{value}}:
                     flavor: 'Anacapri'
+                    currMode: ${{value}}
 
                 ${{ if eq(parameters.vans, true) }}:
                   Vans${{value}}:
                     flavor: 'Vans'
+                    currMode: ${{value}}
 
                 ${{ if eq(parameters.zzmall, true) }}:
                   ZZMall${{value}}:
                     flavor: 'Zzmall'
+                    currMode: ${{value}}
 
         variables:
           - group: automationAPI
