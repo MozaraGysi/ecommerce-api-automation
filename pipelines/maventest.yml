@@ -52,7 +52,7 @@ stages:
 
         strategy:
           matrix:
-            ${{ each value in parameters.wallet }}:
+            ${{ each value in parameters.wallets }}:
               ${{ if in(parameters.wallet, value, 'all') }}:
                 ${{ if eq(parameters.arezzo, true) }}:
                   Arezzo${{value}}:
