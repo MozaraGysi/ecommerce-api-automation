@@ -5,8 +5,8 @@ parameters:
   - name: wallet
     type: object
     default:
-      - true
-      - false
+      - 'true'
+      - 'false'
 
   - name: arezzo
     type: boolean
