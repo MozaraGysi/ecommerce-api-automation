@@ -1,6 +1,9 @@
 parameters:
   - name: env
     type: string
+    
+  - name: wallet
+    type: string
 
   - name: wallets
     type: object
