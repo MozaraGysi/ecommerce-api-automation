@@ -162,4 +162,4 @@ stages:
                 -Djvm.options=-Xss50000k
                 -Dbrand=$(flavor)
                 -Denv=${{ parameters.env }}
-                -Dwallet=$(currMode)
+                -DexcludeWallet=$(currMode)
