@@ -65,7 +65,7 @@ stages:
   - template: pipelines/maventest.yml
     parameters:
       env: ${{ parameters.env }}
-      task: ${{ parameters.wallet }}
+      wallet: ${{ parameters.wallet }}
       arezzo: ${{ parameters.arezzo }}
       alme: ${{ parameters.alme }}
       fiever: ${{ parameters.fiever }}
