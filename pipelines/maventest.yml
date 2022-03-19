@@ -2,8 +2,11 @@ parameters:
   - name: env
     type: string
 
-  - name: wallet
-    type: string
+  - name: modes
+    type: object
+    default:
+      - true
+      - false
 
   - name: arezzo
     type: boolean
