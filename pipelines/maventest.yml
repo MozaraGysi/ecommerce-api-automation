@@ -42,141 +42,96 @@ stages:
     displayName: "${{ parameters.env }} - Maven Test Ecommerce Stage"
 
     jobs:
-      - job: "MavenTestEcommerceJob"
+      - job: "MavenTestEcommerceJob_"
         displayName: "Maven Test Ecommerce Job"
 
         timeoutInMinutes: 0
 
         strategy:
           matrix:
-            ${{ if eq(parameters.arezzo, true) }}:
-              Arezzo${{value}}:
-                flavor: 'Arezzo'
-                currMode: ${{value}}
+            ${{ each value in parameters.wallet }}:
+              ${{ if in(parameters.wallet, value, 'all') }}:
+                ${{ if eq(parameters.arezzo, true) }}:
+                  Arezzo${{value}}:
+                    flavor: 'Arezzo'
 
-            ${{ if eq(parameters.alme, true) }}:
-              Alme${{value}}:
-                flavor: 'Owme'
-                currMode: ${{value}}
 
-            ${{ if eq(parameters.fiever, true) }}:
-              Fiever${{value}}:
-                flavor: 'Fiever'
-                currMode: ${{value}}
-              
-            ${{ if eq(parameters.birman, true) }}:
-              Birman${{value}}:
-                flavor: 'AlexandreBirman'
-                currMode: ${{value}}
-              
-            ${{ if eq(parameters.schutz, true) }}:
-              Schutz${{value}}:
-                flavor: 'Schutz'
-                currMode: ${{value}}
-              
-            ${{ if eq(parameters.anacapri, true) }}:
-              Anacapri${{value}}:
-                flavor: 'Anacapri'
-                currMode: ${{value}}
-              
-            ${{ if eq(parameters.vans, true) }}:
-              Vans${{value}}:
-                flavor: 'Vans'
-                currMode: ${{value}}
-              
-            ${{ if eq(parameters.zzmall, true) }}:
-              ZZMall${{value}}:
-                flavor: 'Zzmall'
-                currMode: ${{value}}
+                ${{ if eq(parameters.alme, true) }}:
+                  Alme${{value}}:
+                    flavor: 'Owme'
+
+                ${{ if eq(parameters.fiever, true) }}:
+                  Fiever${{value}}:
+                    flavor: 'Fiever'
+
+                ${{ if eq(parameters.birman, true) }}:
+                  Birman${{value}}:
+                    flavor: 'AlexandreBirman'
+
+                ${{ if eq(parameters.schutz, true) }}:
+                  Schutz${{value}}:
+                    flavor: 'Schutz'
+
+                ${{ if eq(parameters.anacapri, true) }}:
+                  Anacapri${{value}}:
+                    flavor: 'Anacapri'
+
+                ${{ if eq(parameters.vans, true) }}:
+                  Vans${{value}}:
+                    flavor: 'Vans'
+
+                ${{ if eq(parameters.zzmall, true) }}:
+                  ZZMall${{value}}:
+                    flavor: 'Zzmall'
 
         variables:
           - group: automationAPI
 
         steps:
           - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsArezzoDesktop)"
-            displayName: 'Set additionalTags Arezzo Desktop'
-            condition: and(succeeded(), eq(variables.flavor, 'Arezzo'), eq(variables.currMode, 'Desktop'))
+              echo "##vso[task.setvariable variable=additionalTags]$(tagsArezzo)"
+            displayName: 'Set additionalTags Arezzo'
+            condition: and(succeeded(), eq(variables.flavor, 'Arezzo'))
 
           - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsArezzoMobile)"
-            displayName: 'Set additionalTags Arezzo Mobile'
-            condition: and(succeeded(), eq(variables.flavor, 'Arezzo'), eq(variables.currMode, 'Mobile'))
+              echo "##vso[task.setvariable variable=additionalTags]$(tagsAlme)"
+            displayName: 'Set additionalTags Alme'
+            condition: and(succeeded(), eq(variables.flavor, 'Owme'))
 
           - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsAlmeDesktop)"
-            displayName: 'Set additionalTags Alme Desktop'
-            condition: and(succeeded(), eq(variables.flavor, 'Owme'), eq(variables.currMode, 'Desktop'))
+              echo "##vso[task.setvariable variable=additionalTags]$(tagsFiever)"
+            displayName: 'Set additionalTags Fiever'
+            condition: and(succeeded(), eq(variables.flavor, 'Fiever'))
 
           - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsAlmeMobile)"
-            displayName: 'Set additionalTags Alme Mobile'
-            condition: and(succeeded(), eq(variables.flavor, 'Owme'), eq(variables.currMode, 'Mobile'))
+              echo "##vso[task.setvariable variable=additionalTags]$(tagsBirman)"
+            displayName: 'Set additionalTags Birman'
+            condition: and(succeeded(), eq(variables.flavor, 'AlexandreBirman'))
 
           - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsFieverDesktop)"
-            displayName: 'Set additionalTags Fiever Desktop'
-            condition: and(succeeded(), eq(variables.flavor, 'Fiever'), eq(variables.currMode, 'Desktop'))
+              echo "##vso[task.setvariable variable=additionalTags]$(tagsSchutz)"
+            displayName: 'Set additionalTags Schutz'
+            condition: and(succeeded(), eq(variables.flavor, 'Schutz'))
 
           - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsFieverMobile)"
-            displayName: 'Set additionalTags Fiever Mobile'
-            condition: and(succeeded(), eq(variables.flavor, 'Fiever'), eq(variables.currMode, 'Mobile'))
+              echo "##vso[task.setvariable variable=additionalTags]$(tagsAnacapri)"
+            displayName: 'Set additionalTags Anacapri'
+            condition: and(succeeded(), eq(variables.flavor, 'Anacapri'))
 
           - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsBirmanDesktop)"
-            displayName: 'Set additionalTags Birman Desktop'
-            condition: and(succeeded(), eq(variables.flavor, 'AlexandreBirman'), eq(variables.currMode, 'Desktop'))
+              echo "##vso[task.setvariable variable=additionalTags]$(tagsVans)"
+            displayName: 'Set additionalTags Vans'
+            condition: and(succeeded(), eq(variables.flavor, 'Vans'))
 
           - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsBirmanMobile)"
-            displayName: 'Set additionalTags Birman Mobile'
-            condition: and(succeeded(), eq(variables.flavor, 'AlexandreBirman'), eq(variables.currMode, 'Mobile'))
-
-          - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsSchutzDesktop)"
-            displayName: 'Set additionalTags Schutz Desktop'
-            condition: and(succeeded(), eq(variables.flavor, 'Schutz'), eq(variables.currMode, 'Desktop'))
-
-          - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsSchutzMobile)"
-            displayName: 'Set additionalTags Schutz Mobile'
-            condition: and(succeeded(), eq(variables.flavor, 'Schutz'), eq(variables.currMode, 'Mobile'))
-
-          - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsAnacapriDesktop)"
-            displayName: 'Set additionalTags Anacapri Desktop'
-            condition: and(succeeded(), eq(variables.flavor, 'Anacapri'), eq(variables.currMode, 'Desktop'))
-
-          - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsAnacapriMobile)"
-            displayName: 'Set additionalTags Anacapri Mobile'
-            condition: and(succeeded(), eq(variables.flavor, 'Anacapri'), eq(variables.currMode, 'Mobile'))
-
-          - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsVansDesktop)"
-            displayName: 'Set additionalTags Vans Desktop'
-            condition: and(succeeded(), eq(variables.flavor, 'Vans'), eq(variables.currMode, 'Desktop'))
-
-          - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsVansMobile)"
-            displayName: 'Set additionalTags Vans Mobile'
-            condition: and(succeeded(), eq(variables.flavor, 'Vans'), eq(variables.currMode, 'Mobile'))
-
-          - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsZzmallDesktop)"
-            displayName: 'Set additionalTags Zzmall Desktop'
-            condition: and(succeeded(), eq(variables.flavor, 'Zzmall'), eq(variables.currMode, 'Desktop'))
-
-          - script: |
-              echo "##vso[task.setvariable variable=additionalTags]$(tagsZzmallMobile)"
-            displayName: 'Set additionalTags Zzmall Mobile'
-            condition: and(succeeded(), eq(variables.flavor, 'Zzmall'), eq(variables.currMode, 'Mobile'))
+              echo "##vso[task.setvariable variable=additionalTags]$(tagsZzmall)"
+            displayName: 'Set additionalTags Zzmall'
+            condition: and(succeeded(), eq(variables.flavor, 'Zzmall'))
 
           - script: |
               echo "Flavor: $(flavor)"
+              echo "Mode: $(currMode)"
               echo "AdditionalTags: $(additionalTags)"
-              echo "Wallet: ${{ parameters.wallet }}"
             displayName: 'Debugging Job parameters'
             env:
               MY_VARIABLES: $(additionalTags)
@@ -194,4 +149,4 @@ stages:
                 -Djvm.options=-Xss50000k
                 -Dbrand=$(flavor)
                 -Denv=${{ parameters.env }}
-                -DexcludeWallet=${{ parameters.wallet }}
+                -Dwallet=$(currMode)
