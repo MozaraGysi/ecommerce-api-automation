@@ -18,6 +18,16 @@ public final class CartRequestDTOFixture {
 		return cartDTO;
 	}
 
+	private CartRequestDTOFixture random() {
+		return this
+		.withDefaultProduct()
+		.withExternalSellerProduct();
+	}
+
+	public static CartRequestDTOFixture getRandom() {
+		return CartRequestDTOFixture.get().random();
+	}
+
 	public CartRequestDTOFixture withDefaultProduct() {
 		cartDTO.setProduct(ProductRequestDTOFixture.get().withDefaultSeller().build());
 		cartDTO.setQuantity(1L);

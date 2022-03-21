@@ -1,5 +1,6 @@
 package OCC.Fixtures;
 
+import org.apache.commons.lang.RandomStringUtils;
 import OCC.DTOs.Request.CountryRequestDTO;
 
 public final class CountryRequestDTOFixture {
@@ -16,6 +17,20 @@ public final class CountryRequestDTOFixture {
 
 	public CountryRequestDTO build() {
 		return countryDTO;
+	}
+
+	private CountryRequestDTOFixture random() {
+		return this
+		.withIsocode(RandomStringUtils.random(2, true, false));
+	}
+
+	public static CountryRequestDTOFixture getRandom() {
+		return CountryRequestDTOFixture.get().random();
+	}
+
+	public CountryRequestDTOFixture withIsocode(String isocode) {
+		countryDTO.setIsocode(isocode);
+		return this;
 	}
 
 	public CountryRequestDTOFixture brazil() {

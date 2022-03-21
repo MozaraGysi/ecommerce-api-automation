@@ -1,5 +1,7 @@
 package OCC.Fixtures;
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
 import OCC.DTOs.Request.UserRequestDTO;
 import OCC.Utils.Utils;
 
@@ -17,6 +19,21 @@ public final class UserRequestDTOFixture {
 
 	public UserRequestDTO build() {
 		return userDTO;
+	}
+
+	private UserRequestDTOFixture random() {
+		return this
+		.withFirstName(RandomStringUtils.random(5, true, false))
+		.withLastName(RandomStringUtils.random(5, true, false))
+		.withPassword(RandomStringUtils.random(5))
+		.withUid(Utils.email())
+		.withGenderCode(RandomUtils.nextBoolean() ? "MALE":"FEMALE")
+		.withBirthday(RandomStringUtils.randomNumeric(8))
+		.withMobilePhone(RandomStringUtils.randomNumeric(11));
+	}
+
+	public static UserRequestDTOFixture getRandom() {
+		return UserRequestDTOFixture.get().random();
 	}
 
 	public UserRequestDTOFixture getAutomationUser() {
@@ -46,6 +63,40 @@ public final class UserRequestDTOFixture {
 
 	public UserRequestDTOFixture addCpf() {
 		userDTO.setCpf(Utils.cpf());
+		return this;
+	}
+
+	public UserRequestDTOFixture withFirstName(String firstName){
+		userDTO.setFirstName(firstName);
+		return this;
+	}
+
+	public UserRequestDTOFixture withLastName(String lastName){
+		userDTO.setLastName(lastName);
+		return this;
+	}
+
+	public UserRequestDTOFixture withPassword(String password){
+		userDTO.setPassword(password);
+		return this;
+	}
+
+	public UserRequestDTOFixture withGenderCode(String genderCode){
+		userDTO.setGenderCode(genderCode);
+		return this;
+	}
+
+	public UserRequestDTOFixture withUid(String uid){
+		userDTO.setUid(uid);
+		return this;
+	}
+
+	public UserRequestDTOFixture withBirthday(String birthday){
+		userDTO.setBirthday(birthday);
+		return this;
+	}
+	public UserRequestDTOFixture withMobilePhone(String mobilePhone){
+		userDTO.setMobilePhone(mobilePhone);
 		return this;
 	}
 }
