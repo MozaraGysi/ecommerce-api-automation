@@ -1,6 +1,6 @@
 package OCC.Services;
 
-import OCC.Fixtures.CreditCardDTOFixture;
+import OCC.Fixtures.CreditCardRequestDTOFixture;
 import OCC.Handlers.AuthorizationHandler;
 import OCC.Utils.Utils;
 import io.restassured.RestAssured;
@@ -97,7 +97,7 @@ public class CheckoutService {
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         request.sessionId(Utils.getJSESSIONID());
-        request.body(new CreditCardDTOFixture().defaultCreditCard().build().toJson().toString());
+        request.body(CreditCardRequestDTOFixture.get().defaultCreditCard().build().toJson().toString());
         Response response = request.post("/users/current/orders?cartId=current&fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         System.out.println(response.jsonPath().get("code").toString());

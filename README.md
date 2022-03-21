@@ -174,10 +174,10 @@ Classe com definição dos objetos de request e response.
   <summary>Exemplo</summary>
 
    ```
-public class ClassNameDTO extends AbstractDTO<ClassNameDTO> {
+public class ClassName[Request/Response]DTO extends AbstractDTO<ClassName[Request/Response]DTO> {
 
 	private String attribute;
-	private ClassNameChildDTO childAttribute;
+	private ClassNameChild[Request/Response]DTO childAttribute;
 
 	public String getAttribute() {
 		return attribute;
@@ -204,26 +204,30 @@ Classes responsáveis por criar DTOs com dados dinâmicos para os testes.
   <summary>Exemplo</summary>
 
    ```
-public class ClassNameDTOFixture {
+public class ClassNameRequestDTOFixture {
 
-	private ClassNameDTO classNameDTO;
+	private ClassNameRequestDTO classNameDTO;
 
-	public ClassNameDTOFixture() {
-		classNameDTO = new ClassNameDTO();
+	private ClassNameRequestDTOFixture() {
+		classNameDTO = new ClassNameRequestDTO();
 		classNameDTO.setAttributo(RandomStringUtils.randomNumeric(6));
-		classNameDTO.setChildAttribute(new ClassNameChildDTOFixture().build());
+		classNameDTO.setChildAttribute(ClassNameChildDTOFixture.get().build());
 	}
 
-	public ClassNameDTO build() {
+  public static ClassNameRequestDTOFixture get() {
+		return new ClassNameRequestDTOFixture();
+	}
+
+	public ClassNameRequestDTO build() {
 		return classNameDTO;
 	}
 
-	public ClassNameDTOFixture withAttributeSomeValue() {
+	public ClassNameRequestDTOFixture withAttributeSomeValue() {
 		classNameDTO.setAttribute(someValue);
 		return this;
 	}
 	
-	public ClassNameDTOFixture withChildAttributeSomeValue() {
+	public ClassNameRequestDTOFixture withChildAttributeSomeValue() {
 		classNameDTO.setChildAttribute(someValue);
 		return this;
 	}

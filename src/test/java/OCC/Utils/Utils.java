@@ -1,6 +1,7 @@
 package OCC.Utils;
 
 import Common.Utils.GenerateCPF;
+import OCC.Enums.BrandEnum;
 import OCC.Handlers.AuthorizationHandler;
 import com.google.gson.Gson;
 
@@ -13,6 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import static OCC.Enums.BrandEnum.ALEXANDREBIRMAN;
+import static OCC.Enums.BrandEnum.ALME;
+import static OCC.Enums.BrandEnum.ANACAPRI;
+import static OCC.Enums.BrandEnum.AREZZO;
+import static OCC.Enums.BrandEnum.FIEVER;
+import static OCC.Enums.BrandEnum.SCHUTZ;
+import static OCC.Enums.BrandEnum.VANS;
+import static OCC.Enums.BrandEnum.ZZMALL;
 
 public class Utils {
 
@@ -62,23 +72,23 @@ public class Utils {
 
     public static String getSite_UID() {
         String brand = getBrand().toUpperCase();
-        switch (brand) {
-            case "AREZZO":
-                return "arezzo";
-            case "ALEXANDREBIRMAN":
-                return "birman";
-            case "ANACAPRI":
-                return "anacapri";
-            case "ALME":
-                return "alme";
-            case "FIEVER":
-                return "fiever";
-            case "SCHUTZ":
-                return "schutz";
-            case "VANS":
-                return "vans";
-            case "ZZMALL":
-                return "marketplacezz";
+        switch (BrandEnum.valueOf(brand)) {
+            case AREZZO:
+                return AREZZO.getValue();
+            case ALEXANDREBIRMAN:
+                return ALEXANDREBIRMAN.getValue();
+            case ANACAPRI:
+                return ANACAPRI.getValue();
+            case ALME:
+                return ALME.getValue();
+            case FIEVER:
+                return FIEVER.getValue();
+            case SCHUTZ:
+                return SCHUTZ.getValue();
+            case VANS:
+                return VANS.getValue();
+            case ZZMALL:
+                return ZZMALL.getValue();
             default:
                 return null;
         }

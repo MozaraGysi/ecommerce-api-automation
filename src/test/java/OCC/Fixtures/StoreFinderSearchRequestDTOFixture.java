@@ -1,14 +1,18 @@
 package OCC.Fixtures;
 
-import OCC.DTOs.StoreFinderSearchRequestDTO;
+import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
 
-public class StoreFinderSearchRequestDTOFixture {
+public final class StoreFinderSearchRequestDTOFixture {
 
     private StoreFinderSearchRequestDTO storeFinderSearchRequestDTO;
 
-    public StoreFinderSearchRequestDTOFixture() {
+    private StoreFinderSearchRequestDTOFixture() {
         storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTO();
     }
+
+    public static StoreFinderSearchRequestDTOFixture get(){
+		return new StoreFinderSearchRequestDTOFixture();
+	}
 
     public StoreFinderSearchRequestDTO build() {
         return storeFinderSearchRequestDTO;
