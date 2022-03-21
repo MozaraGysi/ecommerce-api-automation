@@ -1,18 +1,36 @@
 package OCC.Fixtures;
 
-import OCC.DTOs.StoreFinderSearchRequestDTO;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
 
-public class StoreFinderSearchRequestDTOFixture {
+import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
+
+public final class StoreFinderSearchRequestDTOFixture {
 
     private StoreFinderSearchRequestDTO storeFinderSearchRequestDTO;
 
-    public StoreFinderSearchRequestDTOFixture() {
+    private StoreFinderSearchRequestDTOFixture() {
         storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTO();
     }
+
+    public static StoreFinderSearchRequestDTOFixture get(){
+		return new StoreFinderSearchRequestDTOFixture();
+	}
 
     public StoreFinderSearchRequestDTO build() {
         return storeFinderSearchRequestDTO;
     }
+
+    private StoreFinderSearchRequestDTOFixture random() {
+		return this
+        .withQuery(RandomStringUtils.random(6, true, false))
+		.withLatitude(RandomUtils.nextDouble())
+        .withLongitude(RandomUtils.nextDouble());
+	}
+
+	public static StoreFinderSearchRequestDTOFixture getRandom() {
+		return StoreFinderSearchRequestDTOFixture.get().random();
+	}
 
     public StoreFinderSearchRequestDTOFixture defaultRequestByPostalCode() {
         storeFinderSearchRequestDTO.setQuery("59073380");
@@ -34,4 +52,20 @@ public class StoreFinderSearchRequestDTOFixture {
         storeFinderSearchRequestDTO.setQuery("Natal");
         return this;
     }
+
+    public StoreFinderSearchRequestDTOFixture withQuery(String query){
+        storeFinderSearchRequestDTO.setQuery(query);
+        return this;
+    }
+
+    public StoreFinderSearchRequestDTOFixture withLatitude(Double latitude){
+        storeFinderSearchRequestDTO.setLatitude(latitude);
+        return this;
+    }
+
+    public StoreFinderSearchRequestDTOFixture withLongitude(Double longitude){
+        storeFinderSearchRequestDTO.setLongitude(longitude);
+        return this;
+    }
+
 }

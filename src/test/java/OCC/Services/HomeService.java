@@ -2,7 +2,7 @@ package OCC.Services;
 
 import Common.Validators.StatusCodeOKValidator;
 import Common.Validators.Validator;
-import OCC.DTOs.CmsPageContentRequestDTO;
+import OCC.DTOs.Request.CmsPageContentRequestDTO;
 import OCC.Fixtures.CmsPageRequestDTOFixture;
 import OCC.Utils.APIClient;
 import OCC.Validators.*;
@@ -15,7 +15,7 @@ import java.util.List;
 public class HomeService {
 
     public static void getSearchHomePageComponents() {
-        CmsPageContentRequestDTO cmsPageContentRequestDTO = new CmsPageRequestDTOFixture().defaultRequestByHome().build();
+        CmsPageContentRequestDTO cmsPageContentRequestDTO = CmsPageRequestDTOFixture.get().defaultRequestByHome().build();
 
         Response response = APIClient.getHomepage(cmsPageContentRequestDTO);
 

@@ -1,9 +1,9 @@
 package OCC.Utils;
 
-import OCC.DTOs.LoginPageRequestDTO;
-import OCC.DTOs.CmsPageContentRequestDTO;
-import OCC.DTOs.ProductCategorySearchPageRequestDTO;
-import OCC.DTOs.StoreFinderSearchRequestDTO;
+import OCC.DTOs.Request.LoginPageRequestDTO;
+import OCC.DTOs.Request.CmsPageContentRequestDTO;
+import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
+import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;

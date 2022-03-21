@@ -2,7 +2,7 @@ package OCC.Services;
 
 import Common.Validators.StatusCodeOKValidator;
 import Common.Validators.Validator;
-import OCC.DTOs.ProductCategorySearchPageRequestDTO;
+import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
 import OCC.Fixtures.ProductCategorySearchPageRequestDTOFixture;
 import OCC.Utils.APIClient;
 import OCC.Validators.ProductImagesValidator;
@@ -20,7 +20,7 @@ public class CategoryService {
 
     public static void getSearchProductsByCode() {
 
-        ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO =  new ProductCategorySearchPageRequestDTOFixture().defaultRequestByCode().build();
+        ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO =  ProductCategorySearchPageRequestDTOFixture.get().defaultRequestByCode().build();
 
         Response response = APIClient.getProduct(productCategorySearchPageRequestDTO);
 
@@ -30,7 +30,7 @@ public class CategoryService {
 
     public static void getSearchProductsWithoutFilters() {
 
-        ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO = new ProductCategorySearchPageRequestDTOFixture().defaultRequestFull().build();
+        ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO = ProductCategorySearchPageRequestDTOFixture.get().defaultRequestFull().build();
 
         Response response = APIClient.getProduct(productCategorySearchPageRequestDTO);
 

@@ -3,7 +3,7 @@ package OCC.Services;
 import Common.Validators.StatusCodeBadRequestValidator;
 import Common.Validators.StatusCodeOKValidator;
 import Common.Validators.Validator;
-import OCC.DTOs.LoginPageRequestDTO;
+import OCC.DTOs.Request.LoginPageRequestDTO;
 import OCC.Fixtures.LoginPageRequestDTOFixture;
 import OCC.Utils.APIClient;
 import OCC.Validators.RecoverOptionEmailValidator;
@@ -18,7 +18,7 @@ public class LoginService {
 
     public static void getSearchOptionsListByEmail() {
 
-        LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultRequestByEmail().build();
+        LoginPageRequestDTO loginPageRequestDTO = LoginPageRequestDTOFixture.get().defaultRequestByEmail().build();
 
         Response response = APIClient.getOptionslist(loginPageRequestDTO);
 
@@ -28,7 +28,7 @@ public class LoginService {
 
     public static void getSearchOptionsListByWrongEmail() {
 
-        LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultRequestByWrongEmail().build();
+        LoginPageRequestDTO loginPageRequestDTO = LoginPageRequestDTOFixture.get().defaultRequestByWrongEmail().build();
 
         Response response = APIClient.getOptionslist(loginPageRequestDTO);
 
@@ -38,7 +38,7 @@ public class LoginService {
 
     public static void postRequestPasswordChangeByOption() {
 
-        LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultPasswordOptionRequestByEmail().build();
+        LoginPageRequestDTO loginPageRequestDTO = LoginPageRequestDTOFixture.get().defaultPasswordOptionRequestByEmail().build();
 
         Response response = APIClient.postPassword(loginPageRequestDTO);
 
@@ -48,7 +48,7 @@ public class LoginService {
 
     public static void postRequestPasswordChangeByWrongOption() {
 
-        LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultPasswordOptionRequestByWrongEmail().build();
+        LoginPageRequestDTO loginPageRequestDTO = LoginPageRequestDTOFixture.get().defaultPasswordOptionRequestByWrongEmail().build();
 
         Response response = APIClient.postPassword(loginPageRequestDTO);
 
@@ -58,7 +58,7 @@ public class LoginService {
 
     public static void getRequestCheckReceivedCode() {
 
-        LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultRequestByWrongCode().build();
+        LoginPageRequestDTO loginPageRequestDTO = LoginPageRequestDTOFixture.get().defaultRequestByWrongCode().build();
 
         Response response = APIClient.getReceivedcode(loginPageRequestDTO);
 
@@ -68,7 +68,7 @@ public class LoginService {
 
     public static void postRequestChangePassword() {
 
-        LoginPageRequestDTO loginPageRequestDTO = new LoginPageRequestDTOFixture().defaultRequestByWrongToken().build();
+        LoginPageRequestDTO loginPageRequestDTO = LoginPageRequestDTOFixture.get().defaultRequestByWrongToken().build();
 
         Response response = APIClient.postChangePassword(loginPageRequestDTO);
 
