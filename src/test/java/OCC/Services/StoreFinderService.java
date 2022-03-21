@@ -1,7 +1,7 @@
 package OCC.Services;
 import Common.Validators.StatusCodeOKValidator;
 import Common.Validators.Validator;
-import OCC.DTOs.StoreFinderSearchRequestDTO;
+import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
 import OCC.Fixtures.StoreFinderSearchRequestDTOFixture;
 import OCC.Utils.APIClient;
 import OCC.Validators.StoreFinderValidator;
@@ -16,9 +16,9 @@ public class StoreFinderService {
 
     public static void getSearchPostalCode() {
 
-        StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByPostalCode().build();
+        StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = StoreFinderSearchRequestDTOFixture.get().defaultRequestByPostalCode().build();
 
-        Response response = APIClient.GET_stores(storeFinderSearchRequestDTO);
+        Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -26,9 +26,9 @@ public class StoreFinderService {
 
     public static void getSearchCoordinates() {
 
-        StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByCoordinates().build();
+        StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = StoreFinderSearchRequestDTOFixture.get().defaultRequestByCoordinates().build();
 
-        Response response = APIClient.GET_stores(storeFinderSearchRequestDTO);
+        Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -36,9 +36,9 @@ public class StoreFinderService {
 
     public static void getSearchAddress() {
 
-        StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByAddress().build();
+        StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = StoreFinderSearchRequestDTOFixture.get().defaultRequestByAddress().build();
 
-        Response response = APIClient.GET_stores(storeFinderSearchRequestDTO);
+        Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
@@ -46,9 +46,9 @@ public class StoreFinderService {
 
     public static void getSearchWrongPostalCode() {
 
-        StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = new StoreFinderSearchRequestDTOFixture().defaultRequestByWrongPostalCode().build();
+        StoreFinderSearchRequestDTO storeFinderSearchRequestDTO = StoreFinderSearchRequestDTOFixture.get().defaultRequestByWrongPostalCode().build();
 
-        Response response = APIClient.GET_stores(storeFinderSearchRequestDTO);
+        Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));

@@ -1,7 +1,7 @@
 package OCC.Validators;
 
 import Common.Validators.Validator;
-import OCC.DTOs.StoreFinderSearchResponseDTO;
+import OCC.DTOs.Response.StoreFinderSearchResponseDTO;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;

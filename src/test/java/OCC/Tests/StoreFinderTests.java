@@ -14,25 +14,25 @@ public class StoreFinderTests {
     }
 
     @Test
-    public void searchStoresByPostalCodeTest(){
+    public void getSearchStoresByPostalCodeTest(){
         AuthorizationService.AnonymousAuth();
         StoreFinderService.getSearchPostalCode();
     }
 
     @Test
-    public void searchStoresByCoordinatesTest(){
+    public void getSearchStoresByCoordinatesTest(){
         AuthorizationService.AnonymousAuth();
         StoreFinderService.getSearchCoordinates();
     }
 
     @Test
-    public void searchStoresByWrongPostalCodeTest(){
+    public void getSearchStoresByWrongPostalCodeTest(){
         AuthorizationService.AnonymousAuth();
         StoreFinderService.getSearchWrongPostalCode();
     }
 
     @Test
-    public void searchStoresByAddressTest(){
+    public void getSearchStoresByAddressTest(){
         AuthorizationService.AnonymousAuth();
         StoreFinderService.getSearchAddress();
     }

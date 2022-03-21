@@ -1,6 +1,6 @@
 package OCC.Services;
 
-import OCC.Fixtures.CartDTOFixture;
+import OCC.Fixtures.CartRequestDTOFixture;
 import OCC.Handlers.AuthorizationHandler;
 import OCC.Utils.Utils;
 import io.restassured.RestAssured;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class CartService {
 
-    public static void POST_Cart() {
+    public static void postCart() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -23,33 +23,33 @@ public class CartService {
         Assertions.assertEquals(201, response.getStatusCode());
     }
 
-    public static void POST_Entry() {
+    public static void postEntry() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.body(new CartDTOFixture().withDefaultProduct().build().toJson().toString());
+        request.body(CartRequestDTOFixture.get().withDefaultProduct().build().toJson().toString());
         Response response = request.post("/users/current/carts/current/entries?fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         Assertions.assertEquals(200, response.getStatusCode());
     }
 
-    public static void POST_Entry_SellerExterno() {
+    public static void postEntrySellerExterno() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.body(new CartDTOFixture().withExternalSellerProduct().build().toJson().toString());
+        request.body(CartRequestDTOFixture.get().withExternalSellerProduct().build().toJson().toString());
         Response response = request.post("/users/current/carts/current/entries?fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         Assertions.assertEquals(200, response.getStatusCode());
     }
 
-    public static void GET_Cart() {
+    public static void getCart() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();

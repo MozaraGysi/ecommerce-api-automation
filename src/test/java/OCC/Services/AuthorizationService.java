@@ -50,8 +50,8 @@ public class AuthorizationService {
         request.formParam("client_secret", "arezzoco2014");
         request.formParam("scope", "basic");
         request.formParam("grant_type", "password");
-        request.formParam("site_uid", Utils.getSite_UID());
-        request.formParam("username",Utils.getEMAIL());
+        request.formParam("site_uid", Utils.getSiteUid());
+        request.formParam("username",Utils.getEmail());
         request.formParam("password","zero123@");
 
         Response response = request.post("/arezzocoocc/oauth/token");
@@ -95,7 +95,7 @@ public class AuthorizationService {
         request.formParam("userAppleId", "123456789");
         request.formParam("firstName", "Leonardo");
         request.formParam("lastName", "Wille");
-        request.formParam("site_uid", Utils.getSite_UID());
+        request.formParam("site_uid", Utils.getSiteUid());
 
         Response response = request.post("/arezzocoocc/oauth/token");
 
@@ -116,7 +116,7 @@ public class AuthorizationService {
         request.formParam("client_secret", "arezzoco2014");
         request.formParam("grant_type", "facebook");
         request.formParam("facebook_token", "EAANWNiebQQABAGH1O4tp3CjR8ckjSsmcQSKzWyUhwZCca2W1d47hsY4ZBmad4DDMgHjjOE8znFT9nCaSHi2Gw3qb44KBQ1fUl9mv7suhzZBo916Ylp7U3aBe30sjz0IgVHOwc9ZApHfdWN1oHYCK5uNiTEZCnLSZCBUY13oo9gSzpMZAVKpZC3qOzQMqxGkmMeAPHWBqUT43LfNNZAbX7HtcZC");
-        request.formParam("site_uid", Utils.getSite_UID());
+        request.formParam("site_uid", Utils.getSiteUid());
 
         Response response = request.post("/arezzocoocc/oauth/token");
 

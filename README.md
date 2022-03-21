@@ -174,10 +174,10 @@ Classe com definição dos objetos de request e response.
   <summary>Exemplo</summary>
 
    ```
-public class ClassNameDTO extends AbstractDTO<ClassNameDTO> {
+public class ClassName[Request/Response]DTO extends AbstractDTO<ClassName[Request/Response]DTO> {
 
 	private String attribute;
-	private ClassNameChildDTO childAttribute;
+	private ClassNameChild[Request/Response]DTO childAttribute;
 
 	public String getAttribute() {
 		return attribute;
@@ -204,26 +204,42 @@ Classes responsáveis por criar DTOs com dados dinâmicos para os testes.
   <summary>Exemplo</summary>
 
    ```
-public class ClassNameDTOFixture {
+public class ClassNameRequestDTOFixture {
 
-	private ClassNameDTO classNameDTO;
+	private ClassNameRequestDTO classNameDTO;
 
-	public ClassNameDTOFixture() {
-		classNameDTO = new ClassNameDTO();
+	private ClassNameRequestDTOFixture() {
+		classNameDTO = new ClassNameRequestDTO();
 		classNameDTO.setAttributo(RandomStringUtils.randomNumeric(6));
-		classNameDTO.setChildAttribute(new ClassNameChildDTOFixture().build());
+		classNameDTO.setChildAttribute(ClassNameChildDTOFixture.get().build());
 	}
 
-	public ClassNameDTO build() {
+  public static ClassNameRequestDTOFixture get() {
+		return new ClassNameRequestDTOFixture();
+	}
+<<<<<<< HEAD
+	
+	private ClassNameRequestDTOFixture random() {
+		return this
+		.withChildAttributeSomeValue()
+		.withAttributeSomeValue()
+	
+	public static ClassNameRequestDTOFixture getRandom() {
+		return ClassNameRequestDTOFixture.get().random();
+	}
+=======
+>>>>>>> f2ca54f00b782af78a4320ea8eb7a56766cbcdbc
+
+	public ClassNameRequestDTO build() {
 		return classNameDTO;
 	}
 
-	public ClassNameDTOFixture withAttributeSomeValue() {
+	public ClassNameRequestDTOFixture withAttributeSomeValue() {
 		classNameDTO.setAttribute(someValue);
 		return this;
 	}
 	
-	public ClassNameDTOFixture withChildAttributeSomeValue() {
+	public ClassNameRequestDTOFixture withChildAttributeSomeValue() {
 		classNameDTO.setChildAttribute(someValue);
 		return this;
 	}
@@ -245,9 +261,9 @@ public class ClassNameTest {
 	}
 
 	@Test
-	public void someTest() {
-		ClassName01Service.someTest();
-		ClassName02Service.someTest();
+	public void [post/get/...]SomeTest() {
+		ClassName01Service.[post/get/...]SomeTest();
+		ClassName02Service.[post/get/...]SomeTest();
 	}
 }
    ```
@@ -315,17 +331,17 @@ Classe responsável pela definição de cada serviço a ser requisitado para a A
    ```
 public class APIClient {
 
-    public static Response POST_someRequest(ClassNameDTO requestDTO) {
+    public static Response postSomeRequest(ClassNameRequestDTO requestDTO) {
         RestAssured.baseURI = Utils.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.body(requestDTO.toJson().toString());
 
-        Response response = request.post("/arezzocoocc/v2/" + Utils.getSite_UID() + "/something/something");
+        Response response = request.post("/arezzocoocc/v2/" + Utils.getSiteUid() + "/something/something");
         response.getBody().print();
 
         Utils.setCookies(response.getCookies());
@@ -333,17 +349,17 @@ public class APIClient {
         return response;
     }
     
-    public static Response GET_someRequest(ClassNameDTO requestDTO) {
+    public static Response getSomeRequest(ClassNameRequestDTO requestDTO) {
         RestAssured.baseURI = Utils.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.queryParams(requestDTO.toMap());
 
-        Response response = request.get("/arezzocoocc/v2/" + Utils.getSite_UID() + "/something/something");
+        Response response = request.get("/arezzocoocc/v2/" + Utils.getSiteUid() + "/something/something");
         response.getBody().print();
 
         Utils.setCookies(response.getCookies());

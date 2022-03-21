@@ -9,36 +9,36 @@ public class Login {
     @Test
     public void searchOptionsListByEmail(){
         AuthorizationService.AnonymousAuth();
-        LoginService.GET_searchOptionsListByEmail();
+        LoginService.getSearchOptionsListByEmail();
     }
 
     @Test
     public void searchOptionsListByWrongEmail(){
         AuthorizationService.AnonymousAuth();
-        LoginService.GET_searchOptionsListByWrongEmail();
+        LoginService.getSearchOptionsListByWrongEmail();
     }
 
     @Test
     public void requestPasswordChangeByOption(){
         AuthorizationService.AnonymousAuth();
-        LoginService.POST_RequestPasswordChangeByOption();
+        LoginService.postRequestPasswordChangeByOption();
     }
 
     @Test
     public void requestPasswordChangeByWrongOption(){
         AuthorizationService.AnonymousAuth();
-        LoginService.POST_RequestPasswordChangeByWrongOption();
+        LoginService.postRequestPasswordChangeByWrongOption();
     }
 
     @Test
     public void requestCheckReceivdCode(){
         AuthorizationService.AnonymousAuth();
-        LoginService.GET_requestCheckReceivdCode();
+        LoginService.getRequestCheckReceivedCode();
     }
 
     @Test
     public void requestChangePassword(){
         AuthorizationService.AnonymousAuth();
-        LoginService.POST_requestChangePassword();
+        LoginService.postRequestChangePassword();
     }
 }
