@@ -1,9 +1,7 @@
 package OCC.Utils;
 
-import OCC.DTOs.Request.LoginPageRequestDTO;
-import OCC.DTOs.Request.CmsPageContentRequestDTO;
-import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
-import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
+import OCC.DTOs.Request.*;
+import OCC.Fixtures.UserRegisterRequestDTOFixture;
 import OCC.Handlers.AuthorizationHandler;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -133,6 +131,20 @@ public class APIClient {
         Response response = request.get("/cms/pages/homepageHeadless");
 
         response.getBody().print();
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response postRegisterNewUser(UserRequestDTO userRequestDTO){
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", "application/json");
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.queryParams(userRequestDTO.toMap());
+        request.body(userRequestDTO.toJson().toString());
+        Response response = request.post("/users?fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;

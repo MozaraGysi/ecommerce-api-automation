@@ -1,28 +1,33 @@
 package OCC.Services;
 
+import Common.Validators.StatusCodeOKValidator;
+import Common.Validators.Validator;
+import OCC.DTOs.Request.UserRequestDTO;
 import OCC.Fixtures.AddressRequestDTOFixture;
 import OCC.Fixtures.UserRequestDTOFixture;
 import OCC.Fixtures.UserRegisterRequestDTOFixture;
 import OCC.Handlers.AuthorizationHandler;
+import OCC.Utils.APIClient;
 import OCC.Utils.Utils;
+import OCC.Validators.StoreFinderValidator;
+import OCC.Validators.UsersValidator;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class UsersService {
 
     public static void Users() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.body(UserRegisterRequestDTOFixture.get().automationUser().addEmail().build().toJson().toString());
-        Response response = request.post("/users?fields=FULL");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        Assertions.assertEquals(201, response.getStatusCode());
+        UserRequestDTO userRequestDTO = UserRequestDTOFixture.getRandom().build();
+        Response response = APIClient.postRegisterNewUser(userRequestDTO);
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
     }
 
     public static void postAddresses() {
