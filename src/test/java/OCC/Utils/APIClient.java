@@ -11,12 +11,12 @@ import io.restassured.specification.RequestSpecification;
 
 public class APIClient {
 
-    public static Response GET_product(ProductCategorySearchPageRequestDTO requestDTO) {
+    public static Response getProduct(ProductCategorySearchPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.queryParams(requestDTO.toMap());
@@ -29,12 +29,12 @@ public class APIClient {
         return response;
     }
 
-    public static Response GET_optionslist(LoginPageRequestDTO requestDTO) {
+    public static Response getOptionslist(LoginPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.queryParams(requestDTO.toMap());
@@ -47,12 +47,12 @@ public class APIClient {
         return response;
     }
 
-    public static Response POST_password(LoginPageRequestDTO requestDTO) {
+    public static Response postPassword(LoginPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.queryParams(requestDTO.toMap());
@@ -65,12 +65,12 @@ public class APIClient {
         return response;
     }
 
-    public static Response GET_receivdcode(LoginPageRequestDTO requestDTO) {
+    public static Response getReceivedcode(LoginPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.queryParams(requestDTO.toMap());
@@ -83,12 +83,12 @@ public class APIClient {
         return response;
     }
 
-    public static Response POST_changepassword(LoginPageRequestDTO requestDTO) {
+    public static Response postChangePassword(LoginPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.queryParams(requestDTO.toMap());
@@ -101,12 +101,12 @@ public class APIClient {
         return response;
     }
 
-    public static Response GET_stores(StoreFinderSearchRequestDTO requestDTO) {
+    public static Response getStores(StoreFinderSearchRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.queryParams(requestDTO.toMap());
@@ -119,12 +119,12 @@ public class APIClient {
         return response;
     }
 
-    public static Response GET_homepage(CmsPageContentRequestDTO requestDTO) {
+    public static Response getHomepage(CmsPageContentRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization", "Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
 
         request.queryParams(requestDTO.toMap());

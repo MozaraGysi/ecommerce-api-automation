@@ -16,7 +16,7 @@ public class UsersService {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization","Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization","Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
         request.body(UserRegisterRequestDTOFixture.get().automationUser().addEmail().build().toJson().toString());
         Response response = request.post("/users?fields=FULL");
@@ -24,12 +24,12 @@ public class UsersService {
         Assertions.assertEquals(201, response.getStatusCode());
     }
 
-    public static void POST_Addresses() {
+    public static void postAddresses() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization","Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization","Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
         request.body(AddressRequestDTOFixture.get().addressRS().build().toJson().toString());
         Response response = request.post("/users/current/addresses?fields=FULL");
@@ -37,25 +37,25 @@ public class UsersService {
         Assertions.assertEquals(201, response.getStatusCode());
     }
 
-    public static void GET_Addresses() {
+    public static void getAddresses() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization","Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization","Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
         Response response = request.get("/users/current/addresses?fields=FULL");
-        Utils.setID_ADDRESS(response.getBody().jsonPath().get("addresses.id"));
+        Utils.setIdAddress(response.getBody().jsonPath().get("addresses.id"));
         Utils.setCookies(response.getCookies());
         Assertions.assertEquals(200, response.getStatusCode());
     }
 
-    public static void PATCH_User() {
+    public static void patchUser() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization","Bearer " + Utils.getACCESS_TOKEN());
+        request.header("Authorization","Bearer " + Utils.getAccessToken());
         request.header("Cookie",Utils.getCookies());
         request.param("fields","FULL");
         request.body(UserRequestDTOFixture.get().addBirthday().addMobilePhone().addCpf().build().toJson().toString());
