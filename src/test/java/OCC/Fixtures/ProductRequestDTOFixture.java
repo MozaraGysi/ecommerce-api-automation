@@ -19,6 +19,16 @@ public final class ProductRequestDTOFixture {
 		return productDTO;
 	}
 
+	private ProductRequestDTOFixture random() {
+		return this
+        .withDefaultSeller()
+        .withExternalSeller();
+	}
+
+	public static ProductRequestDTOFixture getRandom() {
+		return ProductRequestDTOFixture.get().random();
+	}
+
 	public ProductRequestDTOFixture withDefaultSeller() {
 		productDTO.setCode(Utils.getProduct("Padrao").get(0).concat("-36"));
 		return this;

@@ -1,0 +1,83 @@
+trigger: none
+pr:
+- '*'
+
+pool:
+  vmImage: ubuntu-latest
+
+parameters:
+- name: env
+  type: string
+  default: hml
+  values:
+  - integ01
+  - hml
+  
+- name: wallet
+  displayName: Wallet
+  type: string
+  default: true
+  values:
+  - true
+  - false
+
+- name : arezzo
+  displayName: Arezzo
+  type: boolean
+  default: false
+
+- name : alme
+  displayName: Alme
+  type: boolean
+  default: false
+
+- name : fiever
+  displayName: Fiever
+  type: boolean
+  default: false
+
+- name : birman
+  displayName: Birman
+  type: boolean
+  default: true
+
+- name : schutz
+  displayName: Schutz
+  type: boolean
+  default: false
+
+- name : anacapri
+  displayName: Anacapri
+  type: boolean
+  default: false
+
+- name : vans
+  displayName: Vans
+  type: boolean
+  default: false
+
+- name : zzmall
+  displayName: ZZMall
+  type: boolean
+  default: false
+
+stages:
+  - template: pipelines/maventest.yml
+    parameters:
+      env: ${{ parameters.env }}
+      wallet: ${{ parameters.wallet }}
+      arezzo: ${{ parameters.arezzo }}
+      alme: ${{ parameters.alme }}
+      fiever: ${{ parameters.fiever }}
+      birman: ${{ parameters.birman }}
+      schutz: ${{ parameters.schutz }}
+      anacapri: ${{ parameters.anacapri }}
+      vans: ${{ parameters.vans }}
+      zzmall: ${{ parameters.zzmall }}
+
+schedules:
+  - cron: "0 0 * * *"
+    displayName: Daily midnight build
+    branches:
+      include:
+        - develop
