@@ -2,7 +2,6 @@ package OCC.Fixtures;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
-
 import OCC.DTOs.Request.UserRequestDTO;
 import OCC.Utils.Utils;
 
@@ -100,5 +99,4 @@ public final class UserRequestDTOFixture {
 		userDTO.setMobilePhone(mobilePhone);
 		return this;
 	}
-
 }

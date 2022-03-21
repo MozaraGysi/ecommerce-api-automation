@@ -1,10 +1,6 @@
 package OCC.Fixtures;
 
-<<<<<<< HEAD
 import org.apache.commons.lang.RandomStringUtils;
-
-=======
->>>>>>> f2ca54f00b782af78a4320ea8eb7a56766cbcdbc
 import OCC.DTOs.Request.CountryRequestDTO;
 
 public final class CountryRequestDTOFixture {
