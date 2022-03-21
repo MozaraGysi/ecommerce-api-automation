@@ -93,7 +93,7 @@ public final class AuthorizationRequestDTOFixture {
 			.withScope(SCOPE)
 			.withGrantType(grantTypes.get(nextInt(0, grantTypes.size())))
 			.withSiteUid(brands.get(nextInt(0, brands.size())))
-			.withUsername(UserRegisterRequestDTOFixture.get().random().build().getUid())
+			.withUsername(UserRegisterRequestDTOFixture.get().automationUser().build().getUid())
 			.withPassword(RandomStringUtils.random(5));
 	}
 
@@ -101,7 +101,7 @@ public final class AuthorizationRequestDTOFixture {
 		authorizationRequestDTO.setGrantType(PASSWORD.getValue());
 		authorizationRequestDTO.setUsername(defaultUserUsername);
 		authorizationRequestDTO.setPassword(defaultUserPassword);
-		authorizationRequestDTO.setSiteUid(Utils.getSite_UID());
+		authorizationRequestDTO.setSiteUid(Utils.getSiteUid());
 		return this;
 	}
 
@@ -119,14 +119,14 @@ public final class AuthorizationRequestDTOFixture {
 		authorizationRequestDTO.setUserAppleId(appleUserAppledId);
 		authorizationRequestDTO.setFirstName(appleUserFirstName);
 		authorizationRequestDTO.setLastName(appleUserLastName);
-		authorizationRequestDTO.setSiteUid(Utils.getSite_UID());
+		authorizationRequestDTO.setSiteUid(Utils.getSiteUid());
 		return this;
 	}
 
 	public AuthorizationRequestDTOFixture withFacebookUser() {
 		authorizationRequestDTO.setGrantType(FACEBOOK.getValue());
 		authorizationRequestDTO.setFacebookToken(facebookUserToken);
-		authorizationRequestDTO.setSiteUid(Utils.getSite_UID());
+		authorizationRequestDTO.setSiteUid(Utils.getSiteUid());
 		return this;
 	}
 

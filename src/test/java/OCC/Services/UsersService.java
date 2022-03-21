@@ -19,13 +19,13 @@ public class UsersService {
         request.header("Content-Type", "application/json");
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.body(UserRegisterRequestDTOFixture.get().random().addEmail().build().toJson().toString());
+        request.body(UserRegisterRequestDTOFixture.get().automationUser().addEmail().build().toJson().toString());
         Response response = request.post("/users?fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         Assertions.assertEquals(201, response.getStatusCode());
     }
 
-    public static void POST_Addresses() {
+    public static void postAddresses() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -38,7 +38,7 @@ public class UsersService {
         Assertions.assertEquals(201, response.getStatusCode());
     }
 
-    public static void GET_Addresses() {
+    public static void getAddresses() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -46,12 +46,12 @@ public class UsersService {
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         Response response = request.get("/users/current/addresses?fields=FULL");
-        Utils.setID_ADDRESS(response.getBody().jsonPath().get("addresses.id"));
+        Utils.setIdAddress(response.getBody().jsonPath().get("addresses.id"));
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         Assertions.assertEquals(200, response.getStatusCode());
     }
 
-    public static void PATCH_User() {
+    public static void patchUser() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();

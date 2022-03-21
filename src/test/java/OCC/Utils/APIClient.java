@@ -1,10 +1,10 @@
 package OCC.Utils;
 
-import OCC.DTOs.Request.AuthorizationRequestDTO;
 import OCC.DTOs.Request.LoginPageRequestDTO;
 import OCC.DTOs.Request.CmsPageContentRequestDTO;
 import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
 import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
+import OCC.DTOs.Request.AuthorizationRequestDTO;
 import OCC.Enums.GrantTypeEnum;
 import OCC.Handlers.AuthorizationHandler;
 import io.restassured.RestAssured;
@@ -19,7 +19,7 @@ public class APIClient {
 
     public static Response postAuthorization(AuthorizationRequestDTO requestDTO) {
         RestAssured.baseURI = Utils.getBaseUrl(true);
-        GrantTypeEnum grantTypeEnum = GrantTypeEnum.valueOf(requestDTO.getGrantType());
+        GrantTypeEnum grantTypeEnum = GrantTypeEnum.valueOf(requestDTO.getGrantType().toUpperCase());
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", requestDTO.getContentType());
@@ -53,7 +53,7 @@ public class APIClient {
         return response;
     }
 
-    public static Response GET_product(ProductCategorySearchPageRequestDTO requestDTO) {
+    public static Response getProduct(ProductCategorySearchPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -71,7 +71,7 @@ public class APIClient {
         return response;
     }
 
-    public static Response GET_optionslist(LoginPageRequestDTO requestDTO) {
+    public static Response getOptionslist(LoginPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -89,7 +89,7 @@ public class APIClient {
         return response;
     }
 
-    public static Response POST_password(LoginPageRequestDTO requestDTO) {
+    public static Response postPassword(LoginPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -107,7 +107,7 @@ public class APIClient {
         return response;
     }
 
-    public static Response GET_receivdcode(LoginPageRequestDTO requestDTO) {
+    public static Response getReceivedcode(LoginPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -125,7 +125,7 @@ public class APIClient {
         return response;
     }
 
-    public static Response POST_changepassword(LoginPageRequestDTO requestDTO) {
+    public static Response postChangePassword(LoginPageRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -143,7 +143,7 @@ public class APIClient {
         return response;
     }
 
-    public static Response GET_stores(StoreFinderSearchRequestDTO requestDTO) {
+    public static Response getStores(StoreFinderSearchRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -161,7 +161,7 @@ public class APIClient {
         return response;
     }
 
-    public static Response GET_homepage(CmsPageContentRequestDTO requestDTO) {
+    public static Response getHomepage(CmsPageContentRequestDTO requestDTO) {
         RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();

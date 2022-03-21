@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class CartService {
 
-    public static void POST_Cart() {
+    public static void postCart() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -23,7 +23,7 @@ public class CartService {
         Assertions.assertEquals(201, response.getStatusCode());
     }
 
-    public static void POST_Entry() {
+    public static void postEntry() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -36,7 +36,7 @@ public class CartService {
         Assertions.assertEquals(200, response.getStatusCode());
     }
 
-    public static void POST_Entry_SellerExterno() {
+    public static void postEntrySellerExterno() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -49,7 +49,7 @@ public class CartService {
         Assertions.assertEquals(200, response.getStatusCode());
     }
 
-    public static void GET_Cart() {
+    public static void getCart() {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
