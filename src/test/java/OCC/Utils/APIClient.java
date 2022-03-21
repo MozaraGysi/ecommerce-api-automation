@@ -4,6 +4,7 @@ import OCC.DTOs.Request.LoginPageRequestDTO;
 import OCC.DTOs.Request.CmsPageContentRequestDTO;
 import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
 import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
+import OCC.Handlers.AuthorizationHandler;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -16,15 +17,15 @@ public class APIClient {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
         request.queryParams(requestDTO.toMap());
 
         Response response = request.get("/products/search");
 
         response.getBody().print();
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
     }
@@ -34,15 +35,15 @@ public class APIClient {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
         request.queryParams(requestDTO.toMap());
 
         Response response = request.get("/password-reset/request-recovery-options");
 
         response.getBody().print();
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
     }
@@ -52,15 +53,15 @@ public class APIClient {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
         request.queryParams(requestDTO.toMap());
 
         Response response = request.post("/password-reset/request");
 
         response.getBody().print();
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
     }
@@ -70,15 +71,15 @@ public class APIClient {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
         request.queryParams(requestDTO.toMap());
 
         Response response = request.get("/password-reset/check-received-code");
 
         response.getBody().print();
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
     }
@@ -88,15 +89,15 @@ public class APIClient {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
         request.queryParams(requestDTO.toMap());
 
         Response response = request.post("/password-reset/change");
 
         response.getBody().print();
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
     }
@@ -106,15 +107,15 @@ public class APIClient {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
         request.queryParams(requestDTO.toMap());
 
         Response response = request.get("/stores");
 
         response.getBody().print();
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
     }
@@ -124,15 +125,15 @@ public class APIClient {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
         request.queryParams(requestDTO.toMap());
 
         Response response = request.get("/cms/pages/homepageHeadless");
 
         response.getBody().print();
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
     }

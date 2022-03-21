@@ -1,6 +1,7 @@
 package OCC.Services;
 
 import OCC.Fixtures.CreditCardRequestDTOFixture;
+import OCC.Handlers.AuthorizationHandler;
 import OCC.Utils.Utils;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -13,10 +14,10 @@ public class CheckoutService {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Authorization","Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         Response response = request.put("/users/current/carts/current/addresses/delivery?addressId="+Utils.getIdAddress());
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         Assertions.assertEquals(200, response.getStatusCode());
     }
 
@@ -25,11 +26,11 @@ public class CheckoutService {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type","application/json");
-        request.header("Authorization","Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         request.param("executeSourcing",true);
         Response response = request.get("/users/current/carts/current/deliverymodes?fields=FULL");
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         Utils.setJSessionId(response.getSessionId());
         Assertions.assertEquals(200, response.getStatusCode());
     }
@@ -39,11 +40,11 @@ public class CheckoutService {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type","application/json");
-        request.header("Authorization","Bearer " + Utils.getAccessToken());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.sessionId(Utils.getJSessionId());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         Response response = request.get("/users/current/carts/current/payment-methods?fields=FULL");
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         Utils.setJSessionId(response.getSessionId());
         Assertions.assertEquals(200, response.getStatusCode());
     }
@@ -52,11 +53,11 @@ public class CheckoutService {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Authorization","Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         request.sessionId(Utils.getJSessionId());
         Response response = request.put("/users/current/carts/current/payment-method?paymentMethodCode=CreditCard");
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         Utils.setJSessionId(response.getSessionId());
         Assertions.assertEquals(200, response.getStatusCode());
     }
@@ -65,11 +66,11 @@ public class CheckoutService {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Authorization","Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         request.sessionId(Utils.getJSessionId());
         Response response = request.put("/users/current/carts/current/payment-method?paymentMethodCode=Boleto");
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         Utils.setJSessionId(response.getSessionId());
         Assertions.assertEquals(200, response.getStatusCode());
     }
@@ -79,11 +80,11 @@ public class CheckoutService {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type","application/json");
-        request.header("Authorization","Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         request.sessionId(Utils.getJSessionId());
         Response response = request.post("/users/current/orders?cartId=current&fields=FULL");
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         System.out.println(response.jsonPath().get("code").toString());
         Assertions.assertEquals(201, response.getStatusCode());
     }
@@ -93,12 +94,12 @@ public class CheckoutService {
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type","application/json");
-        request.header("Authorization","Bearer " + Utils.getAccessToken());
-        request.header("Cookie",Utils.getCookies());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         request.sessionId(Utils.getJSessionId());
         request.body(CreditCardRequestDTOFixture.get().defaultCreditCard().build().toJson().toString());
         Response response = request.post("/users/current/orders?cartId=current&fields=FULL");
-        Utils.setCookies(response.getCookies());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         System.out.println(response.jsonPath().get("code").toString());
         Assertions.assertEquals(201, response.getStatusCode());
     }
