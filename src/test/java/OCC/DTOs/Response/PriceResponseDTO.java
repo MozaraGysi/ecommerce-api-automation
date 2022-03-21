@@ -3,6 +3,7 @@ package OCC.DTOs.Response;
 import Common.AbstractDTO;
 
 public class PriceResponseDTO extends AbstractDTO<ProductCategorySearchPageResponseDTO> {
+
     private Float value;
 
     public Float getValue() {

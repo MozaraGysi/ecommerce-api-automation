@@ -1,7 +1,10 @@
 package OCC.Fixtures;
 
+<<<<<<< HEAD
 import org.apache.commons.lang3.RandomStringUtils;
 
+=======
+>>>>>>> f2ca54f00b782af78a4320ea8eb7a56766cbcdbc
 import OCC.DTOs.Request.RegionRequestDTO;
 
 public final class RegionRequestDTOFixture {
@@ -47,6 +50,7 @@ public final class RegionRequestDTOFixture {
 		regionDTO.setName("São Paulo");
 		return this;
 	}
+<<<<<<< HEAD
 
 	public RegionRequestDTOFixture withCountryIso(String countryIso){
 		regionDTO.setCountryIso(countryIso);
@@ -68,4 +72,6 @@ public final class RegionRequestDTOFixture {
 		return this;
 	}
 
+=======
+>>>>>>> f2ca54f00b782af78a4320ea8eb7a56766cbcdbc
 }
