@@ -37,7 +37,7 @@ public final class UserRequestDTOFixture {
 	}
 
 	public UserRequestDTOFixture getAutomationUser() {
-		UserRequestDTO userRegister = UserRegisterRequestDTOFixture.get().automationUser().build();
+		UserRequestDTO userRegister = UserRegisterRequestDTOFixture.get().getRandom().build();
 
 		userDTO = new UserRequestDTO();
 		userDTO.setFirstName(userRegister.getFirstName());

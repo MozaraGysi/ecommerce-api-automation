@@ -1,4 +1,4 @@
-package OCC.DTOs;
+package OCC.DTOs.Response;
 
 import Common.AbstractDTO;
 import com.google.gson.annotations.SerializedName;

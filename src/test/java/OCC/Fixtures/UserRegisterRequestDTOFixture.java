@@ -1,21 +1,41 @@
 package OCC.Fixtures;
 
-import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
-
 import OCC.DTOs.Request.UserRequestDTO;
 import OCC.Utils.Utils;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static org.apache.commons.lang3.RandomUtils.nextInt;
 
 public final class UserRegisterRequestDTOFixture {
 
 	private UserRequestDTO userRequestDTO;
 
 	private UserRegisterRequestDTOFixture() {
-		userRequestDTO = new UserRequestDTO();
+		this.userRequestDTO = new UserRequestDTO();
 	}
 
 	public static UserRegisterRequestDTOFixture get(){
 		return new UserRegisterRequestDTOFixture();
+	}
+
+	public static UserRegisterRequestDTOFixture getRandom() {
+		return UserRegisterRequestDTOFixture.get().random();
+	}
+
+	public static List<UserRequestDTO> buildRandomList(int quantity) {
+		return IntStream
+			.range(0, quantity)
+			.mapToObj(x -> UserRegisterRequestDTOFixture.get().random().build())
+			.collect(Collectors.toList());
+	}
+
+	public static List<UserRequestDTO> buildRandomList() {
+		return buildRandomList(nextInt(1, 10));
 	}
 
 	public UserRequestDTO build() {
@@ -29,10 +49,6 @@ public final class UserRegisterRequestDTOFixture {
 		.withPassword(RandomStringUtils.random(10))
 		.withGenderCode(RandomUtils.nextBoolean() ? "MALE":"FEMALE")
 		.withUid(Utils.email());
-	}
-
-	public static UserRegisterRequestDTOFixture getRandom() {
-		return UserRegisterRequestDTOFixture.get().random();
 	}
 
 	public UserRegisterRequestDTOFixture automationUser() {
