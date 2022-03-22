@@ -1,11 +1,8 @@
 package OCC.Utils;
 
-import OCC.DTOs.Request.LoginPageRequestDTO;
-import OCC.DTOs.Request.CmsPageContentRequestDTO;
-import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
-import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
-import OCC.DTOs.Request.AuthorizationRequestDTO;
+import OCC.DTOs.Request.*;
 import OCC.Enums.GrantTypeEnum;
+import OCC.Fixtures.CartRequestDTOFixture;
 import OCC.Handlers.AuthorizationHandler;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -174,6 +171,64 @@ public class APIClient {
         Response response = request.get("/cms/pages/homepageHeadless");
 
         response.getBody().print();
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response postCart(CartRequestDTO cartRequestDTO){
+
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", cartRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        Response response = request.post("/users/current/carts?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response postEntry(CartRequestDTO cartRequestDTO){
+
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", cartRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.body(cartRequestDTO.toJson().toString());
+        Response response = request.post("/users/current/carts/current/entries?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response postEntrySellerExterno(CartRequestDTO cartRequestDTO){
+
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", cartRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.body(cartRequestDTO.toJson().toString());
+        Response response = request.post("/users/current/carts/current/entries?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response getCart(CartRequestDTO cartRequestDTO){
+
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", cartRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        Response response = request.get("/users/current/carts/current?reset=true&fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;

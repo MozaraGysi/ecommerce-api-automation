@@ -20,4 +20,6 @@ public abstract class AbstractDTO<T> {
     public Map<String, Object> toMap() {
         return new Gson().fromJson(this.toJson().toString(), HashMap.class);
     }
+
+    public String getContentType() { return "application/json"; }
 }
