@@ -1,7 +1,7 @@
 package OCC.Validators;
 
 import Common.Validators.Validator;
-import OCC.DTOs.AuthorizationResponseDTO;
+import OCC.DTOs.Response.AuthorizationResponseDTO;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 
