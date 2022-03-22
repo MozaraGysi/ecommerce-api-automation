@@ -2,8 +2,6 @@ package OCC.Utils;
 
 import OCC.DTOs.Request.*;
 import OCC.Enums.GrantTypeEnum;
-import OCC.Fixtures.AddressRequestDTOFixture;
-import OCC.Fixtures.UserRequestDTOFixture;
 import OCC.Handlers.AuthorizationHandler;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -179,7 +177,7 @@ public class APIClient {
     public static Response postRegisterNewUser(UserRequestDTO userRequestDTO){
         RestAssured.baseURI = Utils.getBaseUrl(false);
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", userRequestDTO.getContentType());
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         request.queryParams(userRequestDTO.toMap());
@@ -194,7 +192,7 @@ public class APIClient {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", addressRequestDTO.getContentType());
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         request.queryParams(addressRequestDTO.toMap());
@@ -205,12 +203,12 @@ public class APIClient {
         return response;
     }
 
-    public static Response getAddresses() {
+    public static Response getAddresses(AddressRequestDTO addressRequestDTO) {
 
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", addressRequestDTO.getContentType());
         request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         Response response = request.get("/users/current/addresses?fields=FULL");
@@ -224,7 +222,7 @@ public class APIClient {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", userRequestDTO.getContentType());
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         request.param("fields","FULL");

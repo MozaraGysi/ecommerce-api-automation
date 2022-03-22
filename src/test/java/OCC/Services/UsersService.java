@@ -1,20 +1,15 @@
 package OCC.Services;
 
+import Common.Validators.StatusCodeCreatedValidator;
 import Common.Validators.StatusCodeOKValidator;
 import Common.Validators.Validator;
 import OCC.DTOs.Request.AddressRequestDTO;
 import OCC.DTOs.Request.UserRequestDTO;
 import OCC.Fixtures.AddressRequestDTOFixture;
 import OCC.Fixtures.UserRequestDTOFixture;
-import OCC.Fixtures.UserRegisterRequestDTOFixture;
-import OCC.Handlers.AuthorizationHandler;
 import OCC.Utils.APIClient;
-import OCC.Utils.Utils;
 import OCC.Validators.*;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.apiguardian.api.API;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.Arrays;
@@ -26,7 +21,7 @@ public class UsersService {
 
         UserRequestDTO userRequestDTO = UserRequestDTOFixture.getRandom().build();
         Response response = APIClient.postRegisterNewUser(userRequestDTO);
-        List<Validator> validators = Arrays.asList(new UsersValidator());
+        List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new UserValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
     }
@@ -35,15 +30,16 @@ public class UsersService {
 
         AddressRequestDTO addressRequestDTO = AddressRequestDTOFixture.get().addressRS().build();
         Response response = APIClient.postAddresses(addressRequestDTO);
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
+        List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new AddressValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
     }
 
     public static void getAddresses() {
 
-        Response response = APIClient.getAddresses();
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
+        AddressRequestDTO addressRequestDTO = AddressRequestDTOFixture.get().addressRS().build();
+        Response response = APIClient.getAddresses(addressRequestDTO);
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new AddressValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
     }
@@ -52,7 +48,7 @@ public class UsersService {
 
         UserRequestDTO userRequestDTO = UserRequestDTOFixture.getRandom().build();
         Response response = APIClient.patchUser(userRequestDTO);
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new UserValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
     }
