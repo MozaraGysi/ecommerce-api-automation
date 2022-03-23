@@ -1,16 +1,11 @@
 package OCC.Utils;
 
-import OCC.DTOs.Request.LoginPageRequestDTO;
-import OCC.DTOs.Request.CmsPageContentRequestDTO;
-import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
-import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
-import OCC.DTOs.Request.AuthorizationRequestDTO;
+import OCC.DTOs.Request.*;
 import OCC.Enums.GrantTypeEnum;
 import OCC.Handlers.AuthorizationHandler;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
 import static OCC.Enums.GrantTypeEnum.APPLE_ID;
 import static OCC.Enums.GrantTypeEnum.FACEBOOK;
 import static OCC.Enums.GrantTypeEnum.PASSWORD;
@@ -174,6 +169,67 @@ public class APIClient {
         Response response = request.get("/cms/pages/homepageHeadless");
 
         response.getBody().print();
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response postRegisterNewUser(UserRequestDTO userRequestDTO){
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", userRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.queryParams(userRequestDTO.toMap());
+        request.body(userRequestDTO.toJson().toString());
+        Response response = request.post("/users?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response postAddresses(AddressRequestDTO addressRequestDTO){
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", addressRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.queryParams(addressRequestDTO.toMap());
+        request.body(addressRequestDTO.toJson().toString());
+        Response response = request.post("/users/current/addresses?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response getAddresses(AddressRequestDTO addressRequestDTO) {
+
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", addressRequestDTO.getContentType());
+        request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        Response response = request.get("/users/current/addresses?fields=FULL");
+        Utils.setIdAddress(response.getBody().jsonPath().get("addresses.id"));
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response patchUser(UserRequestDTO userRequestDTO){
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", userRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.param("fields","FULL");
+        request.queryParams(userRequestDTO.toMap());
+        request.body(userRequestDTO.toJson().toString());
+        Response response = request.patch("/users/current/?fields=FULL");
+        response.print();
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
