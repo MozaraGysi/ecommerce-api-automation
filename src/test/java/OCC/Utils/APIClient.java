@@ -1,10 +1,6 @@
 package OCC.Utils;
 
-import OCC.DTOs.Request.LoginPageRequestDTO;
-import OCC.DTOs.Request.CmsPageContentRequestDTO;
-import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
-import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
-import OCC.DTOs.Request.AuthorizationRequestDTO;
+import OCC.DTOs.Request.*;
 import OCC.Enums.GrantTypeEnum;
 import OCC.Fixtures.CreditCardRequestDTOFixture;
 import OCC.Handlers.AuthorizationHandler;
@@ -252,7 +248,7 @@ public class APIClient {
         return response;
     }
 
-    public static Response postOrder() {
+    public static Response postOrder(CreditCardRequestDTO creditCardRequestDTO) {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -260,7 +256,7 @@ public class APIClient {
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         request.sessionId(Utils.getJSessionId());
-        request.body(CreditCardRequestDTOFixture.get().defaultCreditCard().build().toJson().toString());
+        request.body(creditCardRequestDTO.toJson().toString());
         Response response = request.post("/users/current/orders?cartId=current&fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
         System.out.println(response.jsonPath().get("code").toString());

@@ -29,7 +29,7 @@ public final class CreditCardRequestDTOFixture {
 		.withExpiryMonth(String.valueOf(RandomUtils.nextInt(1, 12)))
 		.withExpiryYear(String.valueOf(RandomUtils.nextInt(2023, 2099)))
 		.withDefaultPayment(RandomUtils.nextBoolean())
-		.withSecurityCode(String.valueOf(737))
+		.withSecurityCode(String.valueOf(RandomUtils.nextInt(0, 999)))
 		.withSaved(RandomUtils.nextBoolean())
 		.withInstallments((short) RandomUtils.nextInt(1, 9));
 	}
