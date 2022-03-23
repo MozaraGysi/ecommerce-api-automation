@@ -3,8 +3,14 @@ package OCC.Services;
 import Common.Validators.StatusCodeCreatedValidator;
 import Common.Validators.StatusCodeOKValidator;
 import Common.Validators.Validator;
+import OCC.DTOs.Request.BoletoRequestDTO;
 import OCC.DTOs.Request.CreditCardRequestDTO;
+import OCC.DTOs.Request.DeliveryModeRequestDTO;
+import OCC.DTOs.Request.PaymentModeRequestDTO;
+import OCC.Fixtures.BoletoRequestDTOFixture;
 import OCC.Fixtures.CreditCardRequestDTOFixture;
+import OCC.Fixtures.DeliveryModesRequestDTOFixture;
+import OCC.Fixtures.PaymentModeRequestDTOFixture;
 import OCC.Utils.APIClient;
 import OCC.Validators.CreditCardValidator;
 import io.restassured.response.Response;
@@ -20,44 +26,45 @@ public class CheckoutService {
 
     public static void putAddressesDelivery() {
 
-        //TODO: call fixure
         Response response = APIClient.putAddressesDelivery();
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
-
     }
 
     public static void getDeliveryModes() {
-        //TODO: call fixure
-        Response response = APIClient.getDeliveryModes();
+
+        DeliveryModeRequestDTO deliveryModeRequestDTO = DeliveryModesRequestDTOFixture.get().build();
+        Response response = APIClient.getDeliveryModes(deliveryModeRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
     public static void getPaymentMethods() {
-        //TODO: call fixure
-        Response response = APIClient.getPaymentMethods();
+
+        PaymentModeRequestDTO paymentModeRequestDTO = PaymentModeRequestDTOFixture.get().build();
+        Response response = APIClient.getPaymentMethods(paymentModeRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
     public static void putPaymentMethod() {
-        //TODO: call fixure
+
         Response response = APIClient.putPaymentMethod(CREDIT_CARD);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
     public static void putPaymentMethodBoleto() {
-        //TODO: call fixure
+
         Response response = APIClient.putPaymentMethod(BOLETO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
     public static void postOrderBoleto() {
-        //TODO: call fixure
-        Response response = APIClient.postOrderBoleto();
+
+        BoletoRequestDTO boletoRequestDTO = BoletoRequestDTOFixture.get().build();
+        Response response = APIClient.postOrderBoleto(boletoRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
