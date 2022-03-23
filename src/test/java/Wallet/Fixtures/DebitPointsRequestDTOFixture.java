@@ -1,6 +1,7 @@
 package Wallet.Fixtures;
 
 import Wallet.DTOs.Request.DebitPointsRequestDTO;
+import Wallet.Enums.CreditTransactionStatusEnum;
 import Wallet.Enums.DebitPointsTypeEnum;
 import Wallet.Utils.Utils;
 
@@ -11,14 +12,15 @@ import java.util.Objects;
 public class DebitPointsRequestDTOFixture {
 
 	private DebitPointsRequestDTO debitPointsRequestDTO;
+	private static final String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
 
 	public DebitPointsRequestDTOFixture() {
 		debitPointsRequestDTO = new DebitPointsRequestDTO();
 		debitPointsRequestDTO.setDocument(Utils.getCPF());
-		debitPointsRequestDTO.setAmount(4.91f);
-		debitPointsRequestDTO.setStatus("CONFIRMADO");
+		debitPointsRequestDTO.setAmount(4.91F);
+		debitPointsRequestDTO.setStatus(CreditTransactionStatusEnum.CONFIRMADO.getValue());
 		debitPointsRequestDTO.setType(DebitPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_PATTERN);
 		debitPointsRequestDTO.setDateTime(simpleDateFormat.format(new Date()));
 		debitPointsRequestDTO.setOrder(new OrderDTOFixture().build());
 	}
