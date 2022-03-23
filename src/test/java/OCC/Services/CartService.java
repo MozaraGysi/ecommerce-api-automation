@@ -1,63 +1,59 @@
 package OCC.Services;
 
+import Common.Validators.StatusCodeCreatedValidator;
+import Common.Validators.StatusCodeOKValidator;
+import Common.Validators.Validator;
+import OCC.DTOs.Request.CartRequestDTO;
 import OCC.Fixtures.CartRequestDTOFixture;
 import OCC.Handlers.AuthorizationHandler;
+import OCC.Utils.APIClient;
 import OCC.Utils.Utils;
+import OCC.Validators.CartValidator;
+import OCC.Validators.CustomerAuthorizationValidator;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.apiguardian.api.API;
 import org.junit.jupiter.api.Assertions;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class CartService {
 
     public static void postCart() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        CartRequestDTO cartRequestDTO = CartRequestDTOFixture.get().withDefaultProduct().build();
+        Response response = APIClient.postCart(cartRequestDTO);
+        List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CartValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        Response response = request.post("/users/current/carts?fields=FULL");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        Assertions.assertEquals(201, response.getStatusCode());
     }
 
     public static void postEntry() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.body(CartRequestDTOFixture.get().withDefaultProduct().build().toJson().toString());
-        Response response = request.post("/users/current/carts/current/entries?fields=FULL");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        Assertions.assertEquals(200, response.getStatusCode());
+        CartRequestDTO cartRequestDTO = CartRequestDTOFixture.getRandom().build();
+        Response response = APIClient.postEntry(cartRequestDTO);
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CartValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
     }
 
     public static void postEntrySellerExterno() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.body(CartRequestDTOFixture.get().withExternalSellerProduct().build().toJson().toString());
-        Response response = request.post("/users/current/carts/current/entries?fields=FULL");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        Assertions.assertEquals(200, response.getStatusCode());
+        CartRequestDTO cartRequestDTO = CartRequestDTOFixture.get().withExternalSellerProduct().build();
+        Response response = APIClient.postEntrySellerExterno(cartRequestDTO);
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CartValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
     }
 
     public static void getCart() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        Response response = request.get("/users/current/carts/current?reset=true&fields=FULL");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        Assertions.assertEquals(200, response.getStatusCode());
+        CartRequestDTO cartRequestDTO = CartRequestDTOFixture.getRandom().build();
+        Response response = APIClient.getCart(cartRequestDTO);
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CartValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
     }
 }

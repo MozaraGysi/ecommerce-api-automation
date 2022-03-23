@@ -174,6 +174,19 @@ public class APIClient {
         return response;
     }
 
+    public static Response postCart(CartRequestDTO cartRequestDTO){
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", cartRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        Response response = request.post("/users/current/carts?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        
+        return response;
+    }
+
     public static Response postRegisterNewUser(UserRequestDTO userRequestDTO){
         RestAssured.baseURI = Utils.getBaseUrl(false);
         RequestSpecification request = RestAssured.given();
@@ -183,6 +196,21 @@ public class APIClient {
         request.queryParams(userRequestDTO.toMap());
         request.body(userRequestDTO.toJson().toString());
         Response response = request.post("/users?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response postEntry(CartRequestDTO cartRequestDTO){
+
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", cartRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.body(cartRequestDTO.toJson().toString());
+        Response response = request.post("/users/current/carts/current/entries?fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
@@ -203,8 +231,21 @@ public class APIClient {
         return response;
     }
 
-    public static Response getAddresses(AddressRequestDTO addressRequestDTO) {
+    public static Response postEntrySellerExterno(CartRequestDTO cartRequestDTO){
+        RestAssured.baseURI = Utils.getBaseUrl(false);
 
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", cartRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.body(cartRequestDTO.toJson().toString());
+        Response response = request.post("/users/current/carts/current/entries?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response getAddresses(AddressRequestDTO addressRequestDTO) {
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -213,6 +254,21 @@ public class APIClient {
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         Response response = request.get("/users/current/addresses?fields=FULL");
         Utils.setIdAddress(response.getBody().jsonPath().get("addresses.id"));
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+
+    }
+
+    public static Response getCart(CartRequestDTO cartRequestDTO){
+
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", cartRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        Response response = request.get("/users/current/carts/current?reset=true&fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
@@ -234,4 +290,5 @@ public class APIClient {
 
         return response;
     }
+
 }
