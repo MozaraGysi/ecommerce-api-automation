@@ -9,6 +9,8 @@ import java.util.Map;
 
 public abstract class AbstractDTO<T> {
 
+    private static String CONTENT_TYPE = "application/json";
+
     public T fromJsonString(String jsonString) {
         return new Gson().fromJson(jsonString, (Type) getClass());
     }
@@ -21,5 +23,5 @@ public abstract class AbstractDTO<T> {
         return new Gson().fromJson(this.toJson().toString(), HashMap.class);
     }
 
-    public String getContentType() { return "application/json"; }
+    public String getContentType() { return CONTENT_TYPE; }
 }
