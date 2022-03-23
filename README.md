@@ -198,6 +198,42 @@ public class ClassName[Request/Response]DTO extends AbstractDTO<ClassName[Reques
    ```
 </details>
 
+### Data
+Classe com dados obtidos dos arquivos de configurações de ambientes para serem utilizados nos testes. 
+<details>
+  <summary>Exemplo</summary>
+
+   ```
+public class WalletDataTest {
+
+	public static String getClientId() {
+		return getConfigValue(getWalletConfigMapped(), "clientId");
+	}
+
+	public static String getClientSecret() {
+		return getConfigValue(getWalletConfigMapped(), "clientSecret");
+	}
+
+	public static String getBaseUrl() {
+		return getConfigValue(getWalletConfigMapped(), "baseUrl");
+	}
+
+	public static String getBaseAuthUrl() {
+		return getConfigValue(getWalletConfigMapped(), "baseAuthUrl");
+	}
+
+	public static String getLoginEmail() {
+		return getConfigValue(getWalletConfigMapped(), "loginEmail");
+	}
+
+	public static String getLoginDomain() {
+		return getConfigValue(getWalletConfigMapped(), "loginDomain");
+	}
+
+}
+   ```
+</details>
+
 ### Fixture
 Classes responsáveis por criar DTOs com dados dinâmicos para os testes.
 <details>
@@ -371,7 +407,10 @@ public class APIClient {
 </details>
 
 ### Handler
-Classes responsáveis por salvar os dados a serem manupulados durante a execução dos testes.
+Classes responsáveis por salvar os dados a serem manipulados durante a execução dos testes.
 
 ### Util
 Classes utilitárias para a execução dos testes de cada API.
+
+### Resources
+Recursos gerais para serem utilizados. Aqui encontram-se os arquivos de configuração Yaml separados por teste e por ambiente. Estes dados são lidos dentro do `Common.Utils.EnvConfig`
