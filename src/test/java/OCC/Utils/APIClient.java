@@ -6,10 +6,12 @@ import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
 import OCC.DTOs.Request.StoreFinderSearchRequestDTO;
 import OCC.DTOs.Request.AuthorizationRequestDTO;
 import OCC.Enums.GrantTypeEnum;
+import OCC.Fixtures.CreditCardRequestDTOFixture;
 import OCC.Handlers.AuthorizationHandler;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.Assertions;
 
 import static OCC.Enums.GrantTypeEnum.APPLE_ID;
 import static OCC.Enums.GrantTypeEnum.FACEBOOK;
@@ -178,4 +180,92 @@ public class APIClient {
 
         return response;
     }
+
+    public static Response putAddressesDelivery() {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        Response response = request.put("/users/current/carts/current/addresses/delivery?addressId="+Utils.getIdAddress());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response getDeliveryModes() {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type","application/json");
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.param("executeSourcing",true);
+        Response response = request.get("/users/current/carts/current/deliverymodes?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        Utils.setJSessionId(response.getSessionId());
+
+        return response;
+    }
+
+    public static Response getPaymentMethods() {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type","application/json");
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.sessionId(Utils.getJSessionId());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        Response response = request.get("/users/current/carts/current/payment-methods?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        Utils.setJSessionId(response.getSessionId());
+
+        return response;
+    }
+
+    public static Response putPaymentMethod(String paymentMethod) {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.sessionId(Utils.getJSessionId());
+        Response response = request.put("/users/current/carts/current/payment-method?paymentMethodCode="+paymentMethod);
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        Utils.setJSessionId(response.getSessionId());
+
+        return response;
+    }
+
+    public static Response postOrderBoleto() {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type","application/json");
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.sessionId(Utils.getJSessionId());
+        Response response = request.post("/users/current/orders?cartId=current&fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        System.out.println(response.jsonPath().get("code").toString());
+
+        return response;
+    }
+
+    public static Response postOrder() {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type","application/json");
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.sessionId(Utils.getJSessionId());
+        request.body(CreditCardRequestDTOFixture.get().defaultCreditCard().build().toJson().toString());
+        Response response = request.post("/users/current/orders?cartId=current&fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        System.out.println(response.jsonPath().get("code").toString());
+
+        return response;
+    }
+
 }
