@@ -13,14 +13,15 @@ import java.util.Objects;
 public class CreditPointsRequestDTOFixture {
 
 	private CreditPointsRequestDTO creditPointsRequestDTO;
+	private static final String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
 
 	public CreditPointsRequestDTOFixture() {
 		creditPointsRequestDTO = new CreditPointsRequestDTO();
 		creditPointsRequestDTO.setDocument(Utils.getCPF());
-		creditPointsRequestDTO.setAmount(660.66f);
+		creditPointsRequestDTO.setAmount(660.66F);
 		creditPointsRequestDTO.setType(CreditPointsTypeEnum.QUANTIDADE_DE_PONTOS.getValue());
 		creditPointsRequestDTO.setStatus(CreditTransactionStatusEnum.CONFIRMADO.getValue());
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_PATTERN);
 		creditPointsRequestDTO.setDateTime(simpleDateFormat.format(new Date()));
 		creditPointsRequestDTO.setOrder(new OrderDTOFixture().build());
 	}

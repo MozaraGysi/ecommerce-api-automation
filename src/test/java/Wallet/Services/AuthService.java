@@ -1,5 +1,6 @@
 package Wallet.Services;
 
+import Wallet.Data.WalletDataTest;
 import Wallet.Utils.Utils;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
@@ -36,7 +37,7 @@ public class AuthService {
 	}
 
 	public static void getToken() {
-		RestAssured.baseURI = Utils.getBaseAuthUrl();
+		RestAssured.baseURI = WalletDataTest.getBaseAuthUrl();
 
 		RequestSpecification request = RestAssured.given();
 		request.headers(getDefaultHeadersWithBasicAuthorization());

@@ -1,18 +1,15 @@
 package Wallet.Utils;
 
+import Common.Utils.EnvConfig;
 import Common.Utils.GenerateCPF;
 import Wallet.DTOs.Request.CreditPointsRequestDTO;
-import Wallet.DTOs.Response.CreditTransactionsResponseDTO;
 import Wallet.DTOs.Request.DebitPointsRequestDTO;
+import Wallet.DTOs.Response.CreditTransactionsResponseDTO;
 import Wallet.Enums.CreditPointsTypeEnum;
 import Wallet.Enums.StatementStatusEnum;
 import Wallet.Handlers.CreditPointsHandler;
 import Wallet.Handlers.DebitPointsHandler;
-import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
@@ -21,6 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import static Wallet.Data.WalletDataTest.getClientId;
+import static Wallet.Data.WalletDataTest.getClientSecret;
+import static Wallet.Data.WalletDataTest.getLoginDomain;
+import static Wallet.Data.WalletDataTest.getLoginEmail;
 
 public class Utils {
 
@@ -31,8 +33,18 @@ public class Utils {
 	static float PENDING_AMOUNT;
 	static List<CreditPointsHandler> CREDIT_POINTS;
 	static List<DebitPointsHandler> DEBIT_POINTS;
-	static String WALLET_JSON_PATH = "src/test/resources/wallet.json";
-	static Map<String, Object> WALLET_JSON_MAPPED;
+	static Map<String, Object> WALLET_CONFIG_MAPPED;
+	static String API_NAME = "Wallet";
+
+	public static void init() {
+		ACCESS_TOKEN = null;
+		EMAIL = null;
+		CPF = null;
+		AVAILABLE_AMOUNT = 0;
+		PENDING_AMOUNT = 0;
+		CREDIT_POINTS = new ArrayList<>();
+		DEBIT_POINTS = new ArrayList<>();
+	}
 
 	public static String getWalletEnv() {
 		String env = "";
@@ -44,58 +56,23 @@ public class Utils {
 		return env;
 	}
 
-	public static String getBaseUrl() {
-		return ((Map<String, String>)getWalletJsonMapped().get(getWalletEnv())).get("baseUrl");
-	}
-
-	public static String getBaseAuthUrl() {
-		return ((Map<String, String>)getWalletJsonMapped().get(getWalletEnv())).get("baseAuthUrl");
-	}
-
 	public static String getCredentials() {
-		String clientId = ((Map<String, String>)getWalletJsonMapped().get(getWalletEnv())).get("clientId");
-		String clientSecret = ((Map<String, String>)getWalletJsonMapped().get(getWalletEnv())).get("clientSecret");
+		String clientId = getClientId();
+		String clientSecret = getClientSecret();
 
 		return clientId.concat(":").concat(clientSecret);
 	}
 
-	private static Map<String, Object> getWalletJsonMapped() {
-		if (Objects.isNull(WALLET_JSON_MAPPED)) {
-			WALLET_JSON_MAPPED = readWalletJson();
+	public static Map<String, Object> getWalletConfigMapped() {
+		if (Objects.isNull(WALLET_CONFIG_MAPPED)) {
+			WALLET_CONFIG_MAPPED = EnvConfig.getConfigs(API_NAME, getWalletEnv());
 		}
-		return WALLET_JSON_MAPPED;
-	}
-
-	private static Map<String, Object> readWalletJson() {
-		StringBuilder fileName = new StringBuilder();
-		fileName.append(WALLET_JSON_PATH);
-		Map<String, Object> element = null;
-		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
-			Gson gson = new Gson();
-			element = gson.fromJson(bufferedReader, Map.class);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return element;
-	}
-
-	public static String getUser(String param) {
-		StringBuilder fileName = new StringBuilder();
-		fileName.append("src/test/resources/users.json");
-		String jsonUsers = "";
-		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
-			Gson gson = new Gson();
-			Map<String, Object> element = gson.fromJson(bufferedReader, Map.class);
-			jsonUsers = ((Map<String, String>) element.get(param)).get("email");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return jsonUsers;
+		return WALLET_CONFIG_MAPPED;
 	}
 
 	private static String email() {
 		String data = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyHHmmssSSS"));
-		String email = "anajulia_" + data + "@zzmall.com";
+		String email = getLoginEmail() + data + getLoginDomain();
 		System.out.println(email);
 		return email;
 	}
@@ -131,16 +108,6 @@ public class Utils {
 			CPF = cpf();
 		}
 		return CPF;
-	}
-
-	public static void init() {
-		ACCESS_TOKEN = null;
-		EMAIL = null;
-		CPF = null;
-		AVAILABLE_AMOUNT = 0;
-		PENDING_AMOUNT = 0;
-		CREDIT_POINTS = new ArrayList<>();
-		DEBIT_POINTS = new ArrayList<>();
 	}
 
 	public static float getAvailableAmount() {

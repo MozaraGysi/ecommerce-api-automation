@@ -1,0 +1,6 @@
+clientId: "a281cd5d-8b5e-3600-87fc-082bf3c6d855"
+clientSecret: "c5931073-a5c0-3641-a04c-c8654b3e70cd"
+baseUrl: "http://api.arezzoco.com.br/dev/customer-loyalty/v1"
+baseAuthUrl: "http://api.arezzoco.com.br/dev/oauth/v1"
+loginEmail: "anajulia_"
+loginDomain: "@zzmall.com"
