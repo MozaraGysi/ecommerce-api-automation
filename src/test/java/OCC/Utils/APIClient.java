@@ -2,6 +2,7 @@ package OCC.Utils;
 
 import OCC.DTOs.Request.*;
 import OCC.Enums.GrantTypeEnum;
+import OCC.Handlers.AddressHandler;
 import OCC.Handlers.AuthorizationHandler;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -174,6 +175,18 @@ public class APIClient {
         return response;
     }
 
+    public static Response putAddressesDelivery() {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        Response response = request.put("/users/current/carts/current/addresses/delivery?addressId="+AddressHandler.getAddress().getIdAddress());
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
     public static Response postCart(CartRequestDTO cartRequestDTO){
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
@@ -201,6 +214,21 @@ public class APIClient {
         return response;
     }
 
+    public static Response getDeliveryModes(DeliveryModeRequestDTO deliveryModeRequestDTO) {
+
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type",deliveryModeRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.param("executeSourcing",true);
+        Response response = request.get("/users/current/carts/current/deliverymodes?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        Utils.setJSessionId(response.getSessionId());
+        return response;
+    }
+
     public static Response postEntry(CartRequestDTO cartRequestDTO){
 
         RestAssured.baseURI = Utils.getBaseUrl(false);
@@ -216,6 +244,20 @@ public class APIClient {
         return response;
     }
 
+    public static Response getPaymentMethods(PaymentModeRequestDTO paymentModeRequestDTO) {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type",paymentModeRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.sessionId(Utils.getJSessionId());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        Response response = request.get("/users/current/carts/current/payment-methods?fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        Utils.setJSessionId(response.getSessionId());
+        return response;
+    }
+
     public static Response postAddresses(AddressRequestDTO addressRequestDTO){
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
@@ -228,6 +270,34 @@ public class APIClient {
         Response response = request.post("/users/current/addresses?fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
+        return response;
+    }
+
+    public static Response putPaymentMethod(String paymentMethod) {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.sessionId(Utils.getJSessionId());
+        Response response = request.put("/users/current/carts/current/payment-method?paymentMethodCode="+paymentMethod);
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        Utils.setJSessionId(response.getSessionId());
+
+        return response;
+    }
+
+    public static Response postOrderBoleto(BoletoRequestDTO boletoRequestDTO) {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type",boletoRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.sessionId(Utils.getJSessionId());
+        Response response = request.post("/users/current/orders?cartId=current&fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        System.out.println(response.jsonPath().get("code").toString());
         return response;
     }
 
@@ -253,7 +323,7 @@ public class APIClient {
         request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
         Response response = request.get("/users/current/addresses?fields=FULL");
-        Utils.setIdAddress(response.getBody().jsonPath().get("addresses.id"));
+        AddressHandler.handleAddress(response);
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
         return response;
@@ -261,7 +331,6 @@ public class APIClient {
     }
 
     public static Response getCart(CartRequestDTO cartRequestDTO){
-
         RestAssured.baseURI = Utils.getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
@@ -271,6 +340,21 @@ public class APIClient {
         Response response = request.get("/users/current/carts/current?reset=true&fields=FULL");
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
 
+        return response;
+    }
+
+    public static Response postOrder(CreditCardRequestDTO creditCardRequestDTO) {
+        RestAssured.baseURI = Utils.getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type",creditCardRequestDTO.getContentType());
+        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+        request.sessionId(Utils.getJSessionId());
+        request.body(creditCardRequestDTO.toJson().toString());
+        Response response = request.post("/users/current/orders?cartId=current&fields=FULL");
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+        System.out.println(response.jsonPath().get("code").toString());
         return response;
     }
 

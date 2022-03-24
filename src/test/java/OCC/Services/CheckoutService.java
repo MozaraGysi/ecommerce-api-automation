@@ -1,106 +1,80 @@
 package OCC.Services;
 
+import Common.Validators.StatusCodeCreatedValidator;
+import Common.Validators.StatusCodeOKValidator;
+import Common.Validators.Validator;
+import OCC.DTOs.Request.BoletoRequestDTO;
+import OCC.DTOs.Request.CreditCardRequestDTO;
+import OCC.DTOs.Request.DeliveryModeRequestDTO;
+import OCC.DTOs.Request.PaymentModeRequestDTO;
+import OCC.Fixtures.BoletoRequestDTOFixture;
 import OCC.Fixtures.CreditCardRequestDTOFixture;
-import OCC.Handlers.AuthorizationHandler;
-import OCC.Utils.Utils;
-import io.restassured.RestAssured;
+import OCC.Fixtures.DeliveryModesRequestDTOFixture;
+import OCC.Fixtures.PaymentModeRequestDTOFixture;
+import OCC.Utils.APIClient;
+import OCC.Validators.CreditCardValidator;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class CheckoutService {
 
-    public static void putAddressesDelivery() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+    private static String BOLETO = "Boleto";
+    private static String CREDIT_CARD = "CreditCard";
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        Response response = request.put("/users/current/carts/current/addresses/delivery?addressId="+Utils.getIdAddress());
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        Assertions.assertEquals(200, response.getStatusCode());
+    public static void putAddressesDelivery() {
+
+        Response response = APIClient.putAddressesDelivery();
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
     public static void getDeliveryModes() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type","application/json");
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.param("executeSourcing",true);
-        Response response = request.get("/users/current/carts/current/deliverymodes?fields=FULL");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        Utils.setJSessionId(response.getSessionId());
-        Assertions.assertEquals(200, response.getStatusCode());
+        DeliveryModeRequestDTO deliveryModeRequestDTO = DeliveryModesRequestDTOFixture.get().build();
+        Response response = APIClient.getDeliveryModes(deliveryModeRequestDTO);
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
     public static void getPaymentMethods() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type","application/json");
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.sessionId(Utils.getJSessionId());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        Response response = request.get("/users/current/carts/current/payment-methods?fields=FULL");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        Utils.setJSessionId(response.getSessionId());
-        Assertions.assertEquals(200, response.getStatusCode());
+        PaymentModeRequestDTO paymentModeRequestDTO = PaymentModeRequestDTOFixture.get().build();
+        Response response = APIClient.getPaymentMethods(paymentModeRequestDTO);
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
     public static void putPaymentMethod() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.sessionId(Utils.getJSessionId());
-        Response response = request.put("/users/current/carts/current/payment-method?paymentMethodCode=CreditCard");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        Utils.setJSessionId(response.getSessionId());
-        Assertions.assertEquals(200, response.getStatusCode());
+        Response response = APIClient.putPaymentMethod(CREDIT_CARD);
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
     public static void putPaymentMethodBoleto() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.sessionId(Utils.getJSessionId());
-        Response response = request.put("/users/current/carts/current/payment-method?paymentMethodCode=Boleto");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        Utils.setJSessionId(response.getSessionId());
-        Assertions.assertEquals(200, response.getStatusCode());
+        Response response = APIClient.putPaymentMethod(BOLETO);
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
     public static void postOrderBoleto() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type","application/json");
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.sessionId(Utils.getJSessionId());
-        Response response = request.post("/users/current/orders?cartId=current&fields=FULL");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        System.out.println(response.jsonPath().get("code").toString());
-        Assertions.assertEquals(201, response.getStatusCode());
+        BoletoRequestDTO boletoRequestDTO = BoletoRequestDTOFixture.get().build();
+        Response response = APIClient.postOrderBoleto(boletoRequestDTO);
+        List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
     public static void postOrder() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
 
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type","application/json");
-        request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
-        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
-        request.sessionId(Utils.getJSessionId());
-        request.body(CreditCardRequestDTOFixture.get().defaultCreditCard().build().toJson().toString());
-        Response response = request.post("/users/current/orders?cartId=current&fields=FULL");
-        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
-        System.out.println(response.jsonPath().get("code").toString());
-        Assertions.assertEquals(201, response.getStatusCode());
+        CreditCardRequestDTO creditCardRequestDTO = CreditCardRequestDTOFixture.get().defaultCreditCard().build();
+        Response response = APIClient.postOrder(creditCardRequestDTO);
+        List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditCardValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+
     }
 }

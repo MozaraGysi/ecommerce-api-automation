@@ -2,6 +2,7 @@ package OCC.Utils;
 
 import Common.Utils.GenerateCPF;
 import OCC.Enums.BrandEnum;
+import OCC.Handlers.AddressHandler;
 import OCC.Handlers.AuthorizationHandler;
 import com.google.gson.Gson;
 
@@ -29,7 +30,6 @@ public class Utils {
     static String CSRFTOKEN;
     static String JSESSIONID;
     static String ACCESS_TOKEN;
-    static String ID_ADDRESS;
     static String EMAIL;
     static String BASE_URL_JSON_PATH = "src/test/resources/baseUrl.json";
     static String PRODUCT_JSON_PATH= "src/test/resources/product.json";
@@ -43,11 +43,11 @@ public class Utils {
         EMAIL = null;
         JSESSIONID = null;
         CSRFTOKEN = null;
-        ID_ADDRESS = null;
         BASE_URL_JSON_MAPPED = null;
         PRODUCT_JSON_MAPPED = null;
         USER_JSON_MAPPED = null;
         AuthorizationHandler.clear();
+        AddressHandler.clear();
     }
 
     public static String getBrand() {
@@ -139,16 +139,6 @@ public class Utils {
     public static String getEmail(){
         return EMAIL;
     }
-
-    public static String setIdAddress(ArrayList id_adrress){
-        ID_ADDRESS = id_adrress.get(0).toString().replace("[","").replace("]","");
-        return ID_ADDRESS;
-    }
-
-    public static String getIdAddress(){
-        return ID_ADDRESS;
-    }
-
 
     public static String setJSessionId(String jsessionID){
         JSESSIONID = jsessionID;
