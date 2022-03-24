@@ -253,7 +253,10 @@ public class ClassNameRequestDTOFixture {
   public static ClassNameRequestDTOFixture get() {
 		return new ClassNameRequestDTOFixture();
 	}
-<<<<<<< HEAD
+	
+    public ClassNameRequestDTO build() {
+		return classNameDTO;
+	}
 	
 	private ClassNameRequestDTOFixture random() {
 		return this
@@ -262,12 +265,6 @@ public class ClassNameRequestDTOFixture {
 	
 	public static ClassNameRequestDTOFixture getRandom() {
 		return ClassNameRequestDTOFixture.get().random();
-	}
-=======
->>>>>>> f2ca54f00b782af78a4320ea8eb7a56766cbcdbc
-
-	public ClassNameRequestDTO build() {
-		return classNameDTO;
 	}
 
 	public ClassNameRequestDTOFixture withAttributeSomeValue() {

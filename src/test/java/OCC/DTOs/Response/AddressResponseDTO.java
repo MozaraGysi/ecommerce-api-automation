@@ -18,6 +18,7 @@ public class AddressResponseDTO extends AbstractDTO<AddressResponseDTO> {
 	private String town;
 	private String titleCode;
 	private RegionResponseDTO region;
+	private String idAddress;
 
 	public String getAddressName() {
 		return addressName;
@@ -129,5 +130,13 @@ public class AddressResponseDTO extends AbstractDTO<AddressResponseDTO> {
 
 	public void setTitleCode(String titleCode) {
 		this.titleCode = titleCode;
+	}
+
+	public String getIdAddress() {
+		return idAddress;
+	}
+
+	public void setIdAddress(String idAddress) {
+		this.idAddress = idAddress;
 	}
 }
