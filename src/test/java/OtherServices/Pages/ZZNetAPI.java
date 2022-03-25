@@ -2,6 +2,8 @@ package OtherServices.Pages;
 
 import OtherServices.APIHandler.ZZNetAPIValidation;
 import static OtherServices.Utils.Utils.*;
+
+import OtherServices.Data.DataTest;
 import io.restassured.RestAssured;
 import org.apache.commons.codec.binary.Base64;
 import io.restassured.response.Response;
@@ -17,7 +19,7 @@ public class ZZNetAPI {
 
     public static void LoginTeleSalesAndSwitchToCustomer()
     {
-        RestAssured.baseURI = getBaseUrl();
+        RestAssured.baseURI = DataTest.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         byte[] encodedBytes = Base64.encodeBase64(("testecwiarezzotelevendas@arezzo.com.br|teste1234|"+generatedEmail+"|"+getSite_UID()).getBytes());
@@ -30,7 +32,7 @@ public class ZZNetAPI {
     }
     public static void CreateCustomer(String token)
     {
-        RestAssured.baseURI = getBaseUrl();
+        RestAssured.baseURI = DataTest.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         request.header("Authorization", "Bearer" + token);
@@ -62,7 +64,7 @@ public class ZZNetAPI {
     }
     public static String CSFRToken()
     {
-        RestAssured.baseURI = getBaseUrl();
+        RestAssured.baseURI = DataTest.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         request.auth().preemptive().basic("descomplica", "descomplica");
@@ -77,7 +79,7 @@ public class ZZNetAPI {
     }
     public static void RegisterCart(String token)
     {
-        RestAssured.baseURI = getBaseUrl();
+        RestAssured.baseURI = DataTest.getBaseUrl();
 
         String json = "{ \"productEans\" : [\"7909276002141\"], \"productQuantities\" : [2], \"voucherCode\": \"\"}";
         RequestSpecification request = RestAssured.given();
@@ -94,7 +96,7 @@ public class ZZNetAPI {
     }
     public static void CreateEmployee(String token)
     {
-        RestAssured.baseURI = getBaseUrl();
+        RestAssured.baseURI = DataTest.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         request.header("Authorization", "Bearer" + token);

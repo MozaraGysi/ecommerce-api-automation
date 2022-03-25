@@ -46,7 +46,7 @@ public class Utils {
 		DEBIT_POINTS = new ArrayList<>();
 	}
 
-	public static String getWalletEnv() {
+	private static String getWalletEnv() {
 		String env = "";
 		if (System.getProperty("walletEnv") == null) {
 			System.out.println("Environment not informed: Ex.: -DwalletEnv=qa ");
