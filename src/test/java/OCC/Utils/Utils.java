@@ -1,5 +1,6 @@
 package OCC.Utils;
 
+import Common.Utils.EnvConfig;
 import Common.Utils.GenerateCPF;
 import OCC.Enums.BrandEnum;
 import OCC.Handlers.AddressHandler;
@@ -37,6 +38,9 @@ public class Utils {
     static Map<String, Object> BASE_URL_JSON_MAPPED;
     static Map<String, Object> PRODUCT_JSON_MAPPED;
     static Map<String, Object> USER_JSON_MAPPED;
+
+    static Map<String, Object> OCC_CONFIG_MAPPED;
+    static String OCC_API = "OCC";
 
     public static void init() {
         ACCESS_TOKEN = null;
@@ -197,6 +201,13 @@ public class Utils {
             e.printStackTrace();
         }
         return element;
+    }
+
+    public static Map<String, Object> getOCCConfigMapped() {
+        if (Objects.isNull(OCC_CONFIG_MAPPED)) {
+            OCC_CONFIG_MAPPED = EnvConfig.getConfigs(OCC_API, getEnv());
+        }
+        return OCC_CONFIG_MAPPED;
     }
 
 }
