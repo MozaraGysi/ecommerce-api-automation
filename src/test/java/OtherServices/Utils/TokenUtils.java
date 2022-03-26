@@ -14,7 +14,7 @@ public class TokenUtils {
 	private static final String AUTHORIZATION_FORM_GRANT_TYPE = "grant_type";
 	private static final String AUTHORIZATION_FORM_SITE_UID = "site_uid";
 
-	public static String ClientToken() {
+	public static String getClientToken() {
 		RestAssured.baseURI = DataTest.getBaseUrl();
 
 		RequestSpecification request = RestAssured.given();

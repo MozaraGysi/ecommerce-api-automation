@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Utils {
 
-	static String API_NAME = "baseUrl";
+	static String RESOURCE_NAME = "baseUrl";
 	static Map<String, Object> BASEURL_CONFIG_MAPPED;
 
 	public static String getBrand() {
@@ -37,7 +37,7 @@ public class Utils {
 
 	public static Map<String, Object> getBaseUrlConfigMapped() {
 		if (Objects.isNull(BASEURL_CONFIG_MAPPED)) {
-			BASEURL_CONFIG_MAPPED = EnvConfig.getConfigs(API_NAME, getEnv());
+			BASEURL_CONFIG_MAPPED = EnvConfig.getConfigs(RESOURCE_NAME, getEnv());
 		}
 		return BASEURL_CONFIG_MAPPED;
 	}

@@ -10,7 +10,7 @@ public class PrateleiraInfinitaTest {
 	@Test
 	@Tag("ZZNet")
 	public void PrateleiraInfinitaNewCustomer() {
-		String clientToken = TokenUtils.ClientToken();
+		String clientToken = TokenUtils.getClientToken();
 		ZZNetAPI.CreateCustomer(clientToken);
 		ZZNetAPI.LoginTeleSalesAndSwitchToCustomer();
 		String CSFRToken = ZZNetAPI.CSFRToken();
@@ -20,7 +20,7 @@ public class PrateleiraInfinitaTest {
 	@Test
 	@Tag("ZZNet")
 	public void PrateleiraInfinitaNewEmployee() {
-		String clientToken = TokenUtils.ClientToken();
+		String clientToken = TokenUtils.getClientToken();
 		ZZNetAPI.CreateEmployee(clientToken);
 		ZZNetAPI.LoginTeleSalesAndSwitchToCustomer();
 		String CSFRToken = ZZNetAPI.CSFRToken();
