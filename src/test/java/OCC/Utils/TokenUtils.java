@@ -6,11 +6,13 @@ import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
+import static OCC.Data.OCCDataTest.getBaseUrl;
+
 
 public class TokenUtils {
 
     public String getCustomerToken() {
-        RestAssured.baseURI = Utils.getBaseUrl(true);
+        RestAssured.baseURI = getBaseUrl(true);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/x-www-form-urlencoded");

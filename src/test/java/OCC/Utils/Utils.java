@@ -5,15 +5,9 @@ import Common.Utils.GenerateCPF;
 import OCC.Enums.BrandEnum;
 import OCC.Handlers.AddressHandler;
 import OCC.Handlers.AuthorizationHandler;
-import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -32,24 +26,15 @@ public class Utils {
     static String JSESSIONID;
     static String ACCESS_TOKEN;
     static String EMAIL;
-    static String BASE_URL_JSON_PATH = "src/test/resources/baseUrl.json";
-    static String PRODUCT_JSON_PATH= "src/test/resources/product.json";
-    static String USER_JSON_PATH= "src/test/resources/users.json";
-    static Map<String, Object> BASE_URL_JSON_MAPPED;
-    static Map<String, Object> PRODUCT_JSON_MAPPED;
-    static Map<String, Object> USER_JSON_MAPPED;
-
     static Map<String, Object> OCC_CONFIG_MAPPED;
-    static String OCC_API = "OCC";
+    public static String OCC_API_NAME = "OCC";
 
     public static void init() {
         ACCESS_TOKEN = null;
         EMAIL = null;
         JSESSIONID = null;
         CSRFTOKEN = null;
-        BASE_URL_JSON_MAPPED = null;
-        PRODUCT_JSON_MAPPED = null;
-        USER_JSON_MAPPED = null;
+        OCC_CONFIG_MAPPED = null;
         AuthorizationHandler.clear();
         AddressHandler.clear();
     }
@@ -98,35 +83,6 @@ public class Utils {
         }
     }
 
-    public static String getBaseUrl(boolean auth) {
-        String baseUrl = ((Map<String, String>) ((Map<String, Object>) getBaseUrlJsonMapped().get(getBrand())).get(getEnv())).get("url");
-        return auth ? baseUrl : baseUrl + "arezzocoocc/v2/" + getSiteUid() + "/";
-    }
-
-    public static List<String> getProduct(String param) {
-        return ((Map<String, List<String>>) ((Map<String, Object>) ((Map<String, Object>) getProductJsonMapped().get(param)).get(getBrand())).get(getEnv())).get("sku");
-    }
-
-    public static String getUser(String param) {
-        return ((Map<String, String>) getUserJsonMapped().get(param)).get("email");
-    }
-
-    public static String getUserAuthBrand(){
-        if(getEnv().equals("hml")){
-            return "descomplica";
-        }else{
-            return "integ";
-        }
-    }
-
-    public static String getPassAuthBrand(){
-        if(getEnv().equals("hml")){
-            return "descomplica";
-        }else{
-            return "ulPap1ed";
-        }
-    }
-
     public static String email(){
         String data = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyHHmmssSSS"));
         String email = "rrsetcwi+"+data+"@gmail.com";
@@ -169,43 +125,27 @@ public class Utils {
         return cpf;
     }
 
-    private static Map<String, Object> getBaseUrlJsonMapped() {
-        if (Objects.isNull(BASE_URL_JSON_MAPPED)) {
-            BASE_URL_JSON_MAPPED = readJson(BASE_URL_JSON_PATH);
-        }
-        return BASE_URL_JSON_MAPPED;
+    public static String URL_COMPLEMENT(){
+        return "arezzocoocc/v2/" + getSiteUid() + "/";
     }
 
-    private static Map<String, Object> getProductJsonMapped() {
-        if (Objects.isNull(PRODUCT_JSON_MAPPED)) {
-            PRODUCT_JSON_MAPPED = readJson(PRODUCT_JSON_PATH);
-        }
-        return PRODUCT_JSON_MAPPED;
-    }
-
-    private static Map<String, Object> getUserJsonMapped() {
-        if (Objects.isNull(USER_JSON_MAPPED)) {
-            USER_JSON_MAPPED = readJson(USER_JSON_PATH);
-        }
-        return USER_JSON_MAPPED;
-    }
-
-    private static Map<String, Object> readJson(String jsonFilePath) {
-        StringBuilder fileName = new StringBuilder();
-        fileName.append(jsonFilePath);
-        Map<String, Object> element = null;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName.toString()))) {
-            Gson gson = new Gson();
-            element = gson.fromJson(bufferedReader, Map.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return element;
-    }
-
-    public static Map<String, Object> getOCCConfigMapped() {
+    public static Map<String, Object> getMappedUsers(){
         if (Objects.isNull(OCC_CONFIG_MAPPED)) {
-            OCC_CONFIG_MAPPED = EnvConfig.getConfigs(OCC_API, getEnv());
+            OCC_CONFIG_MAPPED = EnvConfig.getConfigs(OCC_API_NAME, "users");
+        }
+        return OCC_CONFIG_MAPPED;
+    }
+
+    public static Map<String, Object> getConfigMappedProducts() {
+        if (Objects.isNull(OCC_CONFIG_MAPPED)) {
+            OCC_CONFIG_MAPPED = EnvConfig.getConfigsProduct(OCC_API_NAME, getEnv());
+        }
+        return OCC_CONFIG_MAPPED;
+    }
+
+    public static Map<String, Object> getConfigMappedBaseUrl() {
+        if (Objects.isNull(OCC_CONFIG_MAPPED)) {
+            OCC_CONFIG_MAPPED = EnvConfig.getConfigsBaseUrl(OCC_API_NAME, getEnv());
         }
         return OCC_CONFIG_MAPPED;
     }

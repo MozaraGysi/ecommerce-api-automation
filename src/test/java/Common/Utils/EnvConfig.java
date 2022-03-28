@@ -11,15 +11,46 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
+import static OCC.Utils.Utils.OCC_API_NAME;
+import static Wallet.Utils.Utils.WALLET_API_NAME;
+
 public class EnvConfig {
 
 	static String API_CONFIG_PATH = "src/test/resources/%s/%s-config.yml";
+	static String OCC_PRODUCT_CONFIG_PATH = "src/test/resources/%s/product/%s-config.yml";
+	static String OCC_BASE_URL_CONFIG_PATH = "src/test/resources/%s/baseUrl/%s-config.yml";
 
 	public static Map<String, Object> getConfigs(final String api, final String env) {
 		Map<String, Object> element = null;
 		try {
 			if (env != null || api != null) {
 				InputStream inputStream = new FileInputStream(String.format(API_CONFIG_PATH, api, env));
+				element = new Yaml(new Constructor(Object.class)).load(inputStream);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return element;
+	}
+
+	public static Map<String, Object> getConfigsBaseUrl(final String api, final String env) {
+		Map<String, Object> element = null;
+		try {
+			if (env != null || api != null) {
+				InputStream inputStream = new FileInputStream(String.format(OCC_BASE_URL_CONFIG_PATH, api, env));
+				element = new Yaml(new Constructor(Object.class)).load(inputStream);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return element;
+	}
+
+	public static Map<String, Object> getConfigsProduct(final String api, final String env) {
+		Map<String, Object> element = null;
+		try {
+			if (env != null || api != null) {
+				InputStream inputStream = new FileInputStream(String.format(OCC_PRODUCT_CONFIG_PATH, api, env));
 				element = new Yaml(new Constructor(Object.class)).load(inputStream);
 			}
 		} catch (IOException e) {
