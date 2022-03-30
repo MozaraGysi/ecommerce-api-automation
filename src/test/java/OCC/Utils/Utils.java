@@ -26,17 +26,21 @@ public class Utils {
     static String JSESSIONID;
     static String ACCESS_TOKEN;
     static String EMAIL;
-    static Map<String, Object> OCC_CONFIG_MAPPED;
-    public static String RESOURCE_NAME = "OCC";
-    public static String PRODUCTS = "products";
-    public static String BASE_URL= "baseUrl";
+    static Map<String, Object> USERS_CONFIG_MAPPED;
+    static Map<String, Object> PRODUCTS_CONFIG_MAPPED;
+    static Map<String, Object> BASE_URL_CONFIG_MAPPED;
+    public static String RESOURCE_NAME_PRODUCTS = "product";
+    public static String RESOURCE_NAME_BASE_URL = "baseUrl";
+    public static String RESOURCE_NAME_USERS = "users";
 
     public static void init() {
         ACCESS_TOKEN = null;
         EMAIL = null;
         JSESSIONID = null;
         CSRFTOKEN = null;
-        OCC_CONFIG_MAPPED = null;
+        USERS_CONFIG_MAPPED = null;
+        PRODUCTS_CONFIG_MAPPED = null;
+        BASE_URL_CONFIG_MAPPED = null;
         AuthorizationHandler.clear();
         AddressHandler.clear();
     }
@@ -132,24 +136,24 @@ public class Utils {
     }
 
     public static Map<String, Object> getMappedUsers(){
-        if (Objects.isNull(OCC_CONFIG_MAPPED)) {
-            OCC_CONFIG_MAPPED = EnvConfig.getConfigs(RESOURCE_NAME, "users");
+        if (Objects.isNull(USERS_CONFIG_MAPPED)) {
+            USERS_CONFIG_MAPPED = EnvConfig.getConfigs(RESOURCE_NAME_USERS, "users");
         }
-        return OCC_CONFIG_MAPPED;
+        return USERS_CONFIG_MAPPED;
     }
 
     public static Map<String, Object> getConfigMappedProducts() {
-        if (Objects.isNull(OCC_CONFIG_MAPPED)) {
-            OCC_CONFIG_MAPPED = EnvConfig.getConfigsProduct(RESOURCE_NAME, getEnv());
+        if (Objects.isNull(PRODUCTS_CONFIG_MAPPED)) {
+            PRODUCTS_CONFIG_MAPPED = EnvConfig.getConfigs(RESOURCE_NAME_PRODUCTS, getEnv());
         }
-        return OCC_CONFIG_MAPPED;
+        return PRODUCTS_CONFIG_MAPPED;
     }
 
     public static Map<String, Object> getConfigMappedBaseUrl() {
-        if (Objects.isNull(OCC_CONFIG_MAPPED)) {
-            OCC_CONFIG_MAPPED = EnvConfig.getConfigsBaseUrl(RESOURCE_NAME, getEnv());
+        if (Objects.isNull(BASE_URL_CONFIG_MAPPED)) {
+            BASE_URL_CONFIG_MAPPED = EnvConfig.getConfigs(RESOURCE_NAME_BASE_URL, getEnv());
         }
-        return OCC_CONFIG_MAPPED;
+        return BASE_URL_CONFIG_MAPPED;
     }
 
 }
