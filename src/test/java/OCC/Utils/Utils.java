@@ -27,7 +27,9 @@ public class Utils {
     static String ACCESS_TOKEN;
     static String EMAIL;
     static Map<String, Object> OCC_CONFIG_MAPPED;
-    public static String OCC_API_NAME = "OCC";
+    public static String RESOURCE_NAME = "OCC";
+    public static String PRODUCTS = "products";
+    public static String BASE_URL= "baseUrl";
 
     public static void init() {
         ACCESS_TOKEN = null;
@@ -131,21 +133,21 @@ public class Utils {
 
     public static Map<String, Object> getMappedUsers(){
         if (Objects.isNull(OCC_CONFIG_MAPPED)) {
-            OCC_CONFIG_MAPPED = EnvConfig.getConfigs(OCC_API_NAME, "users");
+            OCC_CONFIG_MAPPED = EnvConfig.getConfigs(RESOURCE_NAME, "users");
         }
         return OCC_CONFIG_MAPPED;
     }
 
     public static Map<String, Object> getConfigMappedProducts() {
         if (Objects.isNull(OCC_CONFIG_MAPPED)) {
-            OCC_CONFIG_MAPPED = EnvConfig.getConfigsProduct(OCC_API_NAME, getEnv());
+            OCC_CONFIG_MAPPED = EnvConfig.getConfigsProduct(RESOURCE_NAME, getEnv());
         }
         return OCC_CONFIG_MAPPED;
     }
 
     public static Map<String, Object> getConfigMappedBaseUrl() {
         if (Objects.isNull(OCC_CONFIG_MAPPED)) {
-            OCC_CONFIG_MAPPED = EnvConfig.getConfigsBaseUrl(OCC_API_NAME, getEnv());
+            OCC_CONFIG_MAPPED = EnvConfig.getConfigsBaseUrl(RESOURCE_NAME, getEnv());
         }
         return OCC_CONFIG_MAPPED;
     }

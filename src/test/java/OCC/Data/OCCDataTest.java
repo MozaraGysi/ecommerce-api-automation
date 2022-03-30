@@ -12,6 +12,14 @@ public class OCCDataTest {
 		return getConfigValueList(getConfigMappedProducts(), type, getBrand(), "sku");
 	}
 
+	public static String getProductPadrao(){
+		return getProducts("Padrao").get(0).concat("-36");
+	}
+
+	public static String getProductSellerExterno(){
+		return getProducts("SellerExterno").get(0).concat("-36");
+	}
+
 	public static String getBaseUrl(boolean auth){
 		if(auth){
 			return getConfigValue(getConfigMappedBaseUrl(), getBrand().toLowerCase(Locale.ROOT));
