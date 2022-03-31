@@ -5,6 +5,8 @@ import OCC.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static OCC.Data.OCCDataTest.*;
+
 public class AuthorizationTest {
 
     @BeforeEach

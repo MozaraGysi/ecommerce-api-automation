@@ -1,0 +1,51 @@
+Padrao:
+  Anacapri:
+    sku:
+      - ''
+      - ''
+  Arezzo:
+    sku:
+      - ''
+      - ''
+  Zzmall:
+    sku:
+      - ''
+      - ''
+  Schutz:
+    sku:
+      - ''
+      - ''
+SellerExterno:
+  Anacapri:
+    sku:
+      - ''
+      - ''
+  Arezzo:
+    sku:
+      - ''
+      - ''
+  Zzmall:
+    sku:
+      - ''
+      - ''
+  Schutz:
+    sku:
+      - ''
+      - ''
+Desconto:
+  Anacapri:
+    sku:
+      - ''
+      - ''
+  Arezzo:
+    sku:
+      - ''
+      - ''
+  Zzmall:
+    sku:
+      - ''
+      - ''
+  Schutz:
+    sku:
+      - ''
+      - ''
