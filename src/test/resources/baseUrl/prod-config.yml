@@ -1,8 +1,16 @@
-alexandrebirman: https://backoffice.alexandrebirman.com.br/
-anacapri: https://backoffice.anacapri.com.br/
-arezzo: https://backoffice.arezzo.com.br/
-fiever: https://backoffice.fiever.com.br/
-somosalme: https://backoffice.somosalme.com.br/
-schutz: https://backoffice.schutz.com.br/
-vans: https://backoffice.vans.com.br/
-zzmall: https://backoffice.zzmall.com.br/
+AlexandreBirman:
+  url: "https://backoffice.alexandrebirman.com.br/"
+Anacapri:
+  url: "https://backoffice.anacapri.com.br/"
+Arezzo:
+  url: "https://backoffice.arezzo.com.br/"
+Fiever:
+  url: "https://backoffice.fiever.com.br/"
+Owme:
+  url: "https://backoffice.somosalme.com.br/"
+Schutz:
+  url: "https://backoffice.schutz.com.br/"
+Vans:
+  url: "https://backoffice.vans.com.br/"
+Zzmall:
+  url: "https://backoffice.zzmall.com.br/"

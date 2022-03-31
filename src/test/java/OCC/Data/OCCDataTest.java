@@ -22,9 +22,9 @@ public class OCCDataTest {
 
 	public static String getBaseUrl(boolean auth){
 		if(auth){
-			return getConfigValue(getConfigMappedBaseUrl(), getBrand().toLowerCase(Locale.ROOT));
+			return getConfigValue(getConfigMappedBaseUrl(), getBrand(), "url");
 		}
-		return getConfigValue(getConfigMappedBaseUrl(), getBrand().toLowerCase(Locale.ROOT)) + URL_COMPLEMENT();
+		return getConfigValue(getConfigMappedBaseUrl(), getBrand(), "url") + URL_COMPLEMENT();
 	}
 
 	public static String getUser(String user){
