@@ -12,7 +12,7 @@ public class ProductNameValidator implements Validator {
 
         ProductCategorySearchPageResponseDTO productCategorySearchPageResponseDTO = new ProductCategorySearchPageResponseDTO().fromJsonString(response.getBody().asString());
 
-        Assertions.assertTrue(productCategorySearchPageResponseDTO.getProducts().get(0).getName().contains("DORA JEANS VENICE NIGHT SHADE"));
+        Assertions.assertTrue(productCategorySearchPageResponseDTO.getProducts().get(0).getName().matches("[a-zA-Zà-úÀ-Ú0-9\\s]+"));
         return true;
     }
 }

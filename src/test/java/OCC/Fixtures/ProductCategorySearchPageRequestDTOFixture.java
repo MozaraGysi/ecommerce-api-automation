@@ -7,6 +7,7 @@ import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
 
 public final class ProductCategorySearchPageRequestDTOFixture {
     private ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO;
+    private static String DEFAULT_ZZMALL_PRODUCT = "M0000000029003U";
 
     private ProductCategorySearchPageRequestDTOFixture() {
         productCategorySearchPageRequestDTO = new ProductCategorySearchPageRequestDTO();
@@ -33,7 +34,7 @@ public final class ProductCategorySearchPageRequestDTOFixture {
 
     public ProductCategorySearchPageRequestDTOFixture defaultRequestByCode() {
         productCategorySearchPageRequestDTO.setFields("FULL");
-        productCategorySearchPageRequestDTO.setQuery("3510500180001U");
+        productCategorySearchPageRequestDTO.setQuery(DEFAULT_ZZMALL_PRODUCT);
         productCategorySearchPageRequestDTO.setCurrentPage("0");
         return this;
     }

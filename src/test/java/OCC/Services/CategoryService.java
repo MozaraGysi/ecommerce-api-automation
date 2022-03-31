@@ -28,6 +28,21 @@ public class CategoryService {
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
+    public static void getSearchProductsByCodeFieldsAndPage(String code, String fields, String page) {
+
+        ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO =  ProductCategorySearchPageRequestDTOFixture
+                .get()
+                .withQuery(code)
+                .withCurrentPage(page)
+                .withFields(fields)
+                .build();
+
+        Response response = APIClient.getProduct(productCategorySearchPageRequestDTO);
+
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductNameValidator(), new ProductValueValidator(), new ProductImagesValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+    }
+
     public static void getSearchProductsWithoutFilters() {
 
         ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO = ProductCategorySearchPageRequestDTOFixture.get().defaultRequestFull().build();

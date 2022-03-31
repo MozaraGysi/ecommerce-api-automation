@@ -24,4 +24,11 @@ public class ProductsTest {
         AuthorizationService.AnonymousAuth();
         CategoryService.getSearchProductsWithoutFilters();
     }
+
+    @Test
+    public void getSearchProductsWithCodeFieldsAndPage(){
+        AuthorizationService.AnonymousAuth();
+        CategoryService.getSearchProductsByCodeFieldsAndPage("M0000000019368U", "FULL", "0");
+    }
+
 }
