@@ -1,5 +1,6 @@
-package V3.Pages;
+package V3.Utils;
 
+import V3.Handlers.ValidateAuthorization;
 import V3.Data.DataTest;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -7,7 +8,7 @@ import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 
-public class AuthorizationPage {
+public class TokenUtils {
 
     private static final String CONTENT_TYPE_HEADER = "Content-Type";
     private static final String AUTHORIZATION_FORM_CLIENT_ID = "client_id";
@@ -17,7 +18,7 @@ public class AuthorizationPage {
     private static final String AUTHORIZATION_FORM_USERNAME = "username";
     private static final String AUTHORIZATION_FORM_PASSWORD = "password";
 
-    public static String getAuthorizationBody() {
+    public static String getCustomerToken() {
         RestAssured.baseURI = DataTest.getWebServiceUrl();
 
         RequestSpecification request = RestAssured.given();
@@ -31,9 +32,10 @@ public class AuthorizationPage {
 
         Response response = request.post("oauth/v3/token");
         Assertions.assertEquals(200, response.getStatusCode());
+        String token = response.jsonPath().get("access_token");
         ResponseBody body = response.getBody();
+        ValidateAuthorization.CustomerAuthorizationValidation(body.prettyPrint());
 
-
-        return body.prettyPrint();
+        return token;
     }
 }

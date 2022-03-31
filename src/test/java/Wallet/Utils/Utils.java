@@ -34,7 +34,7 @@ public class Utils {
 	static List<CreditPointsHandler> CREDIT_POINTS;
 	static List<DebitPointsHandler> DEBIT_POINTS;
 	static Map<String, Object> WALLET_CONFIG_MAPPED;
-	static String API_NAME = "Wallet";
+	public static String WALLET_API_NAME = "Wallet";
 
 	public static void init() {
 		ACCESS_TOKEN = null;
@@ -46,7 +46,7 @@ public class Utils {
 		DEBIT_POINTS = new ArrayList<>();
 	}
 
-	public static String getWalletEnv() {
+	private static String getWalletEnv() {
 		String env = "";
 		if (System.getProperty("walletEnv") == null) {
 			System.out.println("Environment not informed: Ex.: -DwalletEnv=qa ");
@@ -65,7 +65,7 @@ public class Utils {
 
 	public static Map<String, Object> getWalletConfigMapped() {
 		if (Objects.isNull(WALLET_CONFIG_MAPPED)) {
-			WALLET_CONFIG_MAPPED = EnvConfig.getConfigs(API_NAME, getWalletEnv());
+			WALLET_CONFIG_MAPPED = EnvConfig.getConfigs(WALLET_API_NAME, getWalletEnv());
 		}
 		return WALLET_CONFIG_MAPPED;
 	}

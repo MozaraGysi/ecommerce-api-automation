@@ -2,6 +2,8 @@ package OtherServices.Pages;
 
 import OtherServices.APIHandler.ZZNetAPIValidation;
 import static OtherServices.Utils.Utils.*;
+
+import OtherServices.Data.DataTest;
 import io.restassured.RestAssured;
 import org.apache.commons.codec.binary.Base64;
 import io.restassured.response.Response;
@@ -12,78 +14,77 @@ import org.junit.jupiter.api.Assertions;
 public class ZZNetAPI {
 
     private static String generatedEmail;
-    private static String Jsession;
+    private static String jsession;
     private static String LBWEB;
 
-    public static void LoginTeleSalesAndSwitchToCustomer()
-    {
-        RestAssured.baseURI = getBaseUrl();
+    public static void LoginTeleSalesAndSwitchToCustomer() {
+        RestAssured.baseURI = DataTest.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
-        byte[] encodedBytes = Base64.encodeBase64(("testecwiarezzotelevendas@arezzo.com.br|teste1234|"+generatedEmail+"|"+getSite_UID()).getBytes());
+        byte[] encodedBytes = Base64.encodeBase64((DataTest.getLoginTele() + "|" + DataTest.getPasswordTele() + "|"+generatedEmail+"|"+getSite_UID()).getBytes());
         String data = new String(encodedBytes);
-        request.auth().preemptive().basic("descomplica", "descomplica");
+        request.auth().preemptive().basic(DataTest.getAuth(), DataTest.getAuth());
         request.basePath("?requestData="+data);
         Response response = request.get("zznet/client/telesales/login");
         Assertions.assertEquals(200, response.getStatusCode());
         ZZNetAPIValidation.ValidateResponseLoginAndCustomerSwitch(response.getBody().prettyPrint());
     }
-    public static void CreateCustomer(String token)
-    {
-        RestAssured.baseURI = getBaseUrl();
+
+    public static void CreateCustomer(String token) {
+        RestAssured.baseURI = DataTest.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         request.header("Authorization", "Bearer" + token);
         request.contentType("multipart/form-data");
         generatedEmail = generateRandomString().toLowerCase() + "@gmail.com";
         request.multiPart("login", generatedEmail);
-        request.multiPart("firstName", "Teste");
-        request.multiPart("lastName", "CWI");
-        request.multiPart("birthday", "22/09/1980");
-        request.multiPart("cpf", "580.931.980-75");
-        request.multiPart("appUser", "false");
-        request.multiPart("newsletter", "true");
-        request.multiPart("landlinePhone", "5135627304");
-        request.multiPart("mobilePhone", "51992639471");
-        request.multiPart("defaultShippingAddress.addressName", "Thomas Rodrigues");
-        request.multiPart("defaultShippingAddress.streetname", "Rua Mattes");
-        request.multiPart("defaultShippingAddress.streetNumber", "77");
-        request.multiPart("defaultShippingAddress.complement", "Fundos");
-        request.multiPart("defaultShippingAddress.remarks", "Próximo ao Sesi");
-        request.multiPart("defaultShippingAddress.postalCode", "01310-100");
-        request.multiPart("defaultShippingAddress.district", "Centro");
-        request.multiPart("defaultShippingAddress.town", "São Paulo");
-        request.multiPart("defaultShippingAddress.region.isocode", "SP");
-        request.multiPart("defaultShippingAddress.phone", "51992639471");
+        request.multiPart("firstName", DataTest.getCustomerFirstName());
+        request.multiPart("lastName", DataTest.getCustomerLastName());
+        request.multiPart("birthday", DataTest.getCustomerBirthday());
+        request.multiPart("cpf", DataTest.getCustomerCPF());
+        request.multiPart("appUser", DataTest.getCustomerAppUser());
+        request.multiPart("newsletter", DataTest.getCustomerNewsletter());
+        request.multiPart("landlinePhone", DataTest.getCustomerLandlinePhone());
+        request.multiPart("mobilePhone", DataTest.getCustomerMobilePhone());
+        request.multiPart("defaultShippingAddress.addressName", DataTest.getCustomerAddressName());
+        request.multiPart("defaultShippingAddress.streetname", DataTest.getCustomerStreetName());
+        request.multiPart("defaultShippingAddress.streetNumber", DataTest.getCustomerStreetNumber());
+        request.multiPart("defaultShippingAddress.complement", DataTest.getCustomerComplement());
+        request.multiPart("defaultShippingAddress.remarks", DataTest.getCustomerRemarks());
+        request.multiPart("defaultShippingAddress.postalCode", DataTest.getCustomerPostalCode());
+        request.multiPart("defaultShippingAddress.district", DataTest.getCustomerDistrict());
+        request.multiPart("defaultShippingAddress.town", DataTest.getCustomerTown());
+        request.multiPart("defaultShippingAddress.region.isocode", DataTest.getCustomerRegion());
+        request.multiPart("defaultShippingAddress.phone", DataTest.getCustomerMobilePhone());
 
         Response response = request.post("arezzocows/" + getSite_UID() + "/customers/create");
         Assertions.assertEquals(200, response.getStatusCode());
         ZZNetAPIValidation.ValidateResponseCustomerCreate(response.getBody().prettyPrint());
     }
-    public static String CSFRToken()
-    {
-        RestAssured.baseURI = getBaseUrl();
+
+    public static String CSFRToken() {
+        RestAssured.baseURI = DataTest.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
-        request.auth().preemptive().basic("descomplica", "descomplica");
+        request.auth().preemptive().basic(DataTest.getAuth(), DataTest.getAuth());
 
         Response response = request.get("cart/refreshCSRFToken");
-        Jsession = response.getCookie("JSESSIONID");
+        jsession = response.getCookie("JSESSIONID");
         LBWEB = response.getCookie("LBWEB");
         Assertions.assertEquals(200, response.getStatusCode());
         ResponseBody body = response.getBody();
 
         return body.prettyPrint().replaceAll("\"", "");
     }
-    public static void RegisterCart(String token)
-    {
-        RestAssured.baseURI = getBaseUrl();
+
+    public static void RegisterCart(String token) {
+        RestAssured.baseURI = DataTest.getBaseUrl();
 
         String json = "{ \"productEans\" : [\"7909276002141\"], \"productQuantities\" : [2], \"voucherCode\": \"\"}";
         RequestSpecification request = RestAssured.given();
-        request.auth().preemptive().basic("descomplica", "descomplica");
+        request.auth().preemptive().basic(DataTest.getAuth(), DataTest.getAuth());
         request.header("CSRFToken", token);
-        request.cookie("JSESSIONID", Jsession);
+        request.cookie("JSESSIONID", jsession);
         request.cookie("LBWEB", LBWEB);
         request.header("Content-Type", "application/json");
         request.body(json);
@@ -92,25 +93,25 @@ public class ZZNetAPI {
         Assertions.assertEquals(200, response.getStatusCode());
         ZZNetAPIValidation.ValidateRegisterCart(response.getBody().prettyPrint());
     }
-    public static void CreateEmployee(String token)
-    {
-        RestAssured.baseURI = getBaseUrl();
+
+    public static void CreateEmployee(String token) {
+        RestAssured.baseURI = DataTest.getBaseUrl();
 
         RequestSpecification request = RestAssured.given();
         request.header("Authorization", "Bearer" + token);
         request.contentType("multipart/form-data");
-        request.multiPart("employeeCpf", "75557860010");
+        request.multiPart("employeeCpf", DataTest.getEmployeeCpf());
         request.multiPart("employeeLogin", "#arzbr_" + generateRandomString().toLowerCase() + "@gmail.com");
-        request.multiPart("employeeName", "Teste automacao");
-        request.multiPart("employeePwd", "arezzo123");
-        request.multiPart("birthday", "20/11/1995");
-        request.multiPart("abacosLogin", "61098_66473983171_FRQArezzo_SZ-BTL_thomasrodrigues_1");
-        request.multiPart("employeeAddressData.streetname", "Rua Armando Mattes");
-        request.multiPart("employeeAddressData.streetNumber", "77");
-        request.multiPart("employeeAddressData.postalCode", "93180000");
-        request.multiPart("employeeAddressData.district", "Centro");
-        request.multiPart("employeeAddressData.town", "Portao");
-        request.multiPart("employeeAddressData.region.isocode", "RS");
+        request.multiPart("employeeName", DataTest.getEmployeeName());
+        request.multiPart("employeePwd", DataTest.getEmployeePwd());
+        request.multiPart("birthday", DataTest.getEmployeeBirthday());
+        request.multiPart("abacosLogin", DataTest.getAbacosLogin());
+        request.multiPart("employeeAddressData.streetname", DataTest.getEmployeeStreetName());
+        request.multiPart("employeeAddressData.streetNumber", DataTest.getEmployeeStreetNumber());
+        request.multiPart("employeeAddressData.postalCode", DataTest.getEmployeePostalCode());
+        request.multiPart("employeeAddressData.district", DataTest.getEmployeeDistrict());
+        request.multiPart("employeeAddressData.town", DataTest.getEmployeeTown());
+        request.multiPart("employeeAddressData.region.isocode", DataTest.getEmployeeRegion());
 
         Response response = request.post("arezzocows/"+ getSite_UID() + "/employee/create");
         Assertions.assertEquals(200, response.getStatusCode());

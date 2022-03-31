@@ -1,0 +1,47 @@
+AlexandreBirman:
+    url: "https://preprod.alexandrebirman.com.br/"
+Anacapri:
+    url: "https://preprod.anacapri.com.br/"
+Arezzo:
+    url: "https://preprod.arezzo.com.br/"
+    auth: "descomplica"
+    loginTele: "testecwiarezzotelevendas@arezzo.com.br"
+    passwordTele: "teste1234"
+    customerFirstName: "Teste"
+    customerLastName: "CWI"
+    customerBirthday: "22/09/1980"
+    customerCPF: "580.931.980-75"
+    customerAppUser: "false"
+    customerNewsletter: "true"
+    customerLandlinePhone: "5135627304"
+    customerMobilePhone: "51992639471"
+    customerAddressName: "Thomas Rodrigues"
+    customerStreetName: "Rua Mattes"
+    customerStreetNumber: "77"
+    customerComplement: "Fundos"
+    customerRemarks: "Próximo ao Sesi"
+    customerPostalCode: "01310-100"
+    customerDistrict: "Centro"
+    customerTown: "São Paulo"
+    customerRegion: "SP"
+    employeeCpf: "75557860010"
+    employeeName: "Teste automacao"
+    employeePwd: "arezzo123"
+    employeeBirthday: "20/11/1995"
+    employeeStreetName: "Rua Armando Mattes"
+    employeeStreetNumber: "77"
+    employeePostalCode: "93180000"
+    employeeDistrict: "Centro"
+    employeeTown: "Portao"
+    employeeRegion: "RS"
+    abacosLogin: "61098_66473983171_FRQArezzo_SZ-BTL_thomasrodrigues_1"
+Fiever:
+    url: "https://preprod.fiever.com.br/"
+Owme:
+    url: "https://preprod.somosalme.com.br/"
+Schutz:
+    url: "https://preprod.schutz.com.br/"
+Vans:
+    url: "https://preprod.vans.com.br/"
+Zzmall:
+    url: "https://preprod.zzmall.com.br/"
