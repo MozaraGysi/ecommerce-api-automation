@@ -1,10 +1,14 @@
 package OCC.Data;
 
 import java.util.List;
-import java.util.Locale;
 
-import static Common.Utils.EnvConfig.*;
-import static OCC.Utils.Utils.*;
+import static Common.Utils.EnvConfig.getConfigValue;
+import static Common.Utils.EnvConfig.getConfigValueList;
+import static OCC.Utils.Utils.URL_COMPLEMENT;
+import static OCC.Utils.Utils.getBrand;
+import static OCC.Utils.Utils.getConfigMappedBaseUrl;
+import static OCC.Utils.Utils.getConfigMappedProducts;
+import static OCC.Utils.Utils.getMappedUsers;
 
 public class OCCDataTest {
 
@@ -12,23 +16,23 @@ public class OCCDataTest {
 		return getConfigValueList(getConfigMappedProducts(), type, getBrand(), "sku");
 	}
 
-	public static String getProductPadrao(){
+	public static String getProductPadrao() {
 		return getProducts("Padrao").get(0).concat("-36");
 	}
 
-	public static String getProductSellerExterno(){
+	public static String getProductSellerExterno() {
 		return getProducts("SellerExterno").get(0).concat("-36");
 	}
 
-	public static String getBaseUrl(boolean auth){
-		if(auth){
+	public static String getBaseUrl(boolean auth) {
+		if (auth) {
 			return getConfigValue(getConfigMappedBaseUrl(), getBrand(), "url");
 		}
 		return getConfigValue(getConfigMappedBaseUrl(), getBrand(), "url") + URL_COMPLEMENT();
 	}
 
-	public static String getUser(String user){
-		return getConfigValue(getMappedUsers(),user);
+	public static String getUser(String user) {
+		return getConfigValue(getMappedUsers(), user);
 	}
 
 }

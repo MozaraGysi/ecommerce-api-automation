@@ -13,12 +13,12 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
 
 ### Pelo IntelliJ IDEA
 - Clonar o projeto
-- No IntelliJ em Run/Debug Configuration, Add New Configuration `Junit`
+- No IntelliJ em File > Project Structure... > Project Settings > Project, escolha o SDK Java 8 e salve 
+- No Intellij em Run/Debug Configuration, Add New Configuration `Junit`
 - Seleciona uma versão do java 8
 - Remove o `-ea` e coloque `-Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`.
   - Se for outra marca ou ambiente, deve utilizar os listados na seção **Argumentos disponíveis**.
-- Escolher o método que quer rodar, os testes se encontram em `src/test/java/OCC/Tests/...`
-
+- Na caixa Class, selecione se quer testar a classe ou método, ao lado, escolha qual o nome da classe/método que quer rodar, os testes se encontram em `src/test/java/OCC/Tests/...`
 - Salve e rode o teste
 
 ### Por linha de comando
@@ -30,15 +30,15 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
 
 - `-Dbrand`: Identificação de qual será a marca da execução dos testes.
   - Valores disponíveis: `AlexandreBirman`/`Anacapri`/`Arezzo`/`Fiever`/`Owme`/`Schutz`/`Vans`/`Zzmall`
-  - Valores no arquivo: `src/test/resources/baseUrl.json`
+  - Valores no arquivo: `src/test/resources/baseUrl/<ambiente>-config.yml`
 - `-Denv`: Identificação de qual será o ambiente de execução dos testes.
   - Valores disponíveis: 
-    - OCC: `prd`/`hml`/`integ01`/`integ02`/`integ03`/`integ04`/`integ05`/`integ06`
-    - Valores no arquivo: `src/test/resources/baseUrl.json`
+    - OCC: `prod`/`hml`/`integ01`/`integ02`/`integ03`/`integ04`/`integ05`/`integ06`
+    - Valores no arquivo: `src/test/resources/baseUrl/<ambiente>-config.yml`
 - `-DwalletEnv:` Identificação de qual será o ambiente de execução dos testes da wallet.
   - Valores disponíveis:
     - Wallet: `dev`/`qa`
-    - Valores no arquivo: `src/test/resources/wallet.json`
+    - Valores no arquivo: `src/test/resources/wallet/<ambiente>-config.yml`
 - `-DexcludeWallet`: Identificação se os cenários da **Wallet** devem ser executados.
   - Valores disponiveis: `true`/`false`
 
@@ -194,6 +194,41 @@ public class ClassName[Request/Response]DTO extends AbstractDTO<ClassName[Reques
 	public void setChildAttribute(String childAttribute) {
 		this.childAttribute = childAttribute;
 	}
+}
+   ```
+</details>
+
+### Data
+Classe com dados obtidos dos arquivos de configurações de ambientes para serem utilizados nos testes. 
+<details>
+  <summary>Exemplo</summary>
+
+   ```
+public class OCCDataTest {
+
+	public static List<String> getProducts(String type) {
+		return getConfigValueList(getConfigMappedProducts(), type, getBrand(), "sku");
+	}
+
+	public static String getProductPadrao() {
+		return getProducts("Padrao").get(0).concat("-36");
+	}
+
+	public static String getProductSellerExterno() {
+		return getProducts("SellerExterno").get(0).concat("-36");
+	}
+
+	public static String getBaseUrl(boolean auth) {
+		if (auth) {
+			return getConfigValue(getConfigMappedBaseUrl(), getBrand(), "url");
+		}
+		return getConfigValue(getConfigMappedBaseUrl(), getBrand(), "url") + URL_COMPLEMENT();
+	}
+
+	public static String getUser(String user) {
+		return getConfigValue(getMappedUsers(), user);
+	}
+
 }
    ```
 </details>
@@ -368,7 +403,10 @@ public class APIClient {
 </details>
 
 ### Handler
-Classes responsáveis por salvar os dados a serem manupulados durante a execução dos testes.
+Classes responsáveis por salvar os dados a serem manipulados durante a execução dos testes.
 
 ### Util
 Classes utilitárias para a execução dos testes de cada API.
+
+### Resources
+Recursos gerais para serem utilizados. Aqui encontram-se os arquivos de configuração Yaml separados por teste e por ambiente. Estes dados são lidos dentro do `Common.Utils.EnvConfig`
