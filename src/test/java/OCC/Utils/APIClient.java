@@ -7,6 +7,8 @@ import OCC.Handlers.AuthorizationHandler;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+
+import static OCC.Data.OCCDataTest.getBaseUrl;
 import static OCC.Enums.GrantTypeEnum.APPLE_ID;
 import static OCC.Enums.GrantTypeEnum.FACEBOOK;
 import static OCC.Enums.GrantTypeEnum.PASSWORD;
@@ -14,7 +16,7 @@ import static OCC.Enums.GrantTypeEnum.PASSWORD;
 public class APIClient {
 
     public static Response postAuthorization(AuthorizationRequestDTO requestDTO) {
-        RestAssured.baseURI = Utils.getBaseUrl(true);
+        RestAssured.baseURI = getBaseUrl(true);
         GrantTypeEnum grantTypeEnum = GrantTypeEnum.valueOf(requestDTO.getGrantType().toUpperCase());
 
         RequestSpecification request = RestAssured.given();
@@ -50,7 +52,7 @@ public class APIClient {
     }
 
     public static Response getProduct(ProductCategorySearchPageRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -68,7 +70,7 @@ public class APIClient {
     }
 
     public static Response getOptionslist(LoginPageRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -86,7 +88,7 @@ public class APIClient {
     }
 
     public static Response postPassword(LoginPageRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -104,7 +106,7 @@ public class APIClient {
     }
 
     public static Response getReceivedcode(LoginPageRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -122,7 +124,7 @@ public class APIClient {
     }
 
     public static Response postChangePassword(LoginPageRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -140,7 +142,7 @@ public class APIClient {
     }
 
     public static Response getStores(StoreFinderSearchRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -158,7 +160,7 @@ public class APIClient {
     }
 
     public static Response getHomepage(CmsPageContentRequestDTO requestDTO) {
-        RestAssured.baseURI = OCC.Utils.Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -176,7 +178,7 @@ public class APIClient {
     }
 
     public static Response putAddressesDelivery() {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
@@ -188,7 +190,7 @@ public class APIClient {
     }
 
     public static Response postCart(CartRequestDTO cartRequestDTO){
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", cartRequestDTO.getContentType());
@@ -201,7 +203,7 @@ public class APIClient {
     }
 
     public static Response postRegisterNewUser(UserRequestDTO userRequestDTO){
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", userRequestDTO.getContentType());
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
@@ -216,7 +218,7 @@ public class APIClient {
 
     public static Response getDeliveryModes(DeliveryModeRequestDTO deliveryModeRequestDTO) {
 
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type",deliveryModeRequestDTO.getContentType());
@@ -231,7 +233,7 @@ public class APIClient {
 
     public static Response postEntry(CartRequestDTO cartRequestDTO){
 
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", cartRequestDTO.getContentType());
@@ -245,7 +247,7 @@ public class APIClient {
     }
 
     public static Response getPaymentMethods(PaymentModeRequestDTO paymentModeRequestDTO) {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type",paymentModeRequestDTO.getContentType());
@@ -259,7 +261,7 @@ public class APIClient {
     }
 
     public static Response postAddresses(AddressRequestDTO addressRequestDTO){
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", addressRequestDTO.getContentType());
@@ -274,7 +276,7 @@ public class APIClient {
     }
 
     public static Response putPaymentMethod(String paymentMethod) {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Authorization","Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
@@ -288,7 +290,7 @@ public class APIClient {
     }
 
     public static Response postOrderBoleto(BoletoRequestDTO boletoRequestDTO) {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type",boletoRequestDTO.getContentType());
@@ -302,7 +304,7 @@ public class APIClient {
     }
 
     public static Response postEntrySellerExterno(CartRequestDTO cartRequestDTO){
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", cartRequestDTO.getContentType());
@@ -316,7 +318,7 @@ public class APIClient {
     }
 
     public static Response getAddresses(AddressRequestDTO addressRequestDTO) {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", addressRequestDTO.getContentType());
@@ -331,7 +333,7 @@ public class APIClient {
     }
 
     public static Response getCart(CartRequestDTO cartRequestDTO){
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", cartRequestDTO.getContentType());
@@ -344,7 +346,7 @@ public class APIClient {
     }
 
     public static Response postOrder(CreditCardRequestDTO creditCardRequestDTO) {
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type",creditCardRequestDTO.getContentType());
@@ -359,7 +361,7 @@ public class APIClient {
     }
 
     public static Response patchUser(UserRequestDTO userRequestDTO){
-        RestAssured.baseURI = Utils.getBaseUrl(false);
+        RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", userRequestDTO.getContentType());

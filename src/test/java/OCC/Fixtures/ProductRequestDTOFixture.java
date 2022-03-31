@@ -3,6 +3,8 @@ package OCC.Fixtures;
 import OCC.DTOs.Request.ProductRequestDTO;
 import OCC.Utils.Utils;
 
+import static OCC.Data.OCCDataTest.*;
+
 public final class ProductRequestDTOFixture {
 
 	private ProductRequestDTO productDTO;
@@ -30,12 +32,12 @@ public final class ProductRequestDTOFixture {
 	}
 
 	public ProductRequestDTOFixture withDefaultSeller() {
-		productDTO.setCode(Utils.getProduct("Padrao").get(0).concat("-36"));
+		productDTO.setCode(getProductPadrao());
 		return this;
 	}
 
 	public ProductRequestDTOFixture withExternalSeller() {
-		productDTO.setCode(Utils.getProduct("SellerExterno").get(0).concat("-36"));
+		productDTO.setCode(getProductSellerExterno());
 		return this;
 	}
 }

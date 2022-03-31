@@ -1,0 +1,51 @@
+Padrao:
+  Anacapri:
+    sku:
+      - ''
+      - ''
+  Arezzo:
+    sku:
+      - 'A1005200050003U'
+      - ''
+  Zzmall:
+    sku:
+      - ''
+      - ''
+  Schutz:
+    sku:
+      - ''
+      - ''
+SellerExterno:
+  Anacapri:
+    sku:
+      - ''
+      - ''
+  Arezzo:
+    sku:
+      - ''
+      - ''
+  Zzmall:
+    sku:
+      - 'M0000000006020U'
+      - ''
+  Schutz:
+    sku:
+      - ''
+      - ''
+Desconto:
+  Anacapri:
+    sku:
+      - ''
+      - ''
+  Arezzo:
+    sku:
+      - ''
+      - ''
+  Zzmall:
+    sku:
+      - ''
+      - ''
+  Schutz:
+    sku:
+      - ''
+      - ''
