@@ -5,9 +5,10 @@ import org.apache.commons.lang3.RandomUtils;
 
 import OCC.DTOs.Request.ProductCategorySearchPageRequestDTO;
 
+import static OCC.Data.OCCDataTest.*;
+
 public final class ProductCategorySearchPageRequestDTOFixture {
     private ProductCategorySearchPageRequestDTO productCategorySearchPageRequestDTO;
-    private static String DEFAULT_ZZMALL_PRODUCT = "M0000000029003U";
 
     private ProductCategorySearchPageRequestDTOFixture() {
         productCategorySearchPageRequestDTO = new ProductCategorySearchPageRequestDTO();
@@ -23,7 +24,7 @@ public final class ProductCategorySearchPageRequestDTOFixture {
 
     private ProductCategorySearchPageRequestDTOFixture random() {
 		return this
-        .withFields("FULL")
+        .withFields(FIELDS)
         .withQuery(RandomStringUtils.random(13, false, true) + "U")
         .withCurrentPage(String.valueOf(RandomUtils.nextInt(0, 9)));
 	}
@@ -33,15 +34,15 @@ public final class ProductCategorySearchPageRequestDTOFixture {
 	}
 
     public ProductCategorySearchPageRequestDTOFixture defaultRequestByCode() {
-        productCategorySearchPageRequestDTO.setFields("FULL");
-        productCategorySearchPageRequestDTO.setQuery(DEFAULT_ZZMALL_PRODUCT);
-        productCategorySearchPageRequestDTO.setCurrentPage("0");
+        productCategorySearchPageRequestDTO.setFields(FIELDS);
+        productCategorySearchPageRequestDTO.setQuery(getProductPadrao());
+        productCategorySearchPageRequestDTO.setCurrentPage(PAGE);
         return this;
     }
 
     public ProductCategorySearchPageRequestDTOFixture defaultRequestFull() {
-        productCategorySearchPageRequestDTO.setFields("FULL");
-        productCategorySearchPageRequestDTO.setCurrentPage("0");
+        productCategorySearchPageRequestDTO.setFields(FIELDS);
+        productCategorySearchPageRequestDTO.setCurrentPage(PAGE);
         return this;
     }
 

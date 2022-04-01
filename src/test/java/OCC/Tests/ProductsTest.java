@@ -6,6 +6,8 @@ import OCC.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static OCC.Data.OCCDataTest.*;
+
 public class ProductsTest {
 
     @BeforeEach
@@ -28,7 +30,7 @@ public class ProductsTest {
     @Test
     public void getSearchProductsWithCodeFieldsAndPage(){
         AuthorizationService.AnonymousAuth();
-        CategoryService.getSearchProductsByCodeFieldsAndPage("M0000000019368U", "FULL", "0");
+        CategoryService.getSearchProductsByCodeFieldsAndPage(getProductPadrao(), FIELDS, PAGE);
     }
 
 }
