@@ -1,9 +1,32 @@
 package OCC.DTOs.Response;
 
-public class ComponentResponseDTO {
+import Common.AbstractDTO;
+
+import java.util.List;
+
+public class ComponentResponseDTO extends AbstractDTO<ComponentResponseDTO> {
+
+    public String id;
+    public List<ImageResponseDTO> banners;
     public String jsonContentBanners;
     public String url;
     public MediaResponseDTO media;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<ImageResponseDTO> getBanners() {
+        return banners;
+    }
+
+    public void setBanners(List<ImageResponseDTO> banners) {
+        this.banners = banners;
+    }
 
     public String getJsonContentBanners() {
         return jsonContentBanners;

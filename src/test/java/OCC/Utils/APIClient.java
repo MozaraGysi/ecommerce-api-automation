@@ -169,7 +169,7 @@ public class APIClient {
 
         request.queryParams(requestDTO.toMap());
 
-        Response response = request.get("/cms/pages/homepageHeadless");
+        Response response = request.get("homepage");
 
         response.getBody().print();
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());

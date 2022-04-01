@@ -4,6 +4,7 @@ import Common.AbstractDTO;
 
 public class ImageResponseDTO extends AbstractDTO<ImageResponseDTO> {
     private String url;
+    private String image;
 
     public String getUrl() {
         return url;
@@ -11,5 +12,13 @@ public class ImageResponseDTO extends AbstractDTO<ImageResponseDTO> {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

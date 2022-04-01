@@ -1,6 +1,7 @@
 package OCC.Validators;
 
 import Common.Validators.Validator;
+import OCC.DTOs.Response.CmsComponentsResponseDTO;
 import OCC.DTOs.Response.CmsPageResponseDTO;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
@@ -10,15 +11,18 @@ public class CmsBannerValidator implements Validator {
     @Override
     public boolean validate(@NotNull Response response) {
 
-        CmsPageResponseDTO cmsPageResponseDTO = new CmsPageResponseDTO().fromJsonString(response.getBody().asString());
+        CmsComponentsResponseDTO cmsComponentsResponseDTO = new CmsComponentsResponseDTO().fromJsonString(response.getBody().asString());
 
-        cmsPageResponseDTO.getContentSlots().getContentSlot().forEach(contentSlot -> {
-            if (contentSlot.getPosition().equals("SectionVideo")){
-                contentSlot.getComponents().getComponent().forEach(component -> {
-                    Assertions.assertFalse(component.getUrl().isEmpty());
+        cmsComponentsResponseDTO.getComponents().forEach(components -> {
+            if(components.getBanners()!=null) {
+                components.getBanners().forEach(image -> {
+                    if(image.getImage()!=null){
+                        Assertions.assertFalse(image.getImage().isEmpty());
+                    }
                 });
             }
         });
+
         return true;
     }
 }
