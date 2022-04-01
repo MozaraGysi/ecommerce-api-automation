@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Utils {
 
-	static String RESOURCE_NAME = "WebService";
+	static String RESOURCE_NAME = "webService";
 	static Map<String, Object> WEBSERVICE_CONFIG_MAPPED;
 
 	public static String getBrand() {

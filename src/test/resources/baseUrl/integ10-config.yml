@@ -1,8 +1,16 @@
-alexandrebirman: https://integ10.alexandrebirman.com.br/
-anacapri: https://integ10.anacapri.com.br/
-arezzo: https://integ10.arezzo.com.br/
-fiever: https://integ10.fiever.com.br/
-somosalme: https://integ10.somosalme.com.br/
-schutz: https://integ10.schutz.com.br/
-vans: https://integ10.vans.com.br/
-zzmall: https://integ10.zzmall.com.br/
+AlexandreBirman:
+    url: "https://integ10.alexandrebirman.com.br/"
+Anacapri:
+    url: "https://integ10.anacapri.com.br/"
+Arezzo:
+    url: "https://integ10.arezzo.com.br/"
+Fiever:
+    url: "https://integ10.fiever.com.br/"
+Owme:
+    url: "https://integ10.somosalme.com.br/"
+Schutz:
+    url: "https://integ10.schutz.com.br/"
+Vans:
+    url: "https://integ10.vans.com.br/"
+Zzmall:
+    url: "https://integ10.zzmall.com.br/"
