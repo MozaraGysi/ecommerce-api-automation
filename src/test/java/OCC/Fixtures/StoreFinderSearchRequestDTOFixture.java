@@ -33,7 +33,7 @@ public final class StoreFinderSearchRequestDTOFixture {
 	}
 
     public StoreFinderSearchRequestDTOFixture defaultRequestByPostalCode() {
-        storeFinderSearchRequestDTO.setQuery("59073380");
+        storeFinderSearchRequestDTO.setQuery("01310-100");
         return this;
     }
 
@@ -43,13 +43,18 @@ public final class StoreFinderSearchRequestDTOFixture {
     }
 
     public StoreFinderSearchRequestDTOFixture defaultRequestByCoordinates() {
-        storeFinderSearchRequestDTO.setLatitude(-5.7939646);
-        storeFinderSearchRequestDTO.setLongitude(-35.1989197);
+        storeFinderSearchRequestDTO.setLatitude(-23.5628302);
+        storeFinderSearchRequestDTO.setLongitude(-46.6546177);
         return this;
     }
 
     public StoreFinderSearchRequestDTOFixture defaultRequestByAddress() {
-        storeFinderSearchRequestDTO.setQuery("Natal");
+        storeFinderSearchRequestDTO.setQuery("São Paulo");
+        return this;
+    }
+
+    public StoreFinderSearchRequestDTOFixture defaultRequestWrongAddress() {
+        storeFinderSearchRequestDTO.setQuery("Endereço_errado");
         return this;
     }
 

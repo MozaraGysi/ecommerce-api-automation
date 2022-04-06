@@ -1,0 +1,19 @@
+package OCC.Validators;
+
+import Common.Validators.Validator;
+import OCC.DTOs.Response.StoreFinderSearchResponseDTO;
+import io.restassured.response.Response;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class StoreFinderWrongQueryValidator implements Validator {
+
+	@Override
+	public boolean validate(Response response) {
+		StoreFinderSearchResponseDTO storesFinder = new StoreFinderSearchResponseDTO().fromJsonString(response.getBody().asString());
+
+		assertEquals(0, storesFinder.getStores().size());
+
+		return true;
+	}
+}
