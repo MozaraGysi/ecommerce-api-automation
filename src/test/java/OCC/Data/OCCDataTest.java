@@ -38,5 +38,9 @@ public class OCCDataTest {
 		return getConfigValue(getMappedUsers(), user);
 	}
 
+	public static String getFacebookToken() {
+		return getConfigValue(getMappedUsers(), "FacebookToken");
+	}
+
 }
 

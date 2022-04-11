@@ -16,77 +16,72 @@ import java.util.List;
 
 public class AuthorizationService {
 
-    public static void CustomerToken()
-    {
-        AuthorizationRequestDTO authorizationRequestDTO = AuthorizationRequestDTOFixture
-            .getRandom()
-            .withDefaultUser()
-            .build();
+	public static void CustomerToken() {
+		AuthorizationRequestDTO authorizationRequestDTO = AuthorizationRequestDTOFixture
+				.getRandom()
+				.withDefaultUser()
+				.build();
 
-        Response response = APIClient.postAuthorization(authorizationRequestDTO);
+		Response response = APIClient.postAuthorization(authorizationRequestDTO);
 
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
-        AuthorizationHandler.handleAuthorization(response);
-    }
+		AuthorizationHandler.handleAuthorization(response);
+	}
 
-    public static void CustomerTokenNewUser()
-    {
-        AuthorizationRequestDTO authorizationRequestDTO = AuthorizationRequestDTOFixture
-            .getRandom()
-            .build();
+	public static void CustomerTokenNewUser() {
+		AuthorizationRequestDTO authorizationRequestDTO = AuthorizationRequestDTOFixture
+				.getRandom()
+				.build();
 
-        Response response = APIClient.postAuthorization(authorizationRequestDTO);
+		Response response = APIClient.postAuthorization(authorizationRequestDTO);
 
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
-        AuthorizationHandler.handleAuthorization(response);
-    }
+		AuthorizationHandler.handleAuthorization(response);
+	}
 
-    public static void AnonymousAuth()
-    {
-        AuthorizationRequestDTO authorizationRequestDTO = AuthorizationRequestDTOFixture
-            .getRandom()
-            .withAnonymousUser()
-            .build();
+	public static void AnonymousAuth() {
+		AuthorizationRequestDTO authorizationRequestDTO = AuthorizationRequestDTOFixture
+				.getRandom()
+				.withAnonymousUser()
+				.build();
 
-        Response response = APIClient.postAuthorization(authorizationRequestDTO);
+		Response response = APIClient.postAuthorization(authorizationRequestDTO);
 
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new AnonymousAuthorizationValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new AnonymousAuthorizationValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
-        AuthorizationHandler.handleAuthorization(response);
-    }
+		AuthorizationHandler.handleAuthorization(response);
+	}
 
-    public static void RegisterCustomerAppleID()
-    {
-        AuthorizationRequestDTO authorizationRequestDTO = AuthorizationRequestDTOFixture
-            .getRandom()
-            .withAppleUser()
-            .build();
+	public static void RegisterCustomerAppleID() {
+		AuthorizationRequestDTO authorizationRequestDTO = AuthorizationRequestDTOFixture
+				.getRandom()
+				.withAppleUser()
+				.build();
 
-        Response response = APIClient.postAuthorization(authorizationRequestDTO);
+		Response response = APIClient.postAuthorization(authorizationRequestDTO);
 
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
-        AuthorizationHandler.handleAuthorization(response);
-    }
+		AuthorizationHandler.handleAuthorization(response);
+	}
 
-    public static void RegisterCustomerFacebook()
-    {
-        AuthorizationRequestDTO authorizationRequestDTO = AuthorizationRequestDTOFixture
-            .getRandom()
-            .withFacebookUser()
-            .build();
+	public static void RegisterCustomerFacebook() {
+		AuthorizationRequestDTO authorizationRequestDTO = AuthorizationRequestDTOFixture
+				.getRandom()
+				.withFacebookUser()
+				.build();
 
-        Response response = APIClient.postAuthorization(authorizationRequestDTO);
+		Response response = APIClient.postAuthorization(authorizationRequestDTO);
 
-        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
+		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
 
-        AuthorizationHandler.handleAuthorization(response);
-    }
+		AuthorizationHandler.handleAuthorization(response);
+	}
 }

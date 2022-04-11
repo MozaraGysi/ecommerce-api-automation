@@ -1,6 +1,7 @@
 package OCC.Fixtures;
 
 import OCC.DTOs.Request.AuthorizationRequestDTO;
+import OCC.Data.OCCDataTest;
 import OCC.Enums.BrandEnum;
 import OCC.Enums.GrantTypeEnum;
 import OCC.Utils.Utils;
@@ -39,7 +40,6 @@ public final class AuthorizationRequestDTOFixture {
 	private static String appleUserAppledId = "123456789";
 	private static String appleUserFirstName = "Leonardo";
 	private static String appleUserLastName = "Wille";
-	private static String facebookUserToken = "EAANWNiebQQABAGH1O4tp3CjR8ckjSsmcQSKzWyUhwZCca2W1d47hsY4ZBmad4DDMgHjjOE8znFT9nCaSHi2Gw3qb44KBQ1fUl9mv7suhzZBo916Ylp7U3aBe30sjz0IgVHOwc9ZApHfdWN1oHYCK5uNiTEZCnLSZCBUY13oo9gSzpMZAVKpZC3qOzQMqxGkmMeAPHWBqUT43LfNNZAbX7HtcZC";
 
 	static {
 		grantTypes.add(PASSWORD);
@@ -125,7 +125,7 @@ public final class AuthorizationRequestDTOFixture {
 
 	public AuthorizationRequestDTOFixture withFacebookUser() {
 		authorizationRequestDTO.setGrantType(FACEBOOK.getValue());
-		authorizationRequestDTO.setFacebookToken(facebookUserToken);
+		authorizationRequestDTO.setFacebookToken(OCCDataTest.getFacebookToken());
 		authorizationRequestDTO.setSiteUid(Utils.getSiteUid());
 		return this;
 	}
