@@ -1,0 +1,30 @@
+Padrao:
+  Arezzo:
+    DefaultPostalCode: '01310-100'
+    DefaultAddress: São Paulo
+    DefaultWrongAddress: Endereço_errado
+    DefaultWrongPostalCode: '590733800'
+    DefaultLatitude: '-23.5628302'
+    DefaultLongitude: '-46.6546177'
+  Anacapri:
+    DefaultPostalCode: ''
+    DefaultAddress: ''
+    DefaultWrongAddress: ''
+    DefaultWrongPostalCode: ''
+    DefaultLatitude: ''
+    DefaultLongitude: ''
+  Zzmall:
+    DefaultPostalCode: ''
+    DefaultAddress: ''
+    DefaultWrongAddress: ''
+    DefaultWrongPostalCode: ''
+    DefaultLatitude: ''
+    DefaultLongitude: ''
+  Schutz:
+    DefaultPostalCode: ''
+    DefaultAddress: ''
+    DefaultWrongAddress: ''
+    DefaultWrongPostalCode: ''
+    DefaultLatitude: ''
+    DefaultLongitude: ''
+
