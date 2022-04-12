@@ -7,27 +7,29 @@ import org.junit.jupiter.api.Test;
 
 public class AuthorizationTest {
 
-    @BeforeEach
-    public void init() {
-        Utils.init();
-    }
+	@BeforeEach
+	public void init() {
+		Utils.init();
+	}
 
-    @Test
-    public void CustomerAuth()
-    {
-        AuthorizationService.CustomerToken();
-    }
+	@Test
+	public void CustomerAuth() {
+		AuthorizationService.CustomerToken();
+	}
 
-    @Test
-    public void AnonymousAuth() { AuthorizationService.AnonymousAuth(); }
+	@Test
+	public void AnonymousAuth() {
+		AuthorizationService.AnonymousAuth();
+	}
 
-    @Test
-    public void RegisterCustomerAppleID()
-    {
-        AuthorizationService.RegisterCustomerAppleID();
-    }
+	@Test
+	public void RegisterCustomerAppleID() {
+		AuthorizationService.RegisterCustomerAppleID();
+	}
 
-    @Test
-    public void RegisterCustomerfacebook(){ AuthorizationService.RegisterCustomerFacebook(); }
+	@Test
+	public void RegisterCustomerfacebook() {
+		AuthorizationService.RegisterCustomerFacebook();
+	}
 
 }

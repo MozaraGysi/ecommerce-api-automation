@@ -42,5 +42,29 @@ public class OCCDataTest {
 		return getConfigValue(getMappedUsers(), "FacebookToken");
 	}
 
+	public static String getDefaultUser() {
+		return getConfigValue(getMappedUsers(), "DefaultUsername");
+	}
+
+	public static String getDefaultUserPassword() {
+		return getConfigValue(getMappedUsers(), "DefaultUserPassword");
+	}
+
+	public static String getAppleUserUsername() {
+		return getConfigValue(getMappedUsers(), "AppleUserUsername");
+	}
+
+	public static String getAppleUserAppledId() {
+		return getConfigValue(getMappedUsers(), "AppleUserAppledId");
+	}
+
+	public static String getAppleUserFirstName() {
+		return getConfigValue(getMappedUsers(), "AppleUserFirstName");
+	}
+
+	public static String getAppleUserLastName() {
+		return getConfigValue(getMappedUsers(), "AppleUserLastName");
+	}
+
 }
 

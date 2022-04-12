@@ -34,12 +34,6 @@ public final class AuthorizationRequestDTOFixture {
 	private static String SCOPE = "basic";
 	private static List<GrantTypeEnum> grantTypes = new ArrayList<>();
 	private static List<BrandEnum> brands = new ArrayList<>();
-	private static String defaultUserUsername = "rrsetcwi@gmail.com";
-	private static String defaultUserPassword = "zero123@";
-	private static String appleUserUsername = "leonardotst01@outstore.com";
-	private static String appleUserAppledId = "123456789";
-	private static String appleUserFirstName = "Leonardo";
-	private static String appleUserLastName = "Wille";
 
 	static {
 		grantTypes.add(PASSWORD);
@@ -99,8 +93,8 @@ public final class AuthorizationRequestDTOFixture {
 
 	public AuthorizationRequestDTOFixture withDefaultUser() {
 		authorizationRequestDTO.setGrantType(PASSWORD.getValue());
-		authorizationRequestDTO.setUsername(defaultUserUsername);
-		authorizationRequestDTO.setPassword(defaultUserPassword);
+		authorizationRequestDTO.setUsername(OCCDataTest.getDefaultUser());
+		authorizationRequestDTO.setPassword(OCCDataTest.getDefaultUserPassword());
 		authorizationRequestDTO.setSiteUid(Utils.getSiteUid());
 		return this;
 	}
@@ -115,10 +109,10 @@ public final class AuthorizationRequestDTOFixture {
 
 	public AuthorizationRequestDTOFixture withAppleUser() {
 		authorizationRequestDTO.setGrantType(APPLE_ID.getValue());
-		authorizationRequestDTO.setUsername(appleUserUsername);
-		authorizationRequestDTO.setUserAppleId(appleUserAppledId);
-		authorizationRequestDTO.setFirstName(appleUserFirstName);
-		authorizationRequestDTO.setLastName(appleUserLastName);
+		authorizationRequestDTO.setUsername(OCCDataTest.getAppleUserUsername());
+		authorizationRequestDTO.setUserAppleId(OCCDataTest.getAppleUserAppledId());
+		authorizationRequestDTO.setFirstName(OCCDataTest.getAppleUserFirstName());
+		authorizationRequestDTO.setLastName(OCCDataTest.getAppleUserLastName());
 		authorizationRequestDTO.setSiteUid(Utils.getSiteUid());
 		return this;
 	}
