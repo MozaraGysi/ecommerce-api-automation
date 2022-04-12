@@ -12,12 +12,15 @@ import static OCC.Utils.Utils.getMappedUsers;
 
 public class OCCDataTest {
 
+	public static String FIELDS = "FULL";
+	public static String PAGE = "0";
+
 	public static List<String> getProducts(String type) {
 		return getConfigValueList(getConfigMappedProducts(), type, getBrand(), "sku");
 	}
 
-	public static String getProductPadrao() {
-		return getProducts("Padrao").get(0).concat("-36");
+	public static String getProductPadrao(){
+		return getProducts("Padrao").get(0);
 	}
 
 	public static String getProductSellerExterno() {
