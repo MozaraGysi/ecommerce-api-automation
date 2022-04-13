@@ -16,7 +16,7 @@ public class HomepageAppTest {
     @Test
     public void getShowHomePageAppComponents(){
         AuthorizationService.AnonymousAuth();
-        HomeService.getSearchHomePageApp();
+        HomeService.getHomePageApp();
 
     }
 }

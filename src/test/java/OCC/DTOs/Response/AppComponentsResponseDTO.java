@@ -5,13 +5,13 @@ import Common.AbstractDTO;
 import java.util.List;
 
 public class AppComponentsResponseDTO extends AbstractDTO<AppComponentsResponseDTO>{
-    public List<ComponentResponseDTO> components;
+    public List<AppComponentResponseDTO> components;
 
-    public List<ComponentResponseDTO> getComponents() {
+    public List<AppComponentResponseDTO> getComponents() {
         return components;
     }
 
-    public void setComponents(List<ComponentResponseDTO> components) {
+    public void setComponents(List<AppComponentResponseDTO> components) {
         this.components = components;
 
     }

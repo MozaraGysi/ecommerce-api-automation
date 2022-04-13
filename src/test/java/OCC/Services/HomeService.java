@@ -23,7 +23,7 @@ public class HomeService {
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
 
-    public static void getSearchHomePageApp() {
+    public static void getHomePageApp() {
         CmsPageContentRequestDTO cmsPageContentRequestDTO = CmsPageRequestDTOFixture.get().defaultRequestByHome().build();
 
         Response response = APIClient.getHomepageApp(cmsPageContentRequestDTO);
