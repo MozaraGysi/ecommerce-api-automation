@@ -1,14 +1,14 @@
 package OCC.DTOs.Response;
 
 public class ContentSlotResponseDTO {
-    private ComponentResponseDTO components;
+    private CmsComponentsResponseDTO components;
     public String position;
 
-    public ComponentResponseDTO getComponents() {
+    public CmsComponentsResponseDTO getComponents() {
         return components;
     }
 
-    public void setComponents(ComponentResponseDTO components) {
+    public void setComponents(CmsComponentsResponseDTO components) {
         this.components = components;
     }
 

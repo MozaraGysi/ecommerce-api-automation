@@ -14,8 +14,9 @@ public class CmsTwoBannerValidator implements Validator {
 
         cmsPageResponseDTO.getContentSlots().getContentSlot().forEach(contentSlot -> {
             if (contentSlot.getPosition().equals("SectionBanner2")){
-                Assertions.assertFalse(contentSlot.getComponents().getMedia().url.isEmpty());
-
+                contentSlot.getComponents().getComponent().forEach(component -> {
+                    Assertions.assertFalse(component.getMedia().url.isEmpty());
+                });
             }
         });
         return true;
