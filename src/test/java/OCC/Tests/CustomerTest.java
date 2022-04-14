@@ -6,6 +6,8 @@ import OCC.Services.CheckoutService;
 import OCC.Services.UsersService;
 import OCC.Utils.Utils;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperties;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CustomerTest {
@@ -34,6 +36,7 @@ public class CustomerTest {
         CheckoutService.postOrder();
     }
 
+    @EnabledIfSystemProperty(named="brand",matches="Zzmall")
     @Test
     @Order(2)
     public void postRegisterNewUserBuyCreditCardSellerExterno() {
@@ -87,6 +90,7 @@ public class CustomerTest {
         CheckoutService.postOrder();
     }
 
+    @EnabledIfSystemProperty(named="brand",matches="Zzmall")
     @Test
     @Order(5)
     public void postRegisterOldUserBuyCreditCardSellerExterno() {
