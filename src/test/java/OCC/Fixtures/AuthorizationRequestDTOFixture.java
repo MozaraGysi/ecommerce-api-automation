@@ -1,6 +1,7 @@
 package OCC.Fixtures;
 
 import OCC.DTOs.Request.AuthorizationRequestDTO;
+import OCC.Data.OCCDataTest;
 import OCC.Enums.BrandEnum;
 import OCC.Enums.GrantTypeEnum;
 import OCC.Utils.Utils;
@@ -33,13 +34,6 @@ public final class AuthorizationRequestDTOFixture {
 	private static String SCOPE = "basic";
 	private static List<GrantTypeEnum> grantTypes = new ArrayList<>();
 	private static List<BrandEnum> brands = new ArrayList<>();
-	private static String defaultUserUsername = "rrsetcwi@gmail.com";
-	private static String defaultUserPassword = "zero123@";
-	private static String appleUserUsername = "leonardotst01@outstore.com";
-	private static String appleUserAppledId = "123456789";
-	private static String appleUserFirstName = "Leonardo";
-	private static String appleUserLastName = "Wille";
-	private static String facebookUserToken = "EAANWNiebQQABAGH1O4tp3CjR8ckjSsmcQSKzWyUhwZCca2W1d47hsY4ZBmad4DDMgHjjOE8znFT9nCaSHi2Gw3qb44KBQ1fUl9mv7suhzZBo916Ylp7U3aBe30sjz0IgVHOwc9ZApHfdWN1oHYCK5uNiTEZCnLSZCBUY13oo9gSzpMZAVKpZC3qOzQMqxGkmMeAPHWBqUT43LfNNZAbX7HtcZC";
 
 	static {
 		grantTypes.add(PASSWORD);
@@ -99,8 +93,8 @@ public final class AuthorizationRequestDTOFixture {
 
 	public AuthorizationRequestDTOFixture withDefaultUser() {
 		authorizationRequestDTO.setGrantType(PASSWORD.getValue());
-		authorizationRequestDTO.setUsername(defaultUserUsername);
-		authorizationRequestDTO.setPassword(defaultUserPassword);
+		authorizationRequestDTO.setUsername(OCCDataTest.getDefaultUser());
+		authorizationRequestDTO.setPassword(OCCDataTest.getDefaultUserPassword());
 		authorizationRequestDTO.setSiteUid(Utils.getSiteUid());
 		return this;
 	}
@@ -115,17 +109,17 @@ public final class AuthorizationRequestDTOFixture {
 
 	public AuthorizationRequestDTOFixture withAppleUser() {
 		authorizationRequestDTO.setGrantType(APPLE_ID.getValue());
-		authorizationRequestDTO.setUsername(appleUserUsername);
-		authorizationRequestDTO.setUserAppleId(appleUserAppledId);
-		authorizationRequestDTO.setFirstName(appleUserFirstName);
-		authorizationRequestDTO.setLastName(appleUserLastName);
+		authorizationRequestDTO.setUsername(OCCDataTest.getAppleUserUsername());
+		authorizationRequestDTO.setUserAppleId(OCCDataTest.getAppleUserAppledId());
+		authorizationRequestDTO.setFirstName(OCCDataTest.getAppleUserFirstName());
+		authorizationRequestDTO.setLastName(OCCDataTest.getAppleUserLastName());
 		authorizationRequestDTO.setSiteUid(Utils.getSiteUid());
 		return this;
 	}
 
 	public AuthorizationRequestDTOFixture withFacebookUser() {
 		authorizationRequestDTO.setGrantType(FACEBOOK.getValue());
-		authorizationRequestDTO.setFacebookToken(facebookUserToken);
+		authorizationRequestDTO.setFacebookToken(OCCDataTest.getFacebookToken());
 		authorizationRequestDTO.setSiteUid(Utils.getSiteUid());
 		return this;
 	}
