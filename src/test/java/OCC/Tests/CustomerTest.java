@@ -1,13 +1,12 @@
 package OCC.Tests;
 
+import Common.Utils.*;
 import OCC.Services.AuthorizationService;
 import OCC.Services.CartService;
 import OCC.Services.CheckoutService;
 import OCC.Services.UsersService;
 import OCC.Utils.Utils;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.condition.EnabledIfSystemProperties;
-import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CustomerTest {
@@ -36,7 +35,13 @@ public class CustomerTest {
         CheckoutService.postOrder();
     }
 
-    @EnabledIfSystemProperty(named="brand",matches="Zzmall")
+    @IgnoreAlexandreBirman
+    @IgnoreArezzo
+    @IgnoreAnacapri
+    @IgnoreFiever
+    @IgnoreOwme
+    @IgnoreSchutz
+    @IgnoreVans
     @Test
     @Order(2)
     public void postRegisterNewUserBuyCreditCardSellerExterno() {
@@ -90,7 +95,13 @@ public class CustomerTest {
         CheckoutService.postOrder();
     }
 
-    @EnabledIfSystemProperty(named="brand",matches="Zzmall")
+    @IgnoreAlexandreBirman
+    @IgnoreArezzo
+    @IgnoreAnacapri
+    @IgnoreFiever
+    @IgnoreOwme
+    @IgnoreSchutz
+    @IgnoreVans
     @Test
     @Order(5)
     public void postRegisterOldUserBuyCreditCardSellerExterno() {
