@@ -1,5 +1,6 @@
 package OCC.Fixtures;
 
+import OCC.Data.OCCDataTest;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 
@@ -33,23 +34,28 @@ public final class StoreFinderSearchRequestDTOFixture {
 	}
 
     public StoreFinderSearchRequestDTOFixture defaultRequestByPostalCode() {
-        storeFinderSearchRequestDTO.setQuery("59073380");
+        storeFinderSearchRequestDTO.setQuery(OCCDataTest.getDefaultPostalCode());
         return this;
     }
 
     public StoreFinderSearchRequestDTOFixture defaultRequestByWrongPostalCode() {
-        storeFinderSearchRequestDTO.setQuery("590733800");
+        storeFinderSearchRequestDTO.setQuery(OCCDataTest.getDefaultWrongPostalCode());
         return this;
     }
 
     public StoreFinderSearchRequestDTOFixture defaultRequestByCoordinates() {
-        storeFinderSearchRequestDTO.setLatitude(-5.7939646);
-        storeFinderSearchRequestDTO.setLongitude(-35.1989197);
+        storeFinderSearchRequestDTO.setLatitude(OCCDataTest.getDefaultLatitude());
+        storeFinderSearchRequestDTO.setLongitude(OCCDataTest.getDefaultLongitude());
         return this;
     }
 
     public StoreFinderSearchRequestDTOFixture defaultRequestByAddress() {
-        storeFinderSearchRequestDTO.setQuery("Natal");
+        storeFinderSearchRequestDTO.setQuery(OCCDataTest.getDefaultAddress());
+        return this;
+    }
+
+    public StoreFinderSearchRequestDTOFixture defaultRequestWrongAddress() {
+        storeFinderSearchRequestDTO.setQuery(OCCDataTest.getDefaultWrongAddress());
         return this;
     }
 

@@ -29,9 +29,11 @@ public class Utils {
     static Map<String, Object> USERS_CONFIG_MAPPED;
     static Map<String, Object> PRODUCTS_CONFIG_MAPPED;
     static Map<String, Object> BASE_URL_CONFIG_MAPPED;
+    static Map<String, Object> STORES_CONFIG_MAPPED;
     public static String RESOURCE_NAME_PRODUCTS = "product";
     public static String RESOURCE_NAME_BASE_URL = "baseUrl";
     public static String RESOURCE_NAME_USERS = "users";
+    public static String RESOURCE_NAME_STORES = "stores";
 
     public static void init() {
         ACCESS_TOKEN = null;
@@ -154,6 +156,13 @@ public class Utils {
             BASE_URL_CONFIG_MAPPED = EnvConfig.getConfigs(RESOURCE_NAME_BASE_URL, getEnv());
         }
         return BASE_URL_CONFIG_MAPPED;
+    }
+
+    public static Map<String, Object> getConfigMappededStores() {
+        if (Objects.isNull(STORES_CONFIG_MAPPED)) {
+            STORES_CONFIG_MAPPED = EnvConfig.getConfigs(RESOURCE_NAME_STORES, getEnv());
+        }
+        return STORES_CONFIG_MAPPED;
     }
 
 }

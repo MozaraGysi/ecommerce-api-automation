@@ -4,11 +4,7 @@ import java.util.List;
 
 import static Common.Utils.EnvConfig.getConfigValue;
 import static Common.Utils.EnvConfig.getConfigValueList;
-import static OCC.Utils.Utils.URL_COMPLEMENT;
-import static OCC.Utils.Utils.getBrand;
-import static OCC.Utils.Utils.getConfigMappedBaseUrl;
-import static OCC.Utils.Utils.getConfigMappedProducts;
-import static OCC.Utils.Utils.getMappedUsers;
+import static OCC.Utils.Utils.*;
 
 public class OCCDataTest {
 
@@ -25,6 +21,34 @@ public class OCCDataTest {
 
 	public static String getProductSellerExterno() {
 		return getProducts("SellerExterno").get(0).concat("-36");
+	}
+
+	public static List<String> getStores(String type, String valuePath) {
+		return getConfigValueList(getConfigMappededStores(), type, getBrand(), valuePath);
+	}
+
+	public static String getDefaultPostalCode() {
+		return getStores("Padrao", "DefaultPostalCode").get(0);
+	}
+
+	public static String getDefaultAddress() {
+		return getStores("Padrao", "DefaultAddress").get(0);
+	}
+
+	public static String getDefaultWrongAddress() {
+		return getStores("Padrao", "DefaultWrongAddress").get(0);
+	}
+
+	public static String getDefaultWrongPostalCode() {
+		return getStores("Padrao", "DefaultWrongPostalCode").get(0);
+	}
+
+	public static Double getDefaultLatitude(){
+		return Double.valueOf(getStores("Padrao", "DefaultLatitude").get(0));
+	}
+
+	public static Double getDefaultLongitude(){
+		return Double.valueOf(getStores("Padrao", "DefaultLongitude").get(0));
 	}
 
 	public static String getBaseUrl(boolean auth) {
