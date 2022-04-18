@@ -1,6 +1,9 @@
 package OCC.DTOs.Response;
 
-public class ComponentResponseDTO {
+import Common.AbstractDTO;
+
+public class ComponentResponseDTO extends AbstractDTO<ComponentResponseDTO> {
+
     public String jsonContentBanners;
     public String url;
     public MediaResponseDTO media;

@@ -12,4 +12,5 @@ public class ImageResponseDTO extends AbstractDTO<ImageResponseDTO> {
     public void setUrl(String url) {
         this.url = url;
     }
+
 }

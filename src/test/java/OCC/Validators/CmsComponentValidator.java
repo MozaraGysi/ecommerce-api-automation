@@ -13,10 +13,10 @@ public class CmsComponentValidator implements Validator {
         CmsPageResponseDTO cmsPageResponseDTO = new CmsPageResponseDTO().fromJsonString(response.getBody().asString());
 
         cmsPageResponseDTO.getContentSlots().getContentSlot().forEach(contentSlot -> {
-                if (contentSlot.getPosition().equals("SectionBannerCarousel")){
-                    Assertions.assertFalse(contentSlot.getPosition().isEmpty());
-                }
-            });
+            if (contentSlot.getPosition().equals("SectionBannerCarousel")){
+                Assertions.assertFalse(contentSlot.getPosition().isEmpty());
+            }
+        });
         return true;
     }
 }

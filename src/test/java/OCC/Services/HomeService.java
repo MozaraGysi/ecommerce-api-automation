@@ -22,4 +22,13 @@ public class HomeService {
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CmsComponentValidator(), new CmsBannerValidator(), new CmsVideoValidator(), new CmsTwoBannerValidator());
         Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
     }
+
+    public static void getHomePageApp() {
+        CmsPageContentRequestDTO cmsPageContentRequestDTO = CmsPageRequestDTOFixture.get().defaultRequestByHome().build();
+
+        Response response = APIClient.getHomepageApp(cmsPageContentRequestDTO);
+
+        List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new AppComponentValidator(), new AppBannerValidator());
+        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+    }
 }

@@ -163,13 +163,31 @@ public class APIClient {
         RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", requestDTO.getContentType());
         request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
         request.queryParams(requestDTO.toMap());
 
         Response response = request.get("/cms/pages/homepageHeadless");
+
+        response.getBody().print();
+        AuthorizationHandler.getAuthorization().setCookies(response.getCookies());
+
+        return response;
+    }
+
+    public static Response getHomepageApp(CmsPageContentRequestDTO requestDTO) {
+        RestAssured.baseURI = getBaseUrl(false);
+
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", requestDTO.getContentType());
+        request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
+        request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
+
+        request.queryParams(requestDTO.toMap());
+
+        Response response = request.get("homepage");
 
         response.getBody().print();
         AuthorizationHandler.getAuthorization().setCookies(response.getCookies());

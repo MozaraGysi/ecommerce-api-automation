@@ -1,5 +1,4 @@
 package OCC.DTOs.Response;
-
 import java.util.List;
 
 public class CmsComponentsResponseDTO {
