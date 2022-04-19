@@ -1,5 +1,6 @@
 package OCC.Tests;
 
+import Common.Utils.*;
 import OCC.Services.AuthorizationService;
 import OCC.Services.CartService;
 import OCC.Services.CheckoutService;
@@ -34,6 +35,13 @@ public class CustomerTest {
         CheckoutService.postOrder();
     }
 
+    @IgnoreAlexandreBirman
+    @IgnoreArezzo
+    @IgnoreAnacapri
+    @IgnoreFiever
+    @IgnoreOwme
+    @IgnoreSchutz
+    @IgnoreVans
     @Test
     @Order(2)
     public void postRegisterNewUserBuyCreditCardSellerExterno() {
@@ -87,6 +95,13 @@ public class CustomerTest {
         CheckoutService.postOrder();
     }
 
+    @IgnoreAlexandreBirman
+    @IgnoreArezzo
+    @IgnoreAnacapri
+    @IgnoreFiever
+    @IgnoreOwme
+    @IgnoreSchutz
+    @IgnoreVans
     @Test
     @Order(5)
     public void postRegisterOldUserBuyCreditCardSellerExterno() {

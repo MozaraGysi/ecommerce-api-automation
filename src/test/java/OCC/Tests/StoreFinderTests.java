@@ -1,11 +1,13 @@
 package OCC.Tests;
 
+import Common.Utils.IgnoreZzmall;
 import OCC.Services.AuthorizationService;
 import OCC.Services.StoreFinderService;
 import OCC.Utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+@IgnoreZzmall
 public class StoreFinderTests {
 
     @BeforeEach
