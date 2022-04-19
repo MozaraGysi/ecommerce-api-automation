@@ -55,7 +55,7 @@ public class APIClient {
         RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", requestDTO.getContentType());
         request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
@@ -73,7 +73,7 @@ public class APIClient {
         RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", requestDTO.getContentType());
         request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
@@ -91,7 +91,7 @@ public class APIClient {
         RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", requestDTO.getContentType());
         request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
@@ -109,7 +109,7 @@ public class APIClient {
         RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", requestDTO.getContentType());
         request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
@@ -127,7 +127,7 @@ public class APIClient {
         RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", requestDTO.getContentType());
         request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
@@ -145,7 +145,7 @@ public class APIClient {
         RestAssured.baseURI = getBaseUrl(false);
 
         RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
+        request.header("Content-Type", requestDTO.getContentType());
         request.header("Authorization", "Bearer " + AuthorizationHandler.getAuthorization().getAccessToken());
         request.header("Cookie", AuthorizationHandler.getAuthorization().getCookies());
 
