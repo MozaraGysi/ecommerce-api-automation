@@ -6,8 +6,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+		<java.version>17</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
         <aspectj.version>1.8.10</aspectj.version>
 		<env>dev</env>
 		<brand>Arezzo</brand>
@@ -37,13 +38,13 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>spring-mock-mvc-kotlin-extensions</artifactId>
-            <version>4.2.0</version>
+            <version>5.0.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>4.2.0</version>
+            <version>5.0.1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -57,8 +58,15 @@
 			<artifactId>snakeyaml</artifactId>
 			<version>1.30</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
 
-    </dependencies>
+
+	</dependencies>
     <build>
         <plugins>
 			<plugin>
