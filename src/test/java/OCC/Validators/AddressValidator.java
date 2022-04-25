@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 public class AddressValidator implements Validator {
     
     @Override
-    public boolean validate(Response response) {
+    public void validate(Response response) {
 
         AddressRequestDTO addressRequestDTO = new AddressRequestDTO().fromJsonString(response.getBody().asString());
         Assertions.assertNotNull(addressRequestDTO.getAddressName());
@@ -25,6 +25,5 @@ public class AddressValidator implements Validator {
         Assertions.assertNotNull(addressRequestDTO.getTown());
         Assertions.assertNotNull(addressRequestDTO.getRegion());
 
-        return true;
     }
 }

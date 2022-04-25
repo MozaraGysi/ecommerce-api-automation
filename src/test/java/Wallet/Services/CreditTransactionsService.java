@@ -40,14 +40,14 @@ public class CreditTransactionsService {
 		Response response = APIClient.getCreditTransactions("123");
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	private static void getPendingCreditTransactionWithStatusCONFIRMADO(String transactionId) {
 		Response response = getResponseCreditTransactionsWithStatusCONFIRMADO(transactionId);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CreditTransactionsWithStatusCONFIRMADOValidator(transactionId));
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleCreditPendingTransactions(response);
 	}
@@ -56,14 +56,14 @@ public class CreditTransactionsService {
 		Response response = APIClient.getCreditTransactions(transactionId);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CreditTransactionsWithStatusPENDENTEValidator(transactionId));
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	private static void getCreditTransactionWithStatusCONFIRMADO(String transactionId) {
 		Response response = getResponseCreditTransactionsWithStatusCONFIRMADO(transactionId);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CreditTransactionsWithStatusCONFIRMADOValidator(transactionId));
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleCreditTransactions(response);
 	}

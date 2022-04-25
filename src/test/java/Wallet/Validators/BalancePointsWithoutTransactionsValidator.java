@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 public class BalancePointsWithoutTransactionsValidator implements Validator {
 
 	@Override
-	public boolean validate(Response response) {
+	public void validate(Response response) {
 		BalancePointsResponseDTO balancePointsResponseDTO = new BalancePointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertEquals(Utils.getCPF(), balancePointsResponseDTO.getDocument());
@@ -19,6 +19,5 @@ public class BalancePointsWithoutTransactionsValidator implements Validator {
 		Assertions.assertEquals(0, balancePointsResponseDTO.getAmount().getPendingCredit());
 		Assertions.assertEquals(0, balancePointsResponseDTO.getAmount().getPendingDebit());
 
-		return true;
 	}
 }

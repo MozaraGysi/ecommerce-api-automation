@@ -8,11 +8,10 @@ import org.junit.jupiter.api.Assertions;
 
 public class RecoverOptionEmailValidator implements Validator {
     @Override
-    public boolean validate(@NotNull Response response) {
+    public void validate(@NotNull Response response) {
 
         LoginPageResponseDTO loginPageResponseDTO = new LoginPageResponseDTO().fromJsonString(response.getBody().asString());
         Assertions.assertTrue(loginPageResponseDTO.getRecoveryOptions().get(0).getCode().equals("SMS"));
         Assertions.assertTrue(loginPageResponseDTO.getRecoveryOptions().get(1).getCode().equals("EMAIL"));
-        return true;
     }
 }

@@ -17,7 +17,7 @@ public class CreditTransactionsWithStatusPENDENTEValidator implements Validator 
 	}
 
 	@Override
-	public boolean validate(Response response) {
+	public void validate(Response response) {
 		CreditTransactionsResponseDTO creditTransactionsResponseDTO = new CreditTransactionsResponseDTO().fromJsonString(response.getBody().asString());
 
 		CreditPointsRequestDTO creditPointsRequestDTO = Utils.getCreditPoints(transactionId);
@@ -30,6 +30,5 @@ public class CreditTransactionsWithStatusPENDENTEValidator implements Validator 
 		Assertions.assertNotNull(creditTransactionsResponseDTO.getDateTime());
 		Assertions.assertNotNull(creditTransactionsResponseDTO.getDescription());
 
-		return true;
 	}
 }

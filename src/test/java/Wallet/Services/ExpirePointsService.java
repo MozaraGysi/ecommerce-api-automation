@@ -15,7 +15,7 @@ public class ExpirePointsService {
 
 		Response response = APIClient.getExpirePoints(currentDate);
 
-		Assertions.assertTrue(new ExpirePointsWithoutCustomersWithExpirePointsValidator().validate(response));
+		new ExpirePointsWithoutCustomersWithExpirePointsValidator().validate(response);
 	}
 
 	public static void getExpirePointsWithCustomersWithExpirePoints() {
@@ -23,6 +23,6 @@ public class ExpirePointsService {
 
 		Response response = APIClient.getExpirePoints(currentDate);
 
-		Assertions.assertTrue(new ExpirePointsWithCustomersWithExpirePointsValidator().validate(response));
+		new ExpirePointsWithCustomersWithExpirePointsValidator().validate(response);
 	}
 }

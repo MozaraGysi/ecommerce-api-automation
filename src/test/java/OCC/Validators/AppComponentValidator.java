@@ -9,12 +9,11 @@ import org.junit.jupiter.api.Assertions;
 
 public class AppComponentValidator implements Validator {
     @Override
-    public boolean validate(@NotNull Response response) {
+    public void validate(@NotNull Response response) {
 
         AppComponentsResponseDTO appComponentsResponseDTO = new AppComponentsResponseDTO().fromJsonString(response.getBody().asString());
         appComponentsResponseDTO.getComponents().forEach(components -> {
             Assertions.assertTrue(components.getId()!=null);
         });
-        return true;
     }
 }

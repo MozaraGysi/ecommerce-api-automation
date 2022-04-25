@@ -9,11 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StoreFinderWrongQueryValidator implements Validator {
 
 	@Override
-	public boolean validate(Response response) {
+	public void validate(Response response) {
 		StoreFinderSearchResponseDTO storesFinder = new StoreFinderSearchResponseDTO().fromJsonString(response.getBody().asString());
 
 		assertEquals(0, storesFinder.getStores().size());
 
-		return true;
 	}
 }

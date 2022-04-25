@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 public class PointsWithoutTransactionsValidator implements Validator {
 
 	@Override
-	public boolean validate(Response response) {
+	public void validate(Response response) {
 		PointsResponseDTO pointsResponseDTO = new PointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertEquals(Utils.getCPF(), pointsResponseDTO.getDocument());
@@ -22,7 +22,6 @@ public class PointsWithoutTransactionsValidator implements Validator {
 
 		Assertions.assertTrue(pointsResponseDTO.getStatements().isEmpty());
 
-		return true;
 	}
 }
 

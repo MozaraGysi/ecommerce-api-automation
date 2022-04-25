@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class AppBannerValidator implements Validator {
     @Override
-    public boolean validate(@NotNull Response response) {
+    public void validate(@NotNull Response response) {
 
         AppComponentsResponseDTO appComponentsResponseDTO = new AppComponentsResponseDTO().fromJsonString(response.getBody().asString());
 
@@ -22,6 +22,5 @@ public class AppBannerValidator implements Validator {
                 });
             }
         });
-        return true;
     }
 }

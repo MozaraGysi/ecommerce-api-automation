@@ -28,7 +28,7 @@ public class CheckoutService {
 
         Response response = APIClient.putAddressesDelivery();
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void getDeliveryModes() {
@@ -36,7 +36,7 @@ public class CheckoutService {
         DeliveryModeRequestDTO deliveryModeRequestDTO = DeliveryModesRequestDTOFixture.get().build();
         Response response = APIClient.getDeliveryModes(deliveryModeRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void getPaymentMethods() {
@@ -44,21 +44,21 @@ public class CheckoutService {
         PaymentModeRequestDTO paymentModeRequestDTO = PaymentModeRequestDTOFixture.get().build();
         Response response = APIClient.getPaymentMethods(paymentModeRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void putPaymentMethod() {
 
         Response response = APIClient.putPaymentMethod(CREDIT_CARD);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void putPaymentMethodBoleto() {
 
         Response response = APIClient.putPaymentMethod(BOLETO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void postOrderBoleto() {
@@ -66,7 +66,7 @@ public class CheckoutService {
         BoletoRequestDTO boletoRequestDTO = BoletoRequestDTOFixture.get().build();
         Response response = APIClient.postOrderBoleto(boletoRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void postOrder() {
@@ -74,7 +74,7 @@ public class CheckoutService {
         CreditCardRequestDTO creditCardRequestDTO = CreditCardRequestDTOFixture.get().defaultCreditCard().build();
         Response response = APIClient.postOrder(creditCardRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditCardValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
 
     }
 }
