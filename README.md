@@ -13,9 +13,9 @@ Este é um projeto do time de e-commerce, com a finalidade de testar de forma au
 
 ### Pelo IntelliJ IDEA
 - Clonar o projeto
-- No IntelliJ em File > Project Structure... > Project Settings > Project, escolha o SDK Java 8 e salve 
+- No IntelliJ em File > Project Structure... > Project Settings > Project, escolha o SDK Java 17 e salve 
 - No Intellij em Run/Debug Configuration, Add New Configuration `Junit`
-- Seleciona uma versão do java 8
+- Seleciona uma versão do java 17 (preferencialmente a da oracle)
 - Remove o `-ea` e coloque `-Dbrand=Zzmall -Denv=integ01 -DexcludeWallet=true`.
   - Se for outra marca ou ambiente, deve utilizar os listados na seção **Argumentos disponíveis**.
 - Na caixa Class, selecione se quer testar a classe ou método, ao lado, escolha qual o nome da classe/método que quer rodar, os testes se encontram em `src/test/java/OCC/Tests/...`
@@ -87,7 +87,7 @@ O nome da sua branch sempre será composto por duas seções principais separado
 - **feat**: Nova feature
 - **fix**: Correção de bug
 - **refactor**: Mudanças no código que não são nem correção de bug nem novas features
-- **docs**: Inclusão ou mudanças na documentação
+- **doc**: Inclusão ou mudanças na documentação
 - **revert**: Quando uma implementação recente precisa ser retornada ao seu estado anterior
 
 **O que está sendo feito na branch:**
