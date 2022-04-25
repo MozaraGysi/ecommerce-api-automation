@@ -1,0 +1,36 @@
+$catalogStaged = Staged
+$catalogOnline = Online
+$productCatalog=arezzoProductCatalog
+$productCVToStaged = catalogversion(catalog(id[default=$productCatalog]), version[default=$catalogStaged])[unique=true, default=$productCatalog:$catalogStaged]
+$productCVToOnline = catalogversion(catalog(id[default=$productCatalog]), version[default=$catalogOnline])[unique=true, default=$productCatalog:$catalogOnline]
+
+INSERT_UPDATE ModelVariantProduct[impex.legacy.mode=false];code[unique=true];$productCVToStaged;legacySKU[unique=true]
+;0366001720002U;;A0366001720002
+;0269500260065U;;A0269500260065
+;0376203090004U;;A0376203090004
+;0269500260066U;;A0269500260066
+;5000500050002U;;A5000500050002
+
+INSERT_UPDATE SizeVariantProduct;code[unique=true];$productCVToStaged
+;0366001720002U-36;
+;0269500260065U-33;
+;0376203090004U-33;
+;0269500260066U-33;
+;5000500050002U-UN;
+
+INSERT_UPDATE ModelVariantProduct[impex.legacy.mode=false];code[unique=true];$productCVToOnline;legacySKU[unique=true]
+;0366001720002U;;A0366001720002
+;0269500260065U;;A0269500260065
+;0376203090004U;;A0376203090004
+;0269500260066U;;A0269500260066
+;5000500050002U;;A5000500050002
+
+INSERT_UPDATE SizeVariantProduct;code[unique=true];$productCVToOnline
+;0366001720002U-36;
+;0269500260065U-33;
+;0376203090004U-33;
+;0269500260066U-33;
+;5000500050002U-UN;
+
+
+
