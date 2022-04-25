@@ -1,0 +1,21 @@
+$catalogStaged = Staged
+$catalogOnline = Online
+$productCatalog=schutzProductCatalog
+$productCVToStaged = catalogversion(catalog(id[default=$productCatalog]), version[default=$catalogStaged])[unique=true, default=$productCatalog:$catalogStaged]
+$productCVToOnline = catalogversion(catalog(id[default=$productCatalog]), version[default=$catalogOnline])[unique=true, default=$productCatalog:$catalogOnline]
+
+INSERT_UPDATE ModelVariantProduct[impex.legacy.mode=false];code[unique=true]; $productCVToStaged; legacySKU[unique = true]
+;2079900020003U;;S2079900020003
+;0157700340011U;;S0157700340011
+
+INSERT_UPDATE SizeVariantProduct;code[unique=true]; $productCVToStaged
+;2079900020003U-33;
+;0157700340011U-39;
+
+INSERT_UPDATE ModelVariantProduct[impex.legacy.mode=false];code[unique=true]; $productCVToOnline; legacySKU[unique = true]
+;2079900020003U;;S2079900020003
+;0157700340011U;;S0157700340011
+
+INSERT_UPDATE SizeVariantProduct;code[unique=true]; $productCVToOnline
+;2079900020003U-33;
+;0157700340011U-39;
