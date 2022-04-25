@@ -4,7 +4,7 @@ import Common.Validators.Validator;
 import OCC.DTOs.Response.StoreFinderSearchResponseDTO;
 import io.restassured.response.Response;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StoreFinderWrongQueryValidator implements Validator {
 

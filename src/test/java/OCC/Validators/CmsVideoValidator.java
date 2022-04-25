@@ -4,7 +4,8 @@ import Common.Validators.Validator;
 import OCC.DTOs.Response.CmsPageResponseDTO;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CmsVideoValidator implements Validator {
     @Override
@@ -15,7 +16,7 @@ public class CmsVideoValidator implements Validator {
         cmsPageResponseDTO.getContentSlots().getContentSlot().forEach(contentSlot -> {
             if (contentSlot.getPosition().equals("SectionBannerCarousel")){
                 contentSlot.getComponents().getComponent().forEach(component -> {
-                    Assertions.assertFalse(component.jsonContentBanners.isEmpty());
+                    assertFalse(component.jsonContentBanners.isEmpty());
                 });
             }
         });

@@ -3,7 +3,8 @@ package Wallet.Validators;
 import Common.Validators.Validator;
 import Wallet.DTOs.Response.ErrorMessageResponseDTO;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DebitPointsWithoutAvailableAmountValidator implements Validator {
 
@@ -11,7 +12,7 @@ public class DebitPointsWithoutAvailableAmountValidator implements Validator {
 	public void validate(Response response) {
 		ErrorMessageResponseDTO errorMessageResponseDTO = new ErrorMessageResponseDTO().fromJsonString(response.getBody().asString());
 
-		Assertions.assertEquals("422", errorMessageResponseDTO.getCode());
+		assertEquals("422", errorMessageResponseDTO.getCode());
 
 	}
 }

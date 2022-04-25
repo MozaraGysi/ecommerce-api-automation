@@ -6,7 +6,8 @@ import Wallet.DTOs.Response.CreditTransactionsResponseDTO;
 import Wallet.Enums.CreditTransactionStatusEnum;
 import Wallet.Utils.Utils;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CreditTransactionsWithStatusPENDENTEValidator implements Validator {
 
@@ -22,13 +23,13 @@ public class CreditTransactionsWithStatusPENDENTEValidator implements Validator 
 
 		CreditPointsRequestDTO creditPointsRequestDTO = Utils.getCreditPoints(transactionId);
 
-		Assertions.assertEquals(transactionId, creditTransactionsResponseDTO.getTransactionId());
-		Assertions.assertEquals(creditPointsRequestDTO.getDocument(), creditTransactionsResponseDTO.getDocument());
-		Assertions.assertEquals(creditPointsRequestDTO.getAmount(), creditTransactionsResponseDTO.getAmount());
-		Assertions.assertEquals(creditPointsRequestDTO.getAmount(), creditTransactionsResponseDTO.getCreditAmount());
-		Assertions.assertEquals(CreditTransactionStatusEnum.PENDENTE.getValue(), creditTransactionsResponseDTO.getStatus());
-		Assertions.assertNotNull(creditTransactionsResponseDTO.getDateTime());
-		Assertions.assertNotNull(creditTransactionsResponseDTO.getDescription());
+		assertEquals(transactionId, creditTransactionsResponseDTO.getTransactionId());
+		assertEquals(creditPointsRequestDTO.getDocument(), creditTransactionsResponseDTO.getDocument());
+		assertEquals(creditPointsRequestDTO.getAmount(), creditTransactionsResponseDTO.getAmount());
+		assertEquals(creditPointsRequestDTO.getAmount(), creditTransactionsResponseDTO.getCreditAmount());
+		assertEquals(CreditTransactionStatusEnum.PENDENTE.getValue(), creditTransactionsResponseDTO.getStatus());
+		assertNotNull(creditTransactionsResponseDTO.getDateTime());
+		assertNotNull(creditTransactionsResponseDTO.getDescription());
 
 	}
 }

@@ -3,7 +3,8 @@ package Wallet.Validators;
 import Common.Validators.Validator;
 import Wallet.DTOs.Response.CreditPointsResponseDTO;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CreditPointsWithTransactionIdValidator implements Validator {
 
@@ -11,7 +12,7 @@ public class CreditPointsWithTransactionIdValidator implements Validator {
 	public void validate(Response response) {
 		CreditPointsResponseDTO creditPointsResponseDTO = new CreditPointsResponseDTO().fromJsonString(response.getBody().asString());
 
-		Assertions.assertNotNull(creditPointsResponseDTO.getTransactionId());
+		assertNotNull(creditPointsResponseDTO.getTransactionId());
 
 	}
 }

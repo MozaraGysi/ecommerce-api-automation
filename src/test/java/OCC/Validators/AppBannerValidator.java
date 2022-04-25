@@ -2,10 +2,10 @@ package OCC.Validators;
 
 import Common.Validators.Validator;
 import OCC.DTOs.Response.AppComponentsResponseDTO;
-import OCC.DTOs.Response.CmsComponentsResponseDTO;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppBannerValidator implements Validator {
     @Override
@@ -17,7 +17,7 @@ public class AppBannerValidator implements Validator {
             if(components.getBanners()!=null) {
                 components.getBanners().forEach(image -> {
                     if(image.getImage()!=null){
-                        Assertions.assertFalse(image.getImage().isEmpty());
+                        assertFalse(image.getImage().isEmpty());
                     }
                 });
             }

@@ -8,9 +8,10 @@ import Wallet.Enums.StatementTypeEnum;
 import Wallet.Handlers.CreditPointsHandler;
 import Wallet.Utils.Utils;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
 
 import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PointsValidator implements Validator {
 
@@ -18,12 +19,12 @@ public class PointsValidator implements Validator {
 	public void validate(Response response) {
 		PointsResponseDTO pointsResponseDTO = new PointsResponseDTO().fromJsonString(response.getBody().asString());
 
-		Assertions.assertEquals(Utils.getCPF(), pointsResponseDTO.getDocument());
+		assertEquals(Utils.getCPF(), pointsResponseDTO.getDocument());
 
-		Assertions.assertNotNull(pointsResponseDTO.getBalance());
-		Assertions.assertEquals(Utils.getAvailableAmount(), pointsResponseDTO.getBalance().getAvailable());
-		Assertions.assertEquals(Utils.getPendingAmount(), pointsResponseDTO.getBalance().getPendingCredits());
-		Assertions.assertEquals(0, pointsResponseDTO.getBalance().getPendingDebits());
+		assertNotNull(pointsResponseDTO.getBalance());
+		assertEquals(Utils.getAvailableAmount(), pointsResponseDTO.getBalance().getAvailable());
+		assertEquals(Utils.getPendingAmount(), pointsResponseDTO.getBalance().getPendingCredits());
+		assertEquals(0, pointsResponseDTO.getBalance().getPendingDebits());
 
 		Utils.getCreditPoints().stream().filter(CreditPointsHandler::isConfirmed)
 				.forEach(creditPointsHandler -> {
@@ -33,15 +34,15 @@ public class PointsValidator implements Validator {
 							.findFirst()
 							.orElse(null);
 
-					Assertions.assertNotNull(creditPointsStatement);
-					Assertions.assertEquals(creditPointsHandler.getRequestDTO().getCreditAmount(), creditPointsStatement.getAmount());
-					Assertions.assertEquals(StatementStatusEnum.CONFIRMADO.getValue(), creditPointsStatement.getStatus());
-					Assertions.assertNotNull(creditPointsStatement.getDateTime());
-					Assertions.assertNotNull(creditPointsStatement.getExpireAt());
-					Assertions.assertNotNull(creditPointsStatement.getDescription());
+					assertNotNull(creditPointsStatement);
+					assertEquals(creditPointsHandler.getRequestDTO().getCreditAmount(), creditPointsStatement.getAmount());
+					assertEquals(StatementStatusEnum.CONFIRMADO.getValue(), creditPointsStatement.getStatus());
+					assertNotNull(creditPointsStatement.getDateTime());
+					assertNotNull(creditPointsStatement.getExpireAt());
+					assertNotNull(creditPointsStatement.getDescription());
 					if (Objects.nonNull(creditPointsHandler.getRequestDTO().getOrder())) {
-						Assertions.assertEquals(creditPointsHandler.getRequestDTO().getOrder().getId(), creditPointsStatement.getOrder().getId());
-						Assertions.assertEquals(creditPointsHandler.getRequestDTO().getOrder().getTotalPrice(), creditPointsStatement.getOrder().getTotalPrice());
+						assertEquals(creditPointsHandler.getRequestDTO().getOrder().getId(), creditPointsStatement.getOrder().getId());
+						assertEquals(creditPointsHandler.getRequestDTO().getOrder().getTotalPrice(), creditPointsStatement.getOrder().getTotalPrice());
 					}
 				});
 
@@ -52,15 +53,15 @@ public class PointsValidator implements Validator {
 					.findFirst()
 					.orElse(null);
 
-			Assertions.assertNotNull(debitPointsStatement);
-			Assertions.assertEquals(Utils.getLastDebitPoints().getRequestDTO().getDebitAmount(), debitPointsStatement.getAmount());
-			Assertions.assertEquals(StatementStatusEnum.CONFIRMADO.getValue(), debitPointsStatement.getStatus());
-			Assertions.assertNotNull(debitPointsStatement.getDateTime());
-			Assertions.assertNotNull(debitPointsStatement.getExpireAt());
-			Assertions.assertNotNull(debitPointsStatement.getDescription());
+			assertNotNull(debitPointsStatement);
+			assertEquals(Utils.getLastDebitPoints().getRequestDTO().getDebitAmount(), debitPointsStatement.getAmount());
+			assertEquals(StatementStatusEnum.CONFIRMADO.getValue(), debitPointsStatement.getStatus());
+			assertNotNull(debitPointsStatement.getDateTime());
+			assertNotNull(debitPointsStatement.getExpireAt());
+			assertNotNull(debitPointsStatement.getDescription());
 			if (Objects.nonNull(Utils.getLastDebitPoints().getRequestDTO().getOrder())) {
-				Assertions.assertEquals(Utils.getLastDebitPoints().getRequestDTO().getOrder().getId(), debitPointsStatement.getOrder().getId());
-				Assertions.assertEquals(Utils.getLastDebitPoints().getRequestDTO().getOrder().getTotalPrice(), debitPointsStatement.getOrder().getTotalPrice());
+				assertEquals(Utils.getLastDebitPoints().getRequestDTO().getOrder().getId(), debitPointsStatement.getOrder().getId());
+				assertEquals(Utils.getLastDebitPoints().getRequestDTO().getOrder().getTotalPrice(), debitPointsStatement.getOrder().getTotalPrice());
 			}
 		});
 

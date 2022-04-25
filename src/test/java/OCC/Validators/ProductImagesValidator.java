@@ -4,7 +4,8 @@ import Common.Validators.Validator;
 import OCC.DTOs.Response.ProductCategorySearchPageResponseDTO;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductImagesValidator implements Validator {
     @Override
@@ -14,7 +15,7 @@ public class ProductImagesValidator implements Validator {
 
         productCategorySearchPageResponseDTO.getProducts().forEach(productDTO -> {
             productDTO.getImages().forEach(imageDTO -> {
-                Assertions.assertNotNull(imageDTO.getUrl());
+                assertNotNull(imageDTO.getUrl());
             });
         });
     }

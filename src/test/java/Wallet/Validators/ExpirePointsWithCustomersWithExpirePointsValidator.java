@@ -6,10 +6,11 @@ import Wallet.DTOs.Response.ExpirePointsResponseDTO;
 import Wallet.Utils.Utils;
 import io.restassured.response.Response;
 import org.apache.commons.collections.CollectionUtils;
-import org.junit.jupiter.api.Assertions;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ExpirePointsWithCustomersWithExpirePointsValidator implements Validator {
 
@@ -17,15 +18,15 @@ public class ExpirePointsWithCustomersWithExpirePointsValidator implements Valid
 	public void validate(Response response) {
 		ExpirePointsResponseDTO expirePointsResponseDTO = new ExpirePointsResponseDTO().fromJsonString(response.getBody().asString());
 
-		Assertions.assertTrue(CollectionUtils.isNotEmpty(expirePointsResponseDTO.getCustomers()));
+		assertTrue(CollectionUtils.isNotEmpty(expirePointsResponseDTO.getCustomers()));
 
 		List<CustomerExpirePointsResponseDTO> customerExpirePoints = expirePointsResponseDTO.getCustomers()
 				.stream()
 				.filter(customer -> customer.getDocument().equals(Utils.getCPF()))
 				.collect(Collectors.toList());
 
-		Assertions.assertEquals(1, customerExpirePoints.size());
-		Assertions.assertEquals(Double.valueOf(String.valueOf(Utils.getAvailableAmount())), customerExpirePoints.get(0).getAmount());
+		assertEquals(1, customerExpirePoints.size());
+		assertEquals(Double.valueOf(String.valueOf(Utils.getAvailableAmount())), customerExpirePoints.get(0).getAmount());
 
 	}
 }

@@ -317,7 +317,7 @@ public class ClassNameService {
 		Response response = APIClient.postSomeRequest(classNameDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeValidator(), new Some01Validator(), new Some02Validator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 	
 	public static void postSomeTestWithHandleValues() {
@@ -326,7 +326,7 @@ public class ClassNameService {
 		Response response = APIClient.postSomeRequest(classNameDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeValidator(), new Some01Validator(), new Some02Validator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 		
 		handleSomeValue(classNameDTO, response);
 	}
@@ -340,14 +340,16 @@ Classes responsáveis por validar se os dados respondidos estão de acordo com o
   <summary>Exemplo</summary>
 
    ```
+import static org.junit.jupiter.api.Assertions.*;
+
 public class SomeValidator implements Validator {
 
 	@Override
 	public boolean validate(Response response) {
 		ClassNameDTO classNameDTO = new ClassNameDTO().fromJsonString(response.getBody().asString());
 
-		Assertions.assertNotNull(classNameDTO.getAttribute());
-		Assertions.assertEquals(someValue, classNameDTO.getAttribute());
+		assertNotNull(classNameDTO.getAttribute());
+		assertEquals(someValue, classNameDTO.getAttribute());
 
 		return true;
 	}

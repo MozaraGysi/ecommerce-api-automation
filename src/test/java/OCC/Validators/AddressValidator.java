@@ -3,7 +3,8 @@ package OCC.Validators;
 import Common.Validators.Validator;
 import OCC.DTOs.Request.AddressRequestDTO;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AddressValidator implements Validator {
     
@@ -11,19 +12,19 @@ public class AddressValidator implements Validator {
     public void validate(Response response) {
 
         AddressRequestDTO addressRequestDTO = new AddressRequestDTO().fromJsonString(response.getBody().asString());
-        Assertions.assertNotNull(addressRequestDTO.getAddressName());
-        Assertions.assertNotNull(addressRequestDTO.getComplement());
-        Assertions.assertNotNull(addressRequestDTO.getFirstName());
-        Assertions.assertNotNull(addressRequestDTO.getLastName());
-        Assertions.assertNotNull(addressRequestDTO.getDistrict());
-        Assertions.assertNotNull(addressRequestDTO.getCountry());
-        Assertions.assertNotNull(addressRequestDTO.getLine1());
-        Assertions.assertNotNull(addressRequestDTO.getLine2());
-        Assertions.assertNotNull(addressRequestDTO.getPostalCode());
-        Assertions.assertNotNull(addressRequestDTO.getPhone());
-        Assertions.assertNotNull(addressRequestDTO.getTitleCode());
-        Assertions.assertNotNull(addressRequestDTO.getTown());
-        Assertions.assertNotNull(addressRequestDTO.getRegion());
+        assertNotNull(addressRequestDTO.getAddressName());
+        assertNotNull(addressRequestDTO.getComplement());
+        assertNotNull(addressRequestDTO.getFirstName());
+        assertNotNull(addressRequestDTO.getLastName());
+        assertNotNull(addressRequestDTO.getDistrict());
+        assertNotNull(addressRequestDTO.getCountry());
+        assertNotNull(addressRequestDTO.getLine1());
+        assertNotNull(addressRequestDTO.getLine2());
+        assertNotNull(addressRequestDTO.getPostalCode());
+        assertNotNull(addressRequestDTO.getPhone());
+        assertNotNull(addressRequestDTO.getTitleCode());
+        assertNotNull(addressRequestDTO.getTown());
+        assertNotNull(addressRequestDTO.getRegion());
 
     }
 }
