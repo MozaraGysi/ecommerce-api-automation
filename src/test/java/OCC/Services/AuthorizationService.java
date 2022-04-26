@@ -9,7 +9,6 @@ import OCC.Utils.APIClient;
 import OCC.Validators.AnonymousAuthorizationValidator;
 import OCC.Validators.CustomerAuthorizationValidator;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +24,7 @@ public class AuthorizationService {
 		Response response = APIClient.postAuthorization(authorizationRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		AuthorizationHandler.handleAuthorization(response);
 	}
@@ -38,7 +37,7 @@ public class AuthorizationService {
 		Response response = APIClient.postAuthorization(authorizationRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		AuthorizationHandler.handleAuthorization(response);
 	}
@@ -52,7 +51,7 @@ public class AuthorizationService {
 		Response response = APIClient.postAuthorization(authorizationRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new AnonymousAuthorizationValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		AuthorizationHandler.handleAuthorization(response);
 	}
@@ -66,7 +65,7 @@ public class AuthorizationService {
 		Response response = APIClient.postAuthorization(authorizationRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		AuthorizationHandler.handleAuthorization(response);
 	}
@@ -80,7 +79,7 @@ public class AuthorizationService {
 		Response response = APIClient.postAuthorization(authorizationRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CustomerAuthorizationValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		AuthorizationHandler.handleAuthorization(response);
 	}

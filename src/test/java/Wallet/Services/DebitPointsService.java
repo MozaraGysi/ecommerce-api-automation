@@ -24,7 +24,7 @@ public class DebitPointsService {
 		Response response = APIClient.postDebitPoints(debitPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new DebitPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleDebitPoints(debitPointsRequestDTO, response);
 	}
@@ -35,7 +35,7 @@ public class DebitPointsService {
 		Response response = APIClient.postDebitPoints(debitPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new DebitPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleDebitPoints(debitPointsRequestDTO, response);
 	}
@@ -46,7 +46,7 @@ public class DebitPointsService {
 		Response response = APIClient.postDebitPoints(debitPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new DebitPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleDebitPoints(debitPointsRequestDTO, response);
 	}
@@ -57,7 +57,7 @@ public class DebitPointsService {
 		Response response = APIClient.postDebitPoints(debitPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new DebitPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleDebitPoints(debitPointsRequestDTO, response);
 	}
@@ -68,7 +68,7 @@ public class DebitPointsService {
 		Response response = APIClient.postDebitPoints(debitPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new DebitPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleDebitPoints(debitPointsRequestDTO, response);
 	}
@@ -79,7 +79,7 @@ public class DebitPointsService {
 		Response response = APIClient.postDebitPoints(debitPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void postDebitPointsWithoutAvailableAmount() {
@@ -88,7 +88,7 @@ public class DebitPointsService {
 		Response response = APIClient.postDebitPoints(debitPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator(), new DebitPointsWithoutAvailableAmountValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void deletedDebitPoints() {
@@ -97,7 +97,7 @@ public class DebitPointsService {
 		Response response = APIClient.deleteDebitPoints(deleteDebitPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new DeletedDebitPointsPointsValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	private static void handleDebitPoints(DebitPointsRequestDTO debitPointsRequestDTO, Response response) {

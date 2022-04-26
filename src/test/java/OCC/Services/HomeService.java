@@ -20,7 +20,7 @@ public class HomeService {
         Response response = APIClient.getHomepage(cmsPageContentRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CmsComponentValidator(), new CmsBannerValidator(), new CmsVideoValidator(), new CmsTwoBannerValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void getHomePageApp() {
@@ -29,6 +29,6 @@ public class HomeService {
         Response response = APIClient.getHomepageApp(cmsPageContentRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new AppComponentValidator(), new AppBannerValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 }

@@ -26,7 +26,7 @@ public class CartService {
         CartRequestDTO cartRequestDTO = CartRequestDTOFixture.get().withDefaultProduct().build();
         Response response = APIClient.postCart(cartRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CartValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
 
     }
 
@@ -35,7 +35,7 @@ public class CartService {
         CartRequestDTO cartRequestDTO = CartRequestDTOFixture.getRandom().build();
         Response response = APIClient.postEntry(cartRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CartValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
 
     }
 
@@ -44,7 +44,7 @@ public class CartService {
         CartRequestDTO cartRequestDTO = CartRequestDTOFixture.get().withExternalSellerProduct().build();
         Response response = APIClient.postEntrySellerExterno(cartRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CartValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
 
     }
 
@@ -53,7 +53,7 @@ public class CartService {
         CartRequestDTO cartRequestDTO = CartRequestDTOFixture.getRandom().build();
         Response response = APIClient.getCart(cartRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new CartValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
 
     }
 }

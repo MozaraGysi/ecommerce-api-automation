@@ -8,11 +8,10 @@ import org.junit.jupiter.api.Assertions;
 public class DebitPointsWithoutAvailableAmountValidator implements Validator {
 
 	@Override
-	public boolean validate(Response response) {
+	public void validate(Response response) {
 		ErrorMessageResponseDTO errorMessageResponseDTO = new ErrorMessageResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertEquals("422", errorMessageResponseDTO.getCode());
 
-		return true;
 	}
 }

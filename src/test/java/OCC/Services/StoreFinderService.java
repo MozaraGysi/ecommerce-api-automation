@@ -21,7 +21,7 @@ public class StoreFinderService {
 		Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void getSearchCoordinates() {
@@ -30,7 +30,7 @@ public class StoreFinderService {
 		Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void getSearchAddress() {
@@ -39,7 +39,7 @@ public class StoreFinderService {
 		Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void getSearchWrongPostalCode() {
@@ -48,7 +48,7 @@ public class StoreFinderService {
 		Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderWrongQueryValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void getSearchWrongAddress() {
@@ -57,7 +57,7 @@ public class StoreFinderService {
 		Response response = APIClient.getStores(storeFinderSearchRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new StoreFinderWrongQueryValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 }

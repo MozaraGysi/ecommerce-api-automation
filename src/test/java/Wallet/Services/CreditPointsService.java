@@ -27,7 +27,7 @@ public class CreditPointsService {
 		Response response = APIClient.postCreditPoints(creditPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
@@ -38,7 +38,7 @@ public class CreditPointsService {
 		Response response = APIClient.postCreditPoints(creditPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
@@ -52,7 +52,7 @@ public class CreditPointsService {
 		Response response = APIClient.postCreditPoints(creditPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
@@ -63,7 +63,7 @@ public class CreditPointsService {
 		Response response = APIClient.postCreditPoints(creditPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
@@ -74,7 +74,7 @@ public class CreditPointsService {
 		Response response = APIClient.postCreditPoints(creditPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
@@ -85,7 +85,7 @@ public class CreditPointsService {
 		Response response = APIClient.postCreditPoints(creditPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new CreditPointsWithTransactionIdValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 
 		handleCreditPoints(creditPointsRequestDTO, response);
 	}
@@ -96,7 +96,7 @@ public class CreditPointsService {
 		Response response = APIClient.postCreditPoints(creditPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void deleteCreditPoints() {
@@ -105,7 +105,7 @@ public class CreditPointsService {
 		Response response = APIClient.deleteCreditPoints(deleteCreditPointsRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new DeleteCreditPointsValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	private static void handleCreditPoints(CreditPointsRequestDTO creditPointsRequestDTO, Response response) {

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 public class CreditCardValidator implements Validator {
 
     @Override
-    public boolean validate(Response response) {
+    public void validate(Response response) {
 
         CreditCardResponseDTO creditCardResponseDTO = new CreditCardResponseDTO().fromJsonString(response.getBody().asString());
         Assertions.assertNotNull(creditCardResponseDTO.getCardNumber());
@@ -20,6 +20,5 @@ public class CreditCardValidator implements Validator {
         Assertions.assertNotNull(creditCardResponseDTO.getExpiryYear());
         Assertions.assertNotNull(creditCardResponseDTO.getSecurityCode());
 
-        return true;
     }
 }

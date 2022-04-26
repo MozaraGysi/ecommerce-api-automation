@@ -22,7 +22,7 @@ public class UsersService {
         UserRequestDTO userRequestDTO = UserRequestDTOFixture.getRandom().build();
         Response response = APIClient.postRegisterNewUser(userRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new UserValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
 
     }
 
@@ -31,7 +31,7 @@ public class UsersService {
         AddressRequestDTO addressRequestDTO = AddressRequestDTOFixture.get().addressRS().build();
         Response response = APIClient.postAddresses(addressRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator(), new AddressValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
 
     }
 
@@ -40,7 +40,7 @@ public class UsersService {
         AddressRequestDTO addressRequestDTO = AddressRequestDTOFixture.get().addressRS().build();
         Response response = APIClient.getAddresses(addressRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new AddressValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
 
     }
 
@@ -49,7 +49,7 @@ public class UsersService {
         UserRequestDTO userRequestDTO = UserRequestDTOFixture.getRandom().build();
         Response response = APIClient.patchUser(userRequestDTO);
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new UserValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
 
     }
 

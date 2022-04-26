@@ -18,7 +18,7 @@ public class CustomerService {
 		Response response = APIClient.postCustomers(customerRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeCreatedValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void postNewUserWithoutCPF() {
@@ -27,7 +27,7 @@ public class CustomerService {
 		Response response = APIClient.postCustomers(customerRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void postNewUserWithInvalidCPF() {
@@ -36,7 +36,7 @@ public class CustomerService {
 		Response response = APIClient.postCustomers(customerRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void postNewUserWithoutFirstName() {
@@ -45,7 +45,7 @@ public class CustomerService {
 		Response response = APIClient.postCustomers(customerRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void postNewUserWithoutLastName() {
@@ -54,7 +54,7 @@ public class CustomerService {
 		Response response = APIClient.postCustomers(customerRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void postNewUserWithoutAuthentication() {
@@ -63,7 +63,7 @@ public class CustomerService {
 		Response response = APIClient.postCustomers(customerRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnauthorizedValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 
 	public static void postNewUserWithInvalidMobile() {
@@ -72,6 +72,6 @@ public class CustomerService {
 		Response response = APIClient.postCustomers(customerRequestDTO);
 
 		List<Validator> validators = Arrays.asList(new StatusCodeUnprocessableEntityValidator());
-		Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+		validators.stream().forEach(validator -> validator.validate(response));
 	}
 }

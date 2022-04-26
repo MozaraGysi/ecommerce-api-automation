@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StoreFinderValidator implements Validator {
     @Override
-    public boolean validate(@NotNull Response response) {
+    public void validate(@NotNull Response response) {
         StoreFinderSearchResponseDTO storesFinder = new StoreFinderSearchResponseDTO().fromJsonString(response.getBody().asString());
 
         assertNotNull(storesFinder.getStores());
@@ -19,6 +19,5 @@ public class StoreFinderValidator implements Validator {
         assertNotEquals(true, storesFinder.getStores().get(0).getName().isEmpty());
         assertNotNull(storesFinder.getStores().get(0).getAddress());
 
-        return true;
     }
 }

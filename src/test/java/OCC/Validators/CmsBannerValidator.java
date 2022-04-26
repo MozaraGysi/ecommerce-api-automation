@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class CmsBannerValidator implements Validator {
     @Override
-    public boolean validate(@NotNull Response response) {
+    public void validate(@NotNull Response response) {
 
         CmsPageResponseDTO cmsPageResponseDTO = new CmsPageResponseDTO().fromJsonString(response.getBody().asString());
 
@@ -19,6 +19,5 @@ public class CmsBannerValidator implements Validator {
                 });
             }
         });
-        return true;
     }
 }

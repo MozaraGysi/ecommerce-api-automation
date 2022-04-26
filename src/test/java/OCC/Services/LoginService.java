@@ -23,7 +23,7 @@ public class LoginService {
         Response response = APIClient.getOptionslist(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new RecoverOptionEmailValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void getSearchOptionsListByWrongEmail() {
@@ -33,7 +33,7 @@ public class LoginService {
         Response response = APIClient.getOptionslist(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void postRequestPasswordChangeByOption() {
@@ -43,7 +43,7 @@ public class LoginService {
         Response response = APIClient.postPassword(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void postRequestPasswordChangeByWrongOption() {
@@ -53,7 +53,7 @@ public class LoginService {
         Response response = APIClient.postPassword(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void getRequestCheckReceivedCode() {
@@ -63,7 +63,7 @@ public class LoginService {
         Response response = APIClient.getReceivedcode(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void postRequestChangePassword() {
@@ -73,6 +73,6 @@ public class LoginService {
         Response response = APIClient.postChangePassword(loginPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeBadRequestValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 }

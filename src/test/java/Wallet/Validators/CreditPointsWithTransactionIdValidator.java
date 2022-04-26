@@ -8,12 +8,11 @@ import org.junit.jupiter.api.Assertions;
 public class CreditPointsWithTransactionIdValidator implements Validator {
 
 	@Override
-	public boolean validate(Response response) {
+	public void validate(Response response) {
 		CreditPointsResponseDTO creditPointsResponseDTO = new CreditPointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertNotNull(creditPointsResponseDTO.getTransactionId());
 
-		return true;
 	}
 }
 

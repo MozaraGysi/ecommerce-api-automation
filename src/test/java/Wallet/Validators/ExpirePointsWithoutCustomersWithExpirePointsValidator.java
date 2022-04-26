@@ -8,11 +8,10 @@ import org.junit.jupiter.api.Assertions;
 
 public class ExpirePointsWithoutCustomersWithExpirePointsValidator implements Validator {
 	@Override
-	public boolean validate(Response response) {
+	public void validate(Response response) {
 		ExpirePointsResponseDTO expirePointsResponseDTO = new ExpirePointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertTrue(CollectionUtils.isEmpty(expirePointsResponseDTO.getCustomers()));
 
-		return true;
 	}
 }

@@ -25,7 +25,7 @@ public class CategoryService {
         Response response = APIClient.getProduct(productCategorySearchPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductNameValidator(), new ProductValueValidator(), new ProductImagesValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void getSearchProductsByCodeFieldsAndPage(String code, String fields, String page) {
@@ -40,7 +40,7 @@ public class CategoryService {
         Response response = APIClient.getProduct(productCategorySearchPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductNameValidator(), new ProductValueValidator(), new ProductImagesValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
     }
 
     public static void getSearchProductsWithoutFilters() {
@@ -50,7 +50,7 @@ public class CategoryService {
         Response response = APIClient.getProduct(productCategorySearchPageRequestDTO);
 
         List<Validator> validators = Arrays.asList(new StatusCodeOKValidator(), new ProductImagesValidator(), new ProductValueValidator());
-        Assertions.assertTrue(validators.stream().allMatch(validator -> validator.validate(response)));
+        validators.stream().forEach(validator -> validator.validate(response));
 
     }
 

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 public class UserValidator implements Validator {
 
     @Override
-    public boolean validate(Response response) {
+    public void validate(Response response) {
 
         UserResponseDTO userResponseDTO = new UserResponseDTO().fromJsonString(response.getBody().asString());
         Assertions.assertNotNull(userResponseDTO.getUid());
@@ -20,6 +20,5 @@ public class UserValidator implements Validator {
         Assertions.assertNotNull(userResponseDTO.getPassword());
         Assertions.assertNotNull(userResponseDTO.getGenderCode());
 
-        return true;
     }
 }

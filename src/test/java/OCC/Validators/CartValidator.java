@@ -8,12 +8,11 @@ import org.junit.jupiter.api.Assertions;
 public class CartValidator implements Validator {
 
     @Override
-    public boolean validate(Response response) {
+    public void validate(Response response) {
 
         CartResponseDTO cartResponseDTO = new CartResponseDTO().fromJsonString(response.getBody().asString());
         Assertions.assertNotNull(cartResponseDTO.getProduct());
         Assertions.assertNotNull(cartResponseDTO.getQuantity());
 
-        return true;
     }
 }

@@ -8,12 +8,11 @@ import org.junit.jupiter.api.Assertions;
 public class DeletedDebitPointsPointsValidator implements Validator {
 
 	@Override
-	public boolean validate(Response response) {
+	public void validate(Response response) {
 		DeleteDebitPointsResponseDTO deleteDebitPointsRequestDTO = new DeleteDebitPointsResponseDTO().fromJsonString(response.getBody().asString());
 
 		Assertions.assertFalse(deleteDebitPointsRequestDTO.getTransactionId().isEmpty());
 
-		return true;
 	}
 }
 
